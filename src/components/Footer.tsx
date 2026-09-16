@@ -172,7 +172,6 @@ function SocialIcon({ label, className = "h-4 w-4" }: { label: string; className
     );
   }
 
-  // Fallback: first letter
   return (
     <span className={`text-[11px] font-semibold ${className}`}>
       {label.charAt(0).toUpperCase()}
@@ -200,27 +199,29 @@ export default function Footer() {
             backgroundSize: "56px 56px",
           }}
         />
-        <div className="absolute -left-40 top-0 h-96 w-96 rounded-full bg-[#4F6BFF]/20 blur-[130px]" />
-        <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-[#8B5CF6]/20 blur-[130px]" />
+        <div className="absolute -left-40 top-0 h-72 w-72 rounded-full bg-[#4F6BFF]/20 blur-[130px] sm:h-96 sm:w-96" />
+        <div className="absolute -right-40 bottom-0 h-72 w-72 rounded-full bg-[#8B5CF6]/20 blur-[130px] sm:h-96 sm:w-96" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 sm:px-6 lg:px-10">
         {/* =====================================================
             TOP CTA STRIP
+            Mobile  : centered
+            sm+     : left-aligned headline, right-aligned buttons
         ===================================================== */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
-          className="relative -mt-px border-b border-white/10 py-10 sm:py-12"
+          className="relative border-b border-white/10 py-8 sm:py-10 lg:py-12"
         >
-          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">
+          <div className="flex flex-col gap-5 text-center lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:text-left">
+            <div className="min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40 sm:text-[11px]">
                 Ready when you are
               </p>
-              <h2 className="mt-3 max-w-xl text-2xl font-light leading-[1.15] tracking-[-0.02em] text-white sm:text-3xl lg:text-[34px]">
+              <h2 className="mx-auto mt-2.5 max-w-xl text-[20px] font-light leading-[1.2] tracking-[-0.02em] text-white sm:mt-3 sm:text-2xl lg:mx-0 lg:text-[34px]">
                 Have a project in mind?{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] via-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
                   Let&apos;s talk.
@@ -228,10 +229,10 @@ export default function Footer() {
               </h2>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-col items-center gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3 lg:justify-end lg:shrink-0">
               <Link
                 href="/contact"
-                className="group/btn inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-[13.5px] font-semibold text-[#0A1330] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(255,255,255,.35)]"
+                className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-[13.5px] font-semibold text-[#0A1330] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(255,255,255,.35)] sm:w-auto"
               >
                 Book a Consultation
                 <Arrow />
@@ -240,7 +241,7 @@ export default function Footer() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[13.5px] font-medium text-white backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[13.5px] font-medium text-white backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10 sm:w-auto"
               >
                 <WhatsAppIcon className="h-4 w-4 text-emerald-400" />
                 Chat on WhatsApp
@@ -251,18 +252,26 @@ export default function Footer() {
 
         {/* =====================================================
             MAIN GRID
+            Mobile  : 2 cols
+              Row 1 — Brand (full width, centered)
+              Row 2 — Company | Services
+              Row 3 — Product | Get in touch
+            lg      : 5-col layout [brand, col, col, col, connect]
         ===================================================== */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           variants={stagger}
-          className="grid grid-cols-1 gap-x-8 gap-y-12 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(3,1fr)_1.4fr] lg:gap-x-10 lg:py-16"
+          className="grid grid-cols-2 gap-x-6 gap-y-9 py-11 sm:gap-x-8 sm:gap-y-11 lg:grid-cols-[1.3fr_repeat(3,1fr)_1.4fr] lg:gap-x-8 lg:gap-y-0 lg:py-16 xl:gap-x-10"
         >
-          {/* Brand */}
-          <motion.div variants={fadeUp} className="sm:col-span-2 lg:col-span-1">
+          {/* Brand — spans both mobile columns, centered on mobile */}
+          <motion.div
+            variants={fadeUp}
+            className="col-span-2 flex flex-col items-center text-center lg:col-span-1 lg:items-start lg:text-left"
+          >
             <Link href="/" className="group inline-flex items-center gap-3">
-              <div className="relative h-11 w-11 shrink-0">
+              <div className="relative h-10 w-10 shrink-0 sm:h-11 sm:w-11">
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] opacity-30 blur-md transition-opacity duration-300 group-hover:opacity-50" />
                 <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-transform duration-300 group-hover:-rotate-3">
                   <Image
@@ -275,8 +284,8 @@ export default function Footer() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-[17px] font-semibold tracking-[-0.02em] text-white">
+              <div className="flex flex-col leading-none text-left">
+                <span className="text-[16px] font-semibold tracking-[-0.02em] text-white sm:text-[17px]">
                   FlowFoundry
                 </span>
                 <span className="mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-white/45">
@@ -285,17 +294,17 @@ export default function Footer() {
               </div>
             </Link>
 
-            <p className="mt-5 max-w-[34ch] text-[14px] leading-6 text-white/60">
+            <p className="mt-4 max-w-[42ch] text-[13px] leading-6 text-white/60 sm:mt-5 sm:text-[14px]">
               AI agents, automation, and custom software built around the way
               your business works.
             </p>
 
-            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-3 py-1.5">
+            <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-3 py-1.5 sm:mt-5">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </span>
-              <span className="text-[11.5px] font-medium text-emerald-300">
+              <span className="text-[11px] font-medium text-emerald-300 sm:text-[11.5px]">
                 Available for new projects
               </span>
             </div>
@@ -307,16 +316,17 @@ export default function Footer() {
               key={col.title}
               variants={fadeUp}
               aria-label={col.title}
+              className="min-w-0"
             >
-              <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+              <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-white/40 sm:text-[11px]">
                 {col.title}
               </h3>
-              <ul className="mt-5 space-y-3">
+              <ul className="mt-3.5 space-y-2.5 sm:mt-5 sm:space-y-3">
                 {col.links.map((l) => (
                   <li key={l.href + l.label}>
                     <Link
                       href={l.href}
-                      className="group/link inline-flex items-center gap-1.5 text-[14px] text-white/65 transition-colors duration-200 hover:text-white"
+                      className="group/link inline-flex items-center gap-1.5 text-[13px] text-white/65 transition-colors duration-200 hover:text-white sm:text-[14px]"
                     >
                       <span className="relative">
                         {l.label}
@@ -329,29 +339,29 @@ export default function Footer() {
             </motion.nav>
           ))}
 
-          {/* Connect rail */}
+          {/* Connect rail — beside Product on mobile, 5th column on lg */}
           <motion.div
             variants={fadeUp}
-            className="sm:col-span-2 lg:col-span-1"
+            className="min-w-0"
           >
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+            <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-white/40 sm:text-[11px]">
               Get in touch
             </h3>
 
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-3.5 space-y-2.5 sm:mt-5 sm:space-y-3">
               <li>
                 <a
                   href={`mailto:${SITE.email}`}
-                  className="group flex items-start gap-3 rounded-xl p-1 -m-1 transition-colors duration-200 hover:bg-white/[0.04]"
+                  className="group -m-1 flex items-start gap-3 rounded-xl p-1 transition-colors duration-200 hover:bg-white/[0.04]"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/70 transition-colors duration-200 group-hover:border-white/20 group-hover:text-white">
                     <MailIcon className="h-4 w-4" />
                   </span>
-                  <span className="min-w-0">
-                    <span className="block text-[11px] font-medium uppercase tracking-wider text-white/40">
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[10.5px] font-medium uppercase tracking-wider text-white/40">
                       Email
                     </span>
-                    <span className="mt-0.5 block truncate text-[13.5px] font-medium text-white/85 group-hover:text-white">
+                    <span className="mt-0.5 block truncate text-[12.5px] font-medium text-white/85 group-hover:text-white sm:text-[13.5px]">
                       {SITE.email}
                     </span>
                   </span>
@@ -363,16 +373,16 @@ export default function Footer() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-start gap-3 rounded-xl p-1 -m-1 transition-colors duration-200 hover:bg-white/[0.04]"
+                  className="group -m-1 flex items-start gap-3 rounded-xl p-1 transition-colors duration-200 hover:bg-white/[0.04]"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-400/20 bg-emerald-400/5 text-emerald-400 transition-colors duration-200 group-hover:border-emerald-400/40">
                     <WhatsAppIcon className="h-4 w-4" />
                   </span>
-                  <span className="min-w-0">
-                    <span className="block text-[11px] font-medium uppercase tracking-wider text-white/40">
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[10.5px] font-medium uppercase tracking-wider text-white/40">
                       WhatsApp
                     </span>
-                    <span className="mt-0.5 block text-[13.5px] font-medium text-white/85 group-hover:text-white">
+                    <span className="mt-0.5 block text-[12.5px] font-medium text-white/85 group-hover:text-white sm:text-[13.5px]">
                       Chat with us
                     </span>
                   </span>
@@ -380,15 +390,15 @@ export default function Footer() {
               </li>
 
               <li>
-                <div className="flex items-start gap-3 p-1 -m-1">
+                <div className="-m-1 flex items-start gap-3 p-1">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/70">
                     <ClockIcon className="h-4 w-4" />
                   </span>
-                  <span className="min-w-0">
-                    <span className="block text-[11px] font-medium uppercase tracking-wider text-white/40">
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[10.5px] font-medium uppercase tracking-wider text-white/40">
                       Response time
                     </span>
-                    <span className="mt-0.5 block text-[13.5px] font-medium text-white/85">
+                    <span className="mt-0.5 block text-[12.5px] font-medium text-white/85 sm:text-[13.5px]">
                       Within 24 hours
                     </span>
                   </span>
@@ -398,8 +408,8 @@ export default function Footer() {
 
             {/* Socials */}
             {SOCIALS.length > 0 && (
-              <div className="mt-6">
-                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+              <div className="mt-5 sm:mt-6">
+                <p className="mb-3 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-white/40 sm:text-[11px]">
                   Follow
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -424,17 +434,17 @@ export default function Footer() {
         {/* =====================================================
             BOTTOM BAR
         ===================================================== */}
-        <div className="flex flex-col gap-5 border-t border-white/10 py-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-center text-[12.5px] text-white/50 sm:text-left">
+        <div className="flex flex-col items-center gap-3.5 border-t border-white/10 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:py-7">
+          <p className="text-center text-[11.5px] text-white/45 sm:text-left sm:text-[12.5px]">
             &copy; {currentYear} {SITE.name}. All rights reserved.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:justify-end">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-end sm:gap-x-6">
             {LEGAL_LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-[12.5px] text-white/50 transition-colors duration-200 hover:text-white"
+                className="text-[11.5px] text-white/45 transition-colors duration-200 hover:text-white sm:text-[12.5px]"
               >
                 {l.label}
               </Link>
@@ -442,7 +452,7 @@ export default function Footer() {
 
             <a
               href="#top"
-              className="group inline-flex items-center gap-1.5 text-[12.5px] text-white/50 transition-colors duration-200 hover:text-white"
+              className="group inline-flex items-center gap-1.5 text-[11.5px] text-white/45 transition-colors duration-200 hover:text-white sm:text-[12.5px]"
             >
               Back to top
               <ArrowUpIcon className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" />
