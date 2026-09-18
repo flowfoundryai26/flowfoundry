@@ -212,7 +212,7 @@ function SectionHeading({
     >
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h2
-        className={`mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
+        className={`mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
           invert ? "text-white" : "text-ink"
         }`}
       >
@@ -272,7 +272,7 @@ export default function AboutPage() {
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-6 max-w-[700px] text-[42px] font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-[54px] lg:text-[64px]"
+                className="mt-6 max-w-[700px] text-4xl font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-[64px]"
               >
                 Building smarter ways for businesses to{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] via-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
@@ -380,7 +380,7 @@ export default function AboutPage() {
             <motion.div variants={fadeUp}>
               <Eyebrow tone="cyan">Who we are</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
+              <h2 className="mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 We build systems,
                 <br />
                 not just tools.
@@ -619,7 +619,7 @@ export default function AboutPage() {
             <motion.div variants={fadeUp} className="lg:sticky lg:top-32">
               <Eyebrow tone="emerald">Our system philosophy</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
+              <h2 className="mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 Conversations.
                 <br />
                 Logic.
@@ -832,7 +832,7 @@ export default function AboutPage() {
               <div>
                 <Eyebrow tone="violet">What we&apos;re building</Eyebrow>
 
-                <h2 className="mt-5 text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
+                <h2 className="mt-5 text-2xl font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
                   LeadPulz — our{" "}
                   <span className="bg-gradient-to-r from-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
                     AI Revenue Agent
@@ -888,7 +888,7 @@ export default function AboutPage() {
             <div className="relative z-10">
               <Eyebrow tone="dark">Let&apos;s build</Eyebrow>
 
-              <h2 className="mx-auto mt-6 max-w-4xl text-[34px] font-light leading-[1.06] tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl">
+              <h2 className="mx-auto mt-6 max-w-4xl text-4xl font-light leading-[1.06] tracking-[-0.035em] text-white sm:text-5xl">
                 Have a process, bottleneck, or{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] via-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
                   system idea?

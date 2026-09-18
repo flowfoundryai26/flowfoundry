@@ -415,7 +415,7 @@ function SectionHeading({
     >
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h2
-        className={`mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
+        className={`mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
           invert ? "text-white" : "text-ink"
         }`}
       >
@@ -611,7 +611,7 @@ export default function LeadPulzPage() {
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-6 max-w-[760px] text-[42px] font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-[54px] lg:text-[68px]"
+                className="mt-6 max-w-[760px] text-4xl font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-[68px]"
               >
                 Turn business calls into{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] via-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
@@ -983,7 +983,7 @@ export default function LeadPulzPage() {
             <motion.div variants={fadeUp} className="lg:sticky lg:top-32 lg:self-start">
               <Eyebrow tone="violet">Use cases</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
+              <h2 className="mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 Built for conversations that drive{" "}
                 <span className="bg-gradient-to-r from-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
                   revenue.
@@ -1049,7 +1049,7 @@ export default function LeadPulzPage() {
               <div>
                 <Eyebrow tone="cyan">Built around your business</Eyebrow>
 
-                <h2 className="mt-5 max-w-2xl text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
+                <h2 className="mt-5 max-w-2xl text-2xl font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
                   Your agent should understand your process —{" "}
                   <span className="bg-gradient-to-r from-[#06B6D4] to-[#4F6BFF] bg-clip-text text-transparent">
                     not use a generic script.
@@ -1115,7 +1115,7 @@ export default function LeadPulzPage() {
             <div className="relative z-10">
               <Eyebrow tone="dark">See LeadPulz in action</Eyebrow>
 
-              <h2 className="mx-auto mt-6 max-w-4xl text-[34px] font-light leading-[1.06] tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl">
+              <h2 className="mx-auto mt-6 max-w-4xl text-4xl font-light leading-[1.06] tracking-[-0.035em] text-white sm:text-5xl">
                 What could your team do if every lead got the{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] via-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
                   right next step?

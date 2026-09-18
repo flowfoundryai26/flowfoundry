@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV, SITE } from "@/lib/site";
+import { buttonClass } from "./ui";
 
 /* =========================================================
    HELPERS
@@ -264,7 +265,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
-              className="group/wa inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-medium text-slate transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
+              className={`${buttonClass({ variant: "secondary", size: "sm" })} px-4`}
             >
               <WhatsAppIcon className="h-4 w-4 text-emerald-600" />
               <span className="hidden xl:inline">WhatsApp</span>
@@ -272,7 +273,7 @@ export default function Header() {
 
             <Link
               href="/contact"
-              className="group/btn inline-flex items-center gap-1.5 rounded-md bg-[#0A1330] px-5 py-2.5 text-xs font-medium text-white shadow-[0_10px_30px_-12px_rgba(10,19,48,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#0F1B3D] hover:shadow-[0_16px_40px_-12px_rgba(10,19,48,0.55)] active:translate-y-0 active:scale-[0.98]"
+              className={buttonClass({ variant: "primary", size: "sm" })}
             >
               Get Started
               <Arrow />
@@ -398,14 +399,14 @@ export default function Header() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3.5 text-sm font-medium text-emerald-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-100 active:translate-y-0"
+                className={`${buttonClass({ variant: "secondary", size: "md" })} w-full`}
               >
-                <WhatsAppIcon className="h-4.5 w-4.5" />
+                <WhatsAppIcon className="h-4 w-4 text-emerald-600" />
                 Chat on WhatsApp
               </a>
               <Link
                 href="/contact"
-                className="group/btn inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-[#0A1330] px-4 py-3.5 text-sm font-medium text-white shadow-[0_10px_30px_-12px_rgba(10,19,48,0.5)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                className={`${buttonClass({ variant: "primary", size: "md" })} w-full`}
               >
                 Book a Free Consultation
                 <Arrow />

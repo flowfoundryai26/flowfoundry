@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SITE, SOCIALS } from "@/lib/site";
-import { Arrow, Button } from "./ui";
+import { Arrow, Button, buttonClass } from "./ui";
 import { motion, Variants } from "framer-motion";
 
 /* =========================================================
@@ -221,7 +221,7 @@ export default function Footer() {
               <p className="text-xs font-medium text-on-dark-quiet">
                 Ready when you are
               </p>
-              <h2 className="mx-auto mt-2.5 max-w-xl text-xl font-light leading-[1.2] tracking-[-0.02em] text-white sm:mt-3 sm:text-2xl lg:mx-0 lg:text-[34px]">
+              <h2 className="mx-auto mt-2.5 max-w-xl text-xl font-light leading-[1.2] tracking-[-0.02em] text-white sm:mt-3 sm:text-2xl lg:mx-0 lg:text-4xl">
                 Have a project in mind?{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] via-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
                   Let&apos;s talk.
@@ -243,7 +243,7 @@ export default function Footer() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-xs font-medium text-white backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10 sm:w-auto"
+                className={`${buttonClass({ variant: "outlineOnDark", size: "sm" })} w-full sm:w-auto`}
               >
                 <WhatsAppIcon className="h-4 w-4 text-emerald-400" />
                 Chat on WhatsApp
@@ -306,7 +306,7 @@ export default function Footer() {
                 <span className="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </span>
-              <span className="text-2xs font-medium text-emerald-300">
+              <span className="text-2xs font-medium text-emerald-400">
                 Available for new projects
               </span>
             </div>

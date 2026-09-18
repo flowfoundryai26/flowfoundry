@@ -107,6 +107,17 @@ const BTN_VARIANT: Record<BtnVariant, string> = {
     "focus-visible:ring-[#4F6BFF] focus-visible:ring-offset-white",
 };
 
+/** Button classes for plain <a>/<button> elements that can't be a next/link (external links, target=_blank). */
+export function buttonClass({
+  variant = "primary",
+  size = "md",
+}: {
+  variant?: BtnVariant;
+  size?: BtnSize;
+} = {}) {
+  return `${BTN_BASE} ${BTN_SIZE[size]} ${BTN_VARIANT[variant]}`;
+}
+
 export function Button({
   href,
   children,
@@ -125,7 +136,7 @@ export function Button({
   return (
     <Link
       href={href}
-      className={`${BTN_BASE} ${BTN_SIZE[size]} ${BTN_VARIANT[variant]} ${
+      className={`${buttonClass({ variant, size })} ${
         full ? "w-full sm:w-auto" : ""
       } ${className}`}
     >
@@ -221,7 +232,7 @@ export function SectionHeading({
     >
       {eyebrow ? <Eyebrow tone={tone}>{eyebrow}</Eyebrow> : null}
       <h2
-        className={`mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
+        className={`mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
           invert ? "text-white" : "text-ink"
         }`}
       >

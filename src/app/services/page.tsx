@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 
-import { Arrow, Button } from "@/components/ui";
+import { Arrow, Button, Eyebrow } from "@/components/ui";
 import type { ReactElement } from "react";
 
 /* =========================================================
@@ -57,54 +57,54 @@ const TONES: Record<
   violet: {
     surface: "bg-violet-50/60",
     ring: "border-violet-200/70",
-    text: "text-violet-700",
+    text: "text-[#7C3AED]",
     dot: "bg-violet-500",
-    iconBg: "bg-violet-100 text-violet-700",
+    iconBg: "bg-violet-100 text-[#7C3AED]",
     gradient: "from-[#8B5CF6] to-[#4F6BFF]",
     glow: "shadow-[0_20px_50px_-24px_rgba(139,92,246,0.35)]",
   },
   indigo: {
     surface: "bg-indigo-50/60",
     ring: "border-indigo-200/70",
-    text: "text-indigo-700",
+    text: "text-[#4F6BFF]",
     dot: "bg-indigo-500",
-    iconBg: "bg-indigo-100 text-indigo-700",
+    iconBg: "bg-indigo-100 text-[#4F6BFF]",
     gradient: "from-[#4F6BFF] to-[#8B5CF6]",
     glow: "shadow-[0_20px_50px_-24px_rgba(79,107,255,0.35)]",
   },
   cyan: {
     surface: "bg-cyan-50/60",
     ring: "border-cyan-200/70",
-    text: "text-cyan-700",
+    text: "text-[#0891B2]",
     dot: "bg-cyan-500",
-    iconBg: "bg-cyan-100 text-cyan-700",
+    iconBg: "bg-cyan-100 text-[#0891B2]",
     gradient: "from-[#06B6D4] to-[#4F6BFF]",
     glow: "shadow-[0_20px_50px_-24px_rgba(6,182,212,0.35)]",
   },
   emerald: {
     surface: "bg-emerald-50/60",
     ring: "border-emerald-200/70",
-    text: "text-emerald-700",
+    text: "text-[#047857]",
     dot: "bg-emerald-500",
-    iconBg: "bg-emerald-100 text-emerald-700",
+    iconBg: "bg-emerald-100 text-[#047857]",
     gradient: "from-[#10B981] to-[#06B6D4]",
     glow: "shadow-[0_20px_50px_-24px_rgba(16,185,129,0.35)]",
   },
   amber: {
     surface: "bg-amber-50/60",
     ring: "border-amber-200/70",
-    text: "text-amber-700",
+    text: "text-[#B45309]",
     dot: "bg-amber-500",
-    iconBg: "bg-amber-100 text-amber-700",
+    iconBg: "bg-amber-100 text-[#B45309]",
     gradient: "from-[#F59E0B] to-[#F472B6]",
     glow: "shadow-[0_20px_50px_-24px_rgba(245,158,11,0.35)]",
   },
   rose: {
     surface: "bg-rose-50/60",
     ring: "border-rose-200/70",
-    text: "text-rose-700",
+    text: "text-[#BE185D]",
     dot: "bg-rose-500",
-    iconBg: "bg-rose-100 text-rose-700",
+    iconBg: "bg-rose-100 text-[#BE185D]",
     gradient: "from-[#F472B6] to-[#8B5CF6]",
     glow: "shadow-[0_20px_50px_-24px_rgba(244,114,182,0.35)]",
   },
@@ -362,15 +362,21 @@ const TECHNOLOGY_AREAS = [
   },
 ];
 
-const PROJECT_TYPES = [
-  "Lead & sales automation",
-  "Customer support systems",
-  "AI voice agents",
-  "CRM automation",
-  "Operations automation",
-  "Internal business tools",
-  "SaaS platforms",
-  "Web applications",
+const PROJECT_GROUPS = [
+  {
+    label: "Automation & AI agents",
+    items: [
+      "Lead & sales automation",
+      "Customer support systems",
+      "AI voice agents",
+      "CRM automation",
+      "Operations automation",
+    ],
+  },
+  {
+    label: "Custom software",
+    items: ["Internal business tools", "SaaS platforms", "Web applications"],
+  },
 ];
 
 /* =========================================================
@@ -390,31 +396,6 @@ function Container({
     >
       {children}
     </div>
-  );
-}
-
-function Eyebrow({
-  children,
-  tone = "indigo",
-}: {
-  children: React.ReactNode;
-  tone?: "indigo" | "cyan" | "violet" | "emerald" | "dark";
-}) {
-  const tones: Record<string, string> = {
-    indigo: "border-[#4F6BFF]/20 bg-[#4F6BFF]/5 text-[#4F6BFF]",
-    cyan: "border-[#06B6D4]/20 bg-[#06B6D4]/5 text-[#0891B2]",
-    violet: "border-[#8B5CF6]/20 bg-[#8B5CF6]/5 text-[#7C3AED]",
-    emerald: "border-[#10B981]/20 bg-[#10B981]/5 text-[#047857]",
-    dark: "border-white/15 bg-white/5 text-white",
-  };
-
-  return (
-    <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.18em] ${tones[tone]}`}
-    >
-      <span className="h-1 w-1 rounded-full bg-current opacity-70" />
-      {children}
-    </span>
   );
 }
 
@@ -442,7 +423,7 @@ function SectionHeading({
     >
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h2
-        className={`mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
+        className={`mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
           invert ? "text-white" : "text-ink"
         }`}
       >
@@ -518,7 +499,7 @@ function ServicesSystemVisual() {
             FlowFoundry
           </p>
 
-          <p className="mt-1 text-2xs font-medium uppercase tracking-[0.16em] text-on-dark-quiet">
+          <p className="mt-1 text-xs text-on-dark-quiet">
             Intelligent system
           </p>
         </div>
@@ -586,12 +567,12 @@ export default function ServicesPage() {
           <div className="grid min-h-[720px] items-center gap-14 py-20 lg:grid-cols-[1.02fr_.98fr] lg:gap-16 lg:py-24">
             <motion.div variants={stagger}>
               <motion.div variants={fadeUp}>
-                <Eyebrow tone="dark">AI • Automation • Software</Eyebrow>
+                <Eyebrow tone="dark">Services</Eyebrow>
               </motion.div>
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-6 max-w-[720px] text-[42px] font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-[54px] lg:text-[66px]"
+                className="mt-6 max-w-[720px] text-4xl font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl"
               >
                 Technology built around{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] via-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
@@ -632,19 +613,23 @@ export default function ServicesPage() {
                 </Button>
               </motion.div>
 
-              <motion.div
+              {/* Label strip, not chips — these aren't links (same pattern as the home hero) */}
+              <motion.ul
                 variants={fadeIn}
-                className="mt-10 flex flex-wrap gap-2"
+                className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-on-dark-quiet"
               >
-                {PROJECT_TYPES.slice(0, 5).map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-2xs font-medium text-on-dark-muted backdrop-blur-sm"
-                  >
+                {PROJECT_GROUPS[0].items.map((item, index) => (
+                  <li key={item} className="flex items-center gap-3">
+                    {index > 0 && (
+                      <span
+                        aria-hidden="true"
+                        className="h-1 w-1 rounded-full bg-white/20"
+                      />
+                    )}
                     {item}
-                  </span>
+                  </li>
                 ))}
-              </motion.div>
+              </motion.ul>
             </motion.div>
 
             <motion.div variants={scaleIn}>
@@ -789,7 +774,7 @@ export default function ServicesPage() {
             <motion.div variants={fadeUp}>
               <Eyebrow tone="cyan">Business-first engineering</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
+              <h2 className="mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 We don&apos;t start with the tool.
               </h2>
 
@@ -928,7 +913,7 @@ export default function ServicesPage() {
             <motion.div variants={fadeUp} className="lg:sticky lg:top-32">
               <Eyebrow tone="cyan">Technology</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
+              <h2 className="mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 Modern technology.{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] to-[#4F6BFF] bg-clip-text text-transparent">
                   Chosen for the problem.
@@ -942,28 +927,30 @@ export default function ServicesPage() {
               </p>
             </motion.div>
 
-            <motion.div variants={stagger} className="divide-y divide-slate-200">
+            {/* 2x2: title sits directly above its body instead of in a fixed-width column */}
+            <motion.ol
+              variants={stagger}
+              className="grid gap-x-10 gap-y-8 sm:grid-cols-2"
+            >
               {TECHNOLOGY_AREAS.map((area, index) => (
-                <motion.div
+                <motion.li
                   key={area.title}
                   variants={fadeUp}
-                  className="group grid gap-3 py-7 transition-colors duration-200 sm:grid-cols-[60px_220px_1fr] sm:items-start sm:gap-8"
+                  className="border-t border-slate-200 pt-5"
                 >
-                  <span className="relative text-sm font-semibold text-[#4F6BFF]">
-                    {String(index + 1).padStart(2, "0")}
-                    <span className="absolute -bottom-1 left-0 h-px w-6 bg-[#4F6BFF]/40 transition-all duration-300 group-hover:w-full group-hover:bg-[#4F6BFF]" />
-                  </span>
-
-                  <h3 className="text-base font-semibold tracking-tight text-ink">
+                  <h3 className="flex items-baseline gap-3 text-base font-semibold tracking-tight text-ink">
+                    <span className="shrink-0 text-sm font-semibold tabular-nums text-[#4F6BFF]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                     {area.title}
                   </h3>
 
-                  <p className="text-sm leading-6 text-slate">
+                  <p className="mt-2 text-sm leading-6 text-slate">
                     {area.body}
                   </p>
-                </motion.div>
+                </motion.li>
               ))}
-            </motion.div>
+            </motion.ol>
           </div>
         </Container>
       </motion.section>
@@ -987,7 +974,7 @@ export default function ServicesPage() {
               <div>
                 <Eyebrow tone="violet">Common projects</Eyebrow>
 
-                <h2 className="mt-5 text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
+                <h2 className="mt-5 text-2xl font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
                   What can we help you build?
                 </h2>
 
@@ -998,14 +985,40 @@ export default function ServicesPage() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2.5">
-                {PROJECT_TYPES.map((type) => (
-                  <span
-                    key={type}
-                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-medium text-slate transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-[#4F6BFF]/5 hover:text-[#4F6BFF]"
-                  >
-                    {type}
-                  </span>
+              {/* Grouped checklists instead of an unordered chip cloud */}
+              <div className="grid gap-8 sm:grid-cols-2">
+                {PROJECT_GROUPS.map((group) => (
+                  <div key={group.label}>
+                    <h3 className="text-2xs font-semibold uppercase tracking-[0.14em] text-[#4F6BFF]">
+                      {group.label}
+                    </h3>
+                    <ul className="mt-3 space-y-2.5">
+                      {group.items.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-start gap-3 text-sm leading-6 text-slate"
+                        >
+                          <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#4F6BFF]/10">
+                            <svg
+                              className="h-3 w-3 text-[#4F6BFF]"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2.5}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          </span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
               </div>
             </div>
@@ -1042,7 +1055,7 @@ export default function ServicesPage() {
             <div className="relative z-10">
               <Eyebrow tone="dark">Start a project</Eyebrow>
 
-              <h2 className="mx-auto mt-6 max-w-4xl text-[34px] font-light leading-[1.06] tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl">
+              <h2 className="mx-auto mt-6 max-w-4xl text-4xl font-light leading-[1.06] tracking-[-0.035em] text-white sm:text-5xl">
                 Tell us what your business{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] via-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
                   needs to do better.

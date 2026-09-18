@@ -429,7 +429,7 @@ function SectionHeading({
     >
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h2
-        className={`mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
+        className={`mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
           invert ? "text-white" : "text-ink"
         }`}
       >
@@ -609,7 +609,7 @@ export default function SolutionsPage() {
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-6 max-w-[720px] text-[42px] font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-[54px] lg:text-[66px]"
+                className="mt-6 max-w-[720px] text-4xl font-light leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl"
               >
                 Automate the process,
                 <br />
@@ -742,7 +742,7 @@ export default function SolutionsPage() {
                         </span>
                       </div>
 
-                      <h3 className="mt-7 text-[28px] font-semibold leading-tight tracking-tight text-ink sm:text-3xl">
+                      <h3 className="mt-7 text-2xl font-semibold leading-tight tracking-tight text-ink sm:text-3xl">
                         {solution.title}
                       </h3>
 
@@ -878,7 +878,7 @@ export default function SolutionsPage() {
             <motion.div variants={fadeUp}>
               <Eyebrow tone="violet">System thinking</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
+              <h2 className="mt-5 text-4xl font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 One process can touch many systems.
               </h2>
 
@@ -1020,7 +1020,7 @@ export default function SolutionsPage() {
               <div>
                 <Eyebrow tone="cyan">Where it applies</Eyebrow>
 
-                <h2 className="mt-5 text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
+                <h2 className="mt-5 text-2xl font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
                   Built for different business models.
                 </h2>
 

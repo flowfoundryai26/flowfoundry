@@ -153,7 +153,7 @@ export default function TermsPage() {
 
             <motion.h1
               variants={fadeInUp}
-              className="mt-6 text-[42px] font-light leading-[1.05] tracking-[-0.04em] text-ink sm:text-[54px] lg:text-[64px]"
+              className="mt-6 text-4xl font-light leading-[1.05] tracking-[-0.04em] text-ink sm:text-5xl lg:text-[64px]"
             >
               Terms of{" "}
               <span className="bg-gradient-to-r from-[#3AC9FF] via-[#6161FF] to-[#9450FD] bg-clip-text text-transparent">
