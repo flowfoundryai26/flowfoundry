@@ -77,32 +77,24 @@ const CAPABILITIES = [
     title: "AI Agents",
     body: "Intelligent agents that understand conversations, access business knowledge, make decisions, and take action across your systems.",
     accent: "from-violet-500 to-blue-600",
-    span: "lg:col-span-2",
-    tall: false,
   },
   {
     index: "02",
     title: "Workflow Automation",
     body: "Automate repetitive workflows, approvals, notifications, routing, follow-ups, and data movement across your operations.",
     accent: "from-emerald-500 to-cyan-500",
-    span: "",
-    tall: true,
   },
   {
     index: "03",
     title: "Custom Software",
     body: "Purpose-built applications designed around your workflows instead of forcing your team into generic software.",
     accent: "from-cyan-500 to-blue-600",
-    span: "",
-    tall: true,
   },
   {
     index: "04",
     title: "Integrations",
     body: "Connect CRMs, calendars, databases, communication platforms, APIs, and internal systems into one workflow.",
     accent: "from-pink-500 to-violet-500",
-    span: "lg:col-span-2",
-    tall: false,
   },
 ];
 
@@ -550,7 +542,7 @@ export default function HomePage() {
                 <Button
                   href="/contact"
                   variant="onDark"
-                  className="w-full justify-center bg-white text-[#0A1330] hover:bg-white/95 sm:w-auto"
+                  className="w-full justify-center sm:w-auto"
                 >
                   Book a Free Consultation <Arrow />
                 </Button>
@@ -740,7 +732,7 @@ export default function HomePage() {
 
           <motion.div
             variants={stagger}
-            className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-4"
+            className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14"
           >
             {CAPABILITIES.map((cap, i) => (
               <motion.article
@@ -753,7 +745,7 @@ export default function HomePage() {
                   duration: 0.25,
                   ease: EASE,
                 }}
-                className={`group relative min-w-0 overflow-hidden rounded-lg border border-slate-200/70 bg-white p-5 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-xl sm:p-6 lg:p-7 ${cap.span}`}
+                className={`group relative min-w-0 overflow-hidden rounded-lg border border-slate-200/70 bg-white p-5 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-xl sm:p-6 lg:p-7`}
               >
                 <span
                   className={`pointer-events-none absolute -right-2 -top-6 bg-gradient-to-br ${cap.accent} bg-clip-text text-[72px] font-bold leading-none tracking-tighter text-transparent opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.1] sm:text-[88px]`}
@@ -857,9 +849,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 items-center gap-10 md:gap-14 lg:grid-cols-2 lg:gap-16 xl:gap-20">
             <motion.div variants={stagger} className="min-w-0">
               <motion.div variants={fadeUp}>
-                <Eyebrow tone="indigo">
-                  LeadPulz · AI Revenue Agent
-                </Eyebrow>
+                <Eyebrow tone="indigo">LeadPulz</Eyebrow>
               </motion.div>
 
               <motion.h2
@@ -1054,9 +1044,12 @@ export default function HomePage() {
                     sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 50vw, 33vw"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-900/60 to-transparent"
+                  />
 
-                  <span className="absolute bottom-3 left-3 max-w-[calc(100%-24px)] truncate rounded-full border border-white/40 bg-white/90 px-3 py-1.5 text-2xs font-medium text-slate backdrop-blur">
+                  <span className="absolute bottom-3 left-3 max-w-[calc(100%-24px)] truncate rounded-full bg-slate-900/85 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
                     {useCase.tag}
                   </span>
                 </div>
@@ -1298,7 +1291,7 @@ export default function HomePage() {
                 <Button
                   href="/contact"
                   variant="onDark"
-                  className="w-full justify-center bg-white text-[#0A1330] hover:bg-white/95 sm:w-auto"
+                  className="w-full justify-center sm:w-auto"
                 >
                   Book a Free Consultation <Arrow />
                 </Button>

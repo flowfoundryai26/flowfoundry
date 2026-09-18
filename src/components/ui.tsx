@@ -91,10 +91,12 @@ const BTN_VARIANT: Record<BtnVariant, string> = {
     "border border-slate-200 bg-white text-ink " +
     "hover:border-slate-300 hover:shadow-[0_10px_30px_-12px_rgba(15,27,61,0.15)] " +
     "focus-visible:ring-[#4F6BFF] focus-visible:ring-offset-white",
+  // Primary action on dark surfaces: same brand gradient family as the
+  // light-surface primary, so the CTA reads as one identity site-wide.
   onDark:
-    "bg-white text-[#0A1330] " +
-    "shadow-[0_10px_30px_-12px_rgba(255,255,255,0.4)] " +
-    "hover:bg-white/95 hover:shadow-[0_16px_40px_-12px_rgba(255,255,255,0.5)] " +
+    "bg-gradient-to-r from-[#4F6BFF] to-[#8B5CF6] text-white " +
+    "shadow-[0_10px_30px_-12px_rgba(79,107,255,0.6)] " +
+    "hover:brightness-110 hover:shadow-[0_16px_40px_-12px_rgba(79,107,255,0.7)] " +
     "focus-visible:ring-white focus-visible:ring-offset-[#0A1330]",
   outlineOnDark:
     "border border-white/15 bg-white/5 text-white backdrop-blur-sm " +

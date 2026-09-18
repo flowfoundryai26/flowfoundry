@@ -411,25 +411,26 @@ const LAYERS: {
 
 export function ArchitectureStack() {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {LAYERS.map((layer, i) => {
         const t = TONES[layer.tone];
         return (
-          <div key={layer.title} className="relative">
+          <li key={layer.title} className="relative">
             <div
               className={`group relative h-full overflow-hidden rounded-lg border bg-white p-5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-24px_rgba(15,27,61,0.22)] ${t.ring}`}
             >
               <CornerGlow tone={layer.tone} />
 
               <div className="relative">
-                <div className="flex items-start justify-between">
+                <div className="flex items-center gap-3">
                   <span
                     className={`flex h-10 w-10 items-center justify-center rounded-md bg-gradient-to-br ${t.gradient} text-white shadow-[0_10px_26px_-10px_rgba(79,107,255,0.5)]`}
                   >
                     {layer.icon}
                   </span>
-                  <span className="text-2xs font-semibold tabular-nums tracking-widest text-muted">
-                    L{i + 1}
+                  {/* Sequence indicator — same "01" style as the capability cards */}
+                  <span className={`text-xs font-semibold tabular-nums ${t.text}`}>
+                    <span className="sr-only">Layer </span>0{i + 1}
                   </span>
                 </div>
 
@@ -490,10 +491,10 @@ export function ArchitectureStack() {
                 </svg>
               </>
             )}
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ol>
   );
 }
 

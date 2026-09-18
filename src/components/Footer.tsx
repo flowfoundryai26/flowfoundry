@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SITE, SOCIALS } from "@/lib/site";
-import { Arrow } from "./ui";
+import { Arrow, Button } from "./ui";
 import { motion, Variants } from "framer-motion";
 
 /* =========================================================
@@ -230,13 +230,15 @@ export default function Footer() {
             </div>
 
             <div className="flex flex-col items-center gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3 lg:justify-end lg:shrink-0">
-              <Link
+              <Button
                 href="/contact"
-                className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-xs font-semibold text-[#0A1330] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(255,255,255,.35)] sm:w-auto"
+                variant="onDark"
+                size="sm"
+                className="w-full sm:w-auto"
               >
                 Book a Consultation
                 <Arrow />
-              </Link>
+              </Button>
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -301,7 +303,7 @@ export default function Footer() {
 
             <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-3 py-1.5 sm:mt-5">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </span>
               <span className="text-2xs font-medium text-emerald-300">
@@ -348,11 +350,11 @@ export default function Footer() {
               Get in touch
             </h3>
 
-            <ul className="mt-3.5 space-y-2.5 sm:mt-5 sm:space-y-3">
+            <ul className="mt-3.5 space-y-1 sm:mt-5">
               <li>
                 <a
                   href={`mailto:${SITE.email}`}
-                  className="group -m-1 flex items-start gap-3 rounded-md p-1 transition-colors duration-200 hover:bg-white/[0.04]"
+                  className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-1.5 transition-colors duration-200 hover:bg-white/[0.04]"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5 text-on-dark-muted transition-colors duration-200 group-hover:border-white/20 group-hover:text-white">
                     <MailIcon className="h-4 w-4" />
@@ -361,7 +363,7 @@ export default function Footer() {
                     <span className="block text-2xs font-medium uppercase tracking-wider text-on-dark-quiet">
                       Email
                     </span>
-                    <span className="mt-0.5 block truncate text-xs font-medium text-white group-hover:text-white">
+                    <span className="mt-1 block truncate text-xs font-medium text-white">
                       {SITE.email}
                     </span>
                   </span>
@@ -373,7 +375,7 @@ export default function Footer() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group -m-1 flex items-start gap-3 rounded-md p-1 transition-colors duration-200 hover:bg-white/[0.04]"
+                  className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-1.5 transition-colors duration-200 hover:bg-white/[0.04]"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-emerald-400/20 bg-emerald-400/5 text-emerald-400 transition-colors duration-200 group-hover:border-emerald-400/40">
                     <WhatsAppIcon className="h-4 w-4" />
@@ -382,7 +384,7 @@ export default function Footer() {
                     <span className="block text-2xs font-medium uppercase tracking-wider text-on-dark-quiet">
                       WhatsApp
                     </span>
-                    <span className="mt-0.5 block text-xs font-medium text-white group-hover:text-white">
+                    <span className="mt-1 block text-xs font-medium text-white">
                       Chat with us
                     </span>
                   </span>
@@ -390,7 +392,7 @@ export default function Footer() {
               </li>
 
               <li>
-                <div className="-m-1 flex items-start gap-3 p-1">
+                <div className="-mx-2 flex items-center gap-3 px-2 py-1.5">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5 text-on-dark-muted">
                     <ClockIcon className="h-4 w-4" />
                   </span>
@@ -398,7 +400,7 @@ export default function Footer() {
                     <span className="block text-2xs font-medium uppercase tracking-wider text-on-dark-quiet">
                       Response time
                     </span>
-                    <span className="mt-0.5 block text-xs font-medium text-white">
+                    <span className="mt-1 block text-xs font-medium text-white">
                       Within 24 hours
                     </span>
                   </span>
