@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, Variants } from "framer-motion";
-import { INTEGRATIONS } from "@/lib/site";
-import { Arrow, Button, Chip, Eyebrow } from "@/components/ui";
+import { INTEGRATIONS, PROJECTS } from "@/lib/site";
+import { Arrow, Button, Chip, Eyebrow, TONES } from "@/components/ui";
 import { ArchitectureStack } from "@/components/visuals";
 
 /* =========================================================
@@ -199,6 +200,18 @@ const LEADPULZ_POINTS = [
 /* =========================================================
    PRIMITIVES
 ========================================================= */
+
+function ProjectStatus({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1 text-2xs font-medium text-[#047857]">
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75 motion-safe:animate-ping" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+      </span>
+      {children}
+    </span>
+  );
+}
 
 function Container({
   children,
@@ -1070,6 +1083,117 @@ export default function HomePage() {
       </motion.section>
 
       {/* =====================================================
+          ONGOING PROJECTS
+      ===================================================== */}
+
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{
+          once: true,
+          amount: 0.08,
+        }}
+        variants={stagger}
+        id="projects"
+        className="w-full bg-white py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
+      >
+        <Container>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+            <SectionHeading
+              eyebrow="Work in progress"
+              title={
+                <>
+                  What we&apos;re building{" "}
+                  <span className="bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                    right now.
+                  </span>
+                </>
+              }
+              description="A few of the platforms currently in development — client products alongside the systems we build for ourselves."
+              tone="violet"
+              align="left"
+            />
+
+            <motion.div variants={fadeUp} className="shrink-0">
+              <Button href="/portfolio" variant="secondary">
+                View all projects <Arrow />
+              </Button>
+            </motion.div>
+          </div>
+
+          <motion.div
+            variants={stagger}
+            className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14"
+          >
+            {PROJECTS.map((project) => {
+              const t = TONES[project.tone];
+              return (
+                <motion.article
+                  key={project.slug}
+                  variants={fadeUp}
+                  whileHover={{
+                    y: -6,
+                  }}
+                  transition={{
+                    duration: 0.25,
+                    ease: EASE,
+                  }}
+                  className="group relative flex min-w-0 flex-col overflow-hidden rounded-lg border border-slate-200/70 bg-white p-5 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-xl sm:p-6 lg:p-7"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span
+                      className={`text-2xs font-semibold uppercase tracking-[0.14em] ${t.text}`}
+                    >
+                      {project.category}
+                    </span>
+                    <ProjectStatus>{project.status}</ProjectStatus>
+                  </div>
+
+                  <h3 className="mt-5 text-lg font-semibold tracking-tight text-ink sm:text-xl">
+                    {project.name}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-slate">
+                    {project.summary}
+                  </p>
+
+                  <ul className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted">
+                    {project.highlights.slice(0, 4).map((item, index) => (
+                      <li key={item} className="flex items-center gap-3">
+                        {index > 0 && (
+                          <span
+                            aria-hidden="true"
+                            className="h-1 w-1 rounded-full bg-slate-300"
+                          />
+                        )}
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto pt-6">
+                    {project.href ? (
+                      <Link
+                        href={project.href}
+                        className={`group/link inline-flex items-center gap-1.5 text-xs font-semibold ${t.text}`}
+                      >
+                        Explore {project.name}
+                        <Arrow className="h-3.5 w-3.5 group-hover/link:translate-x-0.5" />
+                      </Link>
+                    ) : (
+                      <div
+                        className={`h-px w-12 bg-gradient-to-r ${t.gradient} transition-all duration-500 group-hover:w-full`}
+                      />
+                    )}
+                  </div>
+                </motion.article>
+              );
+            })}
+          </motion.div>
+        </Container>
+      </motion.section>
+
+      {/* =====================================================
           WHY FLOWFOUNDRY
       ===================================================== */}
 
@@ -1081,7 +1205,7 @@ export default function HomePage() {
           amount: 0.1,
         }}
         variants={stagger}
-        className="w-full bg-white py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
+        className="w-full bg-slate-50 py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
       >
         <Container>
           <div className="grid grid-cols-1 gap-10 sm:gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-16 xl:gap-20">
@@ -1146,7 +1270,7 @@ export default function HomePage() {
           amount: 0.1,
         }}
         variants={stagger}
-        className="w-full bg-slate-50 py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
+        className="w-full bg-white py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
       >
         <Container>
           <SectionHeading
@@ -1197,7 +1321,7 @@ export default function HomePage() {
           amount: 0.1,
         }}
         variants={stagger}
-        className="w-full bg-white py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
+        className="w-full bg-slate-50 py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
       >
         <Container>
           <SectionHeading

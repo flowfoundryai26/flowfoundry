@@ -38,6 +38,7 @@ const COLUMNS = [
       { label: "About Us", href: "/about" },
       { label: "Services", href: "/services" },
       { label: "Solutions", href: "/solutions" },
+      { label: "Portfolio", href: "/portfolio" },
       { label: "LeadPulz", href: "/leadpulz" },
       { label: "Contact", href: "/contact" },
     ],

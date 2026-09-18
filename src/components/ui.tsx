@@ -5,9 +5,9 @@ import type { ReactNode } from "react";
    TONES — shared across all components
    ============================================================ */
 
-type Tone = "indigo" | "cyan" | "violet" | "emerald" | "amber" | "rose";
+export type Tone = "indigo" | "cyan" | "violet" | "emerald" | "amber" | "rose";
 
-const TONES: Record<
+export const TONES: Record<
   Tone,
   {
     border: string;
