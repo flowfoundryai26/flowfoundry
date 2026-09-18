@@ -623,7 +623,6 @@ export default function ServicesPage() {
                 <Button
                   href="/contact"
                   variant="onDark"
-                  className="bg-white text-[#0A1330] hover:bg-white/95"
                 >
                   Discuss Your Project <Arrow />
                 </Button>
@@ -1060,7 +1059,6 @@ export default function ServicesPage() {
                 <Button
                   href="/contact"
                   variant="onDark"
-                  className="bg-white text-[#0A1330] hover:bg-white/95"
                 >
                   Book a Free Consultation <Arrow />
                 </Button>

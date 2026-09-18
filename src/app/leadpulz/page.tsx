@@ -644,7 +644,6 @@ export default function LeadPulzPage() {
                 <Button
                   href="/contact?interest=leadpulz"
                   variant="onDark"
-                  className="bg-white text-[#0A1330] hover:bg-white/95"
                 >
                   Book a Demo <Arrow />
                 </Button>
@@ -1132,7 +1131,6 @@ export default function LeadPulzPage() {
                 <Button
                   href="/contact?interest=leadpulz"
                   variant="onDark"
-                  className="bg-white text-[#0A1330] hover:bg-white/95"
                 >
                   Book a Demo <Arrow />
                 </Button>

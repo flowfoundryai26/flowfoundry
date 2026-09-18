@@ -218,7 +218,7 @@ export default function Footer() {
         >
           <div className="flex flex-col gap-5 text-center lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:text-left">
             <div className="min-w-0">
-              <p className="text-2xs font-semibold uppercase tracking-[0.2em] text-on-dark-quiet">
+              <p className="text-xs font-medium text-on-dark-quiet">
                 Ready when you are
               </p>
               <h2 className="mx-auto mt-2.5 max-w-xl text-xl font-light leading-[1.2] tracking-[-0.02em] text-white sm:mt-3 sm:text-2xl lg:mx-0 lg:text-[34px]">

@@ -194,7 +194,7 @@ export default function Header() {
                     aria-current={active ? "page" : undefined}
                     className={`relative flex items-center gap-1.5 rounded-md px-3.5 py-2 text-sm font-medium transition-colors duration-200 ${
                       active
-                        ? "text-ink"
+                        ? "bg-slate-100 text-ink"
                         : "text-slate hover:text-ink"
                     }`}
                   >
@@ -213,7 +213,7 @@ export default function Header() {
                     {active && (
                       <motion.span
                         layoutId="nav-underline"
-                        className="absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-[#4F6BFF] to-[#8B5CF6]"
+                        className="absolute inset-x-3.5 bottom-0 h-0.5 rounded-full bg-gradient-to-r from-[#4F6BFF] to-[#8B5CF6]"
                         transition={{ duration: 0.3, ease: EASE }}
                       />
                     )}
@@ -328,7 +328,7 @@ export default function Header() {
                         href={item.href}
                         className={`flex-1 rounded-md px-3 py-3 text-sm font-medium transition-colors duration-200 ${
                           active
-                            ? "bg-slate-50 text-ink"
+                            ? "bg-slate-100 text-ink"
                             : "text-slate hover:bg-slate-50"
                         }`}
                       >

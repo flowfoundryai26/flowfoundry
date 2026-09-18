@@ -644,7 +644,6 @@ export default function SolutionsPage() {
                 <Button
                   href="/contact"
                   variant="onDark"
-                  className="bg-white text-[#0A1330] hover:bg-white/95"
                 >
                   Discuss Your Workflow <Arrow />
                 </Button>
@@ -1093,7 +1092,6 @@ export default function SolutionsPage() {
                 <Button
                   href="/leadpulz"
                   variant="onDark"
-                  className="bg-white text-[#0A1330] hover:bg-white/95"
                 >
                   Explore LeadPulz <Arrow />
                 </Button>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 
 import { TEAM } from "@/lib/site";
-import { Arrow, Button } from "@/components/ui";
+import { Arrow, Button, Eyebrow } from "@/components/ui";
 
 /* =========================================================
    MOTION TOKENS
@@ -83,27 +83,23 @@ const CAPABILITIES = [
 const SYSTEM_LAYERS = [
   {
     title: "Conversations",
-    description: "Calls, chat, forms, email, customer interactions",
+    description: "Calls, web chat, WhatsApp, email, and forms.",
     tone: "violet",
-    items: ["Calls", "Web Chat", "WhatsApp", "Email", "Forms"],
   },
   {
     title: "Business Logic",
-    description: "Rules, routing, qualification, decisions, automation",
+    description: "Qualification, routing, rules, and AI decisions.",
     tone: "indigo",
-    items: ["Qualification", "Routing", "Rules", "AI Decisions"],
   },
   {
     title: "Data",
-    description: "CRMs, databases, knowledge bases, analytics",
+    description: "CRMs, databases, knowledge bases, and analytics.",
     tone: "cyan",
-    items: ["CRM", "Databases", "Knowledge Base", "Analytics"],
   },
   {
     title: "Actions",
-    description: "Bookings, updates, follow-ups, tasks, workflows",
+    description: "Bookings, CRM updates, follow-ups, tasks, and workflows.",
     tone: "emerald",
-    items: ["Book Meetings", "Update CRM", "Follow-ups", "Workflows"],
   },
 ];
 
@@ -113,28 +109,24 @@ const FOCUS_AREAS = [
     title: "AI Engineering",
     body: "Designing intelligent agents and AI-enabled systems that understand context, access business knowledge, and take meaningful action.",
     accent: "from-[#8B5CF6] to-[#4F6BFF]",
-    span: "lg:col-span-2",
   },
   {
     index: "02",
     title: "Automation",
     body: "Removing repetitive coordination across sales, support, operations, follow-ups, approvals, notifications, and data movement.",
     accent: "from-[#10B981] to-[#06B6D4]",
-    span: "",
   },
   {
     index: "03",
     title: "Software",
     body: "Building purpose-designed platforms, dashboards, portals, internal tools, websites, and applications around real workflows.",
     accent: "from-[#06B6D4] to-[#4F6BFF]",
-    span: "",
   },
   {
     index: "04",
     title: "Integration",
     body: "Connecting business systems, APIs, CRMs, calendars, databases, and communication platforms into one operating flow.",
     accent: "from-[#F472B6] to-[#8B5CF6]",
-    span: "lg:col-span-2",
   },
 ];
 
@@ -193,31 +185,6 @@ function Container({
     >
       {children}
     </div>
-  );
-}
-
-function Eyebrow({
-  children,
-  tone = "indigo",
-}: {
-  children: React.ReactNode;
-  tone?: "indigo" | "cyan" | "violet" | "emerald" | "dark";
-}) {
-  const tones: Record<string, string> = {
-    indigo: "border-[#4F6BFF]/20 bg-[#4F6BFF]/5 text-[#4F6BFF]",
-    cyan: "border-[#06B6D4]/20 bg-[#06B6D4]/5 text-[#0891B2]",
-    violet: "border-[#8B5CF6]/20 bg-[#8B5CF6]/5 text-[#7C3AED]",
-    emerald: "border-[#10B981]/20 bg-[#10B981]/5 text-[#047857]",
-    dark: "border-white/15 bg-white/5 text-white",
-  };
-
-  return (
-    <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.18em] ${tones[tone]}`}
-    >
-      <span className="h-1 w-1 rounded-full bg-current opacity-70" />
-      {children}
-    </span>
   );
 }
 
@@ -300,7 +267,7 @@ export default function AboutPage() {
             {/* Left */}
             <motion.div variants={stagger}>
               <motion.div variants={fadeUp}>
-                <Eyebrow tone="dark">About FlowFoundry</Eyebrow>
+                <Eyebrow tone="dark">About us</Eyebrow>
               </motion.div>
 
               <motion.h1
@@ -339,7 +306,6 @@ export default function AboutPage() {
                 <Button
                   href="/contact"
                   variant="onDark"
-                  className="bg-white text-[#0A1330] hover:bg-white/95"
                 >
                   Talk to Our Team <Arrow />
                 </Button>
@@ -474,7 +440,7 @@ export default function AboutPage() {
 
           <motion.div
             variants={stagger}
-            className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+            className="mt-14 grid gap-5 sm:grid-cols-2"
           >
             {FOCUS_AREAS.map((item) => (
               <motion.article
@@ -482,7 +448,7 @@ export default function AboutPage() {
                 variants={fadeUp}
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.25, ease: EASE }}
-                className={`group relative overflow-hidden rounded-xl border border-slate-200/70 bg-white p-7 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] ${item.span}`}
+                className={`group relative overflow-hidden rounded-xl border border-slate-200/70 bg-white p-7 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)]`}
               >
                 {/* Watermark number */}
                 <span
@@ -669,7 +635,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <motion.div variants={stagger} className="space-y-4">
+            <motion.div variants={stagger} className="space-y-5">
               {SYSTEM_LAYERS.map((layer, index) => {
                 const t = TONES[layer.tone];
                 return (
@@ -695,18 +661,6 @@ export default function AboutPage() {
                         <p className="mt-1.5 text-sm leading-6 text-slate">
                           {layer.description}
                         </p>
-
-                        {/* Item chips */}
-                        <div className="mt-3 flex flex-wrap gap-1.5">
-                          {layer.items.map((item) => (
-                            <span
-                              key={item}
-                              className={`rounded-full ${t.bg} ${t.text} px-2.5 py-1 text-2xs font-medium`}
-                            >
-                              {item}
-                            </span>
-                          ))}
-                        </div>
                       </div>
                     </div>
                   </motion.article>
@@ -742,14 +696,14 @@ export default function AboutPage() {
               <motion.article
                 key={item.number}
                 variants={fadeUp}
-                className="group grid gap-3 py-7 transition-colors duration-200 sm:grid-cols-[80px_240px_1fr] sm:items-start sm:gap-8"
+                className="group grid gap-3 py-7 transition-colors duration-200 sm:grid-cols-[minmax(0,320px)_1fr] sm:items-start sm:gap-10"
               >
-                <span className="relative text-sm font-semibold text-[#4F6BFF]">
-                  {item.number}
-                  <span className="absolute -bottom-1 left-0 h-px w-6 bg-[#4F6BFF]/40 transition-all duration-300 group-hover:w-full group-hover:bg-[#4F6BFF]" />
-                </span>
-
-                <h3 className="text-lg font-semibold tracking-tight text-ink">
+                {/* Number sits inside the heading so it reads as one group */}
+                <h3 className="flex items-baseline gap-3 text-lg font-semibold tracking-tight text-ink">
+                  <span className="relative shrink-0 text-sm font-semibold tabular-nums text-[#4F6BFF]">
+                    {item.number}
+                    <span className="absolute -bottom-1 left-0 h-px w-full bg-[#4F6BFF]/40 transition-colors duration-300 group-hover:bg-[#4F6BFF]" />
+                  </span>
                   {item.title}
                 </h3>
 
@@ -951,7 +905,6 @@ export default function AboutPage() {
                 <Button
                   href="/contact"
                   variant="onDark"
-                  className="bg-white text-[#0A1330] hover:bg-white/95"
                 >
                   Book a Free Consultation <Arrow />
                 </Button>
