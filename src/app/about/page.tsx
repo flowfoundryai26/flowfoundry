@@ -208,12 +208,12 @@ function Eyebrow({
     cyan: "border-[#06B6D4]/20 bg-[#06B6D4]/5 text-[#0891B2]",
     violet: "border-[#8B5CF6]/20 bg-[#8B5CF6]/5 text-[#7C3AED]",
     emerald: "border-[#10B981]/20 bg-[#10B981]/5 text-[#047857]",
-    dark: "border-white/15 bg-white/5 text-white/90",
+    dark: "border-white/15 bg-white/5 text-white",
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] ${tones[tone]}`}
+      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.18em] ${tones[tone]}`}
     >
       <span className="h-1 w-1 rounded-full bg-current opacity-70" />
       {children}
@@ -246,7 +246,7 @@ function SectionHeading({
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h2
         className={`mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
-          invert ? "text-white" : "text-slate-900"
+          invert ? "text-white" : "text-ink"
         }`}
       >
         {title}
@@ -255,7 +255,7 @@ function SectionHeading({
         <p
           className={`mt-5 text-base leading-7 sm:text-lg ${
             align === "center" ? "mx-auto max-w-2xl" : ""
-          } ${invert ? "text-white/65" : "text-slate-600"}`}
+          } ${invert ? "text-on-dark-muted" : "text-slate"}`}
         >
           {description}
         </p>
@@ -315,7 +315,7 @@ export default function AboutPage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-6 max-w-[590px] text-[17px] leading-8 text-white/70 sm:text-lg"
+                className="mt-6 max-w-[590px] text-base leading-8 text-on-dark-muted sm:text-lg"
               >
                 FlowFoundry AI Solutions helps businesses turn ideas, manual
                 processes, and disconnected tools into intelligent business
@@ -324,7 +324,7 @@ export default function AboutPage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-4 max-w-[590px] text-base leading-7 text-white/55"
+                className="mt-4 max-w-[590px] text-base leading-7 text-on-dark-muted"
               >
                 We combine AI engineering, automation, software development,
                 and integrations to connect conversations, business logic,
@@ -353,10 +353,10 @@ export default function AboutPage() {
             {/* Right visual */}
             <motion.div variants={scaleIn} className="relative">
               {/* Glow */}
-              <div className="pointer-events-none absolute -inset-6 rounded-[40px] bg-gradient-to-br from-[#4F6BFF]/20 via-[#8B5CF6]/15 to-transparent blur-3xl" />
+              <div className="pointer-events-none absolute -inset-6 rounded-2xl bg-gradient-to-br from-[#4F6BFF]/20 via-[#8B5CF6]/15 to-transparent blur-3xl" />
 
-              <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-3 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.8)] backdrop-blur-sm">
-                <div className="overflow-hidden rounded-[20px] bg-white">
+              <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-3 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.8)] backdrop-blur-sm">
+                <div className="overflow-hidden rounded-lg bg-white">
                   <Image
                     src="/images/flowfoundry-system.png"
                     alt="FlowFoundry intelligent business system connecting conversations, logic, data, and actions"
@@ -372,9 +372,9 @@ export default function AboutPage() {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -left-5 top-1/3 hidden rounded-2xl border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md lg:block"
+                className="absolute -left-5 top-1/3 hidden rounded-lg border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md lg:block"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-white/40">
+                <p className="text-2xs font-semibold uppercase tracking-wider text-on-dark-quiet">
                   Focus
                 </p>
                 <p className="mt-1 text-xs font-semibold text-white">
@@ -385,9 +385,9 @@ export default function AboutPage() {
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-5 bottom-1/4 hidden rounded-2xl border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md lg:block"
+                className="absolute -right-5 bottom-1/4 hidden rounded-lg border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md lg:block"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-white/40">
+                <p className="text-2xs font-semibold uppercase tracking-wider text-on-dark-quiet">
                   Approach
                 </p>
                 <p className="mt-1 text-xs font-semibold text-white">
@@ -414,7 +414,7 @@ export default function AboutPage() {
             <motion.div variants={fadeUp}>
               <Eyebrow tone="cyan">Who we are</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-slate-900 sm:text-5xl">
+              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 We build systems,
                 <br />
                 not just tools.
@@ -423,21 +423,21 @@ export default function AboutPage() {
 
             <motion.div variants={fadeUp}>
               {/* Pull quote */}
-              <p className="relative pl-5 text-xl font-light leading-9 text-slate-800 sm:text-2xl sm:leading-10">
+              <p className="relative pl-5 text-xl font-light leading-9 text-slate sm:text-2xl sm:leading-10">
                 <span className="absolute left-0 top-1 h-[calc(100%-0.5rem)] w-0.5 bg-gradient-to-b from-[#4F6BFF] via-[#8B5CF6] to-transparent" />
                 FlowFoundry is a team of AI engineers, automation specialists,
                 and software developers focused on helping businesses operate
                 smarter, faster, and with greater clarity.
               </p>
 
-              <p className="mt-6 text-base leading-8 text-slate-600 sm:text-lg">
+              <p className="mt-6 text-base leading-8 text-slate sm:text-lg">
                 We go beyond building standalone applications. Our work starts
                 with understanding the workflows, customer interactions,
                 internal processes, business rules, data, and systems that keep
                 an organization moving.
               </p>
 
-              <p className="mt-4 text-base leading-8 text-slate-600 sm:text-lg">
+              <p className="mt-4 text-base leading-8 text-slate sm:text-lg">
                 From there, we design practical technology around those
                 processes — reducing repetitive work, connecting disconnected
                 systems, improving response times, and creating a stronger
@@ -482,7 +482,7 @@ export default function AboutPage() {
                 variants={fadeUp}
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.25, ease: EASE }}
-                className={`group relative overflow-hidden rounded-[24px] border border-slate-200/70 bg-white p-7 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] ${item.span}`}
+                className={`group relative overflow-hidden rounded-xl border border-slate-200/70 bg-white p-7 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] ${item.span}`}
               >
                 {/* Watermark number */}
                 <span
@@ -492,7 +492,7 @@ export default function AboutPage() {
                 </span>
 
                 <div
-                  className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${item.accent} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.5)]`}
+                  className={`flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-br ${item.accent} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.5)]`}
                 >
                   {item.index === "01" && (
                     <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -536,11 +536,11 @@ export default function AboutPage() {
                   )}
                 </div>
 
-                <h3 className="mt-8 text-xl font-semibold tracking-tight text-slate-900">
+                <h3 className="mt-8 text-xl font-semibold tracking-tight text-ink">
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-600">
+                <p className="mt-3 text-sm leading-6 text-slate">
                   {item.body}
                 </p>
 
@@ -560,7 +560,7 @@ export default function AboutPage() {
             {CAPABILITIES.map((capability) => (
               <span
                 key={capability}
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-[12.5px] font-medium text-slate-600 transition-colors duration-200 hover:border-[#4F6BFF]/30 hover:bg-[#4F6BFF]/5 hover:text-[#4F6BFF]"
+                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-medium text-slate transition-colors duration-200 hover:border-[#4F6BFF]/30 hover:bg-[#4F6BFF]/5 hover:text-[#4F6BFF]"
               >
                 {capability}
               </span>
@@ -589,7 +589,7 @@ export default function AboutPage() {
             {/* Mission — dark on dark */}
             <motion.article
               variants={fadeUp}
-              className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm sm:p-10 lg:p-12"
+              className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm sm:p-10 lg:p-12"
             >
               <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#4F6BFF]/25 blur-[90px]" />
 
@@ -603,7 +603,7 @@ export default function AboutPage() {
                   </span>
                 </h3>
 
-                <p className="mt-6 max-w-xl text-base leading-7 text-white/65">
+                <p className="mt-6 max-w-xl text-base leading-7 text-on-dark-muted">
                   Our mission is to help businesses remove operational
                   friction, automate repetitive work, connect their systems,
                   and use technology in ways that create practical business
@@ -615,19 +615,19 @@ export default function AboutPage() {
             {/* Vision — light on dark */}
             <motion.article
               variants={fadeUp}
-              className="relative overflow-hidden rounded-[28px] bg-white p-8 sm:p-10 lg:p-12"
+              className="relative overflow-hidden rounded-xl bg-white p-8 sm:p-10 lg:p-12"
             >
               <div className="pointer-events-none absolute -bottom-20 -right-20 h-52 w-52 rounded-full bg-[#DDF8FF]/70 blur-[70px]" />
 
               <div className="relative z-10">
                 <Eyebrow tone="cyan">Our vision</Eyebrow>
 
-                <h3 className="mt-6 text-3xl font-light leading-[1.15] tracking-[-0.03em] text-slate-900 sm:text-4xl">
+                <h3 className="mt-6 text-3xl font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
                   A future where every growing business can operate
                   intelligently.
                 </h3>
 
-                <p className="mt-6 max-w-xl text-base leading-7 text-slate-600">
+                <p className="mt-6 max-w-xl text-base leading-7 text-slate">
                   We envision businesses where conversations, decisions, data,
                   and actions move seamlessly — giving teams more time for
                   customers, creativity, strategy, and growth.
@@ -653,7 +653,7 @@ export default function AboutPage() {
             <motion.div variants={fadeUp} className="lg:sticky lg:top-32">
               <Eyebrow tone="emerald">Our system philosophy</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-slate-900 sm:text-5xl">
+              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 Conversations.
                 <br />
                 Logic.
@@ -663,7 +663,7 @@ export default function AboutPage() {
                 </span>
               </h2>
 
-              <p className="mt-6 max-w-lg text-base leading-7 text-slate-600 sm:text-lg">
+              <p className="mt-6 max-w-lg text-base leading-7 text-slate sm:text-lg">
                 These are the layers we connect to turn disconnected business
                 processes into intelligent operating systems.
               </p>
@@ -678,21 +678,21 @@ export default function AboutPage() {
                     variants={fadeUp}
                     whileHover={{ x: 4 }}
                     transition={{ duration: 0.25, ease: EASE }}
-                    className={`group relative overflow-hidden rounded-2xl border bg-white p-6 transition-all duration-300 hover:shadow-[0_20px_50px_-24px_rgba(15,27,61,0.2)] ${t.ring}`}
+                    className={`group relative overflow-hidden rounded-lg border bg-white p-6 transition-all duration-300 hover:shadow-[0_20px_50px_-24px_rgba(15,27,61,0.2)] ${t.ring}`}
                   >
                     <div className="flex items-start gap-5">
                       {/* Number badge */}
                       <span
-                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${t.gradient} text-[12px] font-semibold text-white shadow-[0_10px_24px_-10px_rgba(79,107,255,0.5)]`}
+                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${t.gradient} text-2xs font-semibold text-white shadow-[0_10px_24px_-10px_rgba(79,107,255,0.5)]`}
                       >
                         {String(index + 1).padStart(2, "0")}
                       </span>
 
                       <div className="min-w-0 flex-1">
-                        <h3 className="text-lg font-semibold tracking-tight text-slate-900">
+                        <h3 className="text-lg font-semibold tracking-tight text-ink">
                           {layer.title}
                         </h3>
-                        <p className="mt-1.5 text-sm leading-6 text-slate-600">
+                        <p className="mt-1.5 text-sm leading-6 text-slate">
                           {layer.description}
                         </p>
 
@@ -701,7 +701,7 @@ export default function AboutPage() {
                           {layer.items.map((item) => (
                             <span
                               key={item}
-                              className={`rounded-full ${t.bg} ${t.text} px-2.5 py-1 text-[11px] font-medium`}
+                              className={`rounded-full ${t.bg} ${t.text} px-2.5 py-1 text-2xs font-medium`}
                             >
                               {item}
                             </span>
@@ -749,11 +749,11 @@ export default function AboutPage() {
                   <span className="absolute -bottom-1 left-0 h-px w-6 bg-[#4F6BFF]/40 transition-all duration-300 group-hover:w-full group-hover:bg-[#4F6BFF]" />
                 </span>
 
-                <h3 className="text-lg font-semibold tracking-tight text-slate-900">
+                <h3 className="text-lg font-semibold tracking-tight text-ink">
                   {item.title}
                 </h3>
 
-                <p className="text-sm leading-6 text-slate-600">
+                <p className="text-sm leading-6 text-slate">
                   {item.body}
                 </p>
               </motion.article>
@@ -790,7 +790,7 @@ export default function AboutPage() {
                 variants={fadeUp}
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.3, ease: EASE }}
-                className="group overflow-hidden rounded-[24px] border border-slate-200/70 bg-white transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)]"
+                className="group overflow-hidden rounded-xl border border-slate-200/70 bg-white transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)]"
               >
                 <div className="relative aspect-[4/4.6] overflow-hidden bg-slate-100">
                   <Image
@@ -806,27 +806,27 @@ export default function AboutPage() {
 
                   {/* Role chip */}
                   <div className="absolute bottom-4 left-4 right-4">
-                    <span className="inline-flex rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur-md">
+                    <span className="inline-flex rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-2xs font-medium text-white backdrop-blur-md">
                       {member.role}
                     </span>
                   </div>
 
                   {/* Number watermark */}
-                  <span className="absolute right-4 top-4 text-[11px] font-semibold tracking-widest text-white/70">
+                  <span className="absolute right-4 top-4 text-2xs font-semibold tracking-widest text-on-dark-muted">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold tracking-tight text-slate-900">
+                  <h3 className="text-lg font-semibold tracking-tight text-ink">
                     {member.name}
                   </h3>
 
-                  <p className="mt-1 text-[13px] font-medium text-[#4F6BFF]">
+                  <p className="mt-1 text-xs font-medium text-[#4F6BFF]">
                     {member.role}
                   </p>
 
-                  <div className="mt-4 flex items-center gap-2 text-[12.5px] text-slate-500">
+                  <div className="mt-4 flex items-center gap-2 text-xs text-muted">
                     <svg
                       className="h-3.5 w-3.5"
                       fill="none"
@@ -868,7 +868,7 @@ export default function AboutPage() {
         <Container>
           <motion.div
             variants={fadeUp}
-            className="relative overflow-hidden rounded-[32px] border border-slate-200/70 bg-white p-8 sm:p-10 lg:p-14"
+            className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-8 sm:p-10 lg:p-14"
           >
             {/* Ambient orbs */}
             <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#4F6BFF]/10 blur-[90px]" />
@@ -878,7 +878,7 @@ export default function AboutPage() {
               <div>
                 <Eyebrow tone="violet">What we&apos;re building</Eyebrow>
 
-                <h2 className="mt-5 text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-slate-900 sm:text-4xl">
+                <h2 className="mt-5 text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
                   LeadPulz — our{" "}
                   <span className="bg-gradient-to-r from-[#4F6BFF] to-[#8B5CF6] bg-clip-text text-transparent">
                     AI Revenue Agent
@@ -886,7 +886,7 @@ export default function AboutPage() {
                   platform.
                 </h2>
 
-                <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
+                <p className="mt-4 max-w-3xl text-base leading-7 text-slate">
                   Alongside our client work, we are building LeadPulz, an
                   AI-powered voice automation platform designed for lead
                   qualification, conversations, appointment booking,
@@ -915,7 +915,7 @@ export default function AboutPage() {
         className="bg-white px-5 pb-24 pt-4 sm:px-6 sm:pb-28 lg:px-8 lg:pb-32"
       >
         <div className="mx-auto max-w-[1200px]">
-          <div className="relative overflow-hidden rounded-[36px] bg-[#0A1330] px-6 py-20 text-center sm:px-12 sm:py-24 lg:px-16 lg:py-28">
+          <div className="relative overflow-hidden rounded-2xl bg-[#0A1330] px-6 py-20 text-center sm:px-12 sm:py-24 lg:px-16 lg:py-28">
             {/* Background */}
             <div className="pointer-events-none absolute inset-0">
               <div
@@ -941,7 +941,7 @@ export default function AboutPage() {
                 </span>
               </h2>
 
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-on-dark-muted sm:text-lg">
                 Tell us how your business works today. We&apos;ll help you
                 explore how AI, automation, integrations, or custom software
                 could make it work better.

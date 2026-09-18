@@ -146,14 +146,14 @@ export default function TermsPage() {
           <div className="mx-auto max-w-3xl text-center">
             <motion.span
               variants={fadeInUp}
-              className="inline-flex rounded-full bg-[#F1EEFF] px-4 py-2 text-[11px] font-semibold tracking-[0.16em] text-[#6161FF]"
+              className="inline-flex rounded-full bg-[#F1EEFF] px-4 py-2 text-2xs font-semibold tracking-[0.16em] text-[#6161FF]"
             >
               TERMS OF SERVICE
             </motion.span>
 
             <motion.h1
               variants={fadeInUp}
-              className="mt-6 text-[42px] font-light leading-[1.05] tracking-[-0.04em] text-slate-900 sm:text-[54px] lg:text-[64px]"
+              className="mt-6 text-[42px] font-light leading-[1.05] tracking-[-0.04em] text-ink sm:text-[54px] lg:text-[64px]"
             >
               Terms of{" "}
               <span className="bg-gradient-to-r from-[#3AC9FF] via-[#6161FF] to-[#9450FD] bg-clip-text text-transparent">
@@ -163,7 +163,7 @@ export default function TermsPage() {
 
             <motion.p
               variants={fadeInUp}
-              className="mx-auto mt-6 max-w-[62ch] text-[17px] leading-8 text-slate-600 sm:text-lg"
+              className="mx-auto mt-6 max-w-[62ch] text-base leading-8 text-slate sm:text-lg"
             >
               Please read these terms carefully before using our services. By
               using our services, you agree to comply with and be bound by
@@ -172,7 +172,7 @@ export default function TermsPage() {
 
             <motion.p
               variants={fadeInUp}
-              className="mt-4 text-[13px] font-medium uppercase tracking-[0.16em] text-slate-400"
+              className="mt-4 text-xs font-medium uppercase tracking-[0.16em] text-muted"
             >
               Last updated · {lastUpdated}
             </motion.p>
@@ -195,9 +195,9 @@ export default function TermsPage() {
           {/* Intro */}
           <motion.div
             variants={fadeInUp}
-            className="mb-10 rounded-[24px] border border-slate-200/70 bg-white p-6 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.12)] sm:p-8"
+            className="mb-10 rounded-xl border border-slate-200/70 bg-white p-6 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.12)] sm:p-8"
           >
-            <p className="text-[16px] leading-8 text-slate-600">
+            <p className="text-base leading-8 text-slate">
               These Terms of Service govern your use of FlowFoundry AI
               Solutions&apos; website, services, and products. By accessing or
               using our services, you agree to be bound by these terms.
@@ -211,18 +211,18 @@ export default function TermsPage() {
                 key={section.index}
                 variants={fadeInUp}
                 whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                className="group relative overflow-hidden rounded-[24px] border border-slate-200/70 bg-white p-6 transition-all duration-300 hover:border-slate-300/70 hover:shadow-[0_24px_60px_-30px_rgba(60,64,100,0.18)] sm:p-8"
+                className="group relative overflow-hidden rounded-xl border border-slate-200/70 bg-white p-6 transition-all duration-300 hover:border-slate-300/70 hover:shadow-[0_24px_60px_-30px_rgba(60,64,100,0.18)] sm:p-8"
               >
                 {/* soft corner glow */}
                 <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gradient-to-br from-[#EEF0FF] to-[#F5F0FF] opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-60" />
 
                 <div className="relative flex items-start gap-4">
-                  <span className="mt-0.5 inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-[#F1EEFF] text-[12px] font-semibold text-[#6161FF]">
+                  <span className="mt-0.5 inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-[#F1EEFF] text-2xs font-semibold text-[#6161FF]">
                     {section.index}
                   </span>
 
                   <div className="min-w-0 flex-1">
-                    <h2 className="text-[20px] font-semibold tracking-[-0.02em] text-slate-900 sm:text-[22px]">
+                    <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink sm:text-[22px]">
                       {section.title}
                     </h2>
 
@@ -230,7 +230,7 @@ export default function TermsPage() {
                       {section.content.map((item, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 text-[15px] leading-7 text-slate-600"
+                          className="flex items-start gap-3 text-sm leading-7 text-slate"
                         >
                           <span className="mt-2 flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-[#3AC9FF] to-[#9450FD]" />
                           <span>{item}</span>
@@ -246,17 +246,17 @@ export default function TermsPage() {
           {/* Contact */}
           <motion.div
             variants={fadeInUp}
-            className="relative mt-10 overflow-hidden rounded-[24px] border border-slate-200/70 bg-gradient-to-br from-[#F5F3FF] via-[#F8F7FF] to-[#EEF6FF] p-6 sm:p-8"
+            className="relative mt-10 overflow-hidden rounded-xl border border-slate-200/70 bg-gradient-to-br from-[#F5F3FF] via-[#F8F7FF] to-[#EEF6FF] p-6 sm:p-8"
           >
             <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#A566FF]/15 blur-[100px]" />
             <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-[#3AC9FF]/15 blur-[100px]" />
 
             <div className="relative">
-              <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-slate-900">
+              <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-ink">
                 Questions About These Terms?
               </h2>
 
-              <p className="mt-3 max-w-[52ch] text-[15px] leading-7 text-slate-600">
+              <p className="mt-3 max-w-[52ch] text-sm leading-7 text-slate">
                 If you have any questions about these Terms of Service, please
                 contact us:
               </p>
@@ -264,9 +264,9 @@ export default function TermsPage() {
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="mailto:info@flowfoundryai.in"
-                  className="group/btn inline-flex items-center gap-2.5 rounded-xl border border-slate-200/80 bg-white px-4 py-3 text-[14px] font-medium text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C8C8FF] hover:text-[#6161FF] hover:shadow-md"
+                  className="group/btn inline-flex items-center gap-2.5 rounded-md border border-slate-200/80 bg-white px-4 py-3 text-sm font-medium text-slate shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C8C8FF] hover:text-[#6161FF] hover:shadow-md"
                 >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F1EEFF] text-[#6161FF]">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#F1EEFF] text-[#6161FF]">
                     <svg
                       className="h-4 w-4"
                       fill="none"
@@ -287,9 +287,9 @@ export default function TermsPage() {
 
                 <Link
                   href="/contact"
-                  className="group/btn inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-[14px] font-medium text-white shadow-lg shadow-blue-200/50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-300/50 active:translate-y-0"
+                  className="group/btn inline-flex items-center gap-2.5 rounded-md bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-sm font-medium text-white shadow-lg shadow-blue-200/50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-300/50 active:translate-y-0"
                 >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/15">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-white/15">
                     <svg
                       className="h-4 w-4"
                       fill="none"

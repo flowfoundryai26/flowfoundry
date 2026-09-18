@@ -78,7 +78,7 @@ export const TONES: Record<
   slate: {
     bg: "bg-slate-50",
     ring: "border-slate-200/70",
-    text: "text-slate-700",
+    text: "text-slate",
     dot: "bg-slate-500",
     glow: "shadow-[0_20px_50px_-24px_rgba(100,116,139,0.3)]",
     gradient: "from-slate-500 to-slate-700",
@@ -206,13 +206,13 @@ const EVENTS = [
 
 export function HeroMockup() {
   return (
-    <div className="relative w-full overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-4 shadow-[0_30px_80px_-30px_rgba(15,27,61,0.18)] sm:p-5 md:p-6">
+    <div className="relative w-full overflow-hidden rounded-xl border border-slate-200/80 bg-white p-4 shadow-[0_30px_80px_-30px_rgba(15,27,61,0.18)] sm:p-5 md:p-6">
       <CornerGlow tone="violet" />
       <CornerGlow tone="cyan" />
 
       {/* Header */}
       <div className="relative flex flex-wrap items-center gap-3 border-b border-slate-100 pb-4">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-white shadow-[0_8px_24px_-8px_rgba(79,107,255,0.7)]">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-white shadow-[0_8px_24px_-8px_rgba(79,107,255,0.7)]">
           <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
@@ -223,14 +223,14 @@ export function HeroMockup() {
           </svg>
         </div>
         <div className="min-w-0 leading-tight">
-          <p className="text-[13px] font-semibold text-slate-900">
+          <p className="text-xs font-semibold text-ink">
             Automation run
           </p>
-          <p className="text-[11.5px] text-slate-500">
+          <p className="text-2xs text-muted">
             Inbound lead pipeline
           </p>
         </div>
-        <span className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-emerald-200/70 bg-emerald-50 px-2.5 py-1 text-[11px] font-medium text-emerald-700">
+        <span className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-emerald-200/70 bg-emerald-50 px-2.5 py-1 text-2xs font-medium text-emerald-700">
           <LivePulse tone="emerald" />
           Live
         </span>
@@ -243,22 +243,22 @@ export function HeroMockup() {
           return (
             <li key={step.label} className="relative">
               <div
-                className={`group h-full rounded-2xl border bg-white p-3.5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(15,27,61,0.2)] ${t.ring}`}
+                className={`group h-full rounded-lg border bg-white p-3.5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(15,27,61,0.2)] ${t.ring}`}
               >
                 <div className="mb-3 flex items-center justify-between">
                   <span
-                    className={`flex h-7 w-7 items-center justify-center rounded-lg ${t.bg} ${t.text}`}
+                    className={`flex h-7 w-7 items-center justify-center rounded-md ${t.bg} ${t.text}`}
                   >
                     {step.icon}
                   </span>
-                  <span className="text-[10px] font-semibold tabular-nums tracking-widest text-slate-400">
+                  <span className="text-2xs font-semibold tabular-nums tracking-widest text-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <p className="text-[13px] font-semibold leading-tight text-slate-900">
+                <p className="text-xs font-semibold leading-tight text-ink">
                   {step.label}
                 </p>
-                <p className="mt-1 text-[11.5px] text-slate-500">
+                <p className="mt-1 text-2xs text-muted">
                   {step.meta}
                 </p>
               </div>
@@ -293,7 +293,7 @@ export function HeroMockup() {
           return (
             <div
               key={e.label}
-              className="flex items-center gap-2.5 rounded-xl border border-slate-200/70 bg-slate-50/60 px-3 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_24px_-12px_rgba(15,27,61,0.15)]"
+              className="flex items-center gap-2.5 rounded-md border border-slate-200/70 bg-slate-50/60 px-3 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_24px_-12px_rgba(15,27,61,0.15)]"
             >
               <span
                 className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${t.bg} ${t.text}`}
@@ -312,10 +312,10 @@ export function HeroMockup() {
                   />
                 </svg>
               </span>
-              <span className="truncate text-[12.5px] font-medium text-slate-800">
+              <span className="truncate text-xs font-medium text-slate">
                 {e.label}
               </span>
-              <span className="ml-auto whitespace-nowrap text-[11px] tabular-nums text-slate-400">
+              <span className="ml-auto whitespace-nowrap text-2xs tabular-nums text-muted">
                 {e.time}
               </span>
             </div>
@@ -417,26 +417,26 @@ export function ArchitectureStack() {
         return (
           <div key={layer.title} className="relative">
             <div
-              className={`group relative h-full overflow-hidden rounded-2xl border bg-white p-5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-24px_rgba(15,27,61,0.22)] ${t.ring}`}
+              className={`group relative h-full overflow-hidden rounded-lg border bg-white p-5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-24px_rgba(15,27,61,0.22)] ${t.ring}`}
             >
               <CornerGlow tone={layer.tone} />
 
               <div className="relative">
                 <div className="flex items-start justify-between">
                   <span
-                    className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${t.gradient} text-white shadow-[0_10px_26px_-10px_rgba(79,107,255,0.5)]`}
+                    className={`flex h-10 w-10 items-center justify-center rounded-md bg-gradient-to-br ${t.gradient} text-white shadow-[0_10px_26px_-10px_rgba(79,107,255,0.5)]`}
                   >
                     {layer.icon}
                   </span>
-                  <span className="text-[10px] font-semibold tabular-nums tracking-widest text-slate-400">
+                  <span className="text-2xs font-semibold tabular-nums tracking-widest text-muted">
                     L{i + 1}
                   </span>
                 </div>
 
-                <h3 className="mt-5 text-[13px] font-semibold uppercase tracking-[0.14em] text-slate-900">
+                <h3 className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-ink">
                   {layer.title}
                 </h3>
-                <p className={`mt-0.5 text-[11.5px] ${t.text}`}>
+                <p className={`mt-0.5 text-2xs ${t.text}`}>
                   {layer.subtitle}
                 </p>
 
@@ -444,7 +444,7 @@ export function ArchitectureStack() {
                   {layer.items.map((item) => (
                     <li
                       key={item}
-                      className="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50/60 px-2.5 py-1.5 text-[12.5px] text-slate-700 transition-colors hover:border-slate-200 hover:bg-white"
+                      className="flex items-center gap-2 rounded-md border border-slate-100 bg-slate-50/60 px-2.5 py-1.5 text-xs text-slate transition-colors hover:border-slate-200 hover:bg-white"
                     >
                       <span className={`h-1 w-1 shrink-0 rounded-full ${t.dot}`} />
                       {item}
@@ -516,19 +516,19 @@ function Metric({
 }) {
   const t = TONES[tone];
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-20px_rgba(15,27,61,0.18)]">
+    <div className="group relative overflow-hidden rounded-lg border border-slate-200/70 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-20px_rgba(15,27,61,0.18)]">
       <div className="flex items-center justify-between">
         <span
-          className={`flex h-8 w-8 items-center justify-center rounded-lg ${t.bg} ${t.text}`}
+          className={`flex h-8 w-8 items-center justify-center rounded-md ${t.bg} ${t.text}`}
         >
           {icon}
         </span>
-        <span className={`text-[10.5px] font-semibold ${t.text}`}>{delta}</span>
+        <span className={`text-2xs font-semibold ${t.text}`}>{delta}</span>
       </div>
-      <p className="mt-3 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+      <p className="mt-3 text-2xs font-medium uppercase tracking-wider text-muted">
         {label}
       </p>
-      <p className="mt-0.5 text-2xl font-light tabular-nums leading-none text-slate-900">
+      <p className="mt-0.5 text-2xl font-light tabular-nums leading-none text-ink">
         {value}
       </p>
     </div>
@@ -562,14 +562,14 @@ export function LeadPulzDashboard() {
   const bars = [40, 75, 30, 90, 55, 70, 38, 84, 46, 66, 28, 88, 52, 74, 36];
 
   return (
-    <div className="relative w-full rounded-3xl bg-gradient-to-br from-[#0A1330] to-[#1A2340] p-1.5 shadow-[0_40px_100px_-40px_rgba(15,27,61,0.5)]">
-      <div className="relative overflow-hidden rounded-[20px] bg-white p-4 sm:p-5">
+    <div className="relative w-full rounded-xl bg-gradient-to-br from-[#0A1330] to-[#1A2340] p-1.5 shadow-[0_40px_100px_-40px_rgba(15,27,61,0.5)]">
+      <div className="relative overflow-hidden rounded-lg bg-white p-4 sm:p-5">
         <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#4F6BFF]/10 blur-3xl" />
 
         {/* Header */}
         <div className="relative mb-5 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-white shadow-[0_8px_20px_-6px_rgba(79,107,255,0.6)]">
+            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-white shadow-[0_8px_20px_-6px_rgba(79,107,255,0.6)]">
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
@@ -580,13 +580,13 @@ export function LeadPulzDashboard() {
               </svg>
             </span>
             <div className="leading-tight">
-              <p className="text-[13px] font-semibold text-slate-900">
+              <p className="text-xs font-semibold text-ink">
                 LeadPulz overview
               </p>
-              <p className="text-[11px] text-slate-500">Last 24 hours</p>
+              <p className="text-2xs text-muted">Last 24 hours</p>
             </div>
           </div>
-          <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+          <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-2xs font-semibold uppercase tracking-wider text-muted">
             Sample
           </span>
         </div>
@@ -660,36 +660,36 @@ export function LeadPulzDashboard() {
         </div>
 
         {/* Sparkline */}
-        <div className="relative mt-4 rounded-2xl border border-slate-200/70 bg-slate-50/50 p-4">
+        <div className="relative mt-4 rounded-lg border border-slate-200/70 bg-slate-50/50 p-4">
           <div className="mb-3 flex items-center justify-between">
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+            <p className="text-2xs font-semibold uppercase tracking-wider text-muted">
               Call volume
             </p>
-            <p className="text-[11px] text-slate-400">Past 12 hours</p>
+            <p className="text-2xs text-muted">Past 12 hours</p>
           </div>
           <Sparkline bars={spark} tone="violet" />
         </div>
 
         {/* Active call */}
-        <div className="relative mt-4 rounded-2xl border border-slate-200/70 bg-white p-4 transition-all duration-300 hover:shadow-[0_16px_40px_-20px_rgba(15,27,61,0.18)]">
+        <div className="relative mt-4 rounded-lg border border-slate-200/70 bg-white p-4 transition-all duration-300 hover:shadow-[0_16px_40px_-20px_rgba(15,27,61,0.18)]">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-[12px] font-semibold text-white shadow-[0_8px_20px_-6px_rgba(79,107,255,0.6)]">
+            <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-2xs font-semibold text-white shadow-[0_8px_20px_-6px_rgba(79,107,255,0.6)]">
               <span className="relative z-10">S</span>
               <span className="absolute inset-0 animate-pulse rounded-full bg-[#4F6BFF]/20" />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="flex flex-wrap items-center gap-2 text-[13px] font-semibold text-slate-900">
+              <p className="flex flex-wrap items-center gap-2 text-xs font-semibold text-ink">
                 AI Agent · Sarah
-                <span className="inline-flex items-center gap-1 text-[10.5px] font-medium text-emerald-600">
+                <span className="inline-flex items-center gap-1 text-2xs font-medium text-emerald-600">
                   <LivePulse tone="emerald" />
                   Live
                 </span>
               </p>
-              <p className="mt-0.5 text-[11.5px] tabular-nums text-slate-500">
+              <p className="mt-0.5 text-2xs tabular-nums text-muted">
                 Call duration · 04:32
               </p>
             </div>
-            <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-medium text-emerald-700">
+            <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-2xs font-medium text-emerald-700">
               <span className="h-1 w-1 rounded-full bg-emerald-500" />
               Qualified
             </span>
@@ -729,10 +729,10 @@ export function LeadPulzDashboard() {
                 key={row.label}
                 className="flex items-center justify-between py-2.5"
               >
-                <span className="text-[12.5px] text-slate-500">
+                <span className="text-xs text-muted">
                   {row.label}
                 </span>
-                <span className="text-[12.5px] font-medium text-slate-900">
+                <span className="text-xs font-medium text-ink">
                   {row.value}
                 </span>
               </div>
@@ -771,13 +771,13 @@ export function LeadPulzDashboard() {
             ].map((tag) => (
               <span
                 key={tag.label}
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-600 transition-colors hover:border-slate-300 hover:bg-white"
+                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-2xs text-slate transition-colors hover:border-slate-300 hover:bg-white"
               >
                 {tag.icon}
                 {tag.label}
               </span>
             ))}
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#4F6BFF]/10 px-2.5 py-1 text-[11px] font-medium text-[#4F6BFF] transition-colors hover:bg-[#4F6BFF]/15">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#4F6BFF]/10 px-2.5 py-1 text-2xs font-medium text-[#4F6BFF] transition-colors hover:bg-[#4F6BFF]/15">
               <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"

@@ -405,12 +405,12 @@ function Eyebrow({
     cyan: "border-[#06B6D4]/20 bg-[#06B6D4]/5 text-[#0891B2]",
     violet: "border-[#8B5CF6]/20 bg-[#8B5CF6]/5 text-[#7C3AED]",
     emerald: "border-[#10B981]/20 bg-[#10B981]/5 text-[#047857]",
-    dark: "border-white/15 bg-white/5 text-white/90",
+    dark: "border-white/15 bg-white/5 text-white",
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] ${tones[tone]}`}
+      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.18em] ${tones[tone]}`}
     >
       <span className="h-1 w-1 rounded-full bg-current opacity-70" />
       {children}
@@ -443,7 +443,7 @@ function SectionHeading({
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h2
         className={`mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
-          invert ? "text-white" : "text-slate-900"
+          invert ? "text-white" : "text-ink"
         }`}
       >
         {title}
@@ -452,7 +452,7 @@ function SectionHeading({
         <p
           className={`mt-5 text-base leading-7 sm:text-lg ${
             align === "center" ? "mx-auto max-w-2xl" : ""
-          } ${invert ? "text-white/65" : "text-slate-600"}`}
+          } ${invert ? "text-on-dark-muted" : "text-slate"}`}
         >
           {description}
         </p>
@@ -500,9 +500,9 @@ function ServicesSystemVisual() {
       <div className="absolute left-1/2 top-1/2 h-[390px] w-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/10" />
 
       {/* Center hub */}
-      <div className="absolute left-1/2 top-1/2 flex h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[38px] border border-white/10 bg-white/[0.04] shadow-[0_30px_90px_-30px_rgba(0,0,0,0.8)] backdrop-blur-md">
+      <div className="absolute left-1/2 top-1/2 flex h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] shadow-[0_30px_90px_-30px_rgba(0,0,0,0.8)] backdrop-blur-md">
         <div className="text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.6)]">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.6)]">
             <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7" stroke="currentColor">
               <path
                 d="M7 7h4V3M17 17h-4v4M17 7h4v4M7 17H3v-4"
@@ -518,7 +518,7 @@ function ServicesSystemVisual() {
             FlowFoundry
           </p>
 
-          <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.16em] text-white/40">
+          <p className="mt-1 text-2xs font-medium uppercase tracking-[0.16em] text-on-dark-quiet">
             Intelligent system
           </p>
         </div>
@@ -536,13 +536,13 @@ function ServicesSystemVisual() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className={`absolute ${item.position} w-[185px] rounded-[20px] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md sm:w-[210px] ${t.glow}`}
+            className={`absolute ${item.position} w-[185px] rounded-lg border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md sm:w-[210px] ${t.glow}`}
           >
             <div className="flex items-center gap-3">
               <span className={`h-2 w-2 rounded-full ${t.dot}`} />
               <p className="text-sm font-semibold text-white">{item.name}</p>
             </div>
-            <p className="mt-2 text-xs leading-5 text-white/50">{item.meta}</p>
+            <p className="mt-2 text-xs leading-5 text-on-dark-quiet">{item.meta}</p>
           </motion.div>
         );
       })}
@@ -601,7 +601,7 @@ export default function ServicesPage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-6 max-w-[610px] text-[17px] leading-8 text-white/70 sm:text-lg"
+                className="mt-6 max-w-[610px] text-base leading-8 text-on-dark-muted sm:text-lg"
               >
                 FlowFoundry designs AI agents, automation, custom software,
                 websites, eCommerce systems, and integrations around the
@@ -610,7 +610,7 @@ export default function ServicesPage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-4 max-w-[600px] text-base leading-7 text-white/50"
+                className="mt-4 max-w-[600px] text-base leading-7 text-on-dark-quiet"
               >
                 Start with the workflow, bottleneck, or opportunity. We design
                 the technology around it — not the other way around.
@@ -640,7 +640,7 @@ export default function ServicesPage() {
                 {PROJECT_TYPES.slice(0, 5).map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-[11.5px] font-medium text-white/65 backdrop-blur-sm"
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-2xs font-medium text-on-dark-muted backdrop-blur-sm"
                   >
                     {item}
                   </span>
@@ -704,7 +704,7 @@ export default function ServicesPage() {
                   variants={fadeUp}
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.25, ease: EASE }}
-                  className={`group relative overflow-hidden rounded-[28px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:p-8 ${t.ring} ${service.span}`}
+                  className={`group relative overflow-hidden rounded-xl border bg-white p-7 transition-all duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:p-8 ${t.ring} ${service.span}`}
                 >
                   {/* Watermark number */}
                   <span
@@ -715,29 +715,29 @@ export default function ServicesPage() {
 
                   <div className="relative flex items-start justify-between gap-6">
                     <div
-                      className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${t.gradient} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.5)]`}
+                      className={`flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-br ${t.gradient} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.5)]`}
                     >
                       <Icon className="h-5 w-5" />
                     </div>
 
                     <span
-                      className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${t.text}`}
+                      className={`text-2xs font-semibold uppercase tracking-[0.18em] ${t.text}`}
                     >
                       {service.index}
                     </span>
                   </div>
 
-                  <h3 className="relative mt-8 text-2xl font-semibold tracking-tight text-slate-900">
+                  <h3 className="relative mt-8 text-2xl font-semibold tracking-tight text-ink">
                     {service.title}
                   </h3>
 
-                  <p className="relative mt-3 max-w-[600px] text-sm leading-7 text-slate-600 sm:text-base">
+                  <p className="relative mt-3 max-w-[600px] text-sm leading-7 text-slate sm:text-base">
                     {service.body}
                   </p>
 
                   {/* Capabilities */}
                   <div className="relative mt-7 border-t border-slate-100 pt-6">
-                    <p className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    <p className="text-2xs font-semibold uppercase tracking-[0.16em] text-muted">
                       Capabilities
                     </p>
 
@@ -750,7 +750,7 @@ export default function ServicesPage() {
                           <span
                             className={`mt-[7px] h-1.5 w-1.5 flex-shrink-0 rounded-full ${t.dot}`}
                           />
-                          <span className="text-[13.5px] leading-5 text-slate-600">
+                          <span className="text-xs leading-5 text-slate">
                             {capability}
                           </span>
                         </div>
@@ -790,16 +790,16 @@ export default function ServicesPage() {
             <motion.div variants={fadeUp}>
               <Eyebrow tone="cyan">Business-first engineering</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-slate-900 sm:text-5xl">
+              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 We don&apos;t start with the tool.
               </h2>
 
-              <p className="relative mt-6 pl-5 text-xl font-light leading-9 text-slate-800">
+              <p className="relative mt-6 pl-5 text-xl font-light leading-9 text-slate">
                 <span className="absolute left-0 top-1 h-[calc(100%-0.5rem)] w-0.5 bg-gradient-to-b from-[#4F6BFF] via-[#8B5CF6] to-transparent" />
                 We start with the workflow.
               </p>
 
-              <p className="mt-5 max-w-lg text-base leading-7 text-slate-600">
+              <p className="mt-5 max-w-lg text-base leading-7 text-slate">
                 The right solution might be an AI agent, automation, custom
                 application, integration, or a combination of all four. The
                 architecture should follow the business problem.
@@ -843,7 +843,7 @@ export default function ServicesPage() {
                     variants={fadeUp}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25, ease: EASE }}
-                    className={`group relative overflow-hidden rounded-[24px] border bg-white p-6 transition-all duration-300 hover:shadow-[0_24px_60px_-28px_rgba(65,70,105,0.22)] ${t.ring}`}
+                    className={`group relative overflow-hidden rounded-xl border bg-white p-6 transition-all duration-300 hover:shadow-[0_24px_60px_-28px_rgba(65,70,105,0.22)] ${t.ring}`}
                   >
                     <span
                       className={`inline-flex h-8 w-8 items-center justify-center rounded-full ${t.iconBg} text-xs font-semibold`}
@@ -851,11 +851,11 @@ export default function ServicesPage() {
                       {item.number}
                     </span>
 
-                    <h3 className="mt-5 text-lg font-semibold tracking-tight text-slate-900">
+                    <h3 className="mt-5 text-lg font-semibold tracking-tight text-ink">
                       {item.title}
                     </h3>
 
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm leading-6 text-slate">
                       {item.body}
                     </p>
                   </motion.div>
@@ -897,15 +897,15 @@ export default function ServicesPage() {
                   {step.number}
                 </div>
 
-                <p className="mt-6 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#4F6BFF]">
+                <p className="mt-6 text-2xs font-semibold uppercase tracking-[0.18em] text-[#4F6BFF]">
                   {step.label}
                 </p>
 
-                <h3 className="mt-2 text-lg font-semibold tracking-tight text-slate-900">
+                <h3 className="mt-2 text-lg font-semibold tracking-tight text-ink">
                   {step.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-600">
+                <p className="mt-3 text-sm leading-6 text-slate">
                   {step.body}
                 </p>
               </motion.article>
@@ -929,14 +929,14 @@ export default function ServicesPage() {
             <motion.div variants={fadeUp} className="lg:sticky lg:top-32">
               <Eyebrow tone="cyan">Technology</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-slate-900 sm:text-5xl">
+              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 Modern technology.{" "}
                 <span className="bg-gradient-to-r from-[#06B6D4] to-[#4F6BFF] bg-clip-text text-transparent">
                   Chosen for the problem.
                 </span>
               </h2>
 
-              <p className="mt-6 max-w-lg text-base leading-7 text-slate-600 sm:text-lg">
+              <p className="mt-6 max-w-lg text-base leading-7 text-slate sm:text-lg">
                 We avoid forcing every project into the same stack. Tools,
                 platforms, and architecture are selected according to the
                 requirements of the system.
@@ -955,11 +955,11 @@ export default function ServicesPage() {
                     <span className="absolute -bottom-1 left-0 h-px w-6 bg-[#4F6BFF]/40 transition-all duration-300 group-hover:w-full group-hover:bg-[#4F6BFF]" />
                   </span>
 
-                  <h3 className="text-base font-semibold tracking-tight text-slate-900">
+                  <h3 className="text-base font-semibold tracking-tight text-ink">
                     {area.title}
                   </h3>
 
-                  <p className="text-sm leading-6 text-slate-600">
+                  <p className="text-sm leading-6 text-slate">
                     {area.body}
                   </p>
                 </motion.div>
@@ -980,7 +980,7 @@ export default function ServicesPage() {
         className="bg-slate-50 py-20 sm:py-24"
       >
         <Container>
-          <div className="relative overflow-hidden rounded-[32px] border border-slate-200/70 bg-white p-8 sm:p-12">
+          <div className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-8 sm:p-12">
             <div className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-[#4F6BFF]/10 blur-[110px]" />
             <div className="pointer-events-none absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-[#8B5CF6]/10 blur-[110px]" />
 
@@ -988,11 +988,11 @@ export default function ServicesPage() {
               <div>
                 <Eyebrow tone="violet">Common projects</Eyebrow>
 
-                <h2 className="mt-5 text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-slate-900 sm:text-4xl">
+                <h2 className="mt-5 text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
                   What can we help you build?
                 </h2>
 
-                <p className="mt-4 max-w-sm text-sm leading-6 text-slate-600">
+                <p className="mt-4 max-w-sm text-sm leading-6 text-slate">
                   These are the systems we build most often. If your project
                   doesn&apos;t fit a category, that&apos;s fine — those are
                   usually the most interesting.
@@ -1003,7 +1003,7 @@ export default function ServicesPage() {
                 {PROJECT_TYPES.map((type) => (
                   <span
                     key={type}
-                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-[13px] font-medium text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-[#4F6BFF]/5 hover:text-[#4F6BFF]"
+                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-medium text-slate transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-[#4F6BFF]/5 hover:text-[#4F6BFF]"
                   >
                     {type}
                   </span>
@@ -1025,7 +1025,7 @@ export default function ServicesPage() {
         className="bg-white px-5 pb-24 pt-4 sm:px-6 sm:pb-28 lg:px-8 lg:pb-32"
       >
         <div className="mx-auto max-w-[1200px]">
-          <div className="relative overflow-hidden rounded-[36px] bg-[#0A1330] px-6 py-20 text-center sm:px-12 sm:py-24 lg:px-16 lg:py-28">
+          <div className="relative overflow-hidden rounded-2xl bg-[#0A1330] px-6 py-20 text-center sm:px-12 sm:py-24 lg:px-16 lg:py-28">
             <div className="pointer-events-none absolute inset-0">
               <div
                 className="absolute inset-0 opacity-[0.06]"
@@ -1050,7 +1050,7 @@ export default function ServicesPage() {
                 </span>
               </h2>
 
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-on-dark-muted sm:text-lg">
                 Share the workflow, bottleneck, or system you&apos;re working
                 on. We&apos;ll help you explore the right combination of AI,
                 automation, software, and integrations.

@@ -392,12 +392,12 @@ function Eyebrow({
     cyan: "border-[#06B6D4]/20 bg-[#06B6D4]/5 text-[#0891B2]",
     violet: "border-[#8B5CF6]/20 bg-[#8B5CF6]/5 text-[#7C3AED]",
     emerald: "border-[#10B981]/20 bg-[#10B981]/5 text-[#047857]",
-    dark: "border-white/15 bg-white/5 text-white/90",
+    dark: "border-white/15 bg-white/5 text-white",
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] ${tones[tone]}`}
+      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.18em] ${tones[tone]}`}
     >
       <span className="h-1 w-1 rounded-full bg-current opacity-70" />
       {children}
@@ -430,7 +430,7 @@ function SectionHeading({
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h2
         className={`mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
-          invert ? "text-white" : "text-slate-900"
+          invert ? "text-white" : "text-ink"
         }`}
       >
         {title}
@@ -439,7 +439,7 @@ function SectionHeading({
         <p
           className={`mt-5 text-base leading-7 sm:text-lg ${
             align === "center" ? "mx-auto max-w-2xl" : ""
-          } ${invert ? "text-white/65" : "text-slate-600"}`}
+          } ${invert ? "text-on-dark-muted" : "text-slate"}`}
         >
           {description}
         </p>
@@ -466,14 +466,14 @@ function SolutionFlowVisual() {
       <div className="pointer-events-none absolute -left-16 top-20 h-56 w-56 rounded-full bg-[#8B5CF6]/20 blur-[100px]" />
       <div className="pointer-events-none absolute -right-16 bottom-8 h-52 w-52 rounded-full bg-[#06B6D4]/20 blur-[100px]" />
 
-      <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.8)] backdrop-blur-md sm:p-6">
+      <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-5 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.8)] backdrop-blur-md sm:p-6">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50">
+            <p className="text-2xs font-semibold uppercase tracking-[0.16em] text-on-dark-quiet">
               Business Automation
             </p>
-            <p className="mt-1 text-sm text-white/80">
+            <p className="mt-1 text-sm text-white">
               Connected system example
             </p>
           </div>
@@ -498,14 +498,14 @@ function SolutionFlowVisual() {
                 transition={{ delay: 0.4 + index * 0.12, duration: 0.5, ease: EASE }}
               >
                 <div
-                  className={`flex items-center gap-4 rounded-2xl border p-4 transition-colors ${
+                  className={`flex items-center gap-4 rounded-lg border p-4 transition-colors ${
                     index === 3
                       ? "border-emerald-400/20 bg-emerald-400/5"
                       : "border-white/10 bg-white/[0.03]"
                   }`}
                 >
                   <div
-                    className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${t.gradient} text-[13px] font-semibold text-white shadow-[0_10px_26px_-10px_rgba(79,107,255,0.6)]`}
+                    className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${t.gradient} text-xs font-semibold text-white shadow-[0_10px_26px_-10px_rgba(79,107,255,0.6)]`}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </div>
@@ -514,13 +514,13 @@ function SolutionFlowVisual() {
                     <p className="text-sm font-semibold text-white">
                       {node.label}
                     </p>
-                    <p className="mt-1 text-xs text-white/50">{node.meta}</p>
+                    <p className="mt-1 text-xs text-on-dark-quiet">{node.meta}</p>
                   </div>
 
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
-                    className="h-4 w-4 text-white/30"
+                    className="h-4 w-4 text-on-dark-quiet"
                     stroke="currentColor"
                   >
                     <path
@@ -545,7 +545,7 @@ function SolutionFlowVisual() {
           {["CRM updated", "Meeting booked", "Follow-up queued"].map((label) => (
             <div
               key={label}
-              className="flex items-center gap-2 rounded-xl border border-emerald-400/15 bg-emerald-400/5 p-3"
+              className="flex items-center gap-2 rounded-md border border-emerald-400/15 bg-emerald-400/5 p-3"
             >
               <svg
                 className="h-3.5 w-3.5 shrink-0 text-emerald-400"
@@ -621,7 +621,7 @@ export default function SolutionsPage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-6 max-w-[610px] text-[17px] leading-8 text-white/70 sm:text-lg"
+                className="mt-6 max-w-[610px] text-base leading-8 text-on-dark-muted sm:text-lg"
               >
                 FlowFoundry designs intelligent workflows around real business
                 challenges — from lead handling and sales to support,
@@ -630,7 +630,7 @@ export default function SolutionsPage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-4 max-w-[600px] text-base leading-7 text-white/50"
+                className="mt-4 max-w-[600px] text-base leading-7 text-on-dark-quiet"
               >
                 We connect conversations, business logic, data, and actions so
                 your systems do more than store information — they help move
@@ -717,7 +717,7 @@ export default function SolutionsPage() {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.1 }}
                   variants={fadeUp}
-                  className={`relative overflow-hidden rounded-[32px] border bg-white transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.2)] ${t.ring}`}
+                  className={`relative overflow-hidden rounded-2xl border bg-white transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.2)] ${t.ring}`}
                 >
                   {/* Tone accent corner */}
                   <div
@@ -733,44 +733,44 @@ export default function SolutionsPage() {
                     <div className={isReversed ? "lg:order-2" : ""}>
                       <div className="flex items-start justify-between gap-5">
                         <div
-                          className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${t.gradient} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.5)]`}
+                          className={`flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-br ${t.gradient} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.5)]`}
                         >
                           <Icon className="h-5 w-5" />
                         </div>
 
-                        <span className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${t.text}`}>
+                        <span className={`text-2xs font-semibold uppercase tracking-[0.18em] ${t.text}`}>
                           {solution.index}
                         </span>
                       </div>
 
-                      <h3 className="mt-7 text-[28px] font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
+                      <h3 className="mt-7 text-[28px] font-semibold leading-tight tracking-tight text-ink sm:text-3xl">
                         {solution.title}
                       </h3>
 
                       <div className="mt-7 space-y-6">
                         <div>
-                          <p className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                          <p className="text-2xs font-semibold uppercase tracking-[0.16em] text-muted">
                             The problem
                           </p>
-                          <p className="mt-2.5 text-[14.5px] leading-7 text-slate-600">
+                          <p className="mt-2.5 text-sm leading-7 text-slate">
                             {solution.problem}
                           </p>
                         </div>
 
                         <div>
-                          <p className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                          <p className="text-2xs font-semibold uppercase tracking-[0.16em] text-muted">
                             The FlowFoundry approach
                           </p>
-                          <p className="mt-2.5 text-[14.5px] leading-7 text-slate-600">
+                          <p className="mt-2.5 text-sm leading-7 text-slate">
                             {solution.solution}
                           </p>
                         </div>
 
-                        <div className={`relative overflow-hidden rounded-2xl border p-5 ${t.ring} ${t.surface}`}>
-                          <p className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        <div className={`relative overflow-hidden rounded-lg border p-5 ${t.ring} ${t.surface}`}>
+                          <p className="text-2xs font-semibold uppercase tracking-[0.16em] text-muted">
                             Business outcome
                           </p>
-                          <p className="mt-2 text-[14.5px] font-medium leading-6 text-slate-800">
+                          <p className="mt-2 text-sm font-medium leading-6 text-slate">
                             {solution.outcome}
                           </p>
                         </div>
@@ -781,11 +781,11 @@ export default function SolutionsPage() {
                     <div className={isReversed ? "lg:order-1" : ""}>
                       {/* Workflow */}
                       <div>
-                        <p className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                        <p className="text-2xs font-semibold uppercase tracking-[0.16em] text-muted">
                           Example workflow
                         </p>
 
-                        <div className="mt-4 rounded-2xl border border-slate-200/70 bg-slate-50/60 p-5">
+                        <div className="mt-4 rounded-lg border border-slate-200/70 bg-slate-50/60 p-5">
                           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                             {solution.workflow.map((step, stepIndex) => (
                               <div
@@ -793,12 +793,12 @@ export default function SolutionsPage() {
                                 className="flex min-w-0 flex-1 items-center gap-3 sm:flex-col sm:gap-2"
                               >
                                 <div
-                                  className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${t.gradient} text-[11px] font-semibold text-white shadow-[0_6px_16px_-6px_rgba(79,107,255,.6)]`}
+                                  className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${t.gradient} text-2xs font-semibold text-white shadow-[0_6px_16px_-6px_rgba(79,107,255,.6)]`}
                                 >
                                   {stepIndex + 1}
                                 </div>
 
-                                <span className="text-[11.5px] font-medium leading-5 text-slate-700 sm:text-center">
+                                <span className="text-2xs font-medium leading-5 text-slate sm:text-center">
                                   {step}
                                 </span>
 
@@ -806,7 +806,7 @@ export default function SolutionsPage() {
                                   <svg
                                     viewBox="0 0 24 24"
                                     fill="none"
-                                    className="ml-auto h-3.5 w-3.5 rotate-90 text-slate-400 sm:ml-0 sm:rotate-0"
+                                    className="ml-auto h-3.5 w-3.5 rotate-90 text-muted sm:ml-0 sm:rotate-0"
                                     stroke="currentColor"
                                   >
                                     <path
@@ -825,7 +825,7 @@ export default function SolutionsPage() {
 
                       {/* Capabilities */}
                       <div className="mt-7">
-                        <p className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                        <p className="text-2xs font-semibold uppercase tracking-[0.16em] text-muted">
                           Common capabilities
                         </p>
 
@@ -833,7 +833,7 @@ export default function SolutionsPage() {
                           {solution.capabilities.map((capability) => (
                             <div key={capability} className="flex items-start gap-2.5">
                               <span className={`mt-[7px] h-1.5 w-1.5 flex-shrink-0 rounded-full ${t.dot}`} />
-                              <span className="text-[13.5px] leading-5 text-slate-600">
+                              <span className="text-xs leading-5 text-slate">
                                 {capability}
                               </span>
                             </div>
@@ -879,16 +879,16 @@ export default function SolutionsPage() {
             <motion.div variants={fadeUp}>
               <Eyebrow tone="violet">System thinking</Eyebrow>
 
-              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-slate-900 sm:text-5xl">
+              <h2 className="mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] text-ink sm:text-5xl">
                 One process can touch many systems.
               </h2>
 
-              <p className="relative mt-6 pl-5 text-lg font-light leading-8 text-slate-800">
+              <p className="relative mt-6 pl-5 text-lg font-light leading-8 text-slate">
                 <span className="absolute left-0 top-1 h-[calc(100%-0.5rem)] w-0.5 bg-gradient-to-b from-[#4F6BFF] via-[#8B5CF6] to-transparent" />
                 Real automation usually spans more than one application.
               </p>
 
-              <p className="mt-5 max-w-lg text-base leading-7 text-slate-600">
+              <p className="mt-5 max-w-lg text-base leading-7 text-slate">
                 That&apos;s why we design around the full workflow instead of
                 automating isolated clicks.
               </p>
@@ -928,7 +928,7 @@ export default function SolutionsPage() {
                     variants={fadeUp}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25, ease: EASE }}
-                    className={`group relative overflow-hidden rounded-[24px] border bg-white p-6 transition-all duration-300 hover:shadow-[0_24px_60px_-28px_rgba(65,70,105,0.22)] ${t.ring}`}
+                    className={`group relative overflow-hidden rounded-xl border bg-white p-6 transition-all duration-300 hover:shadow-[0_24px_60px_-28px_rgba(65,70,105,0.22)] ${t.ring}`}
                   >
                     <span
                       className={`inline-flex h-8 w-8 items-center justify-center rounded-full ${t.iconBg} text-xs font-semibold`}
@@ -936,11 +936,11 @@ export default function SolutionsPage() {
                       {item.number}
                     </span>
 
-                    <h3 className="mt-5 text-lg font-semibold tracking-tight text-slate-900">
+                    <h3 className="mt-5 text-lg font-semibold tracking-tight text-ink">
                       {item.title}
                     </h3>
 
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm leading-6 text-slate">
                       {item.body}
                     </p>
 
@@ -985,15 +985,15 @@ export default function SolutionsPage() {
                   {step.number}
                 </div>
 
-                <p className="mt-6 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#4F6BFF]">
+                <p className="mt-6 text-2xs font-semibold uppercase tracking-[0.18em] text-[#4F6BFF]">
                   {step.label}
                 </p>
 
-                <h3 className="mt-2 text-lg font-semibold tracking-tight text-slate-900">
+                <h3 className="mt-2 text-lg font-semibold tracking-tight text-ink">
                   {step.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-600">
+                <p className="mt-3 text-sm leading-6 text-slate">
                   {step.body}
                 </p>
               </motion.article>
@@ -1013,7 +1013,7 @@ export default function SolutionsPage() {
         className="bg-slate-50 py-20 sm:py-24"
       >
         <Container>
-          <div className="relative overflow-hidden rounded-[32px] border border-slate-200/70 bg-white p-8 sm:p-12">
+          <div className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-8 sm:p-12">
             <div className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-[#4F6BFF]/10 blur-[110px]" />
             <div className="pointer-events-none absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-[#8B5CF6]/10 blur-[110px]" />
 
@@ -1021,11 +1021,11 @@ export default function SolutionsPage() {
               <div>
                 <Eyebrow tone="cyan">Where it applies</Eyebrow>
 
-                <h2 className="mt-5 text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-slate-900 sm:text-4xl">
+                <h2 className="mt-5 text-[28px] font-light leading-[1.15] tracking-[-0.03em] text-ink sm:text-4xl">
                   Built for different business models.
                 </h2>
 
-                <p className="mt-4 max-w-lg text-sm leading-6 text-slate-600 sm:text-base">
+                <p className="mt-4 max-w-lg text-sm leading-6 text-slate sm:text-base">
                   The same underlying system-thinking can be adapted to
                   different industries, workflows, and customer journeys.
                 </p>
@@ -1035,7 +1035,7 @@ export default function SolutionsPage() {
                 {INDUSTRIES.map((industry) => (
                   <span
                     key={industry}
-                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-[13px] font-medium text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-[#4F6BFF]/5 hover:text-[#4F6BFF]"
+                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-medium text-slate transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-[#4F6BFF]/5 hover:text-[#4F6BFF]"
                   >
                     {industry}
                   </span>
@@ -1057,7 +1057,7 @@ export default function SolutionsPage() {
         className="bg-white py-16 sm:py-20"
       >
         <Container>
-          <div className="relative overflow-hidden rounded-[32px] bg-[#0A1330] p-8 sm:p-12 lg:p-14">
+          <div className="relative overflow-hidden rounded-2xl bg-[#0A1330] p-8 sm:p-12 lg:p-14">
             <div className="pointer-events-none absolute inset-0">
               <div
                 className="absolute inset-0 opacity-[0.05]"
@@ -1082,7 +1082,7 @@ export default function SolutionsPage() {
                   </span>
                 </h2>
 
-                <p className="mt-4 max-w-2xl text-base leading-7 text-white/65">
+                <p className="mt-4 max-w-2xl text-base leading-7 text-on-dark-muted">
                   Explore LeadPulz, our AI Revenue Agent platform for calls,
                   lead qualification, appointment booking, follow-ups, and
                   conversation intelligence.

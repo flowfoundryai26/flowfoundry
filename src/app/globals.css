@@ -16,12 +16,17 @@
   --color-purple: #9450fd;
 
   /* ---------- Text ---------- */
+  /* Light surfaces: ink (headings) / slate (body) / muted (labels) */
   --color-ink: #252830;
   --color-charcoal: #333333;
   --color-slate: #535768;
   --color-muted: #666c79;
   --color-quiet: #8a8f9b;
   --color-disabled: #a0a4af;
+
+  /* Dark surfaces (#0A1330): white (headings) / on-dark-muted (body) / on-dark-quiet (labels, 4.5:1) */
+  --color-on-dark-muted: rgb(255 255 255 / 0.72);
+  --color-on-dark-quiet: rgb(255 255 255 / 0.55);
 
   /* ---------- Surfaces ---------- */
   --color-white: #ffffff;
@@ -50,11 +55,25 @@
   --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  /* ---------- Radii ---------- */
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 24px;
-  --radius-xl: 30px;
+  /* Body type scale — 12px floor. Display sizes live in .t-hero / .t-section. */
+  --text-2xs: 12px;
+  --text-2xs--line-height: 1.4;
+  --text-xs: 13px;
+  --text-xs--line-height: 1.5;
+
+  /* ---------- Radii (5 steps) ----------
+     sm 8  : tiny bars / thumbnails
+     md 12 : icon tiles, chips, list rows
+     lg 18 : inner panels
+     xl 24 : cards
+     2xl 30: hero / visual frames
+     full  : pills, avatars */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 30px;
+  --radius-3xl: 30px;
   --radius-pill: 9999px;
 
   /* ---------- Shadows (subtle — no neon) ---------- */

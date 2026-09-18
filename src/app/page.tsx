@@ -236,12 +236,12 @@ function Eyebrow({
     cyan: "border-cyan-500/20 bg-cyan-500/5 text-cyan-600",
     violet: "border-violet-500/20 bg-violet-500/5 text-violet-600",
     emerald: "border-emerald-500/20 bg-emerald-500/5 text-emerald-600",
-    dark: "border-white/15 bg-white/5 text-white/90",
+    dark: "border-white/15 bg-white/5 text-white",
   };
 
   return (
     <span
-      className={`inline-flex max-w-full items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] sm:px-3.5 sm:text-[11px] sm:tracking-[0.18em] ${tones[tone]}`}
+      className={`inline-flex max-w-full items-center gap-2 rounded-full border px-3 py-1.5 text-2xs font-semibold uppercase tracking-[0.14em] sm:px-3.5 sm:tracking-[0.18em] ${tones[tone]}`}
     >
       <span className="h-1 w-1 shrink-0 rounded-full bg-current opacity-70" />
       <span className="truncate">{children}</span>
@@ -277,7 +277,7 @@ function SectionHeading({
 
       <h2
         className={`mt-5 text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] ${
-          invert ? "text-white" : "text-slate-900"
+          invert ? "text-white" : "text-ink"
         }`}
       >
         {title}
@@ -285,9 +285,9 @@ function SectionHeading({
 
       {description && (
         <p
-          className={`mt-4 text-[15px] leading-7 sm:mt-5 sm:text-base lg:text-lg ${
+          className={`mt-4 text-sm leading-7 sm:mt-5 sm:text-base lg:text-lg ${
             align === "center" ? "mx-auto max-w-2xl" : ""
-          } ${invert ? "text-white/70" : "text-slate-600"}`}
+          } ${invert ? "text-on-dark-muted" : "text-slate"}`}
         >
           {description}
         </p>
@@ -336,20 +336,20 @@ function HeroSystemVisual() {
 
       <div className="pointer-events-none absolute -right-16 bottom-8 h-48 w-48 rounded-full bg-violet-500/20 blur-[90px] sm:h-64 sm:w-64 sm:blur-[110px]" />
 
-      <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.03] p-3 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.7)] backdrop-blur-md sm:rounded-[28px] sm:p-6">
+      <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] p-3 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.7)] backdrop-blur-md sm:rounded-xl sm:p-6">
         {/* Header */}
         <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
           <div className="min-w-0">
-            <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-white/50 xs:text-[10px] sm:text-[11px] sm:tracking-[0.18em]">
+            <p className="text-2xs font-semibold uppercase tracking-[0.12em] text-on-dark-quiet sm:tracking-[0.18em]">
               Intelligent Workflow
             </p>
 
-            <p className="mt-1 truncate text-[11px] text-white/80 sm:text-sm">
+            <p className="mt-1 truncate text-2xs text-white sm:text-sm">
               FlowFoundry automation architecture
             </p>
           </div>
 
-          <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-1.5 text-[9px] font-medium text-emerald-300 sm:gap-2 sm:px-3 sm:text-xs">
+          <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-1.5 text-2xs font-medium text-emerald-300 sm:gap-2 sm:px-3 sm:text-xs">
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -380,7 +380,7 @@ function HeroSystemVisual() {
               className="relative"
             >
               <div
-                className={`flex items-center gap-3 rounded-xl border p-3 transition-colors sm:gap-4 sm:rounded-2xl sm:p-4 ${
+                className={`flex items-center gap-3 rounded-md border p-3 transition-colors sm:gap-4 sm:rounded-lg sm:p-4 ${
                   item.tone === "primary"
                     ? "border-blue-500/30 bg-blue-500/10"
                     : item.tone === "success"
@@ -389,12 +389,12 @@ function HeroSystemVisual() {
                 }`}
               >
                 <div
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[10px] font-semibold sm:h-10 sm:w-10 sm:rounded-xl sm:text-xs ${
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-2xs font-semibold sm:h-10 sm:w-10 sm:text-xs ${
                     item.tone === "primary"
                       ? "bg-gradient-to-br from-blue-500 to-violet-500 text-white shadow-[0_8px_24px_-8px_rgba(79,107,255,.7)]"
                       : item.tone === "success"
                         ? "bg-emerald-400/15 text-emerald-300"
-                        : "bg-white/5 text-white/70"
+                        : "bg-white/5 text-on-dark-muted"
                   }`}
                 >
                   {String(index + 1).padStart(2, "0")}
@@ -405,13 +405,13 @@ function HeroSystemVisual() {
                     {item.label}
                   </p>
 
-                  <p className="mt-0.5 truncate text-[10px] text-white/50 sm:text-xs">
+                  <p className="mt-0.5 truncate text-2xs text-on-dark-quiet sm:text-xs">
                     {item.meta}
                   </p>
                 </div>
 
                 <svg
-                  className="h-3.5 w-3.5 shrink-0 text-white/30 sm:h-4 sm:w-4"
+                  className="h-3.5 w-3.5 shrink-0 text-on-dark-quiet sm:h-4 sm:w-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -437,7 +437,7 @@ function HeroSystemVisual() {
           {["Lead qualified", "CRM updated", "Meeting booked"].map((label) => (
             <div
               key={label}
-              className="flex min-w-0 items-center gap-2 rounded-xl border border-emerald-400/15 bg-emerald-400/5 p-2.5 sm:p-3"
+              className="flex min-w-0 items-center gap-2 rounded-md border border-emerald-400/15 bg-emerald-400/5 p-2.5 sm:p-3"
             >
               <svg
                 className="h-3.5 w-3.5 shrink-0 text-emerald-400"
@@ -453,7 +453,7 @@ function HeroSystemVisual() {
                 />
               </svg>
 
-              <span className="truncate text-[10px] font-medium text-emerald-300 sm:text-xs">
+              <span className="truncate text-2xs font-medium text-emerald-300 sm:text-xs">
                 {label}
               </span>
             </div>
@@ -471,9 +471,9 @@ function HeroSystemVisual() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute -left-4 top-[30%] hidden rounded-2xl border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md xl:block"
+        className="absolute -left-4 top-[30%] hidden rounded-lg border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md xl:block"
       >
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-white/40">
+        <p className="text-2xs font-semibold uppercase tracking-wider text-on-dark-quiet">
           Automation
         </p>
 
@@ -491,9 +491,9 @@ function HeroSystemVisual() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute -right-4 bottom-[18%] hidden rounded-2xl border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md xl:block"
+        className="absolute -right-4 bottom-[18%] hidden rounded-lg border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md xl:block"
       >
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-white/40">
+        <p className="text-2xs font-semibold uppercase tracking-wider text-on-dark-quiet">
           AI Agent
         </p>
 
@@ -560,7 +560,7 @@ export default function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-5 max-w-[610px] text-[15px] leading-7 text-white/65 sm:mt-6 sm:text-base sm:leading-8 lg:text-[17px]"
+                className="mt-5 max-w-[610px] text-sm leading-7 text-on-dark-muted sm:mt-6 sm:text-base sm:leading-8"
               >
                 FlowFoundry combines AI agents, automation, custom software,
                 and integrations to connect conversations, business logic,
@@ -591,7 +591,7 @@ export default function HomePage() {
 
               <motion.div
                 variants={fadeIn}
-                className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-white/50 sm:mt-10 sm:gap-x-6 sm:gap-y-3 sm:text-sm"
+                className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-on-dark-quiet sm:mt-10 sm:gap-x-6 sm:gap-y-3 sm:text-sm"
               >
                 {[
                   "AI Agents",
@@ -635,23 +635,23 @@ export default function HomePage() {
         <Container>
           <div className="grid grid-cols-1 items-center gap-10 md:gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 xl:gap-20">
             <motion.div variants={scaleIn} className="relative min-w-0">
-              <div className="relative overflow-hidden rounded-[20px] border border-slate-200/70 bg-slate-50 p-2 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.2)] sm:rounded-[28px] sm:p-3">
+              <div className="relative overflow-hidden rounded-lg border border-slate-200/70 bg-slate-50 p-2 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.2)] sm:rounded-xl sm:p-3">
                 <Image
                   src="/images/flowfoundry-system.png"
                   alt="FlowFoundry intelligent business system architecture"
                   width={1000}
                   height={800}
                   sizes="(max-width: 1023px) 100vw, 45vw"
-                  className="h-auto w-full max-w-full rounded-[16px] object-cover sm:rounded-[20px]"
+                  className="h-auto w-full max-w-full rounded-md object-cover sm:rounded-lg"
                 />
               </div>
 
-              <div className="absolute -bottom-5 -right-5 hidden rounded-2xl border border-slate-200/70 bg-white p-5 shadow-xl sm:block">
-                <p className="text-3xl font-light tracking-tight text-slate-900">
+              <div className="absolute -bottom-5 -right-5 hidden rounded-lg border border-slate-200/70 bg-white p-5 shadow-xl sm:block">
+                <p className="text-3xl font-light tracking-tight text-ink">
                   4-in-1
                 </p>
 
-                <p className="mt-1 text-xs uppercase tracking-wider text-slate-500">
+                <p className="mt-1 text-xs uppercase tracking-wider text-muted">
                   Unified stack
                 </p>
               </div>
@@ -664,7 +664,7 @@ export default function HomePage() {
 
               <motion.h2
                 variants={fadeUp}
-                className="mt-5 text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] text-slate-900"
+                className="mt-5 text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] text-ink"
               >
                 We build systems,
                 <br className="hidden sm:block" />{" "}
@@ -673,7 +673,7 @@ export default function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-5 text-[15px] leading-7 text-slate-600 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg"
+                className="mt-5 text-sm leading-7 text-slate sm:mt-6 sm:text-base sm:leading-8 lg:text-lg"
               >
                 FlowFoundry AI Solutions brings together AI engineering,
                 automation, software development, and system integration to
@@ -682,7 +682,7 @@ export default function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-4 text-[15px] leading-7 text-slate-600 sm:text-base sm:leading-8 lg:text-lg"
+                className="mt-4 text-sm leading-7 text-slate sm:text-base sm:leading-8 lg:text-lg"
               >
                 We start by understanding how your business actually works —
                 your workflows, bottlenecks, customer interactions, and
@@ -712,7 +712,7 @@ export default function HomePage() {
                       </svg>
                     </div>
 
-                    <span className="text-sm leading-6 text-slate-700 sm:text-base">
+                    <span className="text-sm leading-6 text-slate sm:text-base">
                       {point}
                     </span>
                   </motion.div>
@@ -778,7 +778,7 @@ export default function HomePage() {
                   duration: 0.25,
                   ease: EASE,
                 }}
-                className={`group relative min-w-0 overflow-hidden rounded-[20px] border border-slate-200/70 bg-white p-5 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-[24px] sm:p-6 lg:p-7 ${cap.span}`}
+                className={`group relative min-w-0 overflow-hidden rounded-lg border border-slate-200/70 bg-white p-5 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-xl sm:p-6 lg:p-7 ${cap.span}`}
               >
                 <span
                   className={`pointer-events-none absolute -right-2 -top-6 bg-gradient-to-br ${cap.accent} bg-clip-text text-[72px] font-bold leading-none tracking-tighter text-transparent opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.1] sm:text-[88px]`}
@@ -787,7 +787,7 @@ export default function HomePage() {
                 </span>
 
                 <div
-                  className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${cap.accent} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.5)] sm:h-12 sm:w-12`}
+                  className={`flex h-11 w-11 items-center justify-center rounded-md bg-gradient-to-br ${cap.accent} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.5)] sm:h-12 sm:w-12`}
                 >
                   {i === 0 && <AgentIcon />}
                   {i === 1 && <AutomationIcon />}
@@ -795,11 +795,11 @@ export default function HomePage() {
                   {i === 3 && <PlugIcon />}
                 </div>
 
-                <h3 className="mt-6 text-lg font-semibold tracking-tight text-slate-900 sm:mt-8 sm:text-xl">
+                <h3 className="mt-6 text-lg font-semibold tracking-tight text-ink sm:mt-8 sm:text-xl">
                   {cap.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-600">
+                <p className="mt-3 text-sm leading-6 text-slate">
                   {cap.body}
                 </p>
 
@@ -889,7 +889,7 @@ export default function HomePage() {
 
               <motion.h2
                 variants={fadeUp}
-                className="mt-5 text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] text-slate-900 sm:mt-6"
+                className="mt-5 text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] text-ink sm:mt-6"
               >
                 Turn every conversation into an{" "}
                 <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
@@ -899,7 +899,7 @@ export default function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-5 max-w-xl text-[15px] leading-7 text-slate-600 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg"
+                className="mt-5 max-w-xl text-sm leading-7 text-slate sm:mt-6 sm:text-base sm:leading-8 lg:text-lg"
               >
                 LeadPulz is our AI-powered voice automation platform for
                 managing calls, qualifying leads, scheduling appointments,
@@ -915,7 +915,7 @@ export default function HomePage() {
                   <motion.div
                     key={point}
                     variants={fadeUp}
-                    className="flex min-w-0 items-start gap-3 text-sm leading-6 text-slate-700"
+                    className="flex min-w-0 items-start gap-3 text-sm leading-6 text-slate"
                   >
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-500/10">
                       <svg
@@ -962,16 +962,16 @@ export default function HomePage() {
 
             {/* Dashboard */}
             <motion.div variants={scaleIn} className="relative min-w-0">
-              <div className="absolute -inset-4 rounded-[36px] bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-transparent blur-2xl" />
+              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-transparent blur-2xl" />
 
-              <div className="relative overflow-hidden rounded-[20px] border border-slate-200/70 bg-white p-2 shadow-[0_40px_100px_-40px_rgba(15,27,61,0.4)] sm:rounded-[28px] sm:p-3">
+              <div className="relative overflow-hidden rounded-lg border border-slate-200/70 bg-white p-2 shadow-[0_40px_100px_-40px_rgba(15,27,61,0.4)] sm:rounded-xl sm:p-3">
                 <div className="flex items-center gap-1.5 px-2 pb-2 sm:pb-3">
                   <span className="h-2 w-2 rounded-full bg-red-400 sm:h-2.5 sm:w-2.5" />
                   <span className="h-2 w-2 rounded-full bg-amber-400 sm:h-2.5 sm:w-2.5" />
                   <span className="h-2 w-2 rounded-full bg-emerald-400 sm:h-2.5 sm:w-2.5" />
                 </div>
 
-                <div className="overflow-hidden rounded-[14px] bg-slate-100 sm:rounded-[18px]">
+                <div className="overflow-hidden rounded-md bg-slate-100 sm:rounded-lg">
                   <Image
                     src="/images/dashboard.jpeg"
                     alt="LeadPulz AI Revenue Agent dashboard"
@@ -992,16 +992,16 @@ export default function HomePage() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-slate-200/70 bg-white px-4 py-3 shadow-xl md:block"
+                className="absolute -bottom-5 -left-5 hidden rounded-lg border border-slate-200/70 bg-white px-4 py-3 shadow-xl md:block"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                <p className="text-2xs font-semibold uppercase tracking-wider text-muted">
                   AI Agent
                 </p>
 
                 <div className="mt-1.5 flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
 
-                  <p className="text-xs font-semibold text-slate-800">
+                  <p className="text-xs font-semibold text-slate">
                     Lead qualified
                   </p>
                 </div>
@@ -1016,13 +1016,13 @@ export default function HomePage() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -right-5 -top-5 hidden rounded-2xl border border-slate-200/70 bg-white px-4 py-3 shadow-xl md:block"
+                className="absolute -right-5 -top-5 hidden rounded-lg border border-slate-200/70 bg-white px-4 py-3 shadow-xl md:block"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                <p className="text-2xs font-semibold uppercase tracking-wider text-muted">
                   Action
                 </p>
 
-                <p className="mt-1.5 text-xs font-semibold text-slate-800">
+                <p className="mt-1.5 text-xs font-semibold text-slate">
                   Meeting booked ✓
                 </p>
               </motion.div>
@@ -1068,7 +1068,7 @@ export default function HomePage() {
                   duration: 0.25,
                   ease: EASE,
                 }}
-                className="group min-w-0 overflow-hidden rounded-[20px] border border-slate-200/70 bg-white transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-[24px]"
+                className="group min-w-0 overflow-hidden rounded-lg border border-slate-200/70 bg-white transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-xl"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                   <Image
@@ -1081,17 +1081,17 @@ export default function HomePage() {
 
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                  <span className="absolute bottom-3 left-3 max-w-[calc(100%-24px)] truncate rounded-full border border-white/40 bg-white/90 px-3 py-1.5 text-[10px] font-medium text-slate-700 backdrop-blur sm:text-[11px]">
+                  <span className="absolute bottom-3 left-3 max-w-[calc(100%-24px)] truncate rounded-full border border-white/40 bg-white/90 px-3 py-1.5 text-2xs font-medium text-slate backdrop-blur">
                     {useCase.tag}
                   </span>
                 </div>
 
                 <div className="p-5 sm:p-6">
-                  <h3 className="text-lg font-semibold tracking-tight text-slate-900">
+                  <h3 className="text-lg font-semibold tracking-tight text-ink">
                     {useCase.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-slate">
                     {useCase.body}
                   </p>
                 </div>
@@ -1120,11 +1120,11 @@ export default function HomePage() {
             <motion.div variants={fadeUp} className="min-w-0">
               <Eyebrow tone="violet">Why FlowFoundry</Eyebrow>
 
-              <h2 className="mt-5 max-w-xl text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] text-slate-900">
+              <h2 className="mt-5 max-w-xl text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] text-ink">
                 Technology built around the business — not the other way around.
               </h2>
 
-              <p className="mt-5 max-w-lg text-[15px] leading-7 text-slate-600 sm:mt-6 sm:text-base lg:text-lg">
+              <p className="mt-5 max-w-lg text-sm leading-7 text-slate sm:mt-6 sm:text-base lg:text-lg">
                 Good automation is not about connecting random tools. It is
                 about understanding the process first, then designing the right
                 system around it.
@@ -1146,17 +1146,17 @@ export default function HomePage() {
                     duration: 0.25,
                     ease: EASE,
                   }}
-                  className="group min-w-0 rounded-[20px] border border-slate-200/70 bg-white p-5 transition-all duration-300 hover:border-slate-300 hover:shadow-[0_24px_60px_-28px_rgba(65,70,105,0.22)] sm:rounded-[24px] sm:p-6"
+                  className="group min-w-0 rounded-lg border border-slate-200/70 bg-white p-5 transition-all duration-300 hover:border-slate-300 hover:shadow-[0_24px_60px_-28px_rgba(65,70,105,0.22)] sm:rounded-xl sm:p-6"
                 >
                   <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-violet-500/10 text-xs font-semibold text-violet-500">
                     0{index + 1}
                   </span>
 
-                  <h3 className="mt-5 text-lg font-semibold tracking-tight text-slate-900">
+                  <h3 className="mt-5 text-lg font-semibold tracking-tight text-ink">
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-slate">
                     {item.body}
                   </p>
                 </motion.article>
@@ -1204,11 +1204,11 @@ export default function HomePage() {
                   {step.n}
                 </div>
 
-                <h3 className="mt-5 text-lg font-semibold tracking-tight text-slate-900 sm:mt-6">
+                <h3 className="mt-5 text-lg font-semibold tracking-tight text-ink sm:mt-6">
                   {step.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-600">
+                <p className="mt-3 text-sm leading-6 text-slate">
                   {step.body}
                 </p>
               </motion.article>
@@ -1254,7 +1254,7 @@ export default function HomePage() {
                   duration: 0.2,
                 }}
               >
-                <Chip className="border-slate-200 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-700 transition-all hover:border-blue-500/30 hover:bg-blue-500/5 hover:text-blue-600 sm:px-5 sm:py-3 sm:text-sm">
+                <Chip className="border-slate-200 bg-slate-50 px-3.5 py-2.5 text-xs text-slate transition-all hover:border-blue-500/30 hover:bg-blue-500/5 hover:text-blue-600 sm:px-5 sm:py-3 sm:text-sm">
                   {integration}
                 </Chip>
               </motion.div>
@@ -1263,7 +1263,7 @@ export default function HomePage() {
 
           <motion.p
             variants={fadeIn}
-            className="mx-auto mt-7 max-w-2xl px-2 text-center text-[11px] leading-5 text-slate-400 sm:mt-8 sm:text-xs"
+            className="mx-auto mt-7 max-w-2xl px-2 text-center text-2xs leading-5 text-muted sm:mt-8 sm:text-xs"
           >
             Product names are shown as examples of platforms that can be
             integrated. They do not imply formal partnerships.
@@ -1286,7 +1286,7 @@ export default function HomePage() {
         className="w-full bg-white px-4 pb-16 sm:px-6 sm:pb-20 md:pb-24 lg:px-8 lg:pb-28 xl:pb-32"
       >
         <div className="mx-auto w-full max-w-[1200px]">
-          <div className="relative overflow-hidden rounded-[24px] bg-[#0A1330] px-5 py-14 text-center sm:rounded-[30px] sm:px-10 sm:py-20 md:px-12 md:py-24 lg:rounded-[36px] lg:px-16 lg:py-28">
+          <div className="relative overflow-hidden rounded-xl bg-[#0A1330] px-5 py-14 text-center sm:rounded-2xl sm:px-10 sm:py-20 md:px-12 md:py-24 lg:px-16 lg:py-28">
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
               <div
                 className="absolute inset-0 opacity-[0.06]"
@@ -1314,7 +1314,7 @@ export default function HomePage() {
                 </span>
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-7 text-white/70 sm:mt-6 sm:text-base lg:text-lg">
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-on-dark-muted sm:mt-6 sm:text-base lg:text-lg">
                 Tell us what's slowing your business down. We'll help you
                 explore a smarter way to run it.
               </p>

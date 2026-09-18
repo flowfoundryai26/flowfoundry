@@ -82,8 +82,8 @@ export function Logo({ dark = false }: { dark?: boolean }) {
       className="group flex shrink-0 items-center gap-3"
     >
       <div className="relative h-9 w-9 sm:h-10 sm:w-10">
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-40" />
-        <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border border-slate-200/70 bg-white shadow-sm transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
+        <div className="absolute inset-0 rounded-md bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-40" />
+        <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-md border border-slate-200/70 bg-white shadow-sm transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
           <Image
             src="/logo.png"
             alt={`${SITE.short} logo`}
@@ -98,15 +98,15 @@ export function Logo({ dark = false }: { dark?: boolean }) {
 
       <div className="flex flex-col leading-none">
         <span
-          className={`text-[17px] font-semibold tracking-[-0.02em] sm:text-[18px] ${
-            dark ? "text-white" : "text-slate-900"
+          className={`text-base font-semibold tracking-[-0.02em] sm:text-lg ${
+            dark ? "text-white" : "text-ink"
           }`}
         >
           FlowFoundry
         </span>
         <span
-          className={`mt-0.5 text-[10px] font-medium uppercase tracking-[0.18em] ${
-            dark ? "text-white/50" : "text-slate-500"
+          className={`mt-0.5 text-2xs font-medium uppercase tracking-[0.18em] ${
+            dark ? "text-on-dark-quiet" : "text-muted"
           }`}
         >
           AI Solutions
@@ -192,10 +192,10 @@ export default function Header() {
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`relative flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-[14px] font-medium transition-colors duration-200 ${
+                    className={`relative flex items-center gap-1.5 rounded-md px-3.5 py-2 text-sm font-medium transition-colors duration-200 ${
                       active
-                        ? "text-slate-900"
-                        : "text-slate-600 hover:text-slate-900"
+                        ? "text-ink"
+                        : "text-slate hover:text-ink"
                     }`}
                   >
                     <span className="relative">
@@ -227,25 +227,25 @@ export default function Header() {
                   {/* Dropdown */}
                   {item.children && (
                     <div className="invisible absolute left-0 top-full z-10 w-[300px] translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                      <div className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 p-1.5 shadow-[0_20px_50px_-20px_rgba(15,27,61,0.2)] backdrop-blur-xl">
+                      <div className="overflow-hidden rounded-lg border border-slate-200/70 bg-white/95 p-1.5 shadow-[0_20px_50px_-20px_rgba(15,27,61,0.2)] backdrop-blur-xl">
                         {item.children.map((child: any) => (
                           <Link
                             key={child.href}
                             href={child.href}
-                            className="group/item block rounded-xl px-3.5 py-2.5 transition-colors duration-150 hover:bg-slate-50"
+                            className="group/item block rounded-md px-3.5 py-2.5 transition-colors duration-150 hover:bg-slate-50"
                           >
                             <div className="flex items-center justify-between gap-3">
                               <div>
-                                <p className="text-[13.5px] font-medium text-slate-800 group-hover/item:text-[#4F6BFF]">
+                                <p className="text-xs font-medium text-slate group-hover/item:text-[#4F6BFF]">
                                   {child.label}
                                 </p>
                                 {child.description && (
-                                  <p className="mt-0.5 text-[12px] leading-5 text-slate-500">
+                                  <p className="mt-0.5 text-2xs leading-5 text-muted">
                                     {child.description}
                                   </p>
                                 )}
                               </div>
-                              <Arrow className="h-3.5 w-3.5 shrink-0 text-slate-300 opacity-0 transition-all duration-200 group-hover/item:translate-x-0.5 group-hover/item:text-[#4F6BFF] group-hover/item:opacity-100" />
+                              <Arrow className="h-3.5 w-3.5 shrink-0 text-muted opacity-0 transition-all duration-200 group-hover/item:translate-x-0.5 group-hover/item:text-[#4F6BFF] group-hover/item:opacity-100" />
                             </div>
                           </Link>
                         ))}
@@ -264,7 +264,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
-              className="group/wa inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-[13.5px] font-medium text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
+              className="group/wa inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-medium text-slate transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
             >
               <WhatsAppIcon className="h-4 w-4 text-emerald-600" />
               <span className="hidden xl:inline">WhatsApp</span>
@@ -272,7 +272,7 @@ export default function Header() {
 
             <Link
               href="/contact"
-              className="group/btn inline-flex items-center gap-1.5 rounded-xl bg-[#0A1330] px-5 py-2.5 text-[13.5px] font-medium text-white shadow-[0_10px_30px_-12px_rgba(10,19,48,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#0F1B3D] hover:shadow-[0_16px_40px_-12px_rgba(10,19,48,0.55)] active:translate-y-0 active:scale-[0.98]"
+              className="group/btn inline-flex items-center gap-1.5 rounded-md bg-[#0A1330] px-5 py-2.5 text-xs font-medium text-white shadow-[0_10px_30px_-12px_rgba(10,19,48,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#0F1B3D] hover:shadow-[0_16px_40px_-12px_rgba(10,19,48,0.55)] active:translate-y-0 active:scale-[0.98]"
             >
               Get Started
               <Arrow />
@@ -286,7 +286,7 @@ export default function Header() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white transition-all duration-200 hover:bg-slate-50 active:scale-95 lg:hidden"
+            className="relative flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-white transition-all duration-200 hover:bg-slate-50 active:scale-95 lg:hidden"
           >
             <span className="relative block h-[1.5px] w-[18px] bg-slate-800">
               <span
@@ -326,10 +326,10 @@ export default function Header() {
                     <div className="flex items-center gap-1">
                       <Link
                         href={item.href}
-                        className={`flex-1 rounded-xl px-3 py-3 text-[15px] font-medium transition-colors duration-200 ${
+                        className={`flex-1 rounded-md px-3 py-3 text-sm font-medium transition-colors duration-200 ${
                           active
-                            ? "bg-slate-50 text-slate-900"
-                            : "text-slate-700 hover:bg-slate-50"
+                            ? "bg-slate-50 text-ink"
+                            : "text-slate hover:bg-slate-50"
                         }`}
                       >
                         <span className="flex items-center gap-2">
@@ -350,7 +350,7 @@ export default function Header() {
                           }
                           aria-expanded={isExpanded}
                           aria-label={`Toggle ${item.label} submenu`}
-                          className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-400 transition-all duration-200 hover:bg-slate-50 hover:text-slate-700"
+                          className="flex h-10 w-10 items-center justify-center rounded-md text-muted transition-all duration-200 hover:bg-slate-50 hover:text-slate"
                         >
                           <ChevronDown
                             className={`transition-transform duration-300 ${
@@ -377,7 +377,7 @@ export default function Header() {
                                 <Link
                                   key={child.href}
                                   href={child.href}
-                                  className="block rounded-lg px-3 py-2.5 text-[14px] text-slate-600 transition-colors duration-150 hover:bg-slate-50 hover:text-[#4F6BFF]"
+                                  className="block rounded-md px-3 py-2.5 text-sm text-slate transition-colors duration-150 hover:bg-slate-50 hover:text-[#4F6BFF]"
                                 >
                                   {child.label}
                                 </Link>
@@ -398,14 +398,14 @@ export default function Header() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3.5 text-[14.5px] font-medium text-emerald-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-100 active:translate-y-0"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3.5 text-sm font-medium text-emerald-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-100 active:translate-y-0"
               >
                 <WhatsAppIcon className="h-4.5 w-4.5" />
                 Chat on WhatsApp
               </a>
               <Link
                 href="/contact"
-                className="group/btn inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#0A1330] px-4 py-3.5 text-[14.5px] font-medium text-white shadow-[0_10px_30px_-12px_rgba(10,19,48,0.5)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                className="group/btn inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-[#0A1330] px-4 py-3.5 text-sm font-medium text-white shadow-[0_10px_30px_-12px_rgba(10,19,48,0.5)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
               >
                 Book a Free Consultation
                 <Arrow />

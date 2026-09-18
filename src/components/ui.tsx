@@ -76,9 +76,9 @@ const BTN_BASE =
   "disabled:pointer-events-none disabled:opacity-60";
 
 const BTN_SIZE: Record<BtnSize, string> = {
-  sm: "h-10 px-5 text-[13px]",
-  md: "h-12 px-6 text-[14px]",
-  lg: "h-14 px-8 text-[15px]",
+  sm: "h-10 px-5 text-xs",
+  md: "h-12 px-6 text-sm",
+  lg: "h-14 px-8 text-sm",
 };
 
 const BTN_VARIANT: Record<BtnVariant, string> = {
@@ -88,7 +88,7 @@ const BTN_VARIANT: Record<BtnVariant, string> = {
     "hover:bg-[#0F1B3D] hover:shadow-[0_16px_40px_-12px_rgba(10,19,48,0.55)] " +
     "focus-visible:ring-[#0A1330] focus-visible:ring-offset-white",
   secondary:
-    "border border-slate-200 bg-white text-slate-900 " +
+    "border border-slate-200 bg-white text-ink " +
     "hover:border-slate-300 hover:shadow-[0_10px_30px_-12px_rgba(15,27,61,0.15)] " +
     "focus-visible:ring-[#4F6BFF] focus-visible:ring-offset-white",
   onDark:
@@ -101,7 +101,7 @@ const BTN_VARIANT: Record<BtnVariant, string> = {
     "hover:border-white/30 hover:bg-white/10 " +
     "focus-visible:ring-white focus-visible:ring-offset-[#0A1330]",
   ghost:
-    "text-slate-700 hover:bg-slate-100 hover:text-slate-900 " +
+    "text-slate hover:bg-slate-100 hover:text-ink " +
     "focus-visible:ring-[#4F6BFF] focus-visible:ring-offset-white",
 };
 
@@ -167,7 +167,7 @@ export function Eyebrow({
   if (isDark) {
     return (
       <span
-        className={`inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm ${className}`}
+        className={`inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm ${className}`}
       >
         <span className="h-1 w-1 rounded-full bg-current opacity-70" />
         {children}
@@ -178,7 +178,7 @@ export function Eyebrow({
   const t = TONES[tone];
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] ${t.border} ${t.bg} ${t.text} ${className}`}
+      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.18em] ${t.border} ${t.bg} ${t.text} ${className}`}
     >
       <span className="h-1 w-1 rounded-full bg-current opacity-70" />
       {children}
@@ -220,7 +220,7 @@ export function SectionHeading({
       {eyebrow ? <Eyebrow tone={tone}>{eyebrow}</Eyebrow> : null}
       <h2
         className={`mt-5 text-[34px] font-light leading-[1.1] tracking-[-0.035em] sm:text-5xl ${
-          invert ? "text-white" : "text-slate-900"
+          invert ? "text-white" : "text-ink"
         }`}
       >
         {title}
@@ -229,7 +229,7 @@ export function SectionHeading({
         <p
           className={`mt-5 text-base leading-7 sm:text-lg ${
             isCenter ? "mx-auto max-w-2xl" : ""
-          } ${invert ? "text-white/65" : "text-slate-600"}`}
+          } ${invert ? "text-on-dark-muted" : "text-slate"}`}
         >
           {lede}
         </p>
@@ -254,7 +254,7 @@ export function Chip({
   if (tone === "dark") {
     return (
       <span
-        className={`inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-[13px] font-medium text-white/70 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.08] hover:text-white ${className}`}
+        className={`inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-xs font-medium text-on-dark-muted backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.08] hover:text-white ${className}`}
       >
         {children}
       </span>
@@ -265,7 +265,7 @@ export function Chip({
     const t = TONES[tone];
     return (
       <span
-        className={`inline-flex items-center rounded-full border ${t.border} ${t.bg} px-4 py-2.5 text-[13px] font-medium ${t.text} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-12px_rgba(15,27,61,0.15)] ${className}`}
+        className={`inline-flex items-center rounded-full border ${t.border} ${t.bg} px-4 py-2.5 text-xs font-medium ${t.text} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-12px_rgba(15,27,61,0.15)] ${className}`}
       >
         {children}
       </span>
@@ -274,7 +274,7 @@ export function Chip({
 
   return (
     <span
-      className={`inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-[13px] font-medium text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-[#4F6BFF]/5 hover:text-[#4F6BFF] ${className}`}
+      className={`inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-medium text-slate transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-[#4F6BFF]/5 hover:text-[#4F6BFF] ${className}`}
     >
       {children}
     </span>
@@ -298,12 +298,12 @@ export function Badge({
     success: "bg-emerald-50 text-emerald-700",
     warning: "bg-amber-50 text-amber-700",
     danger: "bg-rose-50 text-rose-700",
-    dark: "border border-white/15 bg-white/5 text-white/90 backdrop-blur-sm",
+    dark: "border border-white/15 bg-white/5 text-white backdrop-blur-sm",
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] font-semibold ${variants[variant]}`}
+      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-2xs font-semibold ${variants[variant]}`}
     >
       {children}
     </span>
@@ -333,7 +333,7 @@ export function FeatureCard({
 
   return (
     <article
-      className={`group relative overflow-hidden rounded-[24px] border bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] md:p-8 ${t.border} ${className}`}
+      className={`group relative overflow-hidden rounded-xl border bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] md:p-8 ${t.border} ${className}`}
     >
       {/* Watermark number */}
       {index ? (
@@ -347,7 +347,7 @@ export function FeatureCard({
       <div className="relative">
         {icon ? (
           <div
-            className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${t.gradient} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,0.5)]`}
+            className={`flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-br ${t.gradient} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,0.5)]`}
           >
             {icon}
           </div>
@@ -355,16 +355,16 @@ export function FeatureCard({
 
         {index ? (
           <span
-            className={`mt-6 block text-[11px] font-semibold uppercase tracking-[0.18em] ${t.text}`}
+            className={`mt-6 block text-2xs font-semibold uppercase tracking-[0.18em] ${t.text}`}
           >
             {index}
           </span>
         ) : null}
 
-        <h3 className="mt-3 text-xl font-semibold tracking-tight text-slate-900">
+        <h3 className="mt-3 text-xl font-semibold tracking-tight text-ink">
           {title}
         </h3>
-        <p className="mt-3 text-[15px] leading-7 text-slate-600">{body}</p>
+        <p className="mt-3 text-sm leading-7 text-slate">{body}</p>
 
         {/* Animated underline */}
         <div

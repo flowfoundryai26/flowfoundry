@@ -176,7 +176,7 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className="min-h-dvh bg-[#0A1330] font-sans text-slate-900 antialiased"
+        className="min-h-dvh bg-[#0A1330] font-sans text-ink antialiased"
       >
         <a
           href="#main"
@@ -185,9 +185,9 @@ export default function RootLayout({
             focus:not-sr-only
             focus:absolute focus:left-4 focus:top-4 focus:z-[100]
             focus:inline-flex focus:items-center focus:gap-2
-            focus:rounded-xl focus:border focus:border-white/10
+            focus:rounded-md focus:border focus:border-white/10
             focus:bg-[#0A1330] focus:px-4 focus:py-2.5
-            focus:text-[13px] focus:font-medium focus:text-white
+            focus:text-xs focus:font-medium focus:text-white
             focus:shadow-[0_20px_50px_-16px_rgba(0,0,0,0.6)]
             focus:outline-none focus:ring-2 focus:ring-[#4F6BFF]/40
           "

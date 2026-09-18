@@ -167,7 +167,7 @@ function Field({
     <div className="group">
       <label
         htmlFor={name}
-        className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-[#64708B]"
+        className="mb-1.5 block text-2xs font-semibold uppercase tracking-wider text-[#64708B]"
       >
         {label}
       </label>
@@ -179,7 +179,7 @@ function Field({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-[#E3E8F1] bg-[#FAFBFD] px-4 py-3 text-sm text-[#0F1B3D] placeholder:text-[#A8B0C2] transition-all duration-200 focus:border-[#4F6BFF] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#4F6BFF]/10"
+        className="w-full rounded-md border border-[#E3E8F1] bg-[#FAFBFD] px-4 py-3 text-sm text-[#0F1B3D] placeholder:text-[#A8B0C2] transition-all duration-200 focus:border-[#4F6BFF] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#4F6BFF]/10"
       />
     </div>
   );
@@ -204,7 +204,7 @@ function TextArea({
     <div className="group">
       <label
         htmlFor={name}
-        className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-[#64708B]"
+        className="mb-1.5 block text-2xs font-semibold uppercase tracking-wider text-[#64708B]"
       >
         {label}
       </label>
@@ -216,7 +216,7 @@ function TextArea({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full resize-y rounded-xl border border-[#E3E8F1] bg-[#FAFBFD] px-4 py-3 text-sm text-[#0F1B3D] placeholder:text-[#A8B0C2] transition-all duration-200 focus:border-[#4F6BFF] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#4F6BFF]/10"
+        className="w-full resize-y rounded-md border border-[#E3E8F1] bg-[#FAFBFD] px-4 py-3 text-sm text-[#0F1B3D] placeholder:text-[#A8B0C2] transition-all duration-200 focus:border-[#4F6BFF] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#4F6BFF]/10"
       />
     </div>
   );
@@ -309,7 +309,7 @@ export default function ContactPage() {
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur-sm"
               >
                 <SparkIcon className="h-3.5 w-3.5 text-[#8B5CF6]" />
-                <span className="text-xs font-medium text-white/85">
+                <span className="text-xs font-medium text-white">
                   Let&apos;s talk
                 </span>
               </motion.div>
@@ -327,7 +327,7 @@ export default function ContactPage() {
 
               <motion.p
                 variants={fadeInUp}
-                className="mt-6 max-w-[540px] text-base leading-7 text-white/70 sm:text-lg"
+                className="mt-6 max-w-[540px] text-base leading-7 text-on-dark-muted sm:text-lg"
               >
                 FlowFoundry is ready to provide the right solution according
                 to your needs. Tell us about your project and we&apos;ll get
@@ -343,7 +343,7 @@ export default function ContactPage() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
                   </span>
-                  <span className="text-xs font-medium text-white/80">
+                  <span className="text-xs font-medium text-white">
                     Available for new projects
                   </span>
                 </div>
@@ -407,22 +407,22 @@ export default function ContactPage() {
                   rel={item.external ? "noopener noreferrer" : undefined}
                   variants={fadeInUp}
                   whileHover={{ y: -3 }}
-                  className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07]"
+                  className="group flex items-center gap-4 rounded-lg border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07]"
                 >
                   <div
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} text-white ${item.shadow}`}
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${item.gradient} text-white ${item.shadow}`}
                   >
                     <item.icon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[11px] font-medium uppercase tracking-wider text-white/50">
+                    <p className="text-2xs font-medium uppercase tracking-wider text-on-dark-quiet">
                       {item.label}
                     </p>
                     <p className="truncate text-sm font-semibold text-white">
                       {item.value}
                     </p>
                   </div>
-                  <ArrowIcon className="h-4 w-4 text-white/40 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
+                  <ArrowIcon className="h-4 w-4 text-on-dark-quiet transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
                 </motion.a>
               ))}
             </motion.div>
@@ -446,7 +446,7 @@ export default function ContactPage() {
         <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
           <motion.div
             variants={scaleIn}
-            className="-mt-24 overflow-hidden rounded-3xl bg-white shadow-[0_30px_80px_-20px_rgba(15,27,61,.18)] ring-1 ring-black/[0.03] sm:-mt-28 lg:-mt-32"
+            className="-mt-24 overflow-hidden rounded-xl bg-white shadow-[0_30px_80px_-20px_rgba(15,27,61,.18)] ring-1 ring-black/[0.03] sm:-mt-28 lg:-mt-32"
           >
             <div className="grid gap-0 lg:grid-cols-[0.85fr_1.15fr]">
               {/* LEFT: Info panel */}
@@ -459,7 +459,7 @@ export default function ContactPage() {
                   <h2 className="text-2xl font-bold text-white sm:text-3xl">
                     Get in touch
                   </h2>
-                  <p className="mt-3 max-w-[380px] text-sm leading-6 text-white/60">
+                  <p className="mt-3 max-w-[380px] text-sm leading-6 text-on-dark-muted">
                     We&apos;re here to answer your questions and help you
                     explore how AI, automation, and custom software can
                     transform your business.
@@ -473,12 +473,12 @@ export default function ContactPage() {
                         className="flex items-start gap-4"
                       >
                         <div
-                          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} text-white ${item.accent}`}
+                          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${item.gradient} text-white ${item.accent}`}
                         >
                           <item.icon className="h-5 w-5" />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-[11px] font-semibold uppercase tracking-wider text-white/50">
+                          <p className="text-2xs font-semibold uppercase tracking-wider text-on-dark-quiet">
                             {item.label}
                           </p>
                           {item.href ? (
@@ -486,7 +486,7 @@ export default function ContactPage() {
                               href={item.href}
                               target={item.external ? "_blank" : undefined}
                               rel={item.external ? "noopener noreferrer" : undefined}
-                              className={`mt-0.5 block text-sm font-medium text-white/90 transition-colors ${
+                              className={`mt-0.5 block text-sm font-medium text-white transition-colors ${
                                 item.label === "WhatsApp"
                                   ? "hover:text-[#25D366]"
                                   : "hover:text-[#8B5CF6]"
@@ -495,7 +495,7 @@ export default function ContactPage() {
                               {item.value}
                             </a>
                           ) : (
-                            <p className="mt-0.5 whitespace-pre-line text-sm font-medium text-white/90">
+                            <p className="mt-0.5 whitespace-pre-line text-sm font-medium text-white">
                               {item.value}
                             </p>
                           )}
@@ -516,16 +516,16 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ y: -3 }}
-                    className="group flex items-center gap-3 rounded-2xl border border-[#25D366]/30 bg-[#25D366]/10 p-4 transition-all duration-300 hover:border-[#25D366]/50 hover:bg-[#25D366]/20"
+                    className="group flex items-center gap-3 rounded-lg border border-[#25D366]/30 bg-[#25D366]/10 p-4 transition-all duration-300 hover:border-[#25D366]/50 hover:bg-[#25D366]/20"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white shadow-[0_8px_24px_-8px_rgba(37,211,102,.6)]">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white shadow-[0_8px_24px_-8px_rgba(37,211,102,.6)]">
                       <WhatsAppIcon className="h-5 w-5" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-semibold text-white">
                         Prefer WhatsApp?
                       </p>
-                      <p className="text-xs text-white/60">
+                      <p className="text-xs text-on-dark-muted">
                         Get a reply within minutes
                       </p>
                     </div>
@@ -533,8 +533,8 @@ export default function ContactPage() {
                   </motion.a>
 
                   {/* Trust note */}
-                  <p className="mt-6 text-xs leading-6 text-white/50">
-                    <span className="font-semibold text-white/80">
+                  <p className="mt-6 text-xs leading-6 text-on-dark-quiet">
+                    <span className="font-semibold text-white">
                       Typical response time:
                     </span>{" "}
                     Under 1 business day via email. Immediate on WhatsApp.
@@ -617,7 +617,7 @@ export default function ContactPage() {
                   <div className="grid gap-3 sm:grid-cols-[1.4fr_1fr]">
                     <button
                       type="submit"
-                      className="group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-gradient-to-r from-[#25D366] to-[#1EBE5A] px-6 py-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(37,211,102,.55)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,.7)]"
+                      className="group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-md bg-gradient-to-r from-[#25D366] to-[#1EBE5A] px-6 py-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(37,211,102,.55)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,.7)]"
                     >
                       <WhatsAppIcon className="h-5 w-5" />
                       Send via WhatsApp
@@ -630,7 +630,7 @@ export default function ContactPage() {
                       )}&body=${encodeURIComponent(
                         `Name: ${formData.name}\nCompany: ${formData.company}\nPhone: ${formData.phone}\nEmail: ${formData.email}\n\n${formData.message}`
                       )}`}
-                      className="group flex w-full items-center justify-center gap-2 rounded-xl border border-[#E3E8F1] bg-[#FAFBFD] px-6 py-4 text-sm font-semibold text-[#0F1B3D] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-white hover:shadow-[0_10px_30px_-10px_rgba(79,107,255,.35)]"
+                      className="group flex w-full items-center justify-center gap-2 rounded-md border border-[#E3E8F1] bg-[#FAFBFD] px-6 py-4 text-sm font-semibold text-[#0F1B3D] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-white hover:shadow-[0_10px_30px_-10px_rgba(79,107,255,.35)]"
                     >
                       <MailIcon className="h-4 w-4" />
                       Email Instead
@@ -661,7 +661,7 @@ export default function ContactPage() {
         <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
           <motion.div
             variants={scaleIn}
-            className="relative overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-20px_rgba(15,27,61,.15)] ring-1 ring-black/[0.03]"
+            className="relative overflow-hidden rounded-xl bg-white shadow-[0_20px_60px_-20px_rgba(15,27,61,.15)] ring-1 ring-black/[0.03]"
           >
             <div className="h-[380px] w-full sm:h-[440px] lg:h-[500px]">
               <iframe
@@ -690,7 +690,7 @@ export default function ContactPage() {
         className="bg-[#F0F4FA] px-5 pb-20 sm:px-6 sm:pb-24 lg:px-8"
       >
         <div className="mx-auto max-w-[1200px]">
-          <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F1B3D] via-[#1A2340] to-[#0F1B3D] px-6 py-16 text-center sm:px-10 sm:py-20">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0F1B3D] via-[#1A2340] to-[#0F1B3D] px-6 py-16 text-center sm:px-10 sm:py-20">
             {/* Background effects */}
             <div className="pointer-events-none absolute inset-0">
               <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#4F6BFF]/25 blur-[110px]" />
@@ -709,7 +709,7 @@ export default function ContactPage() {
             <div className="relative z-10">
               <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur-sm">
                 <SparkIcon className="h-3.5 w-3.5 text-[#8B5CF6]" />
-                <span className="text-xs font-medium text-white/85">
+                <span className="text-xs font-medium text-white">
                   Start a conversation
                 </span>
               </div>
@@ -722,7 +722,7 @@ export default function ContactPage() {
                 </span>
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/65 sm:text-base">
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-on-dark-muted sm:text-base">
                 AI agents, automation, custom software, and integrations are
                 tools. The goal is building a better way for your business to
                 work.
