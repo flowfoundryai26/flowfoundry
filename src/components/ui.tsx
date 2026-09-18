@@ -167,10 +167,10 @@ export function Eyebrow({
   if (isDark) {
     return (
       <span
-        className={`inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm ${className}`}
+        className={`inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm ${className}`}
       >
-        <span className="h-1 w-1 rounded-full bg-current opacity-70" />
-        {children}
+        <span className="h-1 w-1 shrink-0 rounded-full bg-current opacity-70" />
+        <span className="truncate">{children}</span>
       </span>
     );
   }
@@ -178,10 +178,10 @@ export function Eyebrow({
   const t = TONES[tone];
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.18em] ${t.border} ${t.bg} ${t.text} ${className}`}
+      className={`inline-flex max-w-full items-center gap-2 rounded-full border px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-[0.14em] ${t.border} ${t.bg} ${t.text} ${className}`}
     >
-      <span className="h-1 w-1 rounded-full bg-current opacity-70" />
-      {children}
+      <span className="h-1 w-1 shrink-0 rounded-full bg-current opacity-70" />
+      <span className="truncate">{children}</span>
     </span>
   );
 }

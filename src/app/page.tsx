@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { INTEGRATIONS } from "@/lib/site";
-import { Arrow, Button, Chip } from "@/components/ui";
+import { Arrow, Button, Chip, Eyebrow } from "@/components/ui";
 import { ArchitectureStack } from "@/components/visuals";
 
 /* =========================================================
@@ -221,31 +221,6 @@ function Container({
     >
       {children}
     </div>
-  );
-}
-
-function Eyebrow({
-  children,
-  tone = "indigo",
-}: {
-  children: React.ReactNode;
-  tone?: "indigo" | "cyan" | "violet" | "emerald" | "dark";
-}) {
-  const tones = {
-    indigo: "border-blue-500/20 bg-blue-500/5 text-blue-600",
-    cyan: "border-cyan-500/20 bg-cyan-500/5 text-cyan-600",
-    violet: "border-violet-500/20 bg-violet-500/5 text-violet-600",
-    emerald: "border-emerald-500/20 bg-emerald-500/5 text-emerald-600",
-    dark: "border-white/15 bg-white/5 text-white",
-  };
-
-  return (
-    <span
-      className={`inline-flex max-w-full items-center gap-2 rounded-full border px-3 py-1.5 text-2xs font-semibold uppercase tracking-[0.14em] sm:px-3.5 sm:tracking-[0.18em] ${tones[tone]}`}
-    >
-      <span className="h-1 w-1 shrink-0 rounded-full bg-current opacity-70" />
-      <span className="truncate">{children}</span>
-    </span>
   );
 }
 
