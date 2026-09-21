@@ -51,7 +51,7 @@ Entry → key action → result:
   No hype words; only copy the site already uses.
 
 ## Format: landscape — 1920x1080
-## Duration: 22s
+## Duration: 33.2s (services scene + narration added on request; over the 25s law deliberately)
 
 ## Visual identity (from the project)
 - Background (dark): `#0A1330` (site html/body + hero); ambient blurred orbs blue-500/30, violet-500/25, cyan-500/10; faint 64px grid at ~4% white
@@ -148,3 +148,41 @@ Transition mood: none — end.
 
 **Music mood for this video:** steady, clean, corporate-warm (vol-12)
 **Audio summary:** a single warm bed that fades in under a lead notification, ticks along with the pipeline assembling, lands one bell on "Meeting booked", carries the dashboard proof on its own, and fades under the logo with one soft final impact.
+
+## Voiceover script
+Voice: Kokoro af_heart, one clip per scene (composition/assets/vo/s1-s4.wav). Music ducks to 0.14 under speech.
+Scene timing flexed to the audio: total 25.0s (scene 2 cuts on the 13.11s cue, scene 3 hands off at 19.8s, logo on the 22.93s cue).
+
+- Scene 1 (0.9s) - "A new lead just came in. Here's what happens next."
+- Scene 2 (5.0s) - "An AI agent picks it up, qualifies it, syncs your CRM and calendar, and books the meeting. No one touched a keyboard."
+- Scene 2b (13.5s) - "And one team builds all of it: AI agents, automation, custom software, web, e-commerce, and integrations."
+- Scene 3 (21.67s) - "That's LeadPulz. Every call, every qualified lead, every booking, in one place."
+- Scene 4 (27.77s) - "FlowFoundry. Intelligent systems, built around how your business actually works."
+
+## Scene 2b — Our services — 8.17s (13.11–21.28) [added on request]
+Navy stage. Left: eyebrow "OUR SERVICES", title "One team for the systems / your business needs." (gradient),
+the services-page description verbatim. Right: a 2×3 grid of the six services from /services — AI Agents,
+Workflow Automation, Custom Software, Web Development, eCommerce, Integrations — each with a numbered tile and a
+one-line trim of its page copy. Cards arrive one by one on the beat grid (13.64 → 16.38), then the full set holds
+~4.9s while the narration lists them. Soft drop SFX on the first and last card. Cut to the dashboard on the 21.28 beat.
+
+---
+
+# v3 — Full company video (user-supplied 7-section script)
+
+Rebuilt to the user's script. Narration: Kokoro af_heart at 1.06x, one clip per section in `composition/assets/vo2/`.
+Scene windows flex to the audio; total **86s** (script assumed 60s; Kokoro speaks ~30% slower than that estimate).
+Music bed 0.30, ducked to 0.13 under narration, fades out over the last 1.7s. Orbs stay audio-reactive.
+List items (services, outcomes, audiences, products) land on the words: timings estimated from character position in each clip.
+
+| # | Section | Window | Visual |
+|---|---|---|---|
+| 1 | Intro | 0–7.35 | 8 integration nodes (WhatsApp, HubSpot, Shopify, Google Calendar, Slack, Stripe, Twilio, Zoho) start scattered and dim with broken lines; on "they need intelligent systems" they snap into a ring and gradient lines draw to the FlowFoundry logo; wordmark lands under the network |
+| 2 | Who we are | 6.95–17.35 | Hero headline + 4 capability chips; `flowfoundry-system.png` architecture diagram in a frame with a slow push-in |
+| 3 | Services | 16.95–33.58 | 8 service rows (AI Agents, WhatsApp Automation, AI Voice Agents, Custom Web Apps & Portals, Workflow Automation, Shopify Dev & Integrations, API Integrations, Tailored Software) each lighting up as named; right: rapid crossfades through the site's sales / support / eCommerce / custom / operations photos |
+| 4 | Solutions | 33.18–49.86 | Workflow card relabelled to the script (Lead enters → AI responds → Appointment booked → CRM updated → Team notified); 6-item checklist ticks in sync with the VO; outcome chips + bell at the end |
+| 5 | Audience | 49.46–61.74 | "Built around real business processes." + 8 audience cards with icons, one per named group |
+| 6 | Products | 61.34–74.24 | Light scene: LeadPulz AI + real dashboard screenshot; 4 product rows land on the words |
+| 7 | CTA | 73.84–86 | Logo lockup, "Smarter / Faster / At scale" chips on the words, "Let's build yours.", URL, animated "Book a Free Consultation" button with a cursor press + click SFX |
+
+Previous 33s brag cut kept as `brag-short.mp4` / `brag-short.jpg`.

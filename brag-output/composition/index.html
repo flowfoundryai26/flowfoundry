@@ -3,30 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>FlowFoundry — brag</title>
+    <title>FlowFoundry AI Solutions — company video</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <script src="assets/audio-data.js"></script>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body {
-        margin: 0;
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
-        background: #0a1330;
-      }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0a1330; }
       #root {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
-        color: #fff;
+        position: relative; width: 100%; height: 100%; overflow: hidden;
+        font-family: Poppins, ui-sans-serif, system-ui, sans-serif; color: #fff;
         -webkit-font-smoothing: antialiased;
       }
       .clip { position: absolute; inset: 0; overflow: hidden; }
+      .inner { position: absolute; inset: 0; }
 
-      /* ---------- shared navy stage (scenes 1, 2, 4) ---------- */
+      /* ---------- shared navy stage ---------- */
       #stage { position: absolute; inset: 0; background: #0a1330; }
       #stage .grid {
         position: absolute; inset: 0;
@@ -45,189 +36,190 @@
       #orb-cyan   { left: 50%; bottom: -320px; width: 1100px; height: 560px; margin-left: -550px;
         background: radial-gradient(ellipse, rgba(58,201,255,.20) 0%, rgba(58,201,255,0) 65%); }
 
-      /* ---------- type ---------- */
-      .eyebrow {
-        font-size: 20px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-        color: rgba(255,255,255,.62);
-      }
+      /* ---------- type & atoms ---------- */
+      .eyebrow { font-size: 20px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.62); }
       .eyebrow.violet { color: #6161ff; }
-      .grad {
-        background: linear-gradient(90deg, #3ac9ff 0%, #6161ff 52%, #9450fd 100%);
-        -webkit-background-clip: text; background-clip: text; color: transparent;
-      }
-      .t-hero {
-        font-weight: 300; line-height: 1.06; letter-spacing: -.04em; color: #fff;
-      }
-
-      /* ---------- scene 1 ---------- */
-      #s1-wrap { position: absolute; left: 140px; top: 0; width: 1240px; height: 100%;
+      .grad { background: linear-gradient(90deg, #3ac9ff 0%, #6161ff 52%, #9450fd 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .t-hero { font-weight: 300; line-height: 1.06; letter-spacing: -.04em; color: #fff; }
+      .t-sec { font-weight: 300; line-height: 1.1; letter-spacing: -.035em; color: #fff; }
+      .left-col { position: absolute; left: 140px; top: 0; width: 760px; height: 100%;
         display: flex; flex-direction: column; justify-content: center; }
-      .notif {
-        display: inline-flex; align-items: center; gap: 22px;
-        padding: 18px 30px 18px 18px;
-        border-radius: 22px;
-        border: 2px solid rgba(255,255,255,.14);
-        background: rgba(255,255,255,.06);
-        box-shadow: 0 30px 80px -30px rgba(0,0,0,.7);
-        width: max-content;
-      }
       .tile {
-        display: flex; align-items: center; justify-content: center;
-        width: 56px; height: 56px; border-radius: 14px;
-        font-size: 18px; font-weight: 600; letter-spacing: .04em;
+        display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+        width: 52px; height: 52px; border-radius: 14px;
+        font-size: 17px; font-weight: 600; letter-spacing: .04em;
         background: rgba(255,255,255,.08); color: rgba(255,255,255,.78);
-        flex: 0 0 auto;
       }
-      .tile.primary {
-        background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff;
-        box-shadow: 0 12px 32px -10px rgba(79,107,255,.8);
-      }
+      .tile.primary { background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff; box-shadow: 0 12px 32px -10px rgba(79,107,255,.8); }
       .tile.success { background: rgba(52,211,153,.16); color: #6ee7b7; }
-      .row-label { font-size: 26px; font-weight: 500; color: #fff; line-height: 1.2; white-space: nowrap; }
-      .row-meta  { font-size: 19px; color: rgba(255,255,255,.62); line-height: 1.3; margin-top: 4px; white-space: nowrap; }
-      .live {
-        display: inline-flex; align-items: center; gap: 10px;
-        padding: 8px 16px; border-radius: 999px;
+      .live { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px;
         border: 2px solid rgba(52,211,153,.35); background: rgba(52,211,153,.12);
-        color: #6ee7b7; font-size: 17px; font-weight: 500; letter-spacing: .02em;
-      }
+        color: #6ee7b7; font-size: 17px; font-weight: 500; letter-spacing: .02em; }
       .dot { width: 10px; height: 10px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 4px rgba(52,211,153,.25); }
-      #s1-eyebrow { margin-top: 56px; }
-      #s1-ghost {
-        position: absolute; right: 120px; top: 50%; width: 620px; margin-top: -316px;
-        border-radius: 30px; border: 2px solid rgba(255,255,255,.10);
-        padding: 30px 34px; opacity: 0;
-      }
-      #s1-ghost .g-head { height: 70px; border-bottom: 2px solid rgba(255,255,255,.08); }
-      #s1-ghost .g-rows { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
-      #s1-ghost .g-row { display: flex; align-items: center; gap: 20px; padding: 15px 20px; border-radius: 18px; border: 2px solid rgba(255,255,255,.07); }
-      #s1-ghost .g-row .tile { background: rgba(255,255,255,.05); color: rgba(255,255,255,.35); }
-      #s1-ghost .g-row .bar { height: 14px; border-radius: 7px; background: rgba(255,255,255,.07); }
-      #s1-ghost .g-chips { margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-      #s1-ghost .g-chips i { display: block; height: 60px; border-radius: 14px; border: 2px solid rgba(255,255,255,.06); }
-      #s1-h1 { margin-top: 22px; font-size: 84px; max-width: 1010px; }
-      #s1-sub { margin-top: 34px; font-size: 27px; line-height: 1.6; color: rgba(255,255,255,.72); max-width: 900px; }
-
-      /* ---------- scene 2 ---------- */
-      #s2-left { position: absolute; left: 140px; top: 0; width: 700px; height: 100%;
-        display: flex; flex-direction: column; justify-content: center; }
-      #s2-line { margin-top: 26px; font-size: 54px; font-weight: 300; line-height: 1.18; letter-spacing: -.03em; color: #fff; }
-      #s2-note { margin-top: 30px; font-size: 22px; line-height: 1.6; color: rgba(255,255,255,.62); max-width: 560px; }
-      #card {
-        position: absolute; right: 140px; top: 50%; width: 800px; margin-top: -372px;
-        border-radius: 30px;
-        border: 2px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.04);
+      .chips-row { display: flex; flex-wrap: wrap; gap: 12px; }
+      .chips-row span { padding: 12px 22px; border-radius: 999px; font-size: 19px; font-weight: 500;
+        border: 2px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); color: rgba(255,255,255,.85); white-space: nowrap; }
+      .frame {
+        position: absolute; border-radius: 26px; background: rgba(255,255,255,.04);
+        border: 2px solid rgba(255,255,255,.12); padding: 12px; overflow: hidden;
         box-shadow: 0 60px 140px -50px rgba(0,0,0,.85);
-        padding: 30px 34px 30px;
-        overflow: hidden;
       }
+      .frame .shot { position: relative; border-radius: 16px; overflow: hidden; background: #0f1a3d; }
+      .frame .shot img { display: block; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 50%; }
+      .frame .lights { display: flex; gap: 8px; padding: 4px 8px 12px; }
+      .frame .lights i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+
+      /* ---------- 1 · intro network ---------- */
+      #net { position: absolute; inset: 0; }
+      #net svg { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      #net line { fill: none; stroke-width: 3; stroke-linecap: round; }
+      .node {
+        position: absolute; display: flex; align-items: center; gap: 12px;
+        padding: 14px 22px 14px 14px; border-radius: 999px;
+        border: 2px solid rgba(255,255,255,.14); background: rgba(10,19,48,.9);
+        font-size: 21px; font-weight: 500; color: rgba(255,255,255,.88); white-space: nowrap;
+        box-shadow: 0 20px 50px -20px rgba(0,0,0,.8);
+      }
+      .node i { width: 34px; height: 34px; border-radius: 50%; display: block; }
+      #logo-tile {
+        position: absolute; left: 50%; top: 50%; width: 180px; height: 180px; margin: -90px 0 0 -90px;
+        border-radius: 44px; overflow: hidden;
+        box-shadow: 0 0 0 2px rgba(255,255,255,.14), 0 40px 100px -30px rgba(97,97,255,.7);
+      }
+      #logo-tile img { display: block; width: 100%; height: 100%; }
+      #logo-halo { position: absolute; left: 50%; top: 50%; width: 520px; height: 520px; margin: -260px 0 0 -260px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(97,97,255,.45) 0%, rgba(97,97,255,0) 65%); }
+      #intro-wm { position: absolute; left: 0; right: 0; top: 50%; margin-top: 350px; text-align: center; }
+      #intro-wm .wm { font-size: 46px; font-weight: 500; letter-spacing: -.02em; color: #fff; }
+      #intro-wm .sub { margin-top: 10px; font-size: 20px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.62); font-weight: 600; }
+
+      /* ---------- 2 · who we are ---------- */
+      #who-h1 { margin-top: 22px; font-size: 76px; max-width: 760px; }
+      #who-sub { margin-top: 28px; font-size: 24px; line-height: 1.6; color: rgba(255,255,255,.72); max-width: 700px; }
+      #who-chips { margin-top: 34px; }
+      #who-frame { right: 140px; top: 50%; width: 780px; margin-top: -325px; }
+      #who-frame .shot { height: 604px; background: #fff; }
+
+      /* ---------- 3 · services ---------- */
+      #sv-title { margin-top: 20px; font-size: 48px; }
+      #sv-list { margin-top: 30px; display: flex; flex-direction: column; gap: 9px; width: 700px; }
+      .srow {
+        position: relative; display: flex; align-items: center; gap: 16px; padding: 10px 16px 10px 10px; border-radius: 16px;
+        border: 2px solid rgba(255,255,255,.10); background: rgba(255,255,255,.035);
+      }
+      .srow .tile { width: 44px; height: 44px; border-radius: 12px; font-size: 15px; }
+      .srow .l { font-size: 24px; font-weight: 500; color: #fff; white-space: nowrap; }
+      .srow .hl { position: absolute; inset: -2px; border-radius: 16px; border: 2px solid #6161ff; box-shadow: 0 0 34px rgba(97,97,255,.5); opacity: 0; pointer-events: none; }
+      #sv-frame { right: 140px; top: 50%; width: 880px; margin-top: -320px; }
+      #sv-frame .shot { height: 560px; }
+      #sv-frame .shot img { position: absolute; inset: 0; opacity: 0; }
+      #sv-cap { position: absolute; right: 140px; top: 50%; margin-top: 306px; width: 880px; display: flex; justify-content: space-between; align-items: center;
+        font-size: 18px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,.55); }
+
+      /* ---------- 4 · solutions ---------- */
+      #so-title { margin-top: 22px; font-size: 54px; max-width: 700px; }
+      #so-list { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; width: 700px; }
+      .crow { display: flex; align-items: center; gap: 16px; font-size: 25px; font-weight: 400; color: rgba(255,255,255,.9); }
+      .crow .ck { width: 36px; height: 36px; border-radius: 50%; flex: 0 0 auto; display: grid; place-items: center;
+        border: 2px solid rgba(255,255,255,.2); background: rgba(255,255,255,.04); }
+      .crow .ck svg { width: 18px; height: 18px; }
+      .crow .ck-on { position: absolute; inset: -2px; border-radius: 50%; border: 2px solid rgba(52,211,153,.6); background: rgba(52,211,153,.18); opacity: 0; }
+      .crow .ck { position: relative; }
+      .crow .ck svg { position: relative; }
+      #card { position: absolute; right: 140px; top: 50%; width: 760px; margin-top: -352px;
+        border-radius: 30px; border: 2px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04);
+        box-shadow: 0 60px 140px -50px rgba(0,0,0,.85); padding: 28px 32px; overflow: hidden; }
       #card-glow { position: absolute; inset: -2px; border-radius: 30px; pointer-events: none;
         background: radial-gradient(60% 40% at 35% 30%, rgba(59,130,246,.22), transparent 70%); }
-      .card-head { position: relative; display: flex; align-items: center; justify-content: space-between;
-        padding-bottom: 22px; border-bottom: 2px solid rgba(255,255,255,.10); }
+      .card-head { position: relative; display: flex; align-items: center; justify-content: space-between; padding-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,.10); }
       .card-head .kicker { font-size: 15px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); }
       .card-head .title { margin-top: 6px; font-size: 22px; color: #fff; }
-      .rows { position: relative; margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
-      .row {
-        position: relative;
-        display: flex; align-items: center; gap: 20px;
-        padding: 15px 20px;
-        border-radius: 18px;
-        border: 2px solid rgba(255,255,255,.10);
-        background: rgba(255,255,255,.035);
-      }
+      .rows { position: relative; margin-top: 20px; display: flex; flex-direction: column; gap: 11px; }
+      .row { position: relative; display: flex; align-items: center; gap: 18px; padding: 13px 18px; border-radius: 18px;
+        border: 2px solid rgba(255,255,255,.10); background: rgba(255,255,255,.035); }
       .row.primary { border-color: rgba(59,130,246,.45); background: rgba(59,130,246,.13); }
       .row.success { border-color: rgba(52,211,153,.30); background: rgba(52,211,153,.07); }
       .row .txt { flex: 1 1 auto; min-width: 0; }
+      .row-label { font-size: 25px; font-weight: 500; color: #fff; line-height: 1.2; white-space: nowrap; }
+      .row-meta { font-size: 18px; color: rgba(255,255,255,.62); line-height: 1.3; margin-top: 3px; white-space: nowrap; }
       .row .chev { width: 22px; height: 22px; flex: 0 0 auto; color: rgba(255,255,255,.45); }
       #row-glow { position: absolute; left: -30px; right: -30px; top: -18px; bottom: -18px; border-radius: 28px;
         background: radial-gradient(60% 80% at 50% 50%, rgba(97,97,255,.45), transparent 70%); filter: blur(18px); pointer-events: none; }
-      .chips { position: relative; margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-      .chip {
-        position: relative;
-        display: flex; align-items: center; gap: 12px;
-        padding: 15px 18px; border-radius: 14px;
-        border: 2px solid rgba(52,211,153,.28); background: rgba(52,211,153,.08);
-        font-size: 19px; font-weight: 500; color: #d1fae5; white-space: nowrap;
-      }
+      .chips { position: relative; margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .chip { position: relative; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px;
+        border: 2px solid rgba(52,211,153,.28); background: rgba(52,211,153,.08); font-size: 18px; font-weight: 500; color: #d1fae5; white-space: nowrap; }
       .chip .ok { width: 26px; height: 26px; border-radius: 50%; background: rgba(52,211,153,.18); display: grid; place-items: center; flex: 0 0 auto; }
       .chip .ok svg { width: 14px; height: 14px; }
-      #chip-3-ring { position: absolute; inset: -2px; border-radius: 14px; border: 2px solid #34d399;
-        box-shadow: 0 0 40px rgba(52,211,153,.55); pointer-events: none; }
+      #chip-3-ring { position: absolute; inset: -2px; border-radius: 14px; border: 2px solid #34d399; box-shadow: 0 0 40px rgba(52,211,153,.55); pointer-events: none; }
 
-      /* ---------- scene 3 (light) ---------- */
-      #s3-bg { position: absolute; inset: 0; background: #ffffff; }
-      #s3-bg .dots { position: absolute; inset: 0;
-        background-image: radial-gradient(rgba(37,40,48,.10) 1.6px, transparent 1.6px);
-        background-size: 34px 34px; }
-      #s3-bg .wash { position: absolute; right: -260px; top: -300px; width: 1200px; height: 1000px; border-radius: 50%;
+      /* ---------- 5 · audience ---------- */
+      #au-title { margin-top: 22px; font-size: 62px; max-width: 700px; }
+      #au-desc { margin-top: 26px; font-size: 23px; line-height: 1.6; color: rgba(255,255,255,.66); max-width: 600px; }
+      #au-grid { position: absolute; right: 140px; top: 50%; width: 900px; margin-top: -262px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .aud { display: flex; align-items: center; gap: 18px; padding: 22px 24px; border-radius: 20px;
+        border: 2px solid rgba(255,255,255,.11); background: rgba(255,255,255,.04); box-shadow: 0 30px 80px -40px rgba(0,0,0,.8); }
+      .aud .ic { width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; flex: 0 0 auto; }
+      .aud .ic svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .aud .l { font-size: 26px; font-weight: 600; color: #fff; letter-spacing: -.01em; }
+      .aud .s { margin-top: 3px; font-size: 17px; color: rgba(255,255,255,.6); }
+      .ic.c1 { background: rgba(59,130,246,.18); color: #93c5fd; }
+      .ic.c2 { background: rgba(251,191,36,.16); color: #fcd34d; }
+      .ic.c3 { background: rgba(148,80,253,.18); color: #c4a6ff; }
+      .ic.c4 { background: rgba(52,211,153,.16); color: #6ee7b7; }
+      .ic.c5 { background: rgba(58,201,255,.16); color: #7ddcff; }
+      .ic.c6 { background: rgba(244,114,182,.16); color: #f9a8d4; }
+      .ic.c7 { background: rgba(97,97,255,.2); color: #b4b4ff; }
+      .ic.c8 { background: rgba(255,255,255,.08); color: rgba(255,255,255,.85); }
+
+      /* ---------- 6 · products (light) ---------- */
+      #pr-bg { position: absolute; inset: 0; background: #ffffff; }
+      #pr-bg .dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(37,40,48,.10) 1.6px, transparent 1.6px); background-size: 34px 34px; }
+      #pr-bg .wash { position: absolute; right: -260px; top: -300px; width: 1200px; height: 1000px; border-radius: 50%;
         background: radial-gradient(circle, rgba(240,238,255,1) 0%, rgba(240,238,255,0) 62%); }
-      #s3-bg .wash2 { position: absolute; left: -300px; bottom: -420px; width: 900px; height: 800px; border-radius: 50%;
+      #pr-bg .wash2 { position: absolute; left: -300px; bottom: -420px; width: 900px; height: 800px; border-radius: 50%;
         background: radial-gradient(circle, rgba(234,253,255,1) 0%, rgba(234,253,255,0) 62%); }
-      #s3-left { position: absolute; left: 140px; top: 0; width: 640px; height: 100%;
-        display: flex; flex-direction: column; justify-content: center; color: #252830; }
-      #s3-title { margin-top: 22px; font-size: 76px; font-weight: 300; letter-spacing: -.04em; line-height: 1.05; color: #252830; }
-      #s3-sub { margin-top: 24px; font-size: 24px; line-height: 1.55; color: #535768; max-width: 600px; }
-      #stats { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 620px; }
-      .stat {
-        padding: 24px 26px 22px; border-radius: 22px;
-        background: #fff; border: 2px solid #e6e8ef;
-        box-shadow: 0 16px 40px rgba(60,64,100,.08);
-      }
-      .stat .num { display: flex; align-items: baseline; gap: 2px; }
-      .stat .n { font-size: 58px; font-weight: 500; letter-spacing: -.03em; line-height: 1; color: #252830;
-        font-variant-numeric: tabular-nums; display: inline-block; }
-      .stat .sfx { font-size: 28px; font-weight: 500; color: #8a8f9b; }
-      .stat .lbl { margin-top: 10px; font-size: 19px; color: #666c79; }
-      .stat .bar { margin-top: 14px; height: 6px; border-radius: 4px; background: #eceef3; overflow: hidden; }
-      .stat .bar i { display: block; width: 100%; height: 100%; border-radius: 4px; transform-origin: left center;
-        background: linear-gradient(90deg, #3ac9ff, #6161ff 60%, #9450fd); }
-      #browser {
-        position: absolute; right: 120px; top: 50%; width: 1000px; margin-top: -262px;
-        border-radius: 24px; background: #fff; border: 2px solid #e6e8ef;
-        box-shadow: 0 50px 120px -40px rgba(15,27,61,.45);
-        padding: 12px;
-      }
+      #pr-left { width: 660px; color: #252830; }
+      #pr-title { margin-top: 20px; font-size: 72px; font-weight: 300; letter-spacing: -.04em; line-height: 1.05; color: #252830; }
+      #pr-sub { margin-top: 20px; font-size: 23px; line-height: 1.55; color: #535768; max-width: 620px; }
+      #pr-list { margin-top: 34px; display: flex; flex-direction: column; gap: 12px; width: 620px; }
+      .prow { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 18px; background: #fff; border: 2px solid #e6e8ef;
+        box-shadow: 0 16px 40px rgba(60,64,100,.08); font-size: 24px; font-weight: 500; color: #252830; }
+      .prow .tile { width: 44px; height: 44px; border-radius: 12px; font-size: 15px; background: #f0eeff; color: #6161ff; }
+      #browser { position: absolute; right: 120px; top: 50%; width: 980px; margin-top: -256px; border-radius: 24px; background: #fff; border: 2px solid #e6e8ef;
+        box-shadow: 0 50px 120px -40px rgba(15,27,61,.45); padding: 12px; }
       #browser .lights { display: flex; gap: 8px; padding: 6px 8px 12px; }
       #browser .lights i { width: 12px; height: 12px; border-radius: 50%; display: block; }
       #browser .screen { border-radius: 14px; overflow: hidden; background: #f1f5f9; }
       #browser .screen img { display: block; width: 100%; height: auto; transform-origin: 50% 50%; }
-      .float {
-        position: absolute; background: #fff; border: 2px solid #e6e8ef; border-radius: 16px;
-        padding: 14px 20px; box-shadow: 0 24px 60px -20px rgba(15,27,61,.35); white-space: nowrap;
-      }
+      .float { position: absolute; background: #fff; border: 2px solid #e6e8ef; border-radius: 16px; padding: 14px 20px;
+        box-shadow: 0 24px 60px -20px rgba(15,27,61,.35); white-space: nowrap; }
       .float .k { font-size: 14px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #666c79; }
       .float .v { margin-top: 6px; display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 600; color: #535768; }
       .float .v i { width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: block; }
       #float-a { left: 30px; bottom: -34px; }
       #float-b { right: -40px; top: -34px; }
 
-      /* ---------- scene 4 ---------- */
-      #s4-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-      #s4-q { font-size: 80px; max-width: 1420px; }
-      #s4-lockup { position: absolute; left: 0; right: 0; top: 50%; margin-top: -40px; display: flex; flex-direction: column; align-items: center; }
-      #s4-logo { display: flex; align-items: center; gap: 22px; }
-      #s4-logo img { width: 96px; height: 96px; border-radius: 24px; display: block; }
-      #s4-logo .wm { font-size: 44px; font-weight: 500; letter-spacing: -.02em; color: #fff; }
-      #s4-url { margin-top: 18px; font-size: 24px; letter-spacing: .06em; color: rgba(255,255,255,.72); }
-      #s4-chips { margin-top: 30px; display: flex; gap: 14px; }
-      #s4-chips span {
-        padding: 12px 22px; border-radius: 999px; font-size: 19px; font-weight: 500;
-        border: 2px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); color: rgba(255,255,255,.82);
-      }
+      /* ---------- 7 · cta ---------- */
+      #cta-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+      #cta-logo { display: flex; align-items: center; gap: 22px; }
+      #cta-logo img { width: 96px; height: 96px; border-radius: 24px; display: block; }
+      #cta-logo .wm { font-size: 44px; font-weight: 500; letter-spacing: -.02em; color: #fff; }
+      #cta-chips { margin-top: 34px; justify-content: center; }
+      #cta-line { margin-top: 40px; font-size: 84px; }
+      #cta-url { margin-top: 18px; font-size: 24px; letter-spacing: .06em; color: rgba(255,255,255,.72); }
+      #cta-btn-wrap { position: relative; margin-top: 34px; }
+      #cta-btn { display: inline-flex; align-items: center; gap: 14px; padding: 22px 40px; border-radius: 999px;
+        background: linear-gradient(90deg, #3ac9ff 0%, #6161ff 52%, #9450fd 100%); color: #fff; font-size: 26px; font-weight: 600;
+        box-shadow: 0 20px 50px -12px rgba(97,97,255,.7); }
+      #cta-btn svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+      #cta-ring { position: absolute; inset: -6px; border-radius: 999px; border: 3px solid rgba(255,255,255,.9); opacity: 0; pointer-events: none; }
+      #cursor { position: absolute; left: 50%; top: 50%; width: 34px; height: 44px; margin-left: 30px; margin-top: 192px; opacity: 0; }
+      #cursor svg { width: 100%; height: 100%; filter: drop-shadow(0 6px 10px rgba(0,0,0,.6)); }
     </style>
   </head>
   <body>
-    <div
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="22"
-      data-width="1920"
-      data-height="1080"
-    >
-      <!-- shared navy stage: untimed, lives under every scene -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="86" data-width="1920" data-height="1080">
       <div id="stage" data-layout-ignore>
         <div class="grid"></div>
         <div id="orb-blue" class="orb"></div>
@@ -235,232 +227,343 @@
         <div id="orb-cyan" class="orb"></div>
       </div>
 
-      <!-- ===== Scene 1 — Hook: a lead arrives (0–5.0) ===== -->
-      <section id="s1" class="clip" data-start="0" data-duration="5" data-track-index="1">
-        <div id="s1-wrap">
-          <div id="s1-notif" class="notif">
-            <div class="tile">01</div>
-            <div class="txt">
-              <div class="row-label">New Lead</div>
-              <div class="row-meta">Website enquiry</div>
-            </div>
-            <div class="live" style="margin-left: 26px"><i class="dot"></i>Active</div>
+      <!-- ===== 1 · INTRO (0–7.35) ===== -->
+      <section id="s1" class="clip" data-start="0" data-duration="7.35" data-track-index="1">
+        <div id="s1-in" class="inner">
+          <div id="net" data-layout-ignore>
+            <svg id="net-svg" viewBox="0 0 1920 1080">
+              <defs>
+                <linearGradient id="lg" gradientUnits="userSpaceOnUse" x1="200" y1="0" x2="1720" y2="0">
+                  <stop offset="0" stop-color="#3ac9ff"/><stop offset=".55" stop-color="#6161ff"/><stop offset="1" stop-color="#9450fd"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div id="nodes"></div>
           </div>
-          <div id="s1-eyebrow" class="eyebrow">AI &bull; Automation &bull; Software</div>
-          <h1 id="s1-h1" class="t-hero">Build intelligent systems around the way your <span class="grad">business works.</span></h1>
-          <p id="s1-sub">AI agents, automation, custom software and integrations &mdash; connecting conversations, business logic, data and actions.</p>
-        </div>
-        <!-- ghost of the workflow card: the pipeline, waiting -->
-        <div id="s1-ghost" data-layout-ignore>
-          <div class="g-head"></div>
-          <div class="g-rows">
-            <div class="g-row"><div class="tile">02</div><div class="bar" style="width: 220px"></div></div>
-            <div class="g-row"><div class="tile">03</div><div class="bar" style="width: 280px"></div></div>
-            <div class="g-row"><div class="tile">04</div><div class="bar" style="width: 250px"></div></div>
-            <div class="g-row"><div class="tile">05</div><div class="bar" style="width: 180px"></div></div>
-          </div>
-          <div class="g-chips"><i></i><i></i><i></i></div>
+          <div id="logo-halo"></div>
+          <div id="logo-tile"><img src="assets/images/logo.png" alt="FlowFoundry" /></div>
+          <div id="intro-wm"><div class="wm">FlowFoundry AI Solutions</div><div class="sub">AI &bull; Automation &bull; Software</div></div>
         </div>
       </section>
 
-      <!-- ===== Scene 2 — The pipeline runs itself (4.5–10.93) ===== -->
-      <section id="s2" class="clip" data-start="4.5" data-duration="6.43" data-track-index="1">
-        <div id="s2-left">
-          <div id="s2-eyebrow" class="eyebrow">Intelligent workflow</div>
-          <div id="s2-line">We connect every layer so your business doesn&rsquo;t stop at collecting information &mdash; <span class="grad">it acts on it.</span></div>
-          <p id="s2-note">Conversations &rarr; Business logic &rarr; Data &rarr; Actions</p>
-        </div>
-
-        <div id="card">
-          <div id="card-glow"></div>
-          <div class="card-head">
-            <div>
-              <div class="kicker">Intelligent Workflow</div>
-              <div class="title">FlowFoundry automation architecture</div>
-            </div>
-            <div class="live"><i class="dot"></i>Active</div>
+      <!-- ===== 2 · WHO WE ARE (6.95–17.35) ===== -->
+      <section id="s2" class="clip" data-start="6.95" data-duration="10.4" data-track-index="1">
+        <div id="s2-in" class="inner">
+          <div class="left-col">
+            <div id="who-eyebrow" class="eyebrow">AI &bull; Automation &bull; Software</div>
+            <h1 id="who-h1" class="t-hero">Build intelligent systems around the way your <span class="grad">business works.</span></h1>
+            <p id="who-sub">AI agents, automation, custom software and integrations &mdash; connecting conversations, business logic, data and actions.</p>
+            <div id="who-chips" class="chips-row"><span>AI Agents</span><span>Automation</span><span>Custom Software</span><span>Integrations</span></div>
           </div>
-          <div class="rows">
-            <div class="row" id="row-1">
-              <div class="tile">01</div>
-              <div class="txt"><div class="row-label">New Lead</div><div class="row-meta">Website enquiry</div></div>
-              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-            </div>
-            <div class="row primary" id="row-2">
-              <div id="row-glow"></div>
-              <div class="tile primary">02</div>
-              <div class="txt"><div class="row-label">AI Agent</div><div class="row-meta">Engage &amp; understand</div></div>
-              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-            </div>
-            <div class="row" id="row-3">
-              <div class="tile">03</div>
-              <div class="txt"><div class="row-label">Business Logic</div><div class="row-meta">Qualify &amp; route</div></div>
-              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-            </div>
-            <div class="row" id="row-4">
-              <div class="tile">04</div>
-              <div class="txt"><div class="row-label">CRM + Calendar</div><div class="row-meta">Sync business data</div></div>
-              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-            </div>
-            <div class="row success" id="row-5">
-              <div class="tile success">05</div>
-              <div class="txt"><div class="row-label">Action</div><div class="row-meta">Book &amp; follow up</div></div>
-              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-          <div class="chips">
-            <div class="chip" id="chip-1"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Lead qualified</div>
-            <div class="chip" id="chip-2"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>CRM updated</div>
-            <div class="chip" id="chip-3"><div id="chip-3-ring"></div><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Meeting booked</div>
+          <div id="who-frame" class="frame">
+            <div class="lights"><i style="background:#f87171"></i><i style="background:#fbbf24"></i><i style="background:#34d399"></i></div>
+            <div class="shot" data-layout-allow-overflow><img id="who-img" src="assets/images/flowfoundry-system.png" alt="FlowFoundry system architecture" /></div>
           </div>
         </div>
       </section>
 
-      <!-- ===== Scene 3 — Proof: the LeadPulz dashboard (10.93–17.2) ===== -->
-      <section id="s3" class="clip" data-start="10.93" data-duration="6.27" data-track-index="1">
-        <div id="s3-bg"><div class="dots"></div><div class="wash" data-layout-allow-overflow></div><div class="wash2" data-layout-allow-overflow></div></div>
-        <div id="s3-left">
-          <div id="s3-eyebrow" class="eyebrow violet">Flagship product</div>
-          <div id="s3-title">LeadPulz AI</div>
-          <p id="s3-sub">AI-powered voice automation for managing calls, qualifying leads, scheduling appointments and automating follow-ups.</p>
-          <div id="stats">
-            <div class="stat" id="stat-1"><div class="num"><span class="n" id="n1">0</span></div><div class="lbl">Calls completed</div><div class="bar"><i id="bar-1"></i></div></div>
-            <div class="stat" id="stat-2"><div class="num"><span class="n" id="n2">0.0</span><span class="sfx">%</span></div><div class="lbl">Connection rate</div><div class="bar"><i id="bar-2"></i></div></div>
-            <div class="stat" id="stat-3"><div class="num"><span class="n" id="n3">0.0</span><span class="sfx">%</span></div><div class="lbl">Qualification rate</div><div class="bar"><i id="bar-3"></i></div></div>
-            <div class="stat" id="stat-4"><div class="num"><span class="n" id="n4">0.0</span><span class="sfx">%</span></div><div class="lbl">Meetings booked</div><div class="bar"><i id="bar-4"></i></div></div>
+      <!-- ===== 3 · SERVICES (16.95–33.58) ===== -->
+      <section id="s3" class="clip" data-start="16.95" data-duration="16.63" data-track-index="1">
+        <div id="s3-in" class="inner">
+          <div class="left-col">
+            <div id="sv-eyebrow" class="eyebrow">Our services</div>
+            <div id="sv-title" class="t-sec">One team for the systems <span class="grad">your business needs.</span></div>
+            <div id="sv-list">
+              <div class="srow" id="sr-1"><div class="hl"></div><div class="tile primary">01</div><div class="l">AI Agents</div></div>
+              <div class="srow" id="sr-2"><div class="hl"></div><div class="tile" style="background:rgba(37,211,102,.18);color:#86efac">02</div><div class="l">WhatsApp Automation</div></div>
+              <div class="srow" id="sr-3"><div class="hl"></div><div class="tile" style="background:rgba(58,201,255,.16);color:#7ddcff">03</div><div class="l">AI Voice Agents</div></div>
+              <div class="srow" id="sr-4"><div class="hl"></div><div class="tile" style="background:rgba(148,80,253,.18);color:#c4a6ff">04</div><div class="l">Custom Web Applications &amp; Business Portals</div></div>
+              <div class="srow" id="sr-5"><div class="hl"></div><div class="tile success">05</div><div class="l">Workflow Automation</div></div>
+              <div class="srow" id="sr-6"><div class="hl"></div><div class="tile" style="background:rgba(251,191,36,.16);color:#fcd34d">06</div><div class="l">Shopify Development &amp; Integrations</div></div>
+              <div class="srow" id="sr-7"><div class="hl"></div><div class="tile" style="background:rgba(244,114,182,.16);color:#f9a8d4">07</div><div class="l">API Integrations</div></div>
+              <div class="srow" id="sr-8"><div class="hl"></div><div class="tile">08</div><div class="l">Tailored Software Solutions</div></div>
+            </div>
           </div>
-        </div>
-        <div id="browser">
-          <div class="lights"><i style="background:#f87171"></i><i style="background:#fbbf24"></i><i style="background:#34d399"></i></div>
-          <div class="screen" data-layout-allow-overflow><img id="dash" src="assets/images/dashboard.jpeg" alt="LeadPulz AI dashboard" /></div>
-          <div class="float" id="float-a"><div class="k">AI Agent</div><div class="v"><i></i>Lead qualified</div></div>
-          <div class="float" id="float-b"><div class="k">Action</div><div class="v"><i></i>Meeting booked</div></div>
+          <div id="sv-frame" class="frame">
+            <div class="lights"><i style="background:#f87171"></i><i style="background:#fbbf24"></i><i style="background:#34d399"></i></div>
+            <div class="shot" data-layout-allow-overflow>
+              <img id="ph-1" src="assets/images/use-cases/sales.jpg" alt="Sales team using FlowFoundry" />
+              <img id="ph-2" src="assets/images/use-cases/support.jpg" alt="AI-powered customer support" />
+              <img id="ph-3" src="assets/images/use-cases/ecommerce.jpg" alt="eCommerce operations" />
+              <img id="ph-4" src="assets/images/use-cases/custom.jpg" alt="Custom applications" />
+              <img id="ph-5" src="assets/images/use-cases/operations.jpg" alt="Operations automation" />
+            </div>
+          </div>
+          <div id="sv-cap"><span>Sales &middot; Support &middot; eCommerce &middot; Custom &middot; Operations</span><span class="live"><i class="dot"></i>In production</span></div>
         </div>
       </section>
 
-      <!-- ===== Scene 4 — Outro (16.5–22) ===== -->
-      <section id="s4" class="clip" data-start="16.5" data-duration="5.5" data-track-index="1">
-        <div id="s4-wrap">
-          <h2 id="s4-q" class="t-hero">What would you automate if your team had <span class="grad">more time?</span></h2>
+      <!-- ===== 4 · SOLUTIONS (33.18–49.86) ===== -->
+      <section id="s4" class="clip" data-start="33.18" data-duration="16.68" data-track-index="1">
+        <div id="s4-in" class="inner">
+          <div class="left-col">
+            <div id="so-eyebrow" class="eyebrow">Where we help</div>
+            <div id="so-title" class="t-sec">Solutions built around real <span class="grad">business workflows.</span></div>
+            <div id="so-list">
+              <div class="crow" id="cr-1"><span class="ck"><i class="ck-on"></i><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Capture leads automatically</div>
+              <div class="crow" id="cr-2"><span class="ck"><i class="ck-on"></i><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Respond to customers 24/7</div>
+              <div class="crow" id="cr-3"><span class="ck"><i class="ck-on"></i><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Automate repetitive operations</div>
+              <div class="crow" id="cr-4"><span class="ck"><i class="ck-on"></i><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Manage sales and projects</div>
+              <div class="crow" id="cr-5"><span class="ck"><i class="ck-on"></i><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Integrate disconnected platforms</div>
+              <div class="crow" id="cr-6"><span class="ck"><i class="ck-on"></i><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Turn complex workflows into simple, scalable systems</div>
+            </div>
+          </div>
+          <div id="card">
+            <div id="card-glow"></div>
+            <div class="card-head">
+              <div><div class="kicker">Intelligent Workflow</div><div class="title">FlowFoundry automation architecture</div></div>
+              <div class="live"><i class="dot"></i>Active</div>
+            </div>
+            <div class="rows">
+              <div class="row" id="row-1"><div class="tile">01</div><div class="txt"><div class="row-label">Lead enters</div><div class="row-meta">Website, WhatsApp or call</div></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+              <div class="row primary" id="row-2"><div id="row-glow"></div><div class="tile primary">02</div><div class="txt"><div class="row-label">AI responds</div><div class="row-meta">Engage, understand &amp; qualify</div></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+              <div class="row" id="row-3"><div class="tile">03</div><div class="txt"><div class="row-label">Appointment booked</div><div class="row-meta">Calendar availability checked</div></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+              <div class="row" id="row-4"><div class="tile">04</div><div class="txt"><div class="row-label">CRM updated</div><div class="row-meta">Record, stage &amp; notes synced</div></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+              <div class="row success" id="row-5"><div class="tile success">05</div><div class="txt"><div class="row-label">Team notified</div><div class="row-meta">Handoff &amp; follow-up scheduled</div></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+            </div>
+            <div class="chips">
+              <div class="chip" id="chip-1"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Lead qualified</div>
+              <div class="chip" id="chip-2"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>CRM updated</div>
+              <div class="chip" id="chip-3"><div id="chip-3-ring"></div><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Meeting booked</div>
+            </div>
+          </div>
         </div>
-        <div id="s4-lockup">
-          <div id="s4-logo"><img src="assets/images/logo.png" alt="FlowFoundry" /><span class="wm">FlowFoundry AI Solutions</span></div>
-          <div id="s4-url">flowfoundryai.in</div>
-          <div id="s4-chips"><span>AI Agents</span><span>Automation</span><span>Custom Software</span><span>Integrations</span></div>
+      </section>
+
+      <!-- ===== 5 · TARGET AUDIENCE (49.46–61.74) ===== -->
+      <section id="s5" class="clip" data-start="49.46" data-duration="12.28" data-track-index="1">
+        <div id="s5-in" class="inner">
+          <div class="left-col">
+            <div id="au-eyebrow" class="eyebrow">Who we build for</div>
+            <div id="au-title" class="t-sec">Built around real <span class="grad">business processes.</span></div>
+            <p id="au-desc">Different industries have different workflows. The system should adapt to your operation &mdash; not the other way around.</p>
+          </div>
+          <div id="au-grid">
+            <div class="aud" id="au-1"><div class="ic c1"><svg viewBox="0 0 24 24"><path d="M5 19l4-4m5-11c2.5 0 5 2.5 5 5-2 5-5 8-9 10l-4-4c2-4 5-7 8-11z"/><circle cx="15" cy="9" r="1.5"/><path d="M4 15l-1 4 4-1"/></svg></div><div><div class="l">Startups</div><div class="s">Automate from day one</div></div></div>
+            <div class="aud" id="au-2"><div class="ic c2"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.5L21 8H6.5"/><circle cx="10" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg></div><div><div class="l">eCommerce brands</div><div class="s">Shopify, orders &amp; support</div></div></div>
+            <div class="aud" id="au-3"><div class="ic c3"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg></div><div><div class="l">Agencies</div><div class="s">Client &amp; project systems</div></div></div>
+            <div class="aud" id="au-4"><div class="ic c4"><svg viewBox="0 0 24 24"><path d="M12 8v8M8 12h8"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg></div><div><div class="l">Healthcare practices</div><div class="s">Enquiries &amp; appointments</div></div></div>
+            <div class="aud" id="au-5"><div class="ic c5"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/></svg></div><div><div class="l">Real estate companies</div><div class="s">Lead response &amp; viewings</div></div></div>
+            <div class="aud" id="au-6"><div class="ic c6"><svg viewBox="0 0 24 24"><path d="M14.5 5.5a4 4 0 0 0-5 5L4 16l4 4 5.5-5.5a4 4 0 0 0 5-5l-2.5 2.5-2-2z"/></svg></div><div><div class="l">Local service businesses</div><div class="s">Bookings without admin</div></div></div>
+            <div class="aud" id="au-7"><div class="ic c7"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></div><div><div class="l">Sales teams</div><div class="s">Qualify, book, follow up</div></div></div>
+            <div class="aud" id="au-8"><div class="ic c8"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></div><div><div class="l">Growing companies</div><div class="s">Ready to automate</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 6 · PRODUCTS (61.34–74.24) ===== -->
+      <section id="s6" class="clip" data-start="61.34" data-duration="12.9" data-track-index="1">
+        <div id="s6-in" class="inner">
+          <div id="pr-bg"><div class="dots"></div><div class="wash" data-layout-allow-overflow></div><div class="wash2" data-layout-allow-overflow></div></div>
+          <div class="left-col" id="pr-left">
+            <div id="pr-eyebrow" class="eyebrow violet">Our products</div>
+            <div id="pr-title">LeadPulz AI</div>
+            <p id="pr-sub">Our AI-powered revenue platform &mdash; voice conversations, lead qualification, appointment booking, follow-ups, CRM integrations and sales analytics.</p>
+            <div id="pr-list">
+              <div class="prow" id="pr-1"><div class="tile">01</div>Intelligent lead-generation platforms</div>
+              <div class="prow" id="pr-2"><div class="tile">02</div>AI sales agents</div>
+              <div class="prow" id="pr-3"><div class="tile">03</div>Business automation systems</div>
+              <div class="prow" id="pr-4"><div class="tile">04</div>Industry-specific AI assistants</div>
+            </div>
+          </div>
+          <div id="browser">
+            <div class="lights"><i style="background:#f87171"></i><i style="background:#fbbf24"></i><i style="background:#34d399"></i></div>
+            <div class="screen" data-layout-allow-overflow><img id="dash" src="assets/images/dashboard.jpeg" alt="LeadPulz AI dashboard" /></div>
+            <div class="float" id="float-a"><div class="k">AI Agent</div><div class="v"><i></i>Lead qualified</div></div>
+            <div class="float" id="float-b"><div class="k">Action</div><div class="v"><i></i>Meeting booked</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 7 · CTA (73.84–86) ===== -->
+      <section id="s7" class="clip" data-start="73.84" data-duration="12.16" data-track-index="1">
+        <div id="s7-in" class="inner">
+          <div id="cta-wrap">
+            <div id="cta-logo"><img src="assets/images/logo.png" alt="FlowFoundry" /><span class="wm">FlowFoundry AI Solutions</span></div>
+            <div id="cta-chips" class="chips-row"><span>Smarter</span><span>Faster</span><span>At scale</span></div>
+            <h2 id="cta-line" class="t-hero">Let&rsquo;s build <span class="grad">yours.</span></h2>
+            <div id="cta-url">flowfoundryai.in</div>
+            <div id="cta-btn-wrap">
+              <div id="cta-ring"></div>
+              <div id="cta-btn">Book a Free Consultation <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            </div>
+          </div>
+          <div id="cursor" data-layout-ignore><svg viewBox="0 0 34 44"><path d="M3 2l26 20-11 2 7 14-5 2-7-14-8 8z" fill="#fff" stroke="#0a1330" stroke-width="2" stroke-linejoin="round"/></svg></div>
         </div>
       </section>
 
       <!-- ===== Audio ===== -->
       <audio id="music" src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3"
-        data-start="0" data-duration="22" data-track-index="10" data-volume="0.32"
-        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.4,"v":0.32},{"t":20.6,"v":0.32},{"t":22,"v":0}]}]}'></audio>
-      <!-- SFX: sparse, low-HF-risk. Each overlapping clip on its own track. -->
-      <audio id="sfx-notif" src="assets/sfx/interface/drop_001.ogg" data-start="0.25" data-duration="0.11" data-track-index="11" data-volume="0.5"></audio>
-      <audio id="sfx-row1"  src="assets/sfx/interface/drop_001.ogg" data-start="4.91" data-duration="0.11" data-track-index="12" data-volume="0.42"></audio>
-      <audio id="sfx-row5"  src="assets/sfx/interface/drop_001.ogg" data-start="7.09" data-duration="0.11" data-track-index="13" data-volume="0.42"></audio>
-      <audio id="sfx-booked" src="assets/sfx/impact/impactBell_heavy_000.ogg" data-start="8.74" data-duration="1.48" data-track-index="14" data-volume="0.48"></audio>
-      <audio id="sfx-logo"  src="assets/sfx/impact/impactSoft_medium_001.ogg" data-start="20.19" data-duration="0.19" data-track-index="15" data-volume="0.5"></audio>
+        data-start="0" data-duration="86" data-track-index="10" data-volume="0.3"
+        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.3,"v":0.3},{"t":0.45,"v":0.13},{"t":84.3,"v":0.13},{"t":86,"v":0}]}]}'></audio>
+      <!-- Narration (Kokoro af_heart), one clip per section -->
+      <audio id="vo-1" src="assets/vo2/intro.wav"     data-start="0.45"  data-duration="5.952"  data-track-index="3" data-volume="1"></audio>
+      <audio id="vo-2" src="assets/vo2/who.wav"       data-start="7.4"   data-duration="9.003"  data-track-index="3" data-volume="1"></audio>
+      <audio id="vo-3" src="assets/vo2/services.wav"  data-start="17.4"  data-duration="15.232" data-track-index="3" data-volume="1"></audio>
+      <audio id="vo-4" src="assets/vo2/solutions.wav" data-start="33.63" data-duration="15.275" data-track-index="3" data-volume="1"></audio>
+      <audio id="vo-5" src="assets/vo2/audience.wav"  data-start="49.91" data-duration="10.88"  data-track-index="3" data-volume="1"></audio>
+      <audio id="vo-6" src="assets/vo2/products.wav"  data-start="61.79" data-duration="11.499" data-track-index="3" data-volume="1"></audio>
+      <audio id="vo-7" src="assets/vo2/cta.wav"       data-start="74.29" data-duration="9.92"   data-track-index="3" data-volume="1"></audio>
+      <!-- SFX: sparse, low-HF-risk -->
+      <audio id="sfx-connect" src="assets/sfx/impact/impactSoft_medium_001.ogg" data-start="3.05" data-duration="0.19" data-track-index="11" data-volume="0.5"></audio>
+      <audio id="sfx-logo1"   src="assets/sfx/interface/drop_001.ogg"          data-start="3.3"  data-duration="0.11" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-sv1"     src="assets/sfx/interface/drop_001.ogg"          data-start="18.67" data-duration="0.11" data-track-index="12" data-volume="0.4"></audio>
+      <audio id="sfx-sv8"     src="assets/sfx/interface/drop_001.ogg"          data-start="30.59" data-duration="0.11" data-track-index="12" data-volume="0.4"></audio>
+      <audio id="sfx-booked"  src="assets/sfx/impact/impactBell_heavy_000.ogg" data-start="47.6"  data-duration="1.48" data-track-index="13" data-volume="0.38"></audio>
+      <audio id="sfx-pr1"     src="assets/sfx/interface/drop_001.ogg"          data-start="65.14" data-duration="0.11" data-track-index="12" data-volume="0.4"></audio>
+      <audio id="sfx-logo2"   src="assets/sfx/impact/impactSoft_medium_001.ogg" data-start="74.3"  data-duration="0.19" data-track-index="11" data-volume="0.45"></audio>
+      <audio id="sfx-click"   src="assets/sfx/interface/click_003.ogg"         data-start="84.45" data-duration="0.2"  data-track-index="14" data-volume="0.55"></audio>
     </div>
 
     <script>
       const EASE = "power3.out";
       const tl = gsap.timeline({ paused: true });
 
-      /* ---------------- Stage: ambient orbs (audio-reactive, subtle) ----------------
-         Bass breathes the blue/violet orbs' opacity, RMS lifts the cyan floor glow.
-         Pre-extracted per-frame data (assets/audio-data.js), sampled every frame. */
-      const orbBlue = document.getElementById("orb-blue");
-      const orbViolet = document.getElementById("orb-violet");
-      const orbCyan = document.getElementById("orb-cyan");
-      const rowGlow = document.getElementById("row-glow");
+      /* ---------- stage: audio-reactive orbs (pre-extracted data, sampled per frame) ---------- */
+      const orbBlue = document.getElementById("orb-blue"), orbViolet = document.getElementById("orb-violet"),
+            orbCyan = document.getElementById("orb-cyan"), rowGlow = document.getElementById("row-glow");
       const AD = window.AUDIO_DATA;
-      // slow deterministic drift under the reactive breathing
-      tl.fromTo(orbBlue, { x: 0, y: 0 }, { x: -60, y: 40, duration: 22, ease: "sine.inOut" }, 0);
-      tl.fromTo(orbViolet, { x: 0, y: 0 }, { x: 50, y: -50, duration: 22, ease: "sine.inOut" }, 0);
-      function drawAudio(frame) {
-        const rms = frame[0], bass = frame[1];
+      tl.fromTo(orbBlue, { x: 0, y: 0 }, { x: -80, y: 60, duration: 86, ease: "sine.inOut" }, 0);
+      tl.fromTo(orbViolet, { x: 0, y: 0 }, { x: 70, y: -70, duration: 86, ease: "sine.inOut" }, 0);
+      function drawAudio(fr) {
+        const rms = fr[0], bass = fr[1];
         orbBlue.style.opacity = (0.78 + bass * 0.22).toFixed(3);
         orbViolet.style.opacity = (0.74 + bass * 0.26).toFixed(3);
         orbCyan.style.opacity = (0.6 + rms * 0.4).toFixed(3);
         rowGlow.style.opacity = (0.35 + bass * 0.45).toFixed(3);
       }
-      for (let f = 0; f < AD.frames.length; f++) {
-        tl.call(((fr) => () => drawAudio(fr))(AD.frames[f]), [], f / AD.fps);
-      }
+      for (let f = 0; f < AD.frames.length; f++) tl.call(((fr) => () => drawAudio(fr))(AD.frames[f]), [], f / AD.fps);
 
-      /* ---------------- Scene 1 — Hook (0–5.0) ---------------- */
-      tl.fromTo("#s1-notif", { y: -70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "back.out(1.4)" }, 0.25);
-      tl.fromTo("#s1-eyebrow", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, 0.75);
-      tl.fromTo("#s1-h1", { y: 48, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: EASE }, 0.9);
-      tl.fromTo("#s1-sub", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: EASE }, 1.35);
-      // headline settled ~1.7s → holds until 4.55 (≈2.85s for 10 words)
-      tl.fromTo("#s1-ghost", { opacity: 0, x: 40 }, { opacity: 0.55, x: 0, duration: 0.9, ease: EASE }, 0.6);
-      tl.to("#s1-wrap", { opacity: 0, y: -30, duration: 0.45, ease: "power2.in" }, 4.55);
-      tl.to("#s1-ghost", { opacity: 0, duration: 0.4, ease: "power2.in" }, 4.55);
-
-      /* ---------------- Scene 2 — Pipeline (4.5–10.93) ---------------- */
-      tl.fromTo("#s2-left", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.7, ease: EASE }, 5.0);
-      tl.fromTo("#card", { opacity: 0, scale: 0.94, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: EASE }, 4.6);
-      // rows arrive one by one — beat-grid: 4.91, 5.34, 6.00, 6.56, 7.09 (vol-12 beat grid, alternating spacing keeps each label ≥0.8s settled)
-      const rowTimes = [4.91, 5.34, 6.0, 6.56, 7.09];
-      rowTimes.forEach((t, i) => {
-        tl.fromTo(`#row-${i + 1}`, { opacity: 0, x: 56 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, t);
+      /* ---------- 1 · INTRO — disconnected tools → connected network (0–7.35) ---------- */
+      // Nodes on an ellipse around the logo. Phase 1: scattered, dim, broken lines. Phase 2 (3.0s, "they need intelligent systems…"): snap into the ring, lines draw to the centre.
+      const TOOLS = ["WhatsApp", "HubSpot", "Shopify", "Google Calendar", "Slack", "Stripe", "Twilio", "Zoho"];
+      const TOOL_COLORS = ["#25d366", "#ff7a59", "#96bf48", "#4285f4", "#e01e5a", "#635bff", "#f22f46", "#e42527"];
+      const SCATTER = [[-90, 70], [80, -60], [-60, -90], [110, 40], [70, 90], [-120, -30], [40, -110], [-50, 60]]; // fixed offsets, no randomness
+      const CX = 960, CY = 540, RX = 560, RY = 300;
+      const svg = document.getElementById("net-svg"), nodesEl = document.getElementById("nodes");
+      const lines = [], nodeEls = [];
+      TOOLS.forEach((name, i) => {
+        const a = -Math.PI / 2 + (i / TOOLS.length) * Math.PI * 2;
+        const x = CX + Math.cos(a) * RX, y = CY + Math.sin(a) * RY;
+        const ln = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        ln.setAttribute("x1", x); ln.setAttribute("y1", y); ln.setAttribute("x2", CX); ln.setAttribute("y2", CY);
+        ln.setAttribute("stroke", "url(#lg)"); ln.id = "ln-" + i;
+        const L = Math.hypot(CX - x, CY - y);
+        ln.style.strokeDasharray = L; ln.style.strokeDashoffset = L; ln.dataset.len = L;
+        svg.appendChild(ln); lines.push(ln);
+        const n = document.createElement("div");
+        n.className = "node"; n.id = "node-" + i;
+        n.innerHTML = '<i style="background:' + TOOL_COLORS[i] + '"></i>' + name;
+        nodesEl.appendChild(n); nodeEls.push(n);
+        // centre the pill on its ring point with GSAP (no CSS transform → no gsap/css transform conflict)
+        gsap.set(n, { left: x, top: y, xPercent: -50, yPercent: -50 });
       });
-      // outcome chips — 8.19, 8.5 on the grid; "Meeting booked" beat-locked: 8.74s (strong cue)
-      const chipTimes = [8.19, 8.5, 8.74];
-      chipTimes.forEach((t, i) => {
-        tl.fromTo(`#chip-${i + 1}`, { opacity: 0, scale: 0.8, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(1.6)" }, t);
+      nodeEls.forEach((n, i) => {
+        tl.fromTo(n, { opacity: 0, x: SCATTER[i][0] * 2, y: SCATTER[i][1] * 2, scale: 0.9 },
+                     { opacity: 0.45, x: SCATTER[i][0], y: SCATTER[i][1], scale: 0.96, duration: 0.7, ease: EASE }, 0.2 + i * 0.09);
+        tl.to(n, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.4)" }, 3.0 + i * 0.06);
       });
-      tl.fromTo("#chip-3-ring", { opacity: 0, scale: 1 }, { opacity: 1, duration: 0.12, ease: "power1.out" }, 8.74);
-      tl.to("#chip-3-ring", { opacity: 0, scale: 1.12, duration: 0.9, ease: "power2.out" }, 8.86);
-      // AI Agent tile: tiny emphasis when its row lands
-      tl.fromTo("#row-2 .tile", { scale: 0.85 }, { scale: 1, duration: 0.6, ease: "back.out(2)" }, 5.34);
-      // slight push before the cut
-      tl.to("#card", { scale: 1.025, duration: 0.5, ease: "power2.in" }, 10.43);
-
-      /* ---------------- Scene 3 — Dashboard (10.93–17.2) ---------------- */
-      tl.fromTo("#s3-eyebrow", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.45, ease: EASE }, 10.98);
-      tl.fromTo("#s3-title", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, 11.05);
-      tl.fromTo("#s3-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.55, ease: EASE }, 11.25);
-      tl.fromTo("#browser", { opacity: 0, x: 110, rotationY: -6, transformPerspective: 1400 }, { opacity: 1, x: 0, rotationY: 0, duration: 0.85, ease: EASE }, 10.98);
-      tl.fromTo("#dash", { scale: 1 }, { scale: 1.045, duration: 6.2, ease: "none" }, 10.93);
-      // stat tiles count up one after another — beat-grid: 11.46, 12.02, 12.55, 13.11
-      const stats = [
-        { id: 1, to: 627, dec: 0, fill: 1.0 },
-        { id: 2, to: 75.0, dec: 1, fill: 0.75 },
-        { id: 3, to: 28.1, dec: 1, fill: 0.281 },
-        { id: 4, to: 11.8, dec: 1, fill: 0.118 },
-      ];
-      const statTimes = [11.46, 12.02, 12.55, 13.11];
-      stats.forEach((s, i) => {
-        const el = document.getElementById(`n${s.id}`);
-        const state = { v: 0 };
-        tl.fromTo(`#stat-${s.id}`, { opacity: 0, y: 26, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: EASE }, statTimes[i]);
-        tl.to(state, {
-          v: s.to, duration: 0.9, ease: "power2.out",
-          onUpdate: () => { el.textContent = s.dec ? state.v.toFixed(1) : Math.round(state.v).toString(); },
-        }, statTimes[i] + 0.1);
-        tl.fromTo(`#bar-${s.id}`, { scaleX: 0 }, { scaleX: s.fill, duration: 0.9, ease: "power2.out" }, statTimes[i] + 0.1);
+      lines.forEach((ln, i) => {
+        const L = parseFloat(ln.dataset.len);
+        tl.fromTo(ln, { strokeDashoffset: L, opacity: 0 }, { strokeDashoffset: L * 0.7, opacity: 0.28, duration: 0.6, ease: EASE }, 0.5 + i * 0.09);
+        tl.to(ln, { strokeDashoffset: 0, opacity: 0.95, duration: 0.9, ease: "power2.inOut" }, 3.05 + i * 0.06);
       });
-      // floating chips from the site — 14.2 / 14.73 (beats)
-      tl.fromTo("#float-a", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 14.2);
-      tl.fromTo("#float-b", { opacity: 0, y: -24 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 14.73);
-      tl.to("#float-a", { y: -8, duration: 1.1, ease: "sine.inOut", yoyo: true, repeat: 1 }, 14.7);
-      tl.to("#float-b", { y: 8, duration: 1.1, ease: "sine.inOut", yoyo: true, repeat: 1 }, 15.23);
-      // crossfade out to scene 4
-      tl.to("#s3", { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 16.5);
+      tl.fromTo("#logo-halo", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 1.2, ease: EASE }, 3.0);
+      tl.to("#logo-halo", { scale: 1.08, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, 4.2);
+      tl.fromTo("#logo-tile", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.6)" }, 3.3);
+      tl.fromTo("#intro-wm", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE }, 5.3);
+      tl.to("#s1-in", { opacity: 0, duration: 0.45, ease: "power2.in" }, 6.9);
 
-      /* ---------------- Scene 4 — Outro (16.5–22) ---------------- */
-      // question — beat-locked: 17.47s (starts rising 16.95, settled ~17.5)
-      tl.fromTo("#s4-q", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.55, ease: EASE }, 16.95);
-      // holds settled 17.5 → 20.0 (2.5s for 9 words), then lifts to make room for the mark
-      tl.to("#s4-q", { y: -250, scale: 0.62, opacity: 0.55, duration: 0.6, ease: "power3.inOut" }, 20.0);
-      // logo lockup — beat-locked: 20.19s (strong beat) + soft impact SFX
-      tl.set("#s4-lockup", { opacity: 0 }, 0);
-      tl.fromTo("#s4-lockup", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 20.19);
-      tl.fromTo("#s4-logo", { opacity: 0, scale: 0.82, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(1.5)" }, 20.19);
-      tl.fromTo("#s4-url", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, 20.45);
-      tl.fromTo("#s4-chips span", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE, stagger: 0.08 }, 20.6);
+      /* ---------- 2 · WHO WE ARE (6.95–17.35) ---------- */
+      tl.fromTo("#who-eyebrow", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, 7.2);
+      tl.fromTo("#who-h1", { y: 48, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: EASE }, 7.35);
+      tl.fromTo("#who-sub", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: EASE }, 9.6);   // "…where we build"
+      tl.fromTo("#who-chips span", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: EASE, stagger: 0.09 }, 10.2);
+      tl.fromTo("#who-frame", { opacity: 0, x: 110, rotationY: -7, transformPerspective: 1400 }, { opacity: 1, x: 0, rotationY: 0, duration: 0.9, ease: EASE }, 7.5);
+      tl.fromTo("#who-img", { scale: 1.0, y: 0 }, { scale: 1.08, y: -18, duration: 9.5, ease: "none" }, 7.5);
+      tl.to("#s2-in", { opacity: 0, duration: 0.4, ease: "power2.in" }, 16.95);
+
+      /* ---------- 3 · SERVICES (16.95–33.58) ---------- */
+      tl.fromTo("#sv-eyebrow", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, 17.15);
+      tl.fromTo("#sv-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE }, 17.25);
+      // each service row lands as the narration names it (timings estimated from word position in the clip)
+      const SV_T = [18.67, 19.42, 20.84, 21.99, 25.1, 26.52, 29.1, 30.59];
+      SV_T.forEach((t, i) => {
+        tl.fromTo(`#sr-${i + 1}`, { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, t);
+        tl.fromTo(`#sr-${i + 1} .hl`, { opacity: 0 }, { opacity: 1, duration: 0.15 }, t);
+        tl.to(`#sr-${i + 1} .hl`, { opacity: 0, duration: 0.9, ease: "power2.out" }, t + 0.5);
+      });
+      // rapid transitions between real product/ops photos on the right
+      tl.fromTo("#sv-frame", { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.8, ease: EASE }, 17.4);
+      tl.fromTo("#sv-cap", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 18.0);
+      const PH_T = [17.4, 21.2, 24.6, 28.0, 30.9];
+      PH_T.forEach((t, i) => {
+        const id = `#ph-${i + 1}`;
+        tl.fromTo(id, { opacity: 0, scale: 1.0 }, { opacity: 1, duration: 0.55, ease: "power2.inOut" }, t);
+        tl.to(id, { scale: 1.07, duration: 4.2, ease: "none" }, t);
+        if (i > 0) tl.to(`#ph-${i}`, { opacity: 0, duration: 0.55, ease: "power2.inOut" }, t + 0.1);
+      });
+      tl.to("#s3-in", { opacity: 0, duration: 0.4, ease: "power2.in" }, 33.18);
+
+      /* ---------- 4 · SOLUTIONS (33.18–49.86) ---------- */
+      tl.fromTo("#so-eyebrow", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, 33.4);
+      tl.fromTo("#so-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE }, 33.5);
+      // the pipeline runs first (visual), then the checklist ticks as the narration lists outcomes
+      tl.fromTo("#card", { opacity: 0, scale: 0.94, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: EASE }, 33.6);
+      const ROW_T = [34.2, 34.75, 35.3, 35.85, 36.4];
+      ROW_T.forEach((t, i) => tl.fromTo(`#row-${i + 1}`, { opacity: 0, x: 56 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, t));
+      tl.fromTo("#row-2 .tile", { scale: 0.85 }, { scale: 1, duration: 0.6, ease: "back.out(2)" }, 34.75);
+      const CR_T = [34.7, 36.56, 39.13, 41.18, 42.91, 45.35];
+      CR_T.forEach((t, i) => {
+        tl.fromTo(`#cr-${i + 1}`, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, t);
+        tl.fromTo(`#cr-${i + 1} .ck-on`, { opacity: 0 }, { opacity: 1, duration: 0.25 }, t + 0.35);
+        tl.fromTo(`#cr-${i + 1} .ck svg`, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, t + 0.35);
+      });
+      const CHIP_T = [46.4, 47.0, 47.6];
+      CHIP_T.forEach((t, i) => tl.fromTo(`#chip-${i + 1}`, { opacity: 0, scale: 0.8, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(1.6)" }, t));
+      tl.fromTo("#chip-3-ring", { opacity: 0, scale: 1 }, { opacity: 1, duration: 0.12 }, 47.6);
+      tl.to("#chip-3-ring", { opacity: 0, scale: 1.12, duration: 0.9, ease: "power2.out" }, 47.72);
+      tl.to("#s4-in", { opacity: 0, duration: 0.4, ease: "power2.in" }, 49.46);
+
+      /* ---------- 5 · TARGET AUDIENCE (49.46–61.74) ---------- */
+      tl.fromTo("#au-eyebrow", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, 49.7);
+      tl.fromTo("#au-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE }, 49.8);
+      tl.fromTo("#au-desc", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, 50.2);
+      const AU_T = [50.56, 51.18, 52.36, 52.97, 54.33, 55.76, 57.36, 58.41];
+      AU_T.forEach((t, i) => {
+        tl.fromTo(`#au-${i + 1}`, { opacity: 0, y: 30, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: EASE }, t);
+        tl.fromTo(`#au-${i + 1} .ic`, { scale: 0.6, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(2)" }, t + 0.05);
+      });
+      tl.to("#s5-in", { opacity: 0, duration: 0.4, ease: "power2.in" }, 61.34);
+
+      /* ---------- 6 · PRODUCTS (61.34–74.24, light) ---------- */
+      tl.fromTo("#s6-in", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 61.34);
+      tl.fromTo("#pr-eyebrow", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.45, ease: EASE }, 61.6);
+      tl.fromTo("#pr-title", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, 61.7);
+      tl.fromTo("#pr-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.55, ease: EASE }, 61.9);
+      tl.fromTo("#browser", { opacity: 0, x: 110, rotationY: -6, transformPerspective: 1400 }, { opacity: 1, x: 0, rotationY: 0, duration: 0.85, ease: EASE }, 61.7);
+      tl.fromTo("#dash", { scale: 1 }, { scale: 1.05, duration: 12.5, ease: "none" }, 61.34);
+      const PR_T = [65.14, 67.72, 68.84, 71.02];
+      PR_T.forEach((t, i) => tl.fromTo(`#pr-${i + 1}`, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, t));
+      tl.fromTo("#float-a", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 63.2);
+      tl.fromTo("#float-b", { opacity: 0, y: -24 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 63.75);
+      tl.to("#float-a", { y: -8, duration: 1.4, ease: "sine.inOut", yoyo: true, repeat: 5 }, 63.7);
+      tl.to("#float-b", { y: 8, duration: 1.4, ease: "sine.inOut", yoyo: true, repeat: 5 }, 64.25);
+      tl.to("#s6-in", { opacity: 0, duration: 0.55, ease: "power2.inOut" }, 73.84);
+
+      /* ---------- 7 · CTA (73.84–86) ---------- */
+      tl.fromTo("#cta-logo", { opacity: 0, scale: 0.85, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "back.out(1.5)" }, 74.3);
+      // "smarter, faster, and at scale" — chips land on the words (≈79.6 / 80.2 / 80.8)
+      tl.fromTo("#cta-chips span", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: EASE, stagger: 0.6 }, 79.6);
+      // "Let's build yours." (≈82.95)
+      tl.fromTo("#cta-line", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, 82.85);
+      tl.fromTo("#cta-url", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, 83.15);
+      tl.fromTo("#cta-btn-wrap", { opacity: 0, y: 20, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.6)" }, 83.3);
+      // cursor glides in and presses the button
+      tl.fromTo("#cursor", { opacity: 0, x: 260, y: 160 }, { opacity: 1, x: 0, y: 0, duration: 0.75, ease: "power3.inOut" }, 83.7);
+      tl.to("#cta-btn", { scale: 0.94, duration: 0.1, ease: "power2.in" }, 84.45);
+      tl.to("#cta-btn", { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }, 84.55);
+      tl.fromTo("#cta-ring", { opacity: 0.9, scale: 1 }, { opacity: 0, scale: 1.25, duration: 0.7, ease: "power2.out" }, 84.5);
 
       window.__timelines["main"] = tl;
       tl.seek(0);
