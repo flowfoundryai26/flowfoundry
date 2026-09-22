@@ -137,7 +137,7 @@ export default function Footer() {
             </motion.nav>
           ))}
 
-          <motion.div variants={fadeUp} className="col-span-2 sm:col-span-1">
+          <motion.div variants={fadeUp} className="min-w-0">
             <h3 className="font-mono text-2xs uppercase tracking-[0.18em] text-on-dark-muted">
               Get in touch
             </h3>
@@ -152,7 +152,7 @@ export default function Footer() {
                     <span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark-muted">
                       Email
                     </span>
-                    <span className="mt-0.5 block truncate text-sm text-white">
+                    <span className="mt-0.5 block break-all text-[13px] text-white sm:text-sm">
                       {SITE.email}
                     </span>
                   </span>
@@ -214,7 +214,7 @@ export default function Footer() {
             whileInView={{ y: "0%", opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="whitespace-nowrap text-[clamp(3.5rem,12.5vw,12rem)] font-semibold leading-[0.85] tracking-[-0.05em] text-white/[0.05]"
+            className="whitespace-nowrap text-center text-[clamp(3.5rem,12.5vw,12rem)] font-semibold leading-[0.85] tracking-[-0.05em] text-white/[0.05]"
           >
             FlowFoundry
           </motion.p>
