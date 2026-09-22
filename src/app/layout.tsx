@@ -1,23 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SITE, SOCIALS } from "@/lib/site";
 
-const poppins = Poppins({
+const geist = Geist({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-geist",
   display: "swap",
   preload: true,
-  fallback: [
-    "-apple-system",
-    "BlinkMacSystemFont",
-    "Segoe UI",
-    "Roboto",
-    "sans-serif",
-  ],
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -104,8 +103,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0A1330" },
-    { media: "(prefers-color-scheme: dark)", color: "#0A1330" },
+    { media: "(prefers-color-scheme: light)", color: "#0a0d14" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0d14" },
   ],
   colorScheme: "light",
 };
@@ -170,13 +169,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={poppins.variable}
+      className={`${geist.variable} ${geistMono.variable}`}
       suppressHydrationWarning
-      style={{ backgroundColor: "#0A1330" }}
+      style={{ backgroundColor: "#0a0d14" }}
     >
       <body
         suppressHydrationWarning
-        className="min-h-dvh bg-[#0A1330] font-sans text-ink antialiased"
+        className="min-h-dvh bg-ink font-sans text-body antialiased"
       >
         <a
           href="#main"
@@ -186,10 +185,10 @@ export default function RootLayout({
             focus:absolute focus:left-4 focus:top-4 focus:z-[100]
             focus:inline-flex focus:items-center focus:gap-2
             focus:rounded-md focus:border focus:border-white/10
-            focus:bg-[#0A1330] focus:px-4 focus:py-2.5
+            focus:bg-ink focus:px-4 focus:py-2.5
             focus:text-xs focus:font-medium focus:text-white
             focus:shadow-[0_20px_50px_-16px_rgba(0,0,0,0.6)]
-            focus:outline-none focus:ring-2 focus:ring-[#4F6BFF]/40
+            focus:outline-none focus:ring-2 focus:ring-accent/40
           "
         >
           Skip to content
@@ -202,6 +201,9 @@ export default function RootLayout({
         </main>
 
         <Footer />
+
+        {/* Film grain — fixed, pointer-events none */}
+        <div className="grain" aria-hidden="true" />
 
         <script
           type="application/ld+json"

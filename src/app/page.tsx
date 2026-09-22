@@ -2,71 +2,39 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, Variants } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
 import { INTEGRATIONS, PROJECTS } from "@/lib/site";
-import { Arrow, Button, Chip, Eyebrow, TONES } from "@/components/ui";
-import { ArchitectureStack } from "@/components/visuals";
-
-/* =========================================================
-   MOTION TOKENS
-========================================================= */
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-const fadeUp: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 24,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: EASE,
-    },
-  },
-};
-
-const fadeIn: Variants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.9,
-      ease: EASE,
-    },
-  },
-};
-
-const scaleIn: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.97,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: EASE,
-    },
-  },
-};
-
-const stagger: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.1,
-    },
-  },
-};
+import {
+  Arrow,
+  Button,
+  Container,
+  Eyebrow,
+  Index,
+  SectionHeading,
+  Status,
+} from "@/components/ui";
+import {
+  Magnetic,
+  Marquee,
+  Reveal,
+  Spotlight,
+  Words,
+  fadeUp,
+  scaleIn,
+  stagger,
+} from "@/components/motion";
+import { AgentConsole, Device, SystemFlow } from "@/components/visuals";
+import {
+  CTA,
+  Checks,
+  Process,
+  RowList,
+  Split,
+  StatStrip,
+  StickyStack,
+} from "@/components/sections";
 
 /* =========================================================
    DATA
@@ -74,28 +42,32 @@ const stagger: Variants = {
 
 const CAPABILITIES = [
   {
+    id: "ai-agents",
     index: "01",
     title: "AI Agents",
-    body: "Intelligent agents that understand conversations, access business knowledge, make decisions, and take action across your systems.",
-    accent: "from-violet-500 to-blue-600",
+    body: "Agents that understand conversations, pull from your business knowledge, make decisions, and take action across your systems.",
+    meta: ["Voice", "Chat", "Qualification", "Support"],
   },
   {
+    id: "workflow-automation",
     index: "02",
     title: "Workflow Automation",
-    body: "Automate repetitive workflows, approvals, notifications, routing, follow-ups, and data movement across your operations.",
-    accent: "from-emerald-500 to-cyan-500",
+    body: "Approvals, notifications, routing, follow-ups, and data movement that run themselves instead of waiting on a person.",
+    meta: ["Routing", "Approvals", "Follow-ups", "Sync"],
   },
   {
+    id: "custom-software",
     index: "03",
     title: "Custom Software",
-    body: "Purpose-built applications designed around your workflows instead of forcing your team into generic software.",
-    accent: "from-cyan-500 to-blue-600",
+    body: "Applications shaped around how your team works — portals, dashboards, internal tools, and platforms.",
+    meta: ["Portals", "Dashboards", "SaaS", "Internal tools"],
   },
   {
+    id: "integrations",
     index: "04",
     title: "Integrations",
-    body: "Connect CRMs, calendars, databases, communication platforms, APIs, and internal systems into one workflow.",
-    accent: "from-pink-500 to-violet-500",
+    body: "CRMs, calendars, databases, messaging, payments, and APIs connected into one working system.",
+    meta: ["CRM", "Calendar", "Payments", "APIs"],
   },
 ];
 
@@ -105,87 +77,83 @@ const ABOUT_POINTS = [
   "Built around your existing processes",
   "Integration-ready architecture",
   "Designed to evolve as your business scales",
-];
+] as const;
 
 const USE_CASES = [
   {
-    title: "Sales Teams",
-    body: "Respond to leads faster, qualify opportunities intelligently, automate follow-ups, and move qualified prospects into meetings.",
+    title: "Sales teams",
+    body: "Respond to leads in seconds, qualify intelligently, and move prospects into booked meetings.",
     image: "/images/use-cases/sales.png",
-    tag: "Lead → Qualified → Meeting",
+    flow: "Lead → Qualified → Meeting",
   },
   {
-    title: "Customer Support",
-    body: "Handle common questions automatically, use your business knowledge, and escalate complex conversations to the right person.",
+    title: "Customer support",
+    body: "Answer common questions from your knowledge base and escalate the rest to the right person.",
     image: "/images/use-cases/support.png",
-    tag: "Customer → AI → Resolution",
+    flow: "Customer → AI → Resolution",
   },
   {
-    title: "Service Businesses",
-    body: "Automate enquiries, collect requirements, check availability, and coordinate appointment booking without repetitive admin.",
+    title: "Service businesses",
+    body: "Collect requirements, check availability, and coordinate bookings without the admin.",
     image: "/images/use-cases/services.png",
-    tag: "Enquiry → Requirements → Booking",
+    flow: "Enquiry → Requirements → Booking",
   },
   {
     title: "eCommerce",
-    body: "Connect customer conversations, order information, support processes, notifications, and operational workflows.",
+    body: "Connect conversations, orders, support, and notifications into one operational flow.",
     image: "/images/use-cases/ecommerce.png",
-    tag: "Customer → Order → Support",
+    flow: "Customer → Order → Support",
   },
   {
     title: "Operations",
-    body: "Connect internal systems, automate approvals and updates, and eliminate administrative bottlenecks between teams.",
+    body: "Automate approvals and updates between systems and remove the bottlenecks between teams.",
     image: "/images/use-cases/operations.png",
-    tag: "Request → Approval → Action",
+    flow: "Request → Approval → Action",
   },
   {
-    title: "Custom Workflows",
-    body: "Your business process doesn't have to fit a template. We design the automation and software around how your team actually works.",
+    title: "Custom workflows",
+    body: "Your process doesn't have to fit a template. We design the system around how your team actually works.",
     image: "/images/use-cases/custom.png",
-    tag: "Your Process → Your System",
+    flow: "Your process → Your system",
   },
 ];
 
-const WHY_FLOWFOUNDRY = [
+const WHY = [
   {
+    index: "01",
     title: "Business-first architecture",
-    body: "We start with the process, bottleneck, and desired outcome before choosing the technology.",
+    body: "We start with the process, the bottleneck, and the outcome you want — then choose the technology.",
+    image: "/images/why/architecture.png",
+    alt: "Connected business architecture diagram",
   },
   {
+    index: "02",
     title: "End-to-end implementation",
-    body: "AI, automation, software development, integrations, and deployment are designed as one connected system.",
+    body: "AI, automation, software, integrations, and deployment designed and delivered as one connected system.",
+    image: "/images/why/implementation.png",
+    alt: "Implementation workflow",
   },
   {
+    index: "03",
     title: "Built for integration",
-    body: "We work with your existing technology stack instead of creating another isolated tool.",
+    body: "We work with the tools you already run instead of adding another isolated one to the stack.",
+    image: "/images/why/integration.png",
+    alt: "Integration between business systems",
   },
   {
+    index: "04",
     title: "Designed to scale",
-    body: "Build the right foundation now and extend it as your operations, customers, and requirements grow.",
+    body: "Build the right foundation now and extend it as customers, operations, and requirements grow.",
+    image: "/images/why/scale.png",
+    alt: "Scaling business operations",
   },
 ];
 
-const PROCESS_STEPS = [
-  {
-    n: "01",
-    title: "Discover",
-    body: "Understand your workflows, systems, bottlenecks, customer journeys, and desired business outcomes.",
-  },
-  {
-    n: "02",
-    title: "Design",
-    body: "Map the conversations, business logic, data, integrations, automations, and actions required.",
-  },
-  {
-    n: "03",
-    title: "Build",
-    body: "Develop, integrate, and test your AI, automation, or custom software as one complete system.",
-  },
-  {
-    n: "04",
-    title: "Launch & Improve",
-    body: "Deploy, monitor, measure, and continuously refine the system as your business evolves.",
-  },
+const PROCESS = [
+  { number: "01", title: "Discover", body: "Understand your workflows, systems, bottlenecks, customer journeys, and desired outcomes." },
+  { number: "02", title: "Design", body: "Map the conversations, business logic, data, integrations, automations, and actions required." },
+  { number: "03", title: "Build", body: "Develop, integrate, and test your AI, automation, or software as one complete system." },
+  { number: "04", title: "Launch & improve", body: "Deploy, monitor, measure, and refine the system as your business evolves." },
 ];
 
 const LEADPULZ_POINTS = [
@@ -193,1321 +161,496 @@ const LEADPULZ_POINTS = [
   "Call and qualify new leads",
   "Automate appointment booking",
   "Follow up with prospects",
-  "CRM & calendar integrations",
+  "CRM and calendar integrations",
   "Conversation insights and analytics",
-];
+] as const;
 
 /* =========================================================
-   PRIMITIVES
-========================================================= */
-
-function ProjectStatus({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1 text-2xs font-medium text-[#047857]">
-      <span className="relative flex h-1.5 w-1.5">
-        <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75 motion-safe:animate-ping" />
-        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-      </span>
-      {children}
-    </span>
-  );
-}
-
-function Container({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 xl:px-10 ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
-function SectionHeading({
-  eyebrow,
-  title,
-  description,
-  tone = "indigo",
-  align = "center",
-  invert = false,
-}: {
-  eyebrow: string;
-  title: React.ReactNode;
-  description?: string;
-  tone?: "indigo" | "cyan" | "violet" | "emerald" | "dark";
-  align?: "center" | "left";
-  invert?: boolean;
-}) {
-  return (
-    <motion.div
-      variants={fadeUp}
-      className={
-        align === "center"
-          ? "mx-auto w-full max-w-3xl text-center"
-          : "w-full max-w-2xl"
-      }
-    >
-      <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
-
-      <h2
-        className={`mt-5 text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] ${
-          invert ? "text-white" : "text-ink"
-        }`}
-      >
-        {title}
-      </h2>
-
-      {description && (
-        <p
-          className={`mt-4 text-sm leading-7 sm:mt-5 sm:text-base lg:text-lg ${
-            align === "center" ? "mx-auto max-w-2xl" : ""
-          } ${invert ? "text-on-dark-muted" : "text-slate"}`}
-        >
-          {description}
-        </p>
-      )}
-    </motion.div>
-  );
-}
-
-/* =========================================================
-   HERO SYSTEM VISUAL
-========================================================= */
-
-function HeroSystemVisual() {
-  const flow = [
-    {
-      label: "New Lead",
-      meta: "Website enquiry",
-      tone: "neutral",
-    },
-    {
-      label: "AI Agent",
-      meta: "Engage & understand",
-      tone: "primary",
-    },
-    {
-      label: "Business Logic",
-      meta: "Qualify & route",
-      tone: "neutral",
-    },
-    {
-      label: "CRM + Calendar",
-      meta: "Sync business data",
-      tone: "neutral",
-    },
-    {
-      label: "Action",
-      meta: "Book & follow up",
-      tone: "success",
-    },
-  ];
-
-  return (
-    <div className="relative w-full min-w-0">
-      {/* Ambient glow */}
-      <div className="pointer-events-none absolute -left-16 top-10 h-44 w-44 rounded-full bg-blue-500/20 blur-[90px] sm:h-56 sm:w-56 sm:blur-[100px]" />
-
-      <div className="pointer-events-none absolute -right-16 bottom-8 h-48 w-48 rounded-full bg-violet-500/20 blur-[90px] sm:h-64 sm:w-64 sm:blur-[110px]" />
-
-      <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] p-3 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.7)] backdrop-blur-md sm:rounded-xl sm:p-6">
-        {/* Header */}
-        <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
-          <div className="min-w-0">
-            <p className="text-2xs font-semibold uppercase tracking-[0.12em] text-on-dark-quiet sm:tracking-[0.18em]">
-              Intelligent Workflow
-            </p>
-
-            <p className="mt-1 truncate text-2xs text-white sm:text-sm">
-              FlowFoundry automation architecture
-            </p>
-          </div>
-
-          <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-1.5 text-2xs font-medium text-emerald-300 sm:gap-2 sm:px-3 sm:text-xs">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            </span>
-
-            Active
-          </div>
-        </div>
-
-        {/* Flow */}
-        <div className="mt-4 space-y-2 sm:mt-6 sm:space-y-2.5">
-          {flow.map((item, index) => (
-            <motion.div
-              key={item.label}
-              initial={{
-                opacity: 0,
-                x: 20,
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-              }}
-              transition={{
-                delay: 0.5 + index * 0.12,
-                duration: 0.5,
-                ease: EASE,
-              }}
-              className="relative"
-            >
-              <div
-                className={`flex items-center gap-3 rounded-md border p-3 transition-colors sm:gap-4 sm:rounded-lg sm:p-4 ${
-                  item.tone === "primary"
-                    ? "border-blue-500/30 bg-blue-500/10"
-                    : item.tone === "success"
-                      ? "border-emerald-400/20 bg-emerald-400/5"
-                      : "border-white/10 bg-white/[0.03]"
-                }`}
-              >
-                <div
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-2xs font-semibold sm:h-10 sm:w-10 sm:text-xs ${
-                    item.tone === "primary"
-                      ? "bg-gradient-to-br from-blue-500 to-violet-500 text-white shadow-[0_8px_24px_-8px_rgba(79,107,255,.7)]"
-                      : item.tone === "success"
-                        ? "bg-emerald-400/15 text-emerald-300"
-                        : "bg-white/5 text-on-dark-muted"
-                  }`}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-xs font-medium text-white sm:text-sm">
-                    {item.label}
-                  </p>
-
-                  <p className="mt-0.5 truncate text-2xs text-on-dark-quiet sm:text-xs">
-                    {item.meta}
-                  </p>
-                </div>
-
-                <svg
-                  className="h-3.5 w-3.5 shrink-0 text-on-dark-quiet sm:h-4 sm:w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.7}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-
-              {index < flow.length - 1 && (
-                <div className="ml-[30px] h-2 w-px bg-gradient-to-b from-blue-500/40 to-transparent sm:ml-[36px] sm:h-2.5" />
-              )}
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Outcomes */}
-        <div className="mt-4 grid grid-cols-1 gap-2 sm:mt-5 sm:grid-cols-3 sm:gap-2.5">
-          {["Lead qualified", "CRM updated", "Meeting booked"].map((label) => (
-            <div
-              key={label}
-              className="flex min-w-0 items-center gap-2 rounded-md border border-emerald-400/15 bg-emerald-400/5 p-2.5 sm:p-3"
-            >
-              <svg
-                className="h-3.5 w-3.5 shrink-0 text-emerald-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-
-              <span className="truncate text-2xs font-medium text-emerald-300 sm:text-xs">
-                {label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Floating badges */}
-      <motion.div
-        animate={{
-          y: [0, -8, 0],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute -left-4 top-[30%] hidden rounded-lg border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md xl:block"
-      >
-        <p className="text-2xs font-semibold uppercase tracking-wider text-on-dark-quiet">
-          Automation
-        </p>
-
-        <p className="mt-1 text-xs font-semibold text-white">
-          Follow-up scheduled
-        </p>
-      </motion.div>
-
-      <motion.div
-        animate={{
-          y: [0, 8, 0],
-        }}
-        transition={{
-          duration: 5.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute -right-4 bottom-[18%] hidden rounded-lg border border-white/10 bg-[#0F1B3D]/90 px-4 py-3 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md xl:block"
-      >
-        <p className="text-2xs font-semibold uppercase tracking-wider text-on-dark-quiet">
-          AI Agent
-        </p>
-
-        <p className="mt-1 text-xs font-semibold text-white">
-          Qualification complete
-        </p>
-      </motion.div>
-    </div>
-  );
-}
-
-/* =========================================================
-   HOME
+   PAGE
 ========================================================= */
 
 export default function HomePage() {
   return (
-    <main className="w-full overflow-x-clip">
-      {/* =====================================================
-          HERO
-      ===================================================== */}
+    <div className="w-full overflow-x-clip">
+      <Hero />
+      <IntegrationBand />
+      <Positioning />
+      <Capabilities />
+      <System />
+      <LeadPulz />
+      <UseCases />
+      <Projects />
+      <Why />
+      <ProcessSection />
+      <CTA
+        title="What would you automate if your team had more time?"
+        lede="Tell us what's slowing your business down. We'll map the system that removes it — AI, automation, software, or all three."
+        primary={{ label: "Book a free consultation", href: "/contact" }}
+        secondary={{ label: "See our services", href: "/services" }}
+        image="/images/mission.png"
+      />
+    </div>
+  );
+}
 
-      <motion.section
-        initial="hidden"
-        animate="visible"
-        variants={stagger}
-        className="relative w-full overflow-hidden bg-[#0A1330]"
-      >
-        {/* Background layers */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.06]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-              backgroundSize: "64px 64px",
-            }}
+/* ---------------- HERO ---------------- */
+
+function Hero() {
+  return (
+    <section className="relative w-full overflow-hidden bg-ink">
+      {/* Photo, faded into the surface on the right */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
+          <Image
+            src="/images/use-cases/sales.png"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 1023px) 100vw, 58vw"
+            className="object-cover object-[65%_center] opacity-[0.28] saturate-[0.8]"
           />
-
-          <div className="absolute -right-40 top-0 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-blue-500/30 to-transparent blur-[100px] sm:h-[500px] sm:w-[500px] lg:h-[600px] lg:w-[600px] lg:blur-[130px]" />
-
-          <div className="absolute -left-40 top-[40%] h-[380px] w-[380px] rounded-full bg-gradient-to-tr from-violet-500/25 to-transparent blur-[100px] sm:h-[450px] sm:w-[450px] lg:h-[520px] lg:w-[520px] lg:blur-[130px]" />
-
-          <div className="absolute bottom-0 left-1/2 h-[250px] w-[90%] max-w-[700px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[100px] lg:h-[400px] lg:blur-[120px]" />
         </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#0a0d14_0%,#0a0d14_30%,rgba(10,13,20,0.75)_60%,rgba(10,13,20,0.6)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0.5)_0%,rgba(10,13,20,0)_35%,#0a0d14_100%)]" />
+      </div>
 
-        <Container className="relative z-10">
-          <div className="grid min-h-[calc(100svh-72px)] grid-cols-1 items-center gap-10 py-14 sm:gap-12 sm:py-16 md:py-20 lg:grid-cols-[1.02fr_.98fr] lg:gap-12 lg:py-24 xl:gap-16">
-            {/* Left */}
-            <motion.div variants={stagger} className="min-w-0">
-              <motion.div variants={fadeUp}>
-                <Eyebrow tone="dark">AI • Automation • Software</Eyebrow>
-              </motion.div>
+      <Container className="relative z-10">
+        <div className="grid min-h-[calc(100dvh-72px)] items-center gap-14 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-20">
+          <motion.div initial="hidden" animate="visible" variants={stagger(0.1, 0.05)} className="min-w-0">
+            <motion.div variants={fadeUp} className="flex items-center gap-4">
+              <Eyebrow dark>AI · Automation · Software</Eyebrow>
+            </motion.div>
 
-              <motion.h1
-                variants={fadeUp}
-                className="mt-5 max-w-[760px] break-words text-[clamp(2.35rem,7vw,4.25rem)] font-light leading-[1.03] tracking-[-0.04em] text-white sm:mt-6"
-              >
-                Build intelligent systems around the way your{" "}
-                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-                  business works.
-                </span>
-              </motion.h1>
+            <h1 className="mt-7 max-w-[20ch] text-[clamp(2.3rem,4.8vw,4.2rem)] font-medium leading-[1] tracking-[-0.035em] text-white text-balance">
+              <Words text="Systems built around the way your business works." delay={0.2} />
+            </h1>
 
-              <motion.p
-                variants={fadeUp}
-                className="mt-5 max-w-[610px] text-sm leading-7 text-on-dark-muted sm:mt-6 sm:text-base sm:leading-8"
-              >
-                FlowFoundry combines AI agents, automation, custom software,
-                and integrations to connect conversations, business logic,
-                data, and actions — helping teams move faster, reduce manual
-                work, and scale efficiently.
-              </motion.p>
+            <motion.p
+              variants={fadeUp}
+              className="mt-7 max-w-[52ch] text-base leading-relaxed text-on-dark sm:text-lg"
+            >
+              FlowFoundry combines AI agents, automation, custom software, and
+              integrations so conversations, business logic, data, and actions
+              run as one connected system.
+            </motion.p>
 
-              <motion.div
-                variants={fadeUp}
-                className="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:w-auto sm:flex-row"
-              >
-                <Button
-                  href="/contact"
-                  variant="onDark"
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Book a Free Consultation <Arrow />
+            <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Magnetic>
+                <Button href="/contact" variant="onDark" size="lg" className="w-full sm:w-auto">
+                  Book a free consultation
+                  <Arrow />
                 </Button>
-
-                <Button
-                  href="/leadpulz"
-                  variant="outlineOnDark"
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Explore LeadPulz
-                </Button>
-              </motion.div>
-
-              <motion.div
-                variants={fadeIn}
-                className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-on-dark-quiet sm:mt-10 sm:gap-x-6 sm:gap-y-3 sm:text-sm"
-              >
-                {[
-                  "AI Agents",
-                  "Automation",
-                  "Custom Software",
-                  "Integrations",
-                ].map((item, index) => (
-                  <div key={item} className="flex items-center gap-3">
-                    {index > 0 && (
-                      <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" />
-                    )}
-
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            {/* Right */}
-            <motion.div variants={scaleIn} className="min-w-0">
-              <HeroSystemVisual />
-            </motion.div>
-          </div>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          ABOUT
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.1,
-        }}
-        variants={stagger}
-        className="w-full bg-white py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
-      >
-        <Container>
-          <div className="grid grid-cols-1 items-center gap-10 md:gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 xl:gap-20">
-            <motion.div variants={scaleIn} className="relative min-w-0">
-              <div className="relative overflow-hidden rounded-lg border border-slate-200/70 bg-slate-50 p-2 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.2)] sm:rounded-xl sm:p-3">
-                <Image
-                  src="/images/flowfoundry-system.png"
-                  alt="FlowFoundry intelligent business system architecture"
-                  width={1000}
-                  height={800}
-                  sizes="(max-width: 1023px) 100vw, 45vw"
-                  className="h-auto w-full max-w-full rounded-md object-cover sm:rounded-lg"
-                />
-              </div>
-
-              <div className="absolute -bottom-5 -right-5 hidden rounded-lg border border-slate-200/70 bg-white p-5 shadow-xl sm:block">
-                <p className="text-3xl font-light tracking-tight text-ink">
-                  4-in-1
-                </p>
-
-                <p className="mt-1 text-xs uppercase tracking-wider text-muted">
-                  Unified stack
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div variants={stagger} className="min-w-0">
-              <motion.div variants={fadeUp}>
-                <Eyebrow tone="violet">About FlowFoundry</Eyebrow>
-              </motion.div>
-
-              <motion.h2
-                variants={fadeUp}
-                className="mt-5 text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] text-ink"
-              >
-                We build systems,
-                <br className="hidden sm:block" />{" "}
-                <span>not just software.</span>
-              </motion.h2>
-
-              <motion.p
-                variants={fadeUp}
-                className="mt-5 text-sm leading-7 text-slate sm:mt-6 sm:text-base sm:leading-8 lg:text-lg"
-              >
-                FlowFoundry AI Solutions brings together AI engineering,
-                automation, software development, and system integration to
-                help businesses operate more intelligently.
-              </motion.p>
-
-              <motion.p
-                variants={fadeUp}
-                className="mt-4 text-sm leading-7 text-slate sm:text-base sm:leading-8 lg:text-lg"
-              >
-                We start by understanding how your business actually works —
-                your workflows, bottlenecks, customer interactions, and
-                existing tools — then design technology around those processes.
-              </motion.p>
-
-              <motion.div variants={stagger} className="mt-7 space-y-3 sm:mt-8">
-                {ABOUT_POINTS.map((point) => (
-                  <motion.div
-                    key={point}
-                    variants={fadeUp}
-                    className="flex items-start gap-3"
-                  >
-                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-500/10">
-                      <svg
-                        className="h-3 w-3 text-violet-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-
-                    <span className="text-sm leading-6 text-slate sm:text-base">
-                      {point}
-                    </span>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              <motion.div variants={fadeUp} className="mt-8 sm:mt-9">
-                <Button
-                  href="/about"
-                  variant="secondary"
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Learn About FlowFoundry <Arrow />
-                </Button>
-              </motion.div>
-            </motion.div>
-          </div>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          CAPABILITIES
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.08,
-        }}
-        variants={stagger}
-        className="w-full bg-slate-50 py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
-      >
-        <Container>
-          <SectionHeading
-            eyebrow="What we do"
-            title={
-              <>
-                From disconnected tools to
-                <br className="hidden sm:block" />{" "}
-                <span className="bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-                  one intelligent system.
-                </span>
-              </>
-            }
-            description="Instead of adding more software to your stack, we design systems around the way your business actually operates."
-            tone="indigo"
-          />
-
-          <motion.div
-            variants={stagger}
-            className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14"
-          >
-            {CAPABILITIES.map((cap, i) => (
-              <motion.article
-                key={cap.index}
-                variants={fadeUp}
-                whileHover={{
-                  y: -6,
-                }}
-                transition={{
-                  duration: 0.25,
-                  ease: EASE,
-                }}
-                className={`group relative min-w-0 overflow-hidden rounded-lg border border-slate-200/70 bg-white p-5 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-xl sm:p-6 lg:p-7`}
-              >
-                <span
-                  className={`pointer-events-none absolute -right-2 -top-6 bg-gradient-to-br ${cap.accent} bg-clip-text text-[72px] font-bold leading-none tracking-tighter text-transparent opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.1] sm:text-[88px]`}
-                >
-                  {cap.index}
-                </span>
-
-                <div
-                  className={`flex h-11 w-11 items-center justify-center rounded-md bg-gradient-to-br ${cap.accent} text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.5)] sm:h-12 sm:w-12`}
-                >
-                  {i === 0 && <AgentIcon />}
-                  {i === 1 && <AutomationIcon />}
-                  {i === 2 && <CodeIcon />}
-                  {i === 3 && <PlugIcon />}
-                </div>
-
-                <h3 className="mt-6 text-lg font-semibold tracking-tight text-ink sm:mt-8 sm:text-xl">
-                  {cap.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-6 text-slate">
-                  {cap.body}
-                </p>
-
-                <div
-                  className={`mt-6 h-px w-12 bg-gradient-to-r ${cap.accent} transition-all duration-500 group-hover:w-full`}
-                />
-              </motion.article>
-            ))}
-          </motion.div>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          ARCHITECTURE
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.1,
-        }}
-        variants={stagger}
-        className="relative w-full overflow-hidden bg-[#0A1330] py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
-      >
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.05]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.7) 1px, transparent 1px)",
-              backgroundSize: "56px 56px",
-            }}
-          />
-
-          <div className="absolute -left-40 top-1/4 h-80 w-80 rounded-full bg-blue-500/20 blur-[110px] lg:h-96 lg:w-96 lg:blur-[130px]" />
-
-          <div className="absolute -right-40 bottom-1/4 h-80 w-80 rounded-full bg-violet-500/20 blur-[110px] lg:h-96 lg:w-96 lg:blur-[130px]" />
-        </div>
-
-        <Container className="relative z-10">
-          <SectionHeading
-            eyebrow="How it connects"
-            title={
-              <span className="break-words">
-                Conversations → Logic → Data → Actions
-              </span>
-            }
-            description="We connect every layer so your business doesn't stop at collecting information — it acts on it."
-            tone="dark"
-            invert
-          />
-
-          <motion.div
-            variants={scaleIn}
-            className="mt-10 w-full min-w-0 overflow-hidden sm:mt-12 lg:mt-14"
-          >
-            <ArchitectureStack />
-          </motion.div>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          LEADPULZ
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.08,
-        }}
-        variants={stagger}
-        id="leadpulz"
-        className="relative w-full overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
-      >
-        <Container>
-          <div className="grid grid-cols-1 items-center gap-10 md:gap-14 lg:grid-cols-2 lg:gap-16 xl:gap-20">
-            <motion.div variants={stagger} className="min-w-0">
-              <motion.div variants={fadeUp}>
-                <Eyebrow tone="indigo">LeadPulz</Eyebrow>
-              </motion.div>
-
-              <motion.h2
-                variants={fadeUp}
-                className="mt-5 text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] text-ink sm:mt-6"
-              >
-                Turn every conversation into an{" "}
-                <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
-                  opportunity.
-                </span>
-              </motion.h2>
-
-              <motion.p
-                variants={fadeUp}
-                className="mt-5 max-w-xl text-sm leading-7 text-slate sm:mt-6 sm:text-base sm:leading-8 lg:text-lg"
-              >
-                LeadPulz is our AI-powered voice automation platform for
-                managing calls, qualifying leads, scheduling appointments,
-                automating follow-ups, and connecting conversations to your
-                business systems.
-              </motion.p>
-
-              <motion.div
-                variants={stagger}
-                className="mt-7 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-2"
-              >
-                {LEADPULZ_POINTS.map((point) => (
-                  <motion.div
-                    key={point}
-                    variants={fadeUp}
-                    className="flex min-w-0 items-start gap-3 text-sm leading-6 text-slate"
-                  >
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-500/10">
-                      <svg
-                        className="h-3 w-3 text-blue-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </span>
-
-                    <span>{point}</span>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              <motion.div
-                variants={fadeUp}
-                className="mt-8 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row"
-              >
-                <Button
-                  href="/leadpulz"
-                  variant="primary"
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Explore LeadPulz <Arrow />
-                </Button>
-
-                <Button
-                  href="/contact?interest=leadpulz"
-                  variant="secondary"
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Book a Demo
-                </Button>
-              </motion.div>
-            </motion.div>
-
-            {/* Dashboard */}
-            <motion.div variants={scaleIn} className="relative min-w-0">
-              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-transparent blur-2xl" />
-
-              <div className="relative overflow-hidden rounded-lg border border-slate-200/70 bg-white p-2 shadow-[0_40px_100px_-40px_rgba(15,27,61,0.4)] sm:rounded-xl sm:p-3">
-                <div className="flex items-center gap-1.5 px-2 pb-2 sm:pb-3">
-                  <span className="h-2 w-2 rounded-full bg-red-400 sm:h-2.5 sm:w-2.5" />
-                  <span className="h-2 w-2 rounded-full bg-amber-400 sm:h-2.5 sm:w-2.5" />
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 sm:h-2.5 sm:w-2.5" />
-                </div>
-
-                <div className="overflow-hidden rounded-md bg-slate-100 sm:rounded-lg">
-                  <Image
-                    src="/images/dashboard.jpeg"
-                    alt="LeadPulz AI Revenue Agent dashboard"
-                    width={1200}
-                    height={900}
-                    sizes="(max-width: 1023px) 100vw, 50vw"
-                    className="h-auto w-full max-w-full"
-                  />
-                </div>
-              </div>
-
-              <motion.div
-                animate={{
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -bottom-5 -left-5 hidden rounded-lg border border-slate-200/70 bg-white px-4 py-3 shadow-xl md:block"
-              >
-                <p className="text-2xs font-semibold uppercase tracking-wider text-muted">
-                  AI Agent
-                </p>
-
-                <div className="mt-1.5 flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
-
-                  <p className="text-xs font-semibold text-slate">
-                    Lead qualified
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                animate={{
-                  y: [0, 8, 0],
-                }}
-                transition={{
-                  duration: 5.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -right-5 -top-5 hidden rounded-lg border border-slate-200/70 bg-white px-4 py-3 shadow-xl md:block"
-              >
-                <p className="text-2xs font-semibold uppercase tracking-wider text-muted">
-                  Action
-                </p>
-
-                <p className="mt-1.5 text-xs font-semibold text-slate">
-                  Meeting booked ✓
-                </p>
-              </motion.div>
-            </motion.div>
-          </div>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          USE CASES
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.05,
-        }}
-        variants={stagger}
-        className="w-full bg-slate-50 py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
-      >
-        <Container>
-          <SectionHeading
-            eyebrow="Use cases"
-            title="Built around real business processes."
-            description="Different industries have different workflows. The system should adapt to your operation — not the other way around."
-            tone="emerald"
-          />
-
-          <motion.div
-            variants={stagger}
-            className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-3"
-          >
-            {USE_CASES.map((useCase) => (
-              <motion.article
-                key={useCase.title}
-                variants={fadeUp}
-                whileHover={{
-                  y: -6,
-                }}
-                transition={{
-                  duration: 0.25,
-                  ease: EASE,
-                }}
-                className="group min-w-0 overflow-hidden rounded-lg border border-slate-200/70 bg-white transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-xl"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                  <Image
-                    src={useCase.image}
-                    alt={`${useCase.title} automation workflow`}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                    sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 50vw, 33vw"
-                  />
-
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-900/60 to-transparent"
-                  />
-
-                  <span className="absolute bottom-3 left-3 max-w-[calc(100%-24px)] truncate rounded-full bg-slate-900/85 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
-                    {useCase.tag}
-                  </span>
-                </div>
-
-                <div className="p-5 sm:p-6">
-                  <h3 className="text-lg font-semibold tracking-tight text-ink">
-                    {useCase.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-slate">
-                    {useCase.body}
-                  </p>
-                </div>
-              </motion.article>
-            ))}
-          </motion.div>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          ONGOING PROJECTS
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.08,
-        }}
-        variants={stagger}
-        id="projects"
-        className="w-full bg-white py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
-      >
-        <Container>
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-            <SectionHeading
-              eyebrow="Work in progress"
-              title={
-                <>
-                  What we&apos;re building{" "}
-                  <span className="bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
-                    right now.
-                  </span>
-                </>
-              }
-              description="A few of the platforms currently in development — client products alongside the systems we build for ourselves."
-              tone="violet"
-              align="left"
-            />
-
-            <motion.div variants={fadeUp} className="shrink-0">
-              <Button href="/portfolio" variant="secondary">
-                View all projects <Arrow />
+              </Magnetic>
+              <Button href="/leadpulz" variant="outlineOnDark" size="lg" className="w-full sm:w-auto">
+                Explore LeadPulz
               </Button>
             </motion.div>
-          </div>
 
-          <motion.div
-            variants={stagger}
-            className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14"
-          >
-            {PROJECTS.map((project) => {
-              const t = TONES[project.tone];
-              return (
-                <motion.article
-                  key={project.slug}
-                  variants={fadeUp}
-                  whileHover={{
-                    y: -6,
-                  }}
-                  transition={{
-                    duration: 0.25,
-                    ease: EASE,
-                  }}
-                  className="group relative flex min-w-0 flex-col overflow-hidden rounded-lg border border-slate-200/70 bg-white p-5 transition-shadow duration-300 hover:shadow-[0_28px_70px_-28px_rgba(60,64,100,0.25)] sm:rounded-xl sm:p-6 lg:p-7"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <span
-                      className={`text-2xs font-semibold uppercase tracking-[0.14em] ${t.text}`}
-                    >
-                      {project.category}
-                    </span>
-                    <ProjectStatus>{project.status}</ProjectStatus>
-                  </div>
-
-                  <h3 className="mt-5 text-lg font-semibold tracking-tight text-ink sm:text-xl">
-                    {project.name}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-slate">
-                    {project.summary}
-                  </p>
-
-                  <ul className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted">
-                    {project.highlights.slice(0, 4).map((item, index) => (
-                      <li key={item} className="flex items-center gap-3">
-                        {index > 0 && (
-                          <span
-                            aria-hidden="true"
-                            className="h-1 w-1 rounded-full bg-slate-300"
-                          />
-                        )}
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-auto pt-6">
-                    {project.href ? (
-                      <Link
-                        href={project.href}
-                        className={`group/link inline-flex items-center gap-1.5 text-xs font-semibold ${t.text}`}
-                      >
-                        Explore {project.name}
-                        <Arrow className="h-3.5 w-3.5 group-hover/link:translate-x-0.5" />
-                      </Link>
-                    ) : (
-                      <div
-                        className={`h-px w-12 bg-gradient-to-r ${t.gradient} transition-all duration-500 group-hover:w-full`}
-                      />
-                    )}
-                  </div>
-                </motion.article>
-              );
-            })}
-          </motion.div>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          WHY FLOWFOUNDRY
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.1,
-        }}
-        variants={stagger}
-        className="w-full bg-slate-50 py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
-      >
-        <Container>
-          <div className="grid grid-cols-1 gap-10 sm:gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-16 xl:gap-20">
-            <motion.div variants={fadeUp} className="min-w-0">
-              <Eyebrow tone="violet">Why FlowFoundry</Eyebrow>
-
-              <h2 className="mt-5 max-w-xl text-[clamp(2rem,5vw,3rem)] font-light leading-[1.08] tracking-[-0.035em] text-ink">
-                Technology built around the business — not the other way around.
-              </h2>
-
-              <p className="mt-5 max-w-lg text-sm leading-7 text-slate sm:mt-6 sm:text-base lg:text-lg">
-                Good automation is not about connecting random tools. It is
-                about understanding the process first, then designing the right
-                system around it.
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={stagger}
-              className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2"
-            >
-              {WHY_FLOWFOUNDRY.map((item, index) => (
-                <motion.article
-                  key={item.title}
-                  variants={fadeUp}
-                  whileHover={{
-                    y: -4,
-                  }}
-                  transition={{
-                    duration: 0.25,
-                    ease: EASE,
-                  }}
-                  className="group min-w-0 rounded-lg border border-slate-200/70 bg-white p-5 transition-all duration-300 hover:border-slate-300 hover:shadow-[0_24px_60px_-28px_rgba(65,70,105,0.22)] sm:rounded-xl sm:p-6"
-                >
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-violet-500/10 text-xs font-semibold text-violet-500">
-                    0{index + 1}
-                  </span>
-
-                  <h3 className="mt-5 text-lg font-semibold tracking-tight text-ink">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-slate">
-                    {item.body}
-                  </p>
-                </motion.article>
-              ))}
-            </motion.div>
-          </div>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          PROCESS
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.1,
-        }}
-        variants={stagger}
-        className="w-full bg-white py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
-      >
-        <Container>
-          <SectionHeading
-            eyebrow="How we work"
-            title="From process to production."
-            description="Start with the business problem. Design the system. Build, integrate, launch, and improve."
-            tone="cyan"
-          />
-
-          <motion.div
-            variants={stagger}
-            className="relative mt-10 grid grid-cols-1 gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-10 lg:mt-16 lg:grid-cols-4"
-          >
-            <div className="absolute left-[12.5%] right-[12.5%] top-5 hidden h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent lg:block" />
-
-            {PROCESS_STEPS.map((step) => (
-              <motion.article
-                key={step.n}
-                variants={fadeUp}
-                className="relative min-w-0"
-              >
-                <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-violet-500 text-xs font-semibold text-white shadow-[0_12px_30px_-10px_rgba(79,107,255,.6)]">
-                  {step.n}
-                </div>
-
-                <h3 className="mt-5 text-lg font-semibold tracking-tight text-ink sm:mt-6">
-                  {step.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-6 text-slate">
-                  {step.body}
-                </p>
-              </motion.article>
-            ))}
-          </motion.div>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          INTEGRATIONS
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.1,
-        }}
-        variants={stagger}
-        className="w-full bg-slate-50 py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32"
-      >
-        <Container>
-          <SectionHeading
-            eyebrow="Integrations"
-            title="Connect the tools your business already depends on."
-            description="FlowFoundry can integrate with platforms such as CRMs, calendars, messaging tools, eCommerce systems, databases, and custom APIs."
-            tone="cyan"
-          />
-
-          <motion.div
-            variants={stagger}
-            className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-2 sm:mt-12 sm:gap-3 lg:mt-14"
-          >
-            {INTEGRATIONS.map((integration) => (
-              <motion.div
-                key={integration}
-                variants={fadeUp}
-                whileHover={{
-                  y: -3,
-                }}
-                transition={{
-                  duration: 0.2,
-                }}
-              >
-                <Chip className="border-slate-200 bg-slate-50 px-3.5 py-2.5 text-xs text-slate transition-all hover:border-blue-500/30 hover:bg-blue-500/5 hover:text-blue-600 sm:px-5 sm:py-3 sm:text-sm">
-                  {integration}
-                </Chip>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.p
-            variants={fadeIn}
-            className="mx-auto mt-7 max-w-2xl px-2 text-center text-2xs leading-5 text-muted sm:mt-8 sm:text-xs"
-          >
-            Product names are shown as examples of platforms that can be
-            integrated. They do not imply formal partnerships.
-          </motion.p>
-        </Container>
-      </motion.section>
-
-      {/* =====================================================
-          FINAL CTA
-      ===================================================== */}
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{
-          once: true,
-          amount: 0.15,
-        }}
-        variants={fadeUp}
-        className="w-full bg-white px-4 pb-16 sm:px-6 sm:pb-20 md:pb-24 lg:px-8 lg:pb-28 xl:pb-32"
-      >
-        <div className="mx-auto w-full max-w-[1200px]">
-          <div className="relative overflow-hidden rounded-xl bg-[#0A1330] px-5 py-14 text-center sm:rounded-2xl sm:px-10 sm:py-20 md:px-12 md:py-24 lg:px-16 lg:py-28">
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div
-                className="absolute inset-0 opacity-[0.06]"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-                  backgroundSize: "48px 48px",
-                }}
+            <motion.div variants={fadeUp} className="mt-14">
+              <StatStrip
+                items={[
+                  { value: "4", label: "Platforms in build" },
+                  { value: "16+", label: "Integrations" },
+                  { value: "<24h", label: "Response time" },
+                ]}
               />
+            </motion.div>
+          </motion.div>
 
-              <div className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-blue-500/30 blur-[100px] lg:h-96 lg:w-96 lg:blur-[120px]" />
-
-              <div className="absolute -bottom-40 left-0 h-80 w-80 rounded-full bg-violet-500/30 blur-[110px] lg:h-96 lg:w-96 lg:blur-[130px]" />
-
-              <div className="absolute -bottom-20 right-1/4 h-64 w-64 rounded-full bg-cyan-500/20 blur-[100px] lg:h-72 lg:w-72 lg:blur-[110px]" />
-            </div>
-
-            <div className="relative z-10">
-              <Eyebrow tone="dark">Start a conversation</Eyebrow>
-
-              <h2 className="mx-auto mt-5 max-w-4xl break-words text-[clamp(2rem,6vw,3.75rem)] font-light leading-[1.05] tracking-[-0.035em] text-white sm:mt-6">
-                What would you automate if your team had{" "}
-                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-                  more time?
-                </span>
-              </h2>
-
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-on-dark-muted sm:mt-6 sm:text-base lg:text-lg">
-                Tell us what's slowing your business down. We'll help you
-                explore a smarter way to run it.
-              </p>
-
-              <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:items-center">
-                <Button
-                  href="/contact"
-                  variant="onDark"
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Book a Free Consultation <Arrow />
-                </Button>
-
-                <Button
-                  href="/contact"
-                  variant="outlineOnDark"
-                  className="w-full justify-center sm:w-auto"
-                >
-                  Tell Us What You Want to Automate
-                </Button>
-              </div>
-            </div>
-          </div>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={scaleIn}
+            className="relative min-w-0 lg:pl-4"
+          >
+            <AgentConsole />
+          </motion.div>
         </div>
-      </motion.section>
-    </main>
+      </Container>
+    </section>
   );
 }
 
-/* =========================================================
-   INLINE ICONS
-========================================================= */
+/* ---------------- INTEGRATIONS MARQUEE ---------------- */
 
-function AgentIcon() {
+function IntegrationBand() {
   return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.6}
-        d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-      />
-    </svg>
+    <section className="w-full border-y border-white/[0.06] bg-ink py-6">
+      <Marquee duration={48}>
+        {INTEGRATIONS.map((name) => (
+          <span
+            key={name}
+            className="flex items-center gap-8 pr-8 font-mono text-xs uppercase tracking-[0.18em] text-on-dark-muted"
+          >
+            {name}
+            <span className="h-1 w-1 rounded-full bg-white/20" aria-hidden="true" />
+          </span>
+        ))}
+      </Marquee>
+    </section>
   );
 }
 
-function AutomationIcon() {
+/* ---------------- POSITIONING ---------------- */
+
+function Positioning() {
   return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.6}
-        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-      />
-    </svg>
+    <section className="w-full bg-white py-24 lg:py-32">
+      <Container>
+        <Split
+          eyebrow="About FlowFoundry"
+          title={
+            <>
+              We build systems,
+              <br />
+              not just software.
+            </>
+          }
+          image="/images/mission.png"
+          imageAlt="FlowFoundry team designing an intelligent workflow"
+          stat={{ value: "4-in-1", label: "AI · Automation · Software · Integration" }}
+          reverse
+        >
+          <p className="text-[17px] leading-relaxed">
+            We start by understanding how your business actually works — the
+            workflows, bottlenecks, customer interactions, and existing tools —
+            then design technology around those processes.
+          </p>
+          <div className="pt-4">
+            <Checks items={ABOUT_POINTS} cols={1} />
+          </div>
+          <div className="pt-6">
+            <Button href="/about" variant="secondary">
+              About FlowFoundry
+              <Arrow />
+            </Button>
+          </div>
+        </Split>
+      </Container>
+    </section>
   );
 }
 
-function CodeIcon() {
+/* ---------------- CAPABILITIES ---------------- */
+
+function Capabilities() {
   return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.6}
-        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-      />
-    </svg>
+    <section className="w-full bg-paper py-24 lg:py-32">
+      <Container>
+        <Reveal amount={0.3}>
+          <motion.div variants={fadeUp}>
+            <SectionHeading
+              align="split"
+              eyebrow="What we do"
+              title="From disconnected tools to one intelligent system."
+              lede="Instead of adding more software to your stack, we design a system around the way your business actually operates."
+            />
+          </motion.div>
+        </Reveal>
+
+        <div className="mt-14 lg:mt-20">
+          <RowList items={CAPABILITIES} hrefBase="/services" />
+        </div>
+
+        <Reveal amount={0.5} className="mt-10 flex justify-end">
+          <motion.div variants={fadeUp}>
+            <Link
+              href="/services"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-fg"
+            >
+              All services
+              <ArrowUpRight
+                weight="bold"
+                className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </Link>
+          </motion.div>
+        </Reveal>
+      </Container>
+    </section>
   );
 }
 
-function PlugIcon() {
+/* ---------------- SYSTEM ---------------- */
+
+function System() {
   return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.6}
-        d="M13 10V3L4 14h7v7l9-11h-7z"
-      />
-    </svg>
+    <section className="relative w-full overflow-hidden bg-ink py-24 lg:py-32">
+      <Container>
+        <Reveal amount={0.3}>
+          <motion.div variants={fadeUp}>
+            <SectionHeading
+              invert
+              align="split"
+              eyebrow="How it connects"
+              title="Conversations, logic, data, actions — one route."
+              lede="We connect every layer so your business doesn't stop at collecting information. It acts on it."
+            />
+          </motion.div>
+        </Reveal>
+
+        <div className="mt-16 lg:mt-24">
+          <SystemFlow />
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ---------------- LEADPULZ ---------------- */
+
+function LeadPulz() {
+  return (
+    <section id="leadpulz" className="w-full overflow-hidden bg-white py-24 lg:py-32">
+      <Container>
+        <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <Reveal amount={0.3} className="min-w-0">
+            <motion.div variants={fadeUp} className="flex items-center gap-4">
+              <Eyebrow>LeadPulz</Eyebrow>
+              <Status>In build</Status>
+            </motion.div>
+            <motion.h2
+              variants={fadeUp}
+              className="mt-5 text-[clamp(1.9rem,3.8vw,3rem)] font-medium leading-[1.04] tracking-[-0.03em] text-fg text-balance"
+            >
+              Turn every phone call into a next step.
+            </motion.h2>
+            <motion.p variants={fadeUp} className="mt-5 max-w-[50ch] text-[17px] leading-relaxed text-body">
+              LeadPulz is our AI voice platform for handling calls, qualifying
+              leads, booking appointments, following up, and connecting every
+              conversation to your CRM.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-8">
+              <Checks items={LEADPULZ_POINTS} />
+            </motion.div>
+            <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Button href="/leadpulz" variant="primary">
+                Explore LeadPulz
+                <Arrow />
+              </Button>
+              <Button href="/contact?interest=leadpulz" variant="secondary">
+                Book a demo
+              </Button>
+            </motion.div>
+          </Reveal>
+
+          <Reveal amount={0.2} className="relative min-w-0">
+            <motion.div variants={scaleIn} className="relative">
+              <Device src="/images/dashboard.jpeg" alt="LeadPulz dashboard showing calls, qualification and bookings" />
+            </motion.div>
+          </Reveal>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ---------------- USE CASES — horizontal rail ---------------- */
+
+function UseCases() {
+  const railRef = useRef<HTMLDivElement>(null);
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = railRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    const w = card ? card.offsetWidth + 20 : 360;
+    el.scrollBy({ left: dir * w, behavior: "smooth" });
+  };
+
+  return (
+    <section className="w-full overflow-hidden bg-paper py-24 lg:py-32">
+      <Container>
+        <Reveal amount={0.3} className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <motion.div variants={fadeUp}>
+            <SectionHeading
+              eyebrow="Use cases"
+              title="Built around real business processes."
+              lede="Different teams have different workflows. The system adapts to your operation — not the other way around."
+            />
+          </motion.div>
+          <motion.div variants={fadeUp} className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => scrollBy(-1)}
+              aria-label="Previous"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-white text-fg transition-all duration-300 hover:border-fg/40 active:scale-95"
+            >
+              <ArrowLeft weight="bold" className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollBy(1)}
+              aria-label="Next"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-white text-fg transition-all duration-300 hover:border-fg/40 active:scale-95"
+            >
+              <ArrowRight weight="bold" className="h-4 w-4" />
+            </button>
+          </motion.div>
+        </Reveal>
+      </Container>
+
+      <div
+        ref={railRef}
+        className="rail mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
+        style={{ paddingInline: "max(1.25rem, calc((100vw - 1240px) / 2 + 3rem))" }}
+      >
+        {USE_CASES.map((u, i) => (
+          <motion.article
+            key={u.title}
+            data-card
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: (i % 3) * 0.08 }}
+            className={`group relative shrink-0 snap-start overflow-hidden rounded-2xl bg-ink ${
+              i % 3 === 0 ? "w-[86vw] sm:w-[520px]" : "w-[78vw] sm:w-[400px]"
+            } aspect-[4/5] sm:aspect-[5/6]`}
+          >
+            <Image
+              src={u.image}
+              alt={`${u.title} automation`}
+              fill
+              sizes="(max-width: 640px) 86vw, 520px"
+              className="object-cover saturate-[0.85] transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0.15)_0%,rgba(10,13,20,0.2)_45%,rgba(10,13,20,0.92)_100%)]" />
+            <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5">
+              <Index dark>0{i + 1}</Index>
+              <span className="rounded-full border border-white/15 bg-ink/50 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+                {u.flow}
+              </span>
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-6">
+              <h3 className="text-2xl font-medium tracking-[-0.02em] text-white">{u.title}</h3>
+              <p className="mt-2 max-w-[40ch] text-sm leading-relaxed text-on-dark">{u.body}</p>
+            </div>
+          </motion.article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- PROJECTS ---------------- */
+
+function Projects() {
+  return (
+    <section id="projects" className="w-full bg-white py-24 lg:py-32">
+      <Container>
+        <Reveal amount={0.3} className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <motion.div variants={fadeUp}>
+            <SectionHeading
+              eyebrow="Work in progress"
+              title="What we're building right now."
+              lede="Client platforms alongside the systems we run FlowFoundry on."
+            />
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <Button href="/portfolio" variant="secondary">
+              All projects
+              <Arrow />
+            </Button>
+          </motion.div>
+        </Reveal>
+
+        <Reveal step={0.08} className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr] lg:gap-5">
+          {PROJECTS.map((p, i) => (
+            <motion.div key={p.slug} variants={fadeUp} className={i === 0 ? "lg:row-span-2" : ""}>
+              <Spotlight className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 transition-colors duration-500 hover:border-line-strong sm:p-8">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+                    {p.category}
+                  </span>
+                  <Status>{p.status}</Status>
+                </div>
+                <h3 className={`mt-8 font-medium tracking-[-0.025em] text-fg ${i === 0 ? "text-3xl sm:text-4xl" : "text-2xl"}`}>
+                  {p.name}
+                </h3>
+                <p className="mt-3 max-w-[52ch] text-[15px] leading-relaxed text-body">{p.summary}</p>
+                <ul className={`mt-6 grid gap-x-6 gap-y-2 ${i === 0 ? "sm:grid-cols-2" : ""}`}>
+                  {(i === 0 ? p.highlights : p.highlights.slice(0, 3)).map((h) => (
+                    <li key={h} className="flex items-center gap-2.5 text-sm text-body">
+                      <span className="h-1 w-1 rounded-full bg-accent" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto flex items-center justify-between pt-8">
+                  <p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-muted">
+                    {p.services.join(" · ")}
+                  </p>
+                  {p.href ? (
+                    <Link
+                      href={p.href}
+                      className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-fg"
+                    >
+                      Explore
+                      <ArrowUpRight weight="bold" className="h-4 w-4 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                    </Link>
+                  ) : null}
+                </div>
+              </Spotlight>
+            </motion.div>
+          ))}
+        </Reveal>
+      </Container>
+    </section>
+  );
+}
+
+/* ---------------- WHY — sticky stack ---------------- */
+
+function Why() {
+  return (
+    <section className="w-full bg-ink py-24 lg:py-32">
+      <Container>
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <Reveal amount={0.4}>
+              <motion.div variants={fadeUp}>
+                <SectionHeading
+                  invert
+                  eyebrow="Why FlowFoundry"
+                  title="Technology built around the business — not the other way around."
+                  lede="Good automation isn't about connecting random tools. It's about understanding the process first, then designing the right system around it."
+                />
+              </motion.div>
+              <motion.div variants={fadeUp} className="mt-8">
+                <Button href="/about" variant="outlineOnDark">
+                  How we think
+                  <Arrow />
+                </Button>
+              </motion.div>
+            </Reveal>
+          </div>
+          <StickyStack items={WHY} />
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ---------------- PROCESS ---------------- */
+
+function ProcessSection() {
+  return (
+    <section className="w-full bg-white py-24 lg:py-32">
+      <Container>
+        <Reveal amount={0.3}>
+          <motion.div variants={fadeUp}>
+            <SectionHeading
+              align="split"
+              eyebrow="How we work"
+              title="From process to production."
+              lede="Start with the business problem. Design the system. Build, integrate, launch, and improve."
+            />
+          </motion.div>
+        </Reveal>
+        <div className="mt-16 lg:mt-20">
+          <Process steps={PROCESS} />
+        </div>
+      </Container>
+    </section>
   );
 }

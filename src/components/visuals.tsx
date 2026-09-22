@@ -1,324 +1,422 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { memo, useEffect, useRef, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import {
+  Check,
+  Phone,
+  CalendarCheck,
+  ArrowsClockwise,
+  ChatCircleText,
+  Lightning,
+  Database,
+  Sparkle,
+} from "@phosphor-icons/react";
+import { EASE, SPRING } from "./motion";
+import { Tilt } from "./motion";
 
-/* ============================================================
-   DESIGN TOKENS — exported for cross-page reuse
-============================================================ */
+/* =========================================================
+   AGENT CONSOLE — hero visual.
+   A single looping "run": lead arrives → agent converses →
+   logic decides → systems update → meeting booked.
+   Isolated + memoized so its timers never re-render the page.
+========================================================= */
 
-export type Tone =
-  | "violet"
-  | "indigo"
-  | "cyan"
-  | "emerald"
-  | "amber"
-  | "rose"
-  | "slate";
+const TRANSCRIPT = [
+  { who: "lead", text: "Hi, I run a 12-person clinic. We miss calls after 6pm." },
+  { who: "agent", text: "Understood. Do you use a booking system today?" },
+  { who: "lead", text: "Google Calendar and a Zoho CRM." },
+  { who: "agent", text: "Great — I can check availability and book directly. Thursday 10:30 works?" },
+  { who: "lead", text: "Yes, that's fine." },
+] as const;
 
-export const TONES: Record<
-  Tone,
-  {
-    bg: string;
-    ring: string;
-    text: string;
-    dot: string;
-    glow: string;
-    gradient: string;
-  }
-> = {
-  violet: {
-    bg: "bg-violet-50",
-    ring: "border-violet-200/70",
-    text: "text-violet-700",
-    dot: "bg-violet-500",
-    glow: "shadow-[0_20px_50px_-24px_rgba(139,92,246,0.35)]",
-    gradient: "from-[#8B5CF6] to-[#4F6BFF]",
-  },
-  indigo: {
-    bg: "bg-indigo-50",
-    ring: "border-indigo-200/70",
-    text: "text-indigo-700",
-    dot: "bg-indigo-500",
-    glow: "shadow-[0_20px_50px_-24px_rgba(79,107,255,0.35)]",
-    gradient: "from-[#4F6BFF] to-[#8B5CF6]",
-  },
-  cyan: {
-    bg: "bg-cyan-50",
-    ring: "border-cyan-200/70",
-    text: "text-cyan-700",
-    dot: "bg-cyan-500",
-    glow: "shadow-[0_20px_50px_-24px_rgba(6,182,212,0.35)]",
-    gradient: "from-[#06B6D4] to-[#4F6BFF]",
-  },
-  emerald: {
-    bg: "bg-emerald-50",
-    ring: "border-emerald-200/70",
-    text: "text-emerald-700",
-    dot: "bg-emerald-500",
-    glow: "shadow-[0_20px_50px_-24px_rgba(16,185,129,0.35)]",
-    gradient: "from-[#10B981] to-[#06B6D4]",
-  },
-  amber: {
-    bg: "bg-amber-50",
-    ring: "border-amber-200/70",
-    text: "text-amber-700",
-    dot: "bg-amber-500",
-    glow: "shadow-[0_20px_50px_-24px_rgba(245,158,11,0.35)]",
-    gradient: "from-[#F59E0B] to-[#F472B6]",
-  },
-  rose: {
-    bg: "bg-rose-50",
-    ring: "border-rose-200/70",
-    text: "text-rose-700",
-    dot: "bg-rose-500",
-    glow: "shadow-[0_20px_50px_-24px_rgba(244,114,182,0.35)]",
-    gradient: "from-[#F472B6] to-[#8B5CF6]",
-  },
-  slate: {
-    bg: "bg-slate-50",
-    ring: "border-slate-200/70",
-    text: "text-slate",
-    dot: "bg-slate-500",
-    glow: "shadow-[0_20px_50px_-24px_rgba(100,116,139,0.3)]",
-    gradient: "from-slate-500 to-slate-700",
-  },
-};
-
-/* ============================================================
-   SHARED PRIMITIVES
-============================================================ */
-
-function LivePulse({ tone = "emerald" }: { tone?: Tone }) {
-  const t = TONES[tone];
-  return (
-    <span className="relative flex h-1.5 w-1.5">
-      <span
-        className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${t.dot}`}
-      />
-      <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${t.dot}`} />
-    </span>
-  );
-}
-
-function CornerGlow({ tone }: { tone: Tone }) {
-  const t = TONES[tone];
-  return (
-    <div
-      className={`pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gradient-to-br ${t.gradient} opacity-[0.08] blur-3xl`}
-    />
-  );
-}
-
-/* ============================================================
-   HERO MOCKUP
-============================================================ */
-
-const PIPELINE: {
-  label: string;
-  meta: string;
-  tone: Tone;
-  icon: ReactNode;
-}[] = [
-  {
-    label: "New Lead",
-    meta: "Inbound call",
-    tone: "slate",
-    icon: (
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.7}
-          d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.1 3.3a1 1 0 0 1-.25 1L7.6 9.4a12.5 12.5 0 0 0 6 6l1.42-1.48a1 1 0 0 1 1-.25l3.3 1.1a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5Z"
-        />
-      </svg>
-    ),
-  },
-  {
-    label: "AI Agent",
-    meta: "Engaging",
-    tone: "violet",
-    icon: (
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.7}
-          d="M12 3v2m6.36 1.64-1.41 1.41M21 12h-2M4 12H3m3.34-5.66L4.93 4.93M12 19a5 5 0 0 0 5-5v-1a5 5 0 0 0-10 0v1a5 5 0 0 0 5 5Zm0 0v2"
-        />
-      </svg>
-    ),
-  },
-  {
-    label: "Qualified",
-    meta: "Score 87",
-    tone: "emerald",
-    icon: (
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.9}
-          d="M5 13l4 4L19 7"
-        />
-      </svg>
-    ),
-  },
-  {
-    label: "CRM Sync",
-    meta: "Record updated",
-    tone: "cyan",
-    icon: (
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.7}
-          d="M4 4v6h6M20 20v-6h-6M20 9a8 8 0 0 0-14.9-3M4 15a8 8 0 0 0 14.9 3"
-        />
-      </svg>
-    ),
-  },
-  {
-    label: "Appointment",
-    meta: "Thu · 09:30",
-    tone: "rose",
-    icon: (
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.7}
-          d="M8 3v3m8-3v3M3 9h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
-        />
-      </svg>
-    ),
-  },
+const ACTIONS = [
+  { label: "Intent captured", icon: ChatCircleText },
+  { label: "Qualified: clinic, 12 staff", icon: Sparkle },
+  { label: "Zoho CRM record updated", icon: Database },
+  { label: "Calendar slot booked", icon: CalendarCheck },
+  { label: "Confirmation sent", icon: Lightning },
 ];
 
-const EVENTS = [
-  { label: "Lead qualified", time: "now", tone: "emerald" as Tone },
-  { label: "CRM updated", time: "12s", tone: "cyan" as Tone },
-  { label: "Meeting booked", time: "1m", tone: "violet" as Tone },
-  { label: "Follow-up scheduled", time: "1m", tone: "rose" as Tone },
-];
+type Phase = "incoming" | "talking" | "acting" | "done";
 
-export function HeroMockup() {
+function useAgentLoop(active: boolean) {
+  const [phase, setPhase] = useState<Phase>("incoming");
+  const [line, setLine] = useState(0);
+  const [done, setDone] = useState(0);
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (!active) return;
+    if (reduce) {
+      setPhase("done");
+      setLine(TRANSCRIPT.length);
+      setDone(ACTIONS.length);
+      return;
+    }
+
+    let t: ReturnType<typeof setTimeout>;
+
+    if (phase === "incoming") {
+      t = setTimeout(() => setPhase("talking"), 1400);
+    } else if (phase === "talking") {
+      if (line < TRANSCRIPT.length) {
+        t = setTimeout(() => setLine(line + 1), 1100);
+      } else {
+        t = setTimeout(() => setPhase("acting"), 500);
+      }
+    } else if (phase === "acting") {
+      if (done < ACTIONS.length) {
+        t = setTimeout(() => setDone(done + 1), 520);
+      } else {
+        t = setTimeout(() => setPhase("done"), 400);
+      }
+    } else {
+      t = setTimeout(() => {
+        setPhase("incoming");
+        setLine(0);
+        setDone(0);
+      }, 4200);
+    }
+    return () => clearTimeout(t);
+  }, [active, phase, line, done, reduce]);
+
+  return { phase, line, done };
+}
+
+export const AgentConsole = memo(function AgentConsole() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { margin: "-10% 0px" });
+  const { phase, line, done } = useAgentLoop(inView);
+
   return (
-    <div className="relative w-full overflow-hidden rounded-xl border border-slate-200/80 bg-white p-4 shadow-[0_30px_80px_-30px_rgba(15,27,61,0.18)] sm:p-5 md:p-6">
-      <CornerGlow tone="violet" />
-      <CornerGlow tone="cyan" />
+    <div ref={ref} className="relative w-full pb-8">
+      {/* Panel */}
+      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-ink-2/80 shadow-dark backdrop-blur-md">
+        <div className="pointer-events-none absolute inset-0 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
 
-      {/* Header */}
-      <div className="relative flex flex-wrap items-center gap-3 border-b border-slate-100 pb-4">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-white shadow-[0_8px_24px_-8px_rgba(79,107,255,0.7)]">
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M13 10V3L4 14h7v7l9-11h-7z"
-            />
-          </svg>
+        {/* Header */}
+        <div className="flex items-center justify-between gap-3 border-b border-white/[0.06] px-5 py-3.5">
+          <div className="flex items-center gap-3">
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-accent/15 text-accent-dark">
+              <Phone weight="fill" className="h-3.5 w-3.5" />
+            </span>
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-on-dark-muted">
+                Live run
+              </p>
+              <p className="text-xs font-medium text-white">Inbound enquiry · AI agent</p>
+            </div>
+          </div>
+          <PhasePill phase={phase} />
         </div>
-        <div className="min-w-0 leading-tight">
-          <p className="text-xs font-semibold text-ink">
-            Automation run
-          </p>
-          <p className="text-2xs text-muted">
-            Inbound lead pipeline
-          </p>
+
+        <div className="grid gap-0 md:grid-cols-[1.25fr_1fr]">
+          {/* Transcript */}
+          <div className="min-h-[268px] space-y-3 border-b border-white/[0.06] p-5 md:border-b-0 md:border-r">
+            <AnimatePresence initial={false}>
+              {phase === "incoming" && (
+                <motion.div
+                  key="incoming"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                  className="flex items-center gap-3 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3.5 py-3"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-dark opacity-70" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-dark" />
+                  </span>
+                  <span className="text-xs text-on-dark">
+                    Incoming call · +91 98•• ••• 4127
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {TRANSCRIPT.slice(0, phase === "incoming" ? 0 : line).map((m, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={SPRING}
+                className={`flex ${m.who === "agent" ? "justify-end" : "justify-start"}`}
+              >
+                <div
+                  className={`max-w-[88%] rounded-xl px-3.5 py-2.5 text-[12.5px] leading-relaxed ${
+                    m.who === "agent"
+                      ? "rounded-br-sm bg-accent text-white"
+                      : "rounded-bl-sm border border-white/[0.08] bg-white/[0.04] text-on-dark"
+                  }`}
+                >
+                  {m.text}
+                </div>
+              </motion.div>
+            ))}
+
+            {phase === "talking" && line < TRANSCRIPT.length && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className={`flex ${
+                  TRANSCRIPT[line].who === "agent" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <span className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-2">
+                  {[0, 1, 2].map((d) => (
+                    <motion.span
+                      key={d}
+                      className="h-1 w-1 rounded-full bg-on-dark"
+                      animate={{ opacity: [0.3, 1, 0.3] }}
+                      transition={{ duration: 1, repeat: Infinity, delay: d * 0.18 }}
+                    />
+                  ))}
+                </span>
+              </motion.div>
+            )}
+          </div>
+
+          {/* Actions */}
+          <div className="p-5">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-on-dark-muted">
+              Actions
+            </p>
+            <ul className="mt-3 space-y-2">
+              {ACTIONS.map((a, i) => {
+                const isDone = i < done;
+                const isNext = i === done && phase === "acting";
+                const Icon = a.icon;
+                return (
+                  <li
+                    key={a.label}
+                    className={`flex items-center gap-2.5 rounded-lg border px-3 py-2 text-xs transition-colors duration-500 ${
+                      isDone
+                        ? "border-live/25 bg-live/[0.08] text-white"
+                        : "border-white/[0.06] bg-transparent text-on-dark-muted"
+                    } ${isNext ? "shimmer" : ""}`}
+                  >
+                    <span
+                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md ${
+                        isDone ? "bg-live text-white" : "bg-white/[0.06]"
+                      }`}
+                    >
+                      <AnimatePresence mode="wait" initial={false}>
+                        {isDone ? (
+                          <motion.span
+                            key="check"
+                            initial={{ scale: 0.4, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ type: "spring", stiffness: 500, damping: 22 }}
+                          >
+                            <Check weight="bold" className="h-3 w-3" />
+                          </motion.span>
+                        ) : (
+                          <motion.span key="icon" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                            <Icon className="h-3 w-3" />
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </span>
+                    <span className="truncate">{a.label}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
-        <span className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-emerald-200/70 bg-emerald-50 px-2.5 py-1 text-2xs font-medium text-emerald-700">
-          <LivePulse tone="emerald" />
-          Live
-        </span>
+
+        {/* Footer metrics */}
+        <div className="grid grid-cols-3 divide-x divide-white/[0.06] border-t border-white/[0.06]">
+          {[
+            ["Response", "0.8s"],
+            ["Duration", "1m 42s"],
+            ["Outcome", phase === "done" ? "Booked" : "—"],
+          ].map(([k, v]) => (
+            <div key={k} className="px-4 py-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-on-dark-muted">
+                {k}
+              </p>
+              <p className="tnum mt-0.5 font-mono text-sm text-white">{v}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Pipeline */}
-      <ol className="relative mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
-        {PIPELINE.map((step, i) => {
-          const t = TONES[step.tone];
+      {/* Toast — overshoot spring */}
+      <AnimatePresence>
+        {phase === "done" && (
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 12, scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 420, damping: 18 }}
+            className="absolute -bottom-7 left-1/2 flex w-max -translate-x-1/2 items-center gap-3 rounded-xl border border-white/10 bg-white px-4 py-3 text-fg shadow-lift sm:left-auto sm:right-6 sm:translate-x-0"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-live/10 text-live">
+              <CalendarCheck weight="fill" className="h-4 w-4" />
+            </span>
+            <div>
+              <p className="text-xs font-semibold">Meeting booked</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                Thu · 10:30 · Zoho synced
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+});
+
+function PhasePill({ phase }: { phase: Phase }) {
+  const map: Record<Phase, { label: string; cls: string }> = {
+    incoming: { label: "Ringing", cls: "text-accent-dark border-accent/30 bg-accent/10" },
+    talking: { label: "In conversation", cls: "text-accent-dark border-accent/30 bg-accent/10" },
+    acting: { label: "Executing", cls: "text-[#f0c36b] border-warn/30 bg-warn/10" },
+    done: { label: "Complete", cls: "text-[#5fd39e] border-live/30 bg-live/10" },
+  };
+  const m = map[phase];
+  return (
+    <motion.span
+      key={phase}
+      initial={{ opacity: 0, y: -4 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] ${m.cls}`}
+    >
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-60" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-current" />
+      </span>
+      {m.label}
+    </motion.span>
+  );
+}
+
+/* =========================================================
+   SYSTEM FLOW — Conversations → Logic → Data → Actions
+   SVG path draws with scroll; a pulse travels the route.
+========================================================= */
+
+const NODES = [
+  {
+    key: "conversations",
+    title: "Conversations",
+    body: "Calls, WhatsApp, chat, email, forms.",
+    icon: ChatCircleText,
+    detail: ["Voice", "Chat", "Email", "Forms"],
+  },
+  {
+    key: "logic",
+    title: "Business logic",
+    body: "Qualification, routing, rules, decisions.",
+    icon: Sparkle,
+    detail: ["Qualify", "Route", "Decide", "Approve"],
+  },
+  {
+    key: "data",
+    title: "Data",
+    body: "CRM, calendars, databases, knowledge.",
+    icon: Database,
+    detail: ["CRM", "Calendar", "DB", "Docs"],
+  },
+  {
+    key: "actions",
+    title: "Actions",
+    body: "Bookings, updates, follow-ups, tasks.",
+    icon: Lightning,
+    detail: ["Book", "Update", "Notify", "Assign"],
+  },
+];
+
+export function SystemFlow() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 80%", "end 60%"],
+  });
+  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const pulseX = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  return (
+    <div ref={ref} className="relative">
+      {/* Route line — desktop */}
+      <div className="pointer-events-none absolute inset-x-0 top-[26px] hidden h-px lg:block">
+        <svg className="h-full w-full overflow-visible" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="0" y1="0.5" x2="100%" y2="0.5" stroke="rgba(255,255,255,0.08)" />
+          <motion.line
+            x1="0"
+            y1="0.5"
+            x2="100%"
+            y2="0.5"
+            stroke="#6d9bff"
+            strokeWidth="1.5"
+            style={{ pathLength }}
+          />
+        </svg>
+        <motion.span
+          className="absolute -top-[3px] h-[7px] w-[7px] rounded-full bg-white shadow-[0_0_0_4px_rgba(109,155,255,0.25)]"
+          style={{ left: pulseX }}
+        />
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-4 lg:gap-6">
+        {NODES.map((n, i) => {
+          const Icon = n.icon;
           return (
-            <li key={step.label} className="relative">
-              <div
-                className={`group h-full rounded-lg border bg-white p-3.5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(15,27,61,0.2)] ${t.ring}`}
-              >
-                <div className="mb-3 flex items-center justify-between">
-                  <span
-                    className={`flex h-7 w-7 items-center justify-center rounded-md ${t.bg} ${t.text}`}
-                  >
-                    {step.icon}
-                  </span>
-                  <span className="text-2xs font-semibold tabular-nums tracking-widest text-muted">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <p className="text-xs font-semibold leading-tight text-ink">
-                  {step.label}
-                </p>
-                <p className="mt-1 text-2xs text-muted">
-                  {step.meta}
-                </p>
+            <motion.div
+              key={n.key}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.8, ease: EASE, delay: i * 0.12 }}
+              className="relative"
+            >
+              {/* Node */}
+              <div className="relative z-10 flex h-[52px] w-[52px] items-center justify-center rounded-xl border border-white/10 bg-ink text-accent-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                <motion.span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-xl border border-accent-dark/40"
+                  animate={{ scale: [1, 1.35], opacity: [0.6, 0] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut", delay: i * 0.6 }}
+                />
+                <Icon className="h-5 w-5" />
               </div>
 
-              {i < PIPELINE.length - 1 && (
-                <svg
-                  className="absolute -right-2.5 top-1/2 hidden -translate-y-1/2 lg:block"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M5 12h13m-5-5 5 5-5 5"
-                    stroke="#94A3B8"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              )}
-            </li>
-          );
-        })}
-      </ol>
+              <p className="mt-6 font-mono text-2xs uppercase tracking-[0.16em] text-on-dark-muted">
+                0{i + 1}
+              </p>
+              <h3 className="mt-2 text-lg font-medium tracking-[-0.01em] text-white">
+                {n.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-on-dark">{n.body}</p>
 
-      {/* Event feed */}
-      <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
-        {EVENTS.map((e) => {
-          const t = TONES[e.tone];
-          return (
-            <div
-              key={e.label}
-              className="flex items-center gap-2.5 rounded-md border border-slate-200/70 bg-slate-50/60 px-3 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_24px_-12px_rgba(15,27,61,0.15)]"
-            >
-              <span
-                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${t.bg} ${t.text}`}
-              >
-                <svg
-                  className="h-3 w-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.4}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </span>
-              <span className="truncate text-xs font-medium text-slate">
-                {e.label}
-              </span>
-              <span className="ml-auto whitespace-nowrap text-2xs tabular-nums text-muted">
-                {e.time}
-              </span>
-            </div>
+              <ul className="mt-4 flex flex-wrap gap-1.5">
+                {n.detail.map((d, j) => (
+                  <motion.li
+                    key={d}
+                    className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-on-dark"
+                    animate={{ opacity: [0.55, 1, 0.55] }}
+                    transition={{
+                      duration: 3.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: i * 0.4 + j * 0.25,
+                    }}
+                  >
+                    {d}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
           );
         })}
       </div>
@@ -326,472 +424,134 @@ export function HeroMockup() {
   );
 }
 
-/* ============================================================
-   ARCHITECTURE STACK
-============================================================ */
+/* =========================================================
+   VOICE WAVE — perpetual bars
+========================================================= */
 
-const LAYERS: {
-  title: string;
-  subtitle: string;
-  tone: Tone;
-  icon: ReactNode;
-  items: string[];
-}[] = [
-  {
-    title: "Conversations",
-    subtitle: "Where it starts",
-    tone: "violet",
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.7}
-          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 0 1-4-.8L3 21l1.6-4.8A7.9 7.9 0 0 1 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8Z"
-        />
-      </svg>
-    ),
-    items: ["Calls", "WhatsApp", "Web Chat", "Email", "Forms"],
-  },
-  {
-    title: "Business Logic",
-    subtitle: "How it thinks",
-    tone: "indigo",
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.7}
-          d="M12 3v2m6.36 1.64-1.41 1.41M21 12h-2M4 12H3m3.34-5.66L4.93 4.93M12 21v-2m6.36-1.64-1.41-1.41M4.93 19.07l1.41-1.41M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"
-        />
-      </svg>
-    ),
-    items: ["Qualification", "Routing", "Rules", "AI Decisions", "Automations"],
-  },
-  {
-    title: "Data",
-    subtitle: "What it knows",
-    tone: "cyan",
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.7}
-          d="M4 7c0-1.66 3.58-3 8-3s8 1.34 8 3-3.58 3-8 3-8-1.34-8-3Zm0 0v10c0 1.66 3.58 3 8 3s8-1.34 8-3V7M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"
-        />
-      </svg>
-    ),
-    items: ["CRM", "Databases", "ERP", "Knowledge Base", "Analytics"],
-  },
-  {
-    title: "Actions",
-    subtitle: "What it does",
-    tone: "emerald",
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.7}
-          d="M13 10V3L4 14h7v7l9-11h-7z"
-        />
-      </svg>
-    ),
-    items: [
-      "Book Meetings",
-      "Update CRM",
-      "Send Follow-ups",
-      "Create Tasks",
-      "Trigger Workflows",
-    ],
-  },
-];
-
-export function ArchitectureStack() {
+export const VoiceWave = memo(function VoiceWave({
+  bars = 28,
+  className = "",
+}: {
+  bars?: number;
+  className?: string;
+}) {
   return (
-    <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {LAYERS.map((layer, i) => {
-        const t = TONES[layer.tone];
+    <div className={`flex h-12 items-center gap-[3px] ${className}`} aria-hidden="true">
+      {Array.from({ length: bars }).map((_, i) => {
+        const base = 0.25 + Math.abs(Math.sin(i * 0.9)) * 0.75;
         return (
-          <li key={layer.title} className="relative">
-            <div
-              className={`group relative h-full overflow-hidden rounded-lg border bg-white p-5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-24px_rgba(15,27,61,0.22)] ${t.ring}`}
-            >
-              <CornerGlow tone={layer.tone} />
-
-              <div className="relative">
-                <div className="flex items-center gap-3">
-                  <span
-                    className={`flex h-10 w-10 items-center justify-center rounded-md bg-gradient-to-br ${t.gradient} text-white shadow-[0_10px_26px_-10px_rgba(79,107,255,0.5)]`}
-                  >
-                    {layer.icon}
-                  </span>
-                  {/* Sequence indicator — same "01" style as the capability cards */}
-                  <span className={`text-xs font-semibold tabular-nums ${t.text}`}>
-                    <span className="sr-only">Layer </span>0{i + 1}
-                  </span>
-                </div>
-
-                <h3 className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-ink">
-                  {layer.title}
-                </h3>
-                <p className={`mt-0.5 text-2xs ${t.text}`}>
-                  {layer.subtitle}
-                </p>
-
-                <ul className="mt-4 space-y-1.5">
-                  {layer.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-2 rounded-md border border-slate-100 bg-slate-50/60 px-2.5 py-1.5 text-xs text-slate transition-colors hover:border-slate-200 hover:bg-white"
-                    >
-                      <span className={`h-1 w-1 shrink-0 rounded-full ${t.dot}`} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {i < LAYERS.length - 1 && (
-              <>
-                <svg
-                  className="mx-auto my-1 block lg:hidden"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M12 5v13m-5-5 5 5 5-5"
-                    stroke="#94A3B8"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <svg
-                  className="absolute -right-3 top-1/2 hidden -translate-y-1/2 lg:block"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M5 12h13m-5-5 5 5-5 5"
-                    stroke="#94A3B8"
-                    strokeWidth="1.9"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </>
-            )}
-          </li>
+          <motion.span
+            key={i}
+            className="w-[3px] rounded-full bg-accent-dark"
+            style={{ height: "100%", transformOrigin: "center" }}
+            animate={{ scaleY: [base * 0.3, base, base * 0.45, base * 0.9, base * 0.3] }}
+            transition={{
+              duration: 1.6 + (i % 5) * 0.2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: (i % 7) * 0.08,
+            }}
+          />
         );
       })}
-    </ol>
-  );
-}
-
-/* ============================================================
-   LEADPULZ DASHBOARD
-============================================================ */
-
-function Metric({
-  label,
-  value,
-  delta,
-  tone,
-  icon,
-}: {
-  label: string;
-  value: string;
-  delta: string;
-  tone: Tone;
-  icon: ReactNode;
-}) {
-  const t = TONES[tone];
-  return (
-    <div className="group relative overflow-hidden rounded-lg border border-slate-200/70 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-20px_rgba(15,27,61,0.18)]">
-      <div className="flex items-center justify-between">
-        <span
-          className={`flex h-8 w-8 items-center justify-center rounded-md ${t.bg} ${t.text}`}
-        >
-          {icon}
-        </span>
-        <span className={`text-2xs font-semibold ${t.text}`}>{delta}</span>
-      </div>
-      <p className="mt-3 text-2xs font-medium uppercase tracking-wider text-muted">
-        {label}
-      </p>
-      <p className="mt-0.5 text-2xl font-light tabular-nums leading-none text-ink">
-        {value}
-      </p>
     </div>
   );
+});
+
+/* =========================================================
+   DEVICE — dashboard in a tilting browser frame
+========================================================= */
+
+export function Device({
+  src,
+  alt,
+  className = "",
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <Tilt className={`rounded-2xl ${className}`} max={5}>
+      <div className="overflow-hidden rounded-2xl border border-white/10 bg-ink-2 shadow-dark">
+        <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-2.5">
+          <span className="h-2 w-2 rounded-full bg-white/15" />
+          <span className="h-2 w-2 rounded-full bg-white/15" />
+          <span className="h-2 w-2 rounded-full bg-white/15" />
+          <span className="ml-3 h-5 flex-1 rounded-md bg-white/[0.05]" />
+        </div>
+        <Image
+          src={src}
+          alt={alt}
+          width={1400}
+          height={900}
+          priority={priority}
+          sizes="(max-width: 1023px) 100vw, 55vw"
+          className="h-auto w-full"
+        />
+      </div>
+    </Tilt>
+  );
 }
 
-function Sparkline({ bars, tone }: { bars: number[]; tone: Tone }) {
-  const t = TONES[tone];
+/* =========================================================
+   SYNC ORBIT — integrations orbit a core (about / services)
+========================================================= */
+
+export const SyncOrbit = memo(function SyncOrbit({ items }: { items: string[] }) {
+  const ring1 = items.slice(0, 6);
+  const ring2 = items.slice(6, 14);
+
   return (
-    <div className="flex h-14 items-end gap-1" role="img" aria-label="Activity trend">
-      {bars.map((h, i) => (
+    <div className="relative mx-auto aspect-square w-full max-w-[520px]" aria-hidden="true">
+      {/* Core */}
+      <div className="absolute left-1/2 top-1/2 z-10 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/10 bg-ink text-accent-dark shadow-dark">
+        <ArrowsClockwise className="h-7 w-7" />
         <motion.span
-          key={i}
-          initial={{ height: "10%" }}
-          whileInView={{ height: `${h}%` }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{
-            duration: 0.6,
-            delay: i * 0.04,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className={`block flex-1 rounded-sm bg-gradient-to-t ${t.gradient} opacity-70`}
+          className="absolute inset-0 rounded-2xl border border-accent-dark/40"
+          animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut" }}
         />
+      </div>
+
+      {[
+        { r: "62%", items: ring1, dur: 40, dir: 1 },
+        { r: "92%", items: ring2, dur: 70, dir: -1 },
+      ].map((ring, ri) => (
+        <motion.div
+          key={ri}
+          className="absolute left-1/2 top-1/2 rounded-full border border-dashed border-white/10"
+          style={{ width: ring.r, height: ring.r, x: "-50%", y: "-50%" }}
+          animate={{ rotate: 360 * ring.dir }}
+          transition={{ duration: ring.dur, repeat: Infinity, ease: "linear" }}
+        >
+          {ring.items.map((it, i) => {
+            const angle = (i / ring.items.length) * 360;
+            return (
+              <div
+                key={it}
+                className="absolute left-1/2 top-1/2 h-0 w-1/2 origin-left"
+                style={{ transform: `rotate(${angle}deg)` }}
+              >
+                <div
+                  className="absolute right-0 top-0"
+                  style={{ transform: `translate(50%, -50%) rotate(${-angle}deg)` }}
+                >
+                  <motion.span
+                    className="block whitespace-nowrap rounded-full border border-white/10 bg-ink-2 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.1em] text-on-dark"
+                    animate={{ rotate: -360 * ring.dir }}
+                    transition={{ duration: ring.dur, repeat: Infinity, ease: "linear" }}
+                  >
+                    {it}
+                  </motion.span>
+                </div>
+              </div>
+            );
+          })}
+        </motion.div>
       ))}
     </div>
   );
-}
-
-export function LeadPulzDashboard() {
-  const spark = [42, 58, 36, 74, 52, 88, 46, 68, 40, 82, 56, 76];
-  const bars = [40, 75, 30, 90, 55, 70, 38, 84, 46, 66, 28, 88, 52, 74, 36];
-
-  return (
-    <div className="relative w-full rounded-xl bg-gradient-to-br from-[#0A1330] to-[#1A2340] p-1.5 shadow-[0_40px_100px_-40px_rgba(15,27,61,0.5)]">
-      <div className="relative overflow-hidden rounded-lg bg-white p-4 sm:p-5">
-        <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#4F6BFF]/10 blur-3xl" />
-
-        {/* Header */}
-        <div className="relative mb-5 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-white shadow-[0_8px_20px_-6px_rgba(79,107,255,0.6)]">
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.8}
-                  d="M4 19h16M7 16V8m5 8V5m5 11v-6"
-                />
-              </svg>
-            </span>
-            <div className="leading-tight">
-              <p className="text-xs font-semibold text-ink">
-                LeadPulz overview
-              </p>
-              <p className="text-2xs text-muted">Last 24 hours</p>
-            </div>
-          </div>
-          <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-2xs font-semibold uppercase tracking-wider text-muted">
-            Sample
-          </span>
-        </div>
-
-        {/* Metrics */}
-        <div className="relative grid grid-cols-2 gap-3">
-          <Metric
-            label="Today's Calls"
-            value="128"
-            delta="+12%"
-            tone="violet"
-            icon={
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.8}
-                  d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.1 3.3a1 1 0 0 1-.25 1L7.6 9.4a12.5 12.5 0 0 0 6 6l1.42-1.48a1 1 0 0 1 1-.25l3.3 1.1a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5Z"
-                />
-              </svg>
-            }
-          />
-          <Metric
-            label="Qualified Leads"
-            value="43"
-            delta="+8%"
-            tone="emerald"
-            icon={
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.8}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            }
-          />
-          <Metric
-            label="Appointments"
-            value="18"
-            delta="+5%"
-            tone="cyan"
-            icon={
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.8}
-                  d="M8 3v3m8-3v3M3 9h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
-                />
-              </svg>
-            }
-          />
-          <Metric
-            label="Qualification Rate"
-            value="67%"
-            delta="+3%"
-            tone="indigo"
-            icon={
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.8}
-                  d="M3 17l6-6 4 4 8-8m0 0h-5m5 0v5"
-                />
-              </svg>
-            }
-          />
-        </div>
-
-        {/* Sparkline */}
-        <div className="relative mt-4 rounded-lg border border-slate-200/70 bg-slate-50/50 p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <p className="text-2xs font-semibold uppercase tracking-wider text-muted">
-              Call volume
-            </p>
-            <p className="text-2xs text-muted">Past 12 hours</p>
-          </div>
-          <Sparkline bars={spark} tone="violet" />
-        </div>
-
-        {/* Active call */}
-        <div className="relative mt-4 rounded-lg border border-slate-200/70 bg-white p-4 transition-all duration-300 hover:shadow-[0_16px_40px_-20px_rgba(15,27,61,0.18)]">
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] text-2xs font-semibold text-white shadow-[0_8px_20px_-6px_rgba(79,107,255,0.6)]">
-              <span className="relative z-10">S</span>
-              <span className="absolute inset-0 animate-pulse rounded-full bg-[#4F6BFF]/20" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="flex flex-wrap items-center gap-2 text-xs font-semibold text-ink">
-                AI Agent · Sarah
-                <span className="inline-flex items-center gap-1 text-2xs font-medium text-emerald-600">
-                  <LivePulse tone="emerald" />
-                  Live
-                </span>
-              </p>
-              <p className="mt-0.5 text-2xs tabular-nums text-muted">
-                Call duration · 04:32
-              </p>
-            </div>
-            <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-2xs font-medium text-emerald-700">
-              <span className="h-1 w-1 rounded-full bg-emerald-500" />
-              Qualified
-            </span>
-          </div>
-
-          {/* Waveform */}
-          <div
-            className="my-4 flex h-10 items-center gap-[2px]"
-            role="img"
-            aria-label="Call waveform"
-          >
-            {bars.slice(0, 12).map((h, i) => (
-              <motion.span
-                key={i}
-                animate={{
-                  height: [`${Math.max(h - 12, 15)}%`, `${h}%`, `${Math.max(h - 6, 20)}%`],
-                }}
-                transition={{
-                  duration: 0.9 + (i % 4) * 0.15,
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                  ease: "easeInOut",
-                }}
-                className="block w-[3px] rounded-full bg-gradient-to-t from-[#4F6BFF]/30 to-[#4F6BFF]/70"
-              />
-            ))}
-          </div>
-
-          {/* Detail rows */}
-          <div className="divide-y divide-slate-100">
-            {[
-              { label: "Lead status", value: "Qualified" },
-              { label: "Intent", value: "Product Demo" },
-              { label: "Action", value: "Meeting booked" },
-            ].map((row) => (
-              <div
-                key={row.label}
-                className="flex items-center justify-between py-2.5"
-              >
-                <span className="text-xs text-muted">
-                  {row.label}
-                </span>
-                <span className="text-xs font-medium text-ink">
-                  {row.value}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Tags */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            {[
-              {
-                label: "Transcript",
-                icon: (
-                  <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.8}
-                      d="M8 7h8M8 11h8M8 15h5M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
-                    />
-                  </svg>
-                ),
-              },
-              {
-                label: "Summary",
-                icon: (
-                  <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.8}
-                      d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2"
-                    />
-                  </svg>
-                ),
-              },
-            ].map((tag) => (
-              <span
-                key={tag.label}
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-2xs text-slate transition-colors hover:border-slate-300 hover:bg-white"
-              >
-                {tag.icon}
-                {tag.label}
-              </span>
-            ))}
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#4F6BFF]/10 px-2.5 py-1 text-2xs font-medium text-[#4F6BFF] transition-colors hover:bg-[#4F6BFF]/15">
-              <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.4}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              CRM Updated
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+});

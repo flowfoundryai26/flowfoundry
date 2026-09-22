@@ -1,759 +1,459 @@
 "use client";
 
-import { useState } from "react";
-import { motion, Variants } from "framer-motion";
+import Image from "next/image";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
+import {
+  EnvelopeSimple,
+  MapPin,
+  Phone,
+  WhatsappLogo,
+  ArrowRight,
+  Check,
+} from "@phosphor-icons/react";
 import { SITE } from "@/lib/site";
+import { Container, Eyebrow, LiveDot, SectionHeading } from "@/components/ui";
+import { Magnetic, Reveal, Words, fadeUp, scaleIn, stagger } from "@/components/motion";
 
-/* =========================================================
-   ANIMATION VARIANTS
-========================================================= */
+const WHATSAPP = SITE.whatsapp.replace(/[^0-9]/g, "");
+const waLink = (text: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
 
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
-const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.9, ease: "easeOut" } },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.15 },
-  },
-};
-
-const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.97, y: 20 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
-/* =========================================================
-   ICONS
-========================================================= */
-
-function LocationIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
-      <path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z" strokeWidth="1.7" strokeLinejoin="round" />
-      <circle cx="12" cy="9" r="2.5" strokeWidth="1.7" />
-    </svg>
-  );
-}
-
-function MailIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
-      <path d="M4 6h16v12H4V6Z" strokeWidth="1.7" strokeLinejoin="round" />
-      <path d="m4 7 8 6 8-6" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function PhoneIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
-      <path
-        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-  );
-}
-
-function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
-      <path d="M5 12h14M14 7l5 5-5 5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function SparkIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M12 2l1.6 5.6L19 9l-5.4 1.4L12 16l-1.6-5.6L5 9l5.4-1.4L12 2z" />
-    </svg>
-  );
-}
-
-/* =========================================================
-   CONFIG
-========================================================= */
-
-const WHATSAPP_NUMBER = SITE.whatsapp.replace(/[^0-9]/g, "");
-
-const CONTACT_INFO = [
+const CHANNELS = [
   {
-    icon: LocationIcon,
-    label: "Head Office",
-    value: "Currency Nagar\nVijayawada, Andhra Pradesh, India",
-    gradient: "from-[#4F6BFF] to-[#8B5CF6]",
-    accent: "shadow-[0_8px_24px_-8px_rgba(79,107,255,.5)]",
-  },
-  {
-    icon: MailIcon,
-    label: "Email Us",
-    value: SITE.email,
-    href: `mailto:${SITE.email}`,
-    gradient: "from-[#06B6D4] to-[#4F6BFF]",
-    accent: "shadow-[0_8px_24px_-8px_rgba(6,182,212,.5)]",
-  },
-  {
-    icon: PhoneIcon,
-    label: "Call Us",
-    value: "+91 73309 37354",
-    href: "tel:+917330937354",
-    gradient: "from-[#F472B6] to-[#8B5CF6]",
-    accent: "shadow-[0_8px_24px_-8px_rgba(244,114,182,.5)]",
-  },
-  {
-    icon: WhatsAppIcon,
+    icon: WhatsappLogo,
     label: "WhatsApp",
-    value: "Chat with us instantly",
-    href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      "Hi FlowFoundry! 👋 I'd like to know more about your services."
-    )}`,
+    value: "+91 73309 37354",
+    hint: "Fastest — usually within minutes",
+    href: waLink("Hi FlowFoundry, I'd like to know more about your services."),
     external: true,
-    gradient: "from-[#25D366] to-[#128C7E]",
-    accent: "shadow-[0_8px_24px_-8px_rgba(37,211,102,.5)]",
+  },
+  {
+    icon: EnvelopeSimple,
+    label: "Email",
+    value: SITE.email,
+    hint: "Within one business day",
+    href: `mailto:${SITE.email}`,
+  },
+  {
+    icon: Phone,
+    label: "Call",
+    value: "+91 73309 37354",
+    hint: "Business hours, IST",
+    href: "tel:+917330937354",
+  },
+  {
+    icon: MapPin,
+    label: "Office",
+    value: "Currency Nagar, Vijayawada",
+    hint: "Andhra Pradesh, India",
   },
 ];
 
-/* =========================================================
-   REUSABLE FIELD COMPONENTS
-========================================================= */
-
-function Field({
-  label,
-  name,
-  type = "text",
-  placeholder,
-  value,
-  onChange,
-  required,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  required?: boolean;
-}) {
-  return (
-    <div className="group">
-      <label
-        htmlFor={name}
-        className="mb-1.5 block text-2xs font-semibold uppercase tracking-wider text-[#64708B]"
-      >
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        className="w-full rounded-md border border-[#E3E8F1] bg-[#FAFBFD] px-4 py-3 text-sm text-[#0F1B3D] placeholder:text-[#A8B0C2] transition-all duration-200 focus:border-[#4F6BFF] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#4F6BFF]/10"
-      />
-    </div>
-  );
-}
-
-function TextArea({
-  label,
-  name,
-  placeholder,
-  value,
-  onChange,
-  required,
-}: {
-  label: string;
-  name: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  required?: boolean;
-}) {
-  return (
-    <div className="group">
-      <label
-        htmlFor={name}
-        className="mb-1.5 block text-2xs font-semibold uppercase tracking-wider text-[#64708B]"
-      >
-        {label}
-      </label>
-      <textarea
-        id={name}
-        name={name}
-        rows={5}
-        required={required}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        className="w-full resize-y rounded-md border border-[#E3E8F1] bg-[#FAFBFD] px-4 py-3 text-sm text-[#0F1B3D] placeholder:text-[#A8B0C2] transition-all duration-200 focus:border-[#4F6BFF] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#4F6BFF]/10"
-      />
-    </div>
-  );
-}
+const INTEREST_LABELS: Record<string, string> = {
+  leadpulz: "LeadPulz demo",
+  "lead-generation": "Lead generation automation",
+  sales: "Sales automation",
+  support: "Customer support automation",
+  operations: "Operations automation",
+  crm: "CRM automation",
+  appointments: "Appointment automation",
+};
 
 /* =========================================================
-   CONTACT PAGE
+   PAGE
 ========================================================= */
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  return (
+    <div className="w-full overflow-x-clip">
+      {/* HERO */}
+      <section className="relative w-full overflow-hidden bg-ink">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute inset-y-0 right-0 w-full lg:w-[60%]">
+            <Image
+              src="/images/contact.png"
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 1023px) 100vw, 60vw"
+              className="object-cover object-[70%_center] opacity-40 saturate-[0.8]"
+            />
+          </div>
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0a0d14_0%,#0a0d14_32%,rgba(10,13,20,0.65)_65%,rgba(10,13,20,0.5)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0.5)_0%,rgba(10,13,20,0)_40%,#0a0d14_100%)]" />
+        </div>
+
+        <Container className="relative z-10">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={stagger(0.1, 0.05)}
+            className="py-20 lg:py-28"
+          >
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
+              <Eyebrow dark>Contact</Eyebrow>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark">
+                <LiveDot />
+                Taking new projects
+              </span>
+            </motion.div>
+            <h1 className="mt-6 max-w-[18ch] text-[clamp(2.2rem,4.6vw,4rem)] font-medium leading-[1] tracking-[-0.035em] text-white text-balance">
+              <Words text="Tell us how your business works today." delay={0.15} />
+            </h1>
+            <motion.p variants={fadeUp} className="mt-7 max-w-[50ch] text-base leading-relaxed text-on-dark sm:text-lg">
+              Share the workflow, bottleneck, or system idea. We&apos;ll come
+              back within one business day with a clear next step — no
+              generic pitch.
+            </motion.p>
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* FORM + CHANNELS */}
+      <section className="w-full bg-white py-20 lg:py-28">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+            {/* Channels */}
+            <Reveal amount={0.2} className="lg:sticky lg:top-28 lg:self-start">
+              <motion.div variants={fadeUp}>
+                <SectionHeading
+                  eyebrow="Reach us"
+                  title="Pick whichever channel is easiest."
+                  lede="WhatsApp gets the fastest reply. Email works if you'd rather send a brief."
+                />
+              </motion.div>
+              <motion.ul variants={fadeUp} className="mt-10 divide-y divide-line border-y border-line">
+                {CHANNELS.map((c) => {
+                  const Icon = c.icon;
+                  const inner = (
+                    <div className="group flex items-center gap-4 py-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-paper text-fg">
+                        <Icon className="h-4.5 w-4.5" />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-muted">{c.label}</span>
+                        <span className="mt-0.5 block truncate text-[15px] font-medium text-fg">{c.value}</span>
+                        <span className="block text-xs text-muted">{c.hint}</span>
+                      </span>
+                      {c.href ? (
+                        <ArrowRight className="h-4 w-4 shrink-0 text-muted transition-transform duration-300 group-hover:translate-x-1 group-hover:text-fg" />
+                      ) : null}
+                    </div>
+                  );
+                  return (
+                    <li key={c.label} className="group">
+                      {c.href ? (
+                        <a
+                          href={c.href}
+                          target={c.external ? "_blank" : undefined}
+                          rel={c.external ? "noopener noreferrer" : undefined}
+                          className="block"
+                        >
+                          {inner}
+                        </a>
+                      ) : (
+                        inner
+                      )}
+                    </li>
+                  );
+                })}
+              </motion.ul>
+            </Reveal>
+
+            {/* Form */}
+            <Reveal amount={0.15}>
+              <motion.div
+                variants={scaleIn}
+                className="rounded-[24px] border border-line bg-paper p-6 sm:p-9 lg:p-11"
+              >
+                <Suspense fallback={<FormSkeleton />}>
+                  <ContactForm />
+                </Suspense>
+              </motion.div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      {/* MAP */}
+      <section className="w-full bg-paper py-20 lg:py-28">
+        <Container>
+          <Reveal amount={0.2} className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <motion.div variants={fadeUp}>
+              <SectionHeading
+                eyebrow="Where we are"
+                title="Vijayawada, Andhra Pradesh."
+                lede="A distributed team across Andhra Pradesh, Tamil Nadu, and Gujarat, with our head office in Currency Nagar."
+              />
+            </motion.div>
+            <motion.div variants={scaleIn} className="overflow-hidden rounded-2xl border border-line bg-white">
+              <div className="h-[340px] w-full saturate-[0.6] contrast-[1.05] sm:h-[420px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7650.282550480341!2d80.68470445!3d16.5189639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e4d58eddf989%3A0xc59ca086dfcafab8!2scurrency%20nagar%2C%20Vijayawada%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1789016728504!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="FlowFoundry AI Solutions location in Currency Nagar, Vijayawada"
+                />
+              </div>
+            </motion.div>
+          </Reveal>
+        </Container>
+      </section>
+    </div>
+  );
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+type FormState = {
+  name: string;
+  company: string;
+  phone: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+type Errors = Partial<Record<keyof FormState, string>>;
+
+function ContactForm() {
+  const params = useSearchParams();
+  const interest = params.get("interest") ?? params.get("solution") ?? "";
+  const presetSubject = INTEREST_LABELS[interest] ?? "";
+
+  const [form, setForm] = useState<FormState>({
     name: "",
     company: "",
     phone: "",
     email: "",
-    subject: "",
+    subject: presetSubject,
     message: "",
   });
+  const [errors, setErrors] = useState<Errors>({});
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+    if (errors[k]) setErrors((er) => ({ ...er, [k]: undefined }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const validate = (): Errors => {
+    const er: Errors = {};
+    if (form.name.trim().length < 2) er.name = "Please enter your name.";
+    if (!/^[+\d][\d\s()-]{6,}$/.test(form.phone.trim())) er.phone = "Enter a valid phone number.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) er.email = "Enter a valid email address.";
+    if (form.message.trim().length < 12) er.message = "Give us a little more detail (12+ characters).";
+    return er;
+  };
 
-    const messageLines = [
-      "Hello FlowFoundry! 👋",
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const er = validate();
+    setErrors(er);
+    if (Object.keys(er).length) return;
+
+    setStatus("sending");
+    const lines = [
+      "Hello FlowFoundry,",
       "",
       "I'd like to get in touch. Here are my details:",
       "",
-      `*Name:* ${formData.name || "—"}`,
-      `*Company:* ${formData.company || "—"}`,
-      `*Phone:* ${formData.phone || "—"}`,
-      `*Email:* ${formData.email || "—"}`,
-      `*Subject:* ${formData.subject || "—"}`,
+      `*Name:* ${form.name}`,
+      `*Company:* ${form.company || "—"}`,
+      `*Phone:* ${form.phone}`,
+      `*Email:* ${form.email}`,
+      `*Subject:* ${form.subject || "—"}`,
       "",
       "*Message:*",
-      formData.message || "—",
+      form.message,
       "",
       "— Sent from the FlowFoundry website",
     ];
-
-    const message = messageLines.join("\n");
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.open(waLink(lines.join("\n")), "_blank", "noopener,noreferrer");
+    setTimeout(() => setStatus("sent"), 600);
   };
 
+  if (status === "sent") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex min-h-[420px] flex-col items-start justify-center"
+      >
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-live/10 text-live">
+          <Check weight="bold" className="h-5 w-5" />
+        </span>
+        <h2 className="mt-6 text-2xl font-medium tracking-[-0.02em] text-fg">WhatsApp is open with your message.</h2>
+        <p className="mt-3 max-w-[46ch] text-[15px] leading-relaxed text-body">
+          Hit send in WhatsApp and we&apos;ll reply there. If it didn&apos;t open, email us at{" "}
+          <a href={`mailto:${SITE.email}`} className="font-medium text-fg underline decoration-line-strong underline-offset-4">
+            {SITE.email}
+          </a>
+          .
+        </p>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-8 text-sm font-medium text-fg underline decoration-line-strong underline-offset-4"
+        >
+          Send another message
+        </button>
+      </motion.div>
+    );
+  }
+
   return (
-    <>
-      {/* =====================================================
-          HERO
-      ===================================================== */}
-      <motion.section
-        initial="hidden"
-        animate="visible"
-        variants={fadeIn}
-        className="relative w-full overflow-hidden bg-[#0A1330]"
-      >
-        {/* Background layers */}
-        <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
-            style={{ backgroundImage: "url('/images/contact.png')" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1330]/85 via-[#0A1330]/75 to-[#0A1330]/95" />
-          {/* Grid pattern */}
-          <div
-            className="absolute inset-0 opacity-[0.07]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
-              backgroundSize: "56px 56px",
-            }}
-          />
-          {/* Ambient orbs */}
-          <div className="absolute -left-32 top-10 h-80 w-80 rounded-full bg-[#4F6BFF]/25 blur-[120px]" />
-          <div className="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-[#8B5CF6]/25 blur-[130px]" />
-        </div>
+    <form onSubmit={onSubmit} noValidate className="space-y-6">
+      <div>
+        <h2 className="text-2xl font-medium tracking-[-0.02em] text-fg">Send a message</h2>
+        <p className="mt-2 text-sm text-body">
+          Fill this in and we&apos;ll open WhatsApp with your message ready to send.
+        </p>
+      </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1200px] px-5 pb-32 pt-20 sm:px-6 sm:pb-40 sm:pt-28 lg:px-8 lg:pb-48 lg:pt-32">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-            {/* Left: Copy */}
-            <div>
-              <motion.div
-                variants={fadeInUp}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur-sm"
-              >
-                <SparkIcon className="h-3.5 w-3.5 text-[#8B5CF6]" />
-                <span className="text-xs font-medium text-white">
-                  Let&apos;s talk
-                </span>
-              </motion.div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field label="Name" name="name" value={form.name} onChange={set("name")} error={errors.name} placeholder="Your full name" autoComplete="name" required />
+        <Field label="Company" name="company" value={form.company} onChange={set("company")} placeholder="Company name" helper="Optional" autoComplete="organization" />
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field label="Phone" name="phone" type="tel" value={form.phone} onChange={set("phone")} error={errors.phone} placeholder="+91 98765 43210" autoComplete="tel" required />
+        <Field label="Email" name="email" type="email" value={form.email} onChange={set("email")} error={errors.email} placeholder="you@company.com" autoComplete="email" required />
+      </div>
+      <Field label="Subject" name="subject" value={form.subject} onChange={set("subject")} placeholder="What is this about?" helper="e.g. Lead qualification, LeadPulz demo, CRM integration" />
+      <Field
+        label="Message"
+        name="message"
+        value={form.message}
+        onChange={set("message")}
+        error={errors.message}
+        placeholder="Describe the process, the bottleneck, and what you'd like it to do instead."
+        textarea
+        required
+      />
 
-              <motion.h1
-                variants={fadeInUp}
-                className="mt-6 text-4xl font-bold leading-[1.05] tracking-[-0.03em] text-white sm:text-5xl lg:text-[64px]"
-              >
-                Let&apos;s build something
-                <br />
-                <span className="bg-gradient-to-r from-[#8B5CF6] via-[#4F6BFF] to-[#06B6D4] bg-clip-text text-transparent">
-                  remarkable together.
-                </span>
-              </motion.h1>
-
-              <motion.p
-                variants={fadeInUp}
-                className="mt-6 max-w-[540px] text-base leading-7 text-on-dark-muted sm:text-lg"
-              >
-                FlowFoundry is ready to provide the right solution according
-                to your needs. Tell us about your project and we&apos;ll get
-                back within one business day.
-              </motion.p>
-
-              <motion.div
-                variants={fadeInUp}
-                className="mt-8 flex flex-wrap items-center gap-3"
-              >
-                <div className="flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                  </span>
-                  <span className="text-xs font-medium text-white">
-                    Available for new projects
-                  </span>
-                </div>
-
-                {/* WhatsApp quick action */}
-                <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                    "Hi FlowFoundry! 👋 I'd like to discuss a project."
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2.5 rounded-full border border-[#25D366]/30 bg-[#25D366]/10 px-4 py-2 backdrop-blur-sm transition-all duration-300 hover:border-[#25D366]/50 hover:bg-[#25D366]/20"
-                >
-                  <WhatsAppIcon className="h-3.5 w-3.5 text-[#25D366]" />
-                  <span className="text-xs font-semibold text-[#25D366]">
-                    Chat on WhatsApp
-                  </span>
-                  <ArrowIcon className="h-3 w-3 text-[#25D366] transition-transform duration-300 group-hover:translate-x-0.5" />
-                </a>
-              </motion.div>
-            </div>
-
-            {/* Right: Quick contact cards */}
-            <motion.div
-              variants={staggerContainer}
-              className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1"
-            >
-              {[
-                {
-                  icon: MailIcon,
-                  label: "Email",
-                  value: SITE.email,
-                  href: `mailto:${SITE.email}`,
-                  gradient: "from-[#4F6BFF] to-[#8B5CF6]",
-                  shadow: "shadow-[0_8px_24px_-8px_rgba(79,107,255,.6)]",
-                },
-                {
-                  icon: PhoneIcon,
-                  label: "Phone",
-                  value: "+91 73309 37354",
-                  href: "tel:+917330937354",
-                  gradient: "from-[#F472B6] to-[#8B5CF6]",
-                  shadow: "shadow-[0_8px_24px_-8px_rgba(244,114,182,.6)]",
-                },
-                {
-                  icon: WhatsAppIcon,
-                  label: "WhatsApp",
-                  value: "Instant reply",
-                  href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                    "Hi FlowFoundry! 👋"
-                  )}`,
-                  external: true,
-                  gradient: "from-[#25D366] to-[#128C7E]",
-                  shadow: "shadow-[0_8px_24px_-8px_rgba(37,211,102,.6)]",
-                },
-              ].map((item, i) => (
-                <motion.a
-                  key={i}
-                  href={item.href}
-                  target={item.external ? "_blank" : undefined}
-                  rel={item.external ? "noopener noreferrer" : undefined}
-                  variants={fadeInUp}
-                  whileHover={{ y: -3 }}
-                  className="group flex items-center gap-4 rounded-lg border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07]"
-                >
-                  <div
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${item.gradient} text-white ${item.shadow}`}
-                  >
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-2xs font-medium uppercase tracking-wider text-on-dark-quiet">
-                      {item.label}
-                    </p>
-                    <p className="truncate text-sm font-semibold text-white">
-                      {item.value}
-                    </p>
-                  </div>
-                  <ArrowIcon className="h-4 w-4 text-on-dark-quiet transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
-                </motion.a>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Curved divider */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#F0F4FA] to-transparent" />
-      </motion.section>
-
-      {/* =====================================================
-          CONTACT FORM + INFO
-      ===================================================== */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.05 }}
-        variants={staggerContainer}
-        className="relative bg-[#F0F4FA] pb-16 sm:pb-20"
-      >
-        <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
-          <motion.div
-            variants={scaleIn}
-            className="-mt-24 overflow-hidden rounded-xl bg-white shadow-[0_30px_80px_-20px_rgba(15,27,61,.18)] ring-1 ring-black/[0.03] sm:-mt-28 lg:-mt-32"
+      <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
+        <Magnetic strength={0.2} className="shrink-0">
+          <button
+            type="submit"
+            disabled={status === "sending"}
+            className="group/btn inline-flex h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-fg px-7 text-[15px] font-medium text-white shadow-[0_1px_0_rgba(255,255,255,0.08)_inset,0_10px_24px_-12px_rgba(14,17,24,0.5)] transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-ink-3 active:translate-y-px active:scale-[0.98] disabled:opacity-60 sm:w-auto"
           >
-            <div className="grid gap-0 lg:grid-cols-[0.85fr_1.15fr]">
-              {/* LEFT: Info panel */}
-              <div className="relative overflow-hidden border-b border-[#EDF0F6] bg-gradient-to-br from-[#0F1B3D] to-[#1A2340] p-8 sm:p-10 lg:border-b-0 lg:border-r lg:p-12">
-                {/* Ambient orbs */}
-                <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#4F6BFF]/25 blur-[90px]" />
-                <div className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-[#8B5CF6]/20 blur-[100px]" />
+            <WhatsappLogo weight="fill" className="h-4.5 w-4.5 text-[#5fd39e]" />
+            {status === "sending" ? "Opening WhatsApp…" : "Send via WhatsApp"}
+            <ArrowRight weight="bold" className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
+          </button>
+        </Magnetic>
+        <p className="text-xs leading-relaxed text-muted">
+          Nothing is stored on our servers. Your message goes straight to WhatsApp.
+        </p>
+      </div>
+    </form>
+  );
+}
 
-                <div className="relative">
-                  <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                    Get in touch
-                  </h2>
-                  <p className="mt-3 max-w-[380px] text-sm leading-6 text-on-dark-muted">
-                    We&apos;re here to answer your questions and help you
-                    explore how AI, automation, and custom software can
-                    transform your business.
-                  </p>
+function Field({
+  label,
+  name,
+  value,
+  onChange,
+  error,
+  helper,
+  placeholder,
+  type = "text",
+  textarea = false,
+  required = false,
+  autoComplete,
+}: {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  error?: string;
+  helper?: string;
+  placeholder?: string;
+  type?: string;
+  textarea?: boolean;
+  required?: boolean;
+  autoComplete?: string;
+}) {
+  const base =
+    "w-full rounded-xl border bg-white px-4 py-3.5 text-[15px] text-fg placeholder:text-muted/70 transition-[border-color,box-shadow] duration-300 focus:outline-none focus:ring-4 " +
+    (error
+      ? "border-danger/60 focus:border-danger focus:ring-danger/10"
+      : "border-line-strong focus:border-accent focus:ring-accent/10");
 
-                  <div className="mt-10 space-y-5">
-                    {CONTACT_INFO.map((item, i) => (
-                      <motion.div
-                        key={i}
-                        variants={fadeInUp}
-                        className="flex items-start gap-4"
-                      >
-                        <div
-                          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${item.gradient} text-white ${item.accent}`}
-                        >
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-2xs font-semibold uppercase tracking-wider text-on-dark-quiet">
-                            {item.label}
-                          </p>
-                          {item.href ? (
-                            <a
-                              href={item.href}
-                              target={item.external ? "_blank" : undefined}
-                              rel={item.external ? "noopener noreferrer" : undefined}
-                              className={`mt-0.5 block text-sm font-medium text-white transition-colors ${
-                                item.label === "WhatsApp"
-                                  ? "hover:text-[#25D366]"
-                                  : "hover:text-[#8B5CF6]"
-                              }`}
-                            >
-                              {item.value}
-                            </a>
-                          ) : (
-                            <p className="mt-0.5 whitespace-pre-line text-sm font-medium text-white">
-                              {item.value}
-                            </p>
-                          )}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+  return (
+    <div className="flex flex-col gap-2">
+      <label htmlFor={name} className="flex items-baseline justify-between">
+        <span className="text-[13px] font-medium text-fg">{label}</span>
+        {required ? (
+          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">Required</span>
+        ) : null}
+      </label>
+      {textarea ? (
+        <textarea
+          id={name}
+          name={name}
+          rows={5}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${name}-error` : helper ? `${name}-helper` : undefined}
+          className={`${base} resize-y`}
+        />
+      ) : (
+        <input
+          id={name}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${name}-error` : helper ? `${name}-helper` : undefined}
+          className={base}
+        />
+      )}
+      {error ? (
+        <p id={`${name}-error`} className="text-xs text-danger">
+          {error}
+        </p>
+      ) : helper ? (
+        <p id={`${name}-helper`} className="text-xs text-muted">
+          {helper}
+        </p>
+      ) : null}
+    </div>
+  );
+}
 
-                  {/* Divider */}
-                  <div className="my-8 h-px bg-white/10" />
-
-                  {/* WhatsApp CTA card */}
-                  <motion.a
-                    variants={fadeInUp}
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                      "Hi FlowFoundry! 👋 I'd like to get in touch."
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ y: -3 }}
-                    className="group flex items-center gap-3 rounded-lg border border-[#25D366]/30 bg-[#25D366]/10 p-4 transition-all duration-300 hover:border-[#25D366]/50 hover:bg-[#25D366]/20"
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white shadow-[0_8px_24px_-8px_rgba(37,211,102,.6)]">
-                      <WhatsAppIcon className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold text-white">
-                        Prefer WhatsApp?
-                      </p>
-                      <p className="text-xs text-on-dark-muted">
-                        Get a reply within minutes
-                      </p>
-                    </div>
-                    <ArrowIcon className="h-4 w-4 text-[#25D366] transition-transform duration-300 group-hover:translate-x-1" />
-                  </motion.a>
-
-                  {/* Trust note */}
-                  <p className="mt-6 text-xs leading-6 text-on-dark-quiet">
-                    <span className="font-semibold text-white">
-                      Typical response time:
-                    </span>{" "}
-                    Under 1 business day via email. Immediate on WhatsApp.
-                  </p>
-                </div>
-              </div>
-
-              {/* RIGHT: Form */}
-              <div className="p-8 sm:p-10 lg:p-12">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h2 className="text-2xl font-bold text-[#0F1B3D] sm:text-3xl">
-                      Send us a message
-                    </h2>
-                    <p className="mt-2 text-sm leading-6 text-[#64708B]">
-                      Fill in the form and we&apos;ll open WhatsApp with your
-                      details ready to send.
-                    </p>
-                  </div>
-                </div>
-
-                <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <Field
-                      label="Name"
-                      name="name"
-                      placeholder="Your full name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                    <Field
-                      label="Company"
-                      name="company"
-                      placeholder="Company name"
-                      value={formData.company}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <Field
-                      label="Phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="+91 00000 00000"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                    />
-                    <Field
-                      label="Email"
-                      name="email"
-                      type="email"
-                      placeholder="you@company.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <Field
-                    label="Subject"
-                    name="subject"
-                    placeholder="What is this about?"
-                    value={formData.subject}
-                    onChange={handleChange}
-                  />
-
-                  <TextArea
-                    label="Message"
-                    name="message"
-                    placeholder="Tell us about your project, goals, or questions..."
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  />
-
-                  {/* Submit buttons */}
-                  <div className="grid gap-3 sm:grid-cols-[1.4fr_1fr]">
-                    <button
-                      type="submit"
-                      className="group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-md bg-gradient-to-r from-[#25D366] to-[#1EBE5A] px-6 py-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(37,211,102,.55)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,.7)]"
-                    >
-                      <WhatsAppIcon className="h-5 w-5" />
-                      Send via WhatsApp
-                      <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </button>
-
-                    <a
-                      href={`mailto:${SITE.email}?subject=${encodeURIComponent(
-                        formData.subject || "Enquiry from FlowFoundry website"
-                      )}&body=${encodeURIComponent(
-                        `Name: ${formData.name}\nCompany: ${formData.company}\nPhone: ${formData.phone}\nEmail: ${formData.email}\n\n${formData.message}`
-                      )}`}
-                      className="group flex w-full items-center justify-center gap-2 rounded-md border border-[#E3E8F1] bg-[#FAFBFD] px-6 py-4 text-sm font-semibold text-[#0F1B3D] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#4F6BFF]/30 hover:bg-white hover:shadow-[0_10px_30px_-10px_rgba(79,107,255,.35)]"
-                    >
-                      <MailIcon className="h-4 w-4" />
-                      Email Instead
-                    </a>
-                  </div>
-
-                  <p className="text-center text-xs text-[#8A92A6]">
-                    WhatsApp opens with your message ready to send. No data is
-                    stored on our servers.
-                  </p>
-                </form>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* =====================================================
-          MAP
-      ===================================================== */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-        variants={fadeIn}
-        className="w-full bg-[#F0F4FA] pb-16 sm:pb-20"
-      >
-        <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
-          <motion.div
-            variants={scaleIn}
-            className="relative overflow-hidden rounded-xl bg-white shadow-[0_20px_60px_-20px_rgba(15,27,61,.15)] ring-1 ring-black/[0.03]"
-          >
-            <div className="h-[380px] w-full sm:h-[440px] lg:h-[500px]">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7650.282550480341!2d80.68470445!3d16.5189639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e4d58eddf989%3A0xc59ca086dfcafab8!2scurrency%20nagar%2C%20Vijayawada%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1789016728504!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-                title="FlowFoundry AI Solutions location in Currency Nagar, Vijayawada"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* =====================================================
-          BOTTOM CTA
-      ===================================================== */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeInUp}
-        className="bg-[#F0F4FA] px-5 pb-20 sm:px-6 sm:pb-24 lg:px-8"
-      >
-        <div className="mx-auto max-w-[1200px]">
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0F1B3D] via-[#1A2340] to-[#0F1B3D] px-6 py-16 text-center sm:px-10 sm:py-20">
-            {/* Background effects */}
-            <div className="pointer-events-none absolute inset-0">
-              <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#4F6BFF]/25 blur-[110px]" />
-              <div className="absolute -bottom-40 left-0 h-96 w-96 rounded-full bg-[#8B5CF6]/25 blur-[120px]" />
-              <div className="absolute -bottom-20 right-1/4 h-72 w-72 rounded-full bg-[#25D366]/15 blur-[110px]" />
-              <div
-                className="absolute inset-0 opacity-[0.06]"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-                  backgroundSize: "48px 48px",
-                }}
-              />
-            </div>
-
-            <div className="relative z-10">
-              <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur-sm">
-                <SparkIcon className="h-3.5 w-3.5 text-[#8B5CF6]" />
-                <span className="text-xs font-medium text-white">
-                  Start a conversation
-                </span>
-              </div>
-
-              <h2 className="mx-auto mt-6 max-w-3xl text-3xl font-light leading-[1.15] tracking-[-0.02em] text-white sm:text-4xl lg:text-[44px]">
-                Start with the business problem.
-                <br />
-                <span className="bg-gradient-to-r from-[#8B5CF6] via-[#4F6BFF] to-[#06B6D4] bg-clip-text font-semibold text-transparent">
-                  We&apos;ll help design the system.
-                </span>
-              </h2>
-
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-on-dark-muted sm:text-base">
-                AI agents, automation, custom software, and integrations are
-                tools. The goal is building a better way for your business to
-                work.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                    "Hi FlowFoundry! 👋 I'd like to discuss how AI and automation can help my business."
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#25D366] to-[#1EBE5A] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(37,211,102,.55)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgba(37,211,102,.75)]"
-                >
-                  <WhatsAppIcon className="h-4 w-4" />
-                  Chat on WhatsApp
-                  <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
-
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
-                >
-                  <MailIcon className="h-4 w-4" />
-                  Email Us
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-    </>
+function FormSkeleton() {
+  return (
+    <div className="space-y-6" aria-hidden="true">
+      <div className="space-y-2">
+        <div className="shimmer h-7 w-48 rounded-md bg-line" />
+        <div className="shimmer h-4 w-72 rounded-md bg-line" />
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="shimmer h-[76px] rounded-xl bg-line" />
+        <div className="shimmer h-[76px] rounded-xl bg-line" />
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="shimmer h-[76px] rounded-xl bg-line" />
+        <div className="shimmer h-[76px] rounded-xl bg-line" />
+      </div>
+      <div className="shimmer h-[76px] rounded-xl bg-line" />
+      <div className="shimmer h-[160px] rounded-xl bg-line" />
+      <div className="shimmer h-13 w-56 rounded-full bg-line" />
+    </div>
   );
 }

@@ -588,12 +588,54 @@ The website follows a mobile-first responsive layout.
 
 ## 🎨 UI/UX & Design System
 
-The FlowFoundry visual identity uses a clean, light-first, premium B2B SaaS aesthetic.
+The FlowFoundry visual identity is dark-first, editorial, and restrained: off-black surfaces that match the logo, zinc neutrals, and a single desaturated electric-blue accent. Tokens live in `src/app/globals.css` (`@theme`), shared primitives in `src/components/ui.tsx`, motion helpers in `src/components/motion.tsx`, page patterns in `src/components/sections.tsx`, and perpetual-motion visuals in `src/components/visuals.tsx`.
 
 ### Color Palette
 
 | Token | Value | Usage |
 | :--- | :--- | :--- |
+| **Ink** | `#0A0D14` | Primary dark surface, hero + footer, matches the logo |
+| **Ink 2 / 3** | `#10141D` / `#171C27` | Raised dark panels, dark hover states |
+| **Paper** | `#F6F6F7` | Alternate light section background |
+| **Foreground** | `#0E1118` | Headings on light surfaces |
+| **Body / Muted** | `#4B5160` / `#7A8090` | Body copy, labels |
+| **Accent** | `#3B74E6` | The only accent — links, eyebrows, active states |
+| **Accent (on dark)** | `#6D9BFF` | Accent on dark surfaces |
+| **Live** | `#22A06B` | Semantic only — status dots, completed actions |
+
+No gradients on text, no purple, no glows. Shadows are tinted to the surface and kept soft.
+
+### Typography
+
+- **Geist** for display and body (`--font-geist`), medium weight, tight tracking (`-0.03em`)
+- **Geist Mono** for eyebrows, indices, metrics, and labels (uppercase, `0.16em` tracking)
+- Display sizes use `clamp()`; H1s stay under ~4.2rem
+
+### Layout
+
+- Left-aligned or split headings (`SectionHeading align="split"`), no centered heroes
+- Asymmetric grids (`1.15fr_0.85fr`, `0.8fr_1.2fr`), row lists with `divide-y` instead of card rows
+- Every asymmetric layout collapses to a single column below `lg`
+
+### Motion
+
+Framer Motion, spring physics for interactive elements, expo-out for reveals:
+
+```text
+Words        — headline words rise in sequence
+Reveal       — staggered in-view reveal (once)
+Magnetic     — CTA pulls toward the cursor (motion values only)
+Tilt         — dashboard frame follows the cursor
+Spotlight    — card border illuminates under the cursor
+Marquee      — integrations band
+AgentConsole — looping "live run" in the home hero
+SystemFlow   — scroll-drawn route between the four system layers
+StickyStack  — "Why FlowFoundry" cards pile as you scroll
+```
+
+All perpetual animations are isolated, memoized client components and respect `prefers-reduced-motion`.
+
+--- | :--- | :--- |
 | **FlowFoundry Violet** | `#6161FF` | Primary actions, links, active states |
 | **Electric Cyan** | `#3AC9FF` | Secondary technology accent |
 | **Accent Purple** | `#9450FD` | Gradient highlights |

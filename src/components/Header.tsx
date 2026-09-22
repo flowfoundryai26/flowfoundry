@@ -4,13 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { CaretDown, WhatsappLogo } from "@phosphor-icons/react";
 import { NAV, SITE } from "@/lib/site";
-import { buttonClass } from "./ui";
-
-/* =========================================================
-   HELPERS
-========================================================= */
+import { Arrow, buttonClass } from "./ui";
+import { EASE, SPRING_SNAPPY } from "./motion";
 
 const getWhatsAppUrl = () => {
   const phone = SITE.whatsapp.replace(/[^0-9]/g, "");
@@ -18,101 +16,36 @@ const getWhatsAppUrl = () => {
   return `https://wa.me/${phone}?text=${message}`;
 };
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-/* =========================================================
-   ICONS
-========================================================= */
-
-function Arrow({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      className={`h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-0.5 ${className}`}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  );
-}
-
-function WhatsAppIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
-  );
-}
-
-function ChevronDown({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="10"
-      height="10"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="m6 9 6 6 6-6"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 /* =========================================================
    LOGO
 ========================================================= */
 
-export function Logo({ dark = false }: { dark?: boolean }) {
+export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
       aria-label={`${SITE.name}, home`}
-      className="group flex shrink-0 items-center gap-3"
+      className={`group flex shrink-0 items-center gap-3 ${className}`}
     >
-      <div className="relative h-9 w-9 sm:h-10 sm:w-10">
-        <div className="absolute inset-0 rounded-md bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-40" />
-        <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-md border border-slate-200/70 bg-white shadow-sm transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
-          <Image
-            src="/logo.png"
-            alt={`${SITE.short} logo`}
-            width={60}
-            height={60}
-            className="rounded-full object-cover"
-            priority
-            unoptimized
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-col leading-none">
-        <span
-          className={`text-base font-semibold tracking-[-0.02em] sm:text-lg ${
-            dark ? "text-white" : "text-ink"
-          }`}
-        >
+      <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-ink-2 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-rotate-6">
+        <Image
+          src="/logo.png"
+          alt=""
+          width={36}
+          height={36}
+          className="h-full w-full object-cover"
+          priority
+          unoptimized
+        />
+      </span>
+      <span className="flex flex-col leading-none">
+        <span className="text-[15px] font-semibold tracking-[-0.02em] text-white">
           FlowFoundry
         </span>
-        <span
-          className={`mt-0.5 text-2xs font-medium uppercase tracking-[0.18em] ${
-            dark ? "text-on-dark-quiet" : "text-muted"
-          }`}
-        >
+        <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-on-dark-muted">
           AI Solutions
         </span>
-      </div>
+      </span>
     </Link>
   );
 }
@@ -125,157 +58,128 @@ export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hover, setHover] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
   const whatsappUrl = getWhatsAppUrl();
 
-  // Scroll sentinel
   useEffect(() => {
-    const sentinel = document.createElement("div");
-    sentinel.style.cssText =
-      "position:absolute;top:0;height:1px;width:1px;pointer-events:none";
-    document.body.prepend(sentinel);
-    const io = new IntersectionObserver(
-      ([e]) => setScrolled(!e.isIntersecting),
-      { threshold: 0 }
-    );
-    io.observe(sentinel);
-    return () => {
-      io.disconnect();
-      sentinel.remove();
-    };
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close drawer on route change
   useEffect(() => setOpen(false), [pathname]);
 
-  // Lock body scroll
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    document.documentElement.style.overflow = open ? "hidden" : "";
     return () => {
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [open]);
 
-  // Active route
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
     const base = href.split("#")[0];
     if (base === "/") return pathname === "/";
     return pathname === base || pathname.startsWith(base + "/");
   };
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-500 ${
-        scrolled
-          ? "border-b border-slate-200/60 bg-white/85 shadow-[0_8px_30px_-12px_rgba(15,27,61,0.08)] backdrop-blur-xl"
-          : "border-b border-transparent bg-white/60 backdrop-blur-md"
-      }`}
-    >
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-10">
-        <div
-          className={`flex items-center justify-between gap-4 transition-all duration-300 ${
-            scrolled ? "h-[64px] sm:h-[68px]" : "h-[72px] sm:h-[80px]"
-          }`}
-        >
-          {/* Logo */}
+    <>
+      <header
+        className={`sticky top-0 z-50 w-full transition-[background-color,border-color,backdrop-filter] duration-500 ${
+          scrolled
+            ? "border-b border-white/[0.06] bg-ink/70 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex h-[72px] w-full max-w-[1400px] items-center justify-between gap-6 px-5 sm:px-8 lg:px-12">
           <Logo />
 
           {/* Desktop nav */}
           <nav
-            className="hidden items-center gap-0.5 lg:flex"
             aria-label="Primary"
+            className="hidden items-center lg:flex"
+            onMouseLeave={() => setHover(null)}
           >
             {NAV.map((item) => {
               const active = isActive(item.href);
+              const hovered = hover === item.href;
               return (
-                <div key={item.href} className="group relative">
+                <div
+                  key={item.href}
+                  className="group relative"
+                  onMouseEnter={() => setHover(item.href)}
+                >
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`relative flex items-center gap-1.5 rounded-md px-3.5 py-2 text-sm font-medium transition-colors duration-200 ${
-                      active
-                        ? "bg-slate-100 text-ink"
-                        : "text-slate hover:text-ink"
+                    className={`relative z-10 flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[13.5px] font-medium transition-colors duration-300 ${
+                      active || hovered ? "text-white" : "text-on-dark"
                     }`}
                   >
-                    <span className="relative">
-                      {item.label}
-                      {item.badge && (
-                        <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6] align-middle" />
-                      )}
-                    </span>
-
-                    {item.children && (
-                      <ChevronDown className="transition-transform duration-200 group-hover:rotate-180" />
-                    )}
-
-                    {/* Active underline */}
-                    {active && (
-                      <motion.span
-                        layoutId="nav-underline"
-                        className="absolute inset-x-3.5 bottom-0 h-0.5 rounded-full bg-gradient-to-r from-[#4F6BFF] to-[#8B5CF6]"
-                        transition={{ duration: 0.3, ease: EASE }}
+                    {item.label}
+                    {item.children ? (
+                      <CaretDown
+                        weight="bold"
+                        className="h-3 w-3 opacity-60 transition-transform duration-300 group-hover:rotate-180"
+                        aria-hidden="true"
                       />
-                    )}
-
-                    {/* Hover underline */}
-                    {!active && (
-                      <span className="absolute inset-x-3.5 -bottom-0.5 h-0.5 origin-center scale-x-0 rounded-full bg-slate-300 transition-transform duration-300 group-hover:scale-x-100" />
-                    )}
+                    ) : null}
                   </Link>
 
+                  {(hovered || (!hover && active)) && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      transition={SPRING_SNAPPY}
+                      className="absolute inset-0 rounded-full bg-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                    />
+                  )}
+
                   {/* Dropdown */}
-                  {item.children && (
-                    <div className="invisible absolute left-0 top-full z-10 w-[300px] translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                      <div className="overflow-hidden rounded-lg border border-slate-200/70 bg-white/95 p-1.5 shadow-[0_20px_50px_-20px_rgba(15,27,61,0.2)] backdrop-blur-xl">
-                        {item.children.map((child: any) => (
+                  {item.children ? (
+                    <div className="invisible absolute left-0 top-full z-20 w-[280px] translate-y-1 pt-3 opacity-0 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                      <div className="overflow-hidden rounded-xl border border-white/10 bg-ink-2/95 p-1.5 shadow-dark backdrop-blur-xl">
+                        {item.children.map((child, i) => (
                           <Link
                             key={child.href}
                             href={child.href}
-                            className="group/item block rounded-md px-3.5 py-2.5 transition-colors duration-150 hover:bg-slate-50"
+                            className="group/item flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-[13px] text-on-dark transition-colors duration-200 hover:bg-white/[0.06] hover:text-white"
                           >
-                            <div className="flex items-center justify-between gap-3">
-                              <div>
-                                <p className="text-xs font-medium text-slate group-hover/item:text-[#4F6BFF]">
-                                  {child.label}
-                                </p>
-                                {child.description && (
-                                  <p className="mt-0.5 text-2xs leading-5 text-muted">
-                                    {child.description}
-                                  </p>
-                                )}
-                              </div>
-                              <Arrow className="h-3.5 w-3.5 shrink-0 text-muted opacity-0 transition-all duration-200 group-hover/item:translate-x-0.5 group-hover/item:text-[#4F6BFF] group-hover/item:opacity-100" />
-                            </div>
+                            <span className="flex items-center gap-3">
+                              <span className="font-mono text-2xs text-on-dark-muted">
+                                {String(i + 1).padStart(2, "0")}
+                              </span>
+                              {child.label}
+                            </span>
+                            <Arrow className="h-3.5 w-3.5 -translate-x-1 opacity-0 transition-all duration-300 group-hover/item:translate-x-0 group-hover/item:opacity-100" />
                           </Link>
                         ))}
                       </div>
                     </div>
-                  )}
+                  ) : null}
                 </div>
               );
             })}
           </nav>
 
           {/* Desktop actions */}
-          <div className="hidden items-center gap-2.5 lg:flex">
+          <div className="hidden items-center gap-2 lg:flex">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
-              className={`${buttonClass({ variant: "secondary", size: "sm" })} px-4`}
+              className={`${buttonClass({ variant: "outlineOnDark", size: "sm" })} px-3.5`}
             >
-              <WhatsAppIcon className="h-4 w-4 text-emerald-600" />
+              <WhatsappLogo weight="fill" className="h-4 w-4 text-[#5fd39e]" />
               <span className="hidden xl:inline">WhatsApp</span>
             </a>
-
             <Link
               href="/contact"
-              className={buttonClass({ variant: "primary", size: "sm" })}
+              className={buttonClass({ variant: "onDark", size: "sm" })}
             >
-              Get Started
+              Start a project
               <Arrow />
             </Link>
           </div>
@@ -287,98 +191,110 @@ export default function Header() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="relative flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-white transition-all duration-200 hover:bg-slate-50 active:scale-95 lg:hidden"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] transition-colors duration-300 hover:bg-white/[0.08] active:scale-95 lg:hidden"
           >
-            <span className="relative block h-[1.5px] w-[18px] bg-slate-800">
+            <span className="relative block h-[14px] w-[18px]">
               <span
-                className={`absolute left-0 block h-[1.5px] w-[18px] bg-slate-800 transition-all duration-300 ${
-                  open ? "top-0 rotate-45" : "-top-[6px]"
+                className={`absolute left-0 block h-[1.5px] w-full bg-white transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  open ? "top-[6px] rotate-45" : "top-0"
                 }`}
               />
               <span
-                className={`absolute left-0 block h-[1.5px] w-[18px] bg-slate-800 transition-all duration-300 ${
-                  open ? "top-0 -rotate-45" : "top-[6px]"
+                className={`absolute left-0 top-[6px] block h-[1.5px] w-full bg-white transition-all duration-300 ${
+                  open ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute left-0 block h-[1.5px] w-full bg-white transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  open ? "top-[6px] -rotate-45" : "top-[12px]"
                 }`}
               />
             </span>
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile full-screen menu */}
       <AnimatePresence>
         {open && (
           <motion.div
             id="mobile-nav"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: EASE }}
-            className="max-h-[calc(100dvh-72px)] w-full overflow-y-auto border-t border-slate-200/70 bg-white/98 px-5 pb-8 pt-4 backdrop-blur-xl lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: EASE }}
+            className="fixed inset-0 z-40 flex flex-col bg-ink pt-[72px] lg:hidden"
           >
-            {/* Nav items */}
-            <nav className="space-y-1">
-              {NAV.map((item) => {
+            <motion.nav
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } },
+              }}
+              className="flex-1 overflow-y-auto px-6 py-6"
+            >
+              {NAV.map((item, i) => {
                 const active = isActive(item.href);
                 const isExpanded = expanded === item.label;
-
                 return (
-                  <div key={item.href}>
-                    <div className="flex items-center gap-1">
+                  <motion.div
+                    key={item.href}
+                    variants={{
+                      hidden: { opacity: 0, y: 16 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+                    }}
+                    className="border-b border-white/[0.06]"
+                  >
+                    <div className="flex items-center">
                       <Link
                         href={item.href}
-                        className={`flex-1 rounded-md px-3 py-3 text-sm font-medium transition-colors duration-200 ${
-                          active
-                            ? "bg-slate-100 text-ink"
-                            : "text-slate hover:bg-slate-50"
+                        className={`flex flex-1 items-baseline gap-4 py-4 text-2xl font-medium tracking-[-0.02em] ${
+                          active ? "text-white" : "text-on-dark"
                         }`}
                       >
-                        <span className="flex items-center gap-2">
-                          {item.label}
-                          {item.badge && (
-                            <span className="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-br from-[#4F6BFF] to-[#8B5CF6]" />
-                          )}
+                        <span className="font-mono text-2xs text-on-dark-muted">
+                          {String(i + 1).padStart(2, "0")}
                         </span>
+                        {item.label}
                       </Link>
-
-                      {item.children && (
+                      {item.children ? (
                         <button
                           type="button"
                           onClick={() =>
-                            setExpanded((v) =>
-                              v === item.label ? null : item.label
-                            )
+                            setExpanded((v) => (v === item.label ? null : item.label))
                           }
                           aria-expanded={isExpanded}
                           aria-label={`Toggle ${item.label} submenu`}
-                          className="flex h-10 w-10 items-center justify-center rounded-md text-muted transition-all duration-200 hover:bg-slate-50 hover:text-slate"
+                          className="flex h-10 w-10 items-center justify-center rounded-full text-on-dark-muted transition-colors hover:bg-white/[0.06] hover:text-white"
                         >
-                          <ChevronDown
-                            className={`transition-transform duration-300 ${
+                          <CaretDown
+                            weight="bold"
+                            className={`h-3.5 w-3.5 transition-transform duration-300 ${
                               isExpanded ? "rotate-180" : ""
                             }`}
                           />
                         </button>
-                      )}
+                      ) : null}
                     </div>
 
-                    {/* Submenu */}
-                    {item.children && (
+                    {item.children ? (
                       <AnimatePresence initial={false}>
                         {isExpanded && (
                           <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.25, ease: EASE }}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.35, ease: EASE }}
                             className="overflow-hidden"
                           >
-                            <div className="ml-3 mt-1 space-y-0.5 border-l border-slate-200 pl-3">
-                              {item.children.map((child: any) => (
+                            <div className="mb-4 ml-9 space-y-1 border-l border-white/10 pl-4">
+                              {item.children.map((child) => (
                                 <Link
                                   key={child.href}
                                   href={child.href}
-                                  className="block rounded-md px-3 py-2.5 text-sm text-slate transition-colors duration-150 hover:bg-slate-50 hover:text-[#4F6BFF]"
+                                  className="block py-2 text-sm text-on-dark transition-colors hover:text-white"
                                 >
                                   {child.label}
                                 </Link>
@@ -387,34 +303,38 @@ export default function Header() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    )}
-                  </div>
+                    ) : null}
+                  </motion.div>
                 );
               })}
-            </nav>
+            </motion.nav>
 
-            {/* Mobile actions */}
-            <div className="mt-6 grid gap-2.5 border-t border-slate-100 pt-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.5, ease: EASE }}
+              className="grid gap-2.5 border-t border-white/[0.06] px-6 py-6"
+            >
+              <Link
+                href="/contact"
+                className={`${buttonClass({ variant: "onDark", size: "lg" })} w-full`}
+              >
+                Start a project
+                <Arrow />
+              </Link>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${buttonClass({ variant: "secondary", size: "md" })} w-full`}
+                className={`${buttonClass({ variant: "outlineOnDark", size: "lg" })} w-full`}
               >
-                <WhatsAppIcon className="h-4 w-4 text-emerald-600" />
+                <WhatsappLogo weight="fill" className="h-4 w-4 text-[#5fd39e]" />
                 Chat on WhatsApp
               </a>
-              <Link
-                href="/contact"
-                className={`${buttonClass({ variant: "primary", size: "md" })} w-full`}
-              >
-                Book a Free Consultation
-                <Arrow />
-              </Link>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
