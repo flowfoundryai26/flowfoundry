@@ -48,11 +48,7 @@ export const metadata: Metadata = {
 
   alternates: { canonical: "/" },
 
-  /* =========================================================
-     FAVICON — uses app/icon.png (Next.js auto-detects)
-     No explicit `icons` config needed. Just drop logo.png
-     into app/ and rename it to icon.png.
-  ========================================================= */
+  /* Favicons are file-based: app/favicon.ico, app/icon.png, app/apple-icon.png */
 
   openGraph: {
     type: "website",
