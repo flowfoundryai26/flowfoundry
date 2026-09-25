@@ -3,7 +3,15 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { SITE, SOCIALS } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { SITE } from "@/lib/site";
+import { OG_IMAGE } from "@/lib/seo";
+import {
+  founderSchema,
+  graph,
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/schema";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -16,63 +24,54 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
-  preload: true,
+  preload: false, // mono is used for small labels only — not needed for first paint
 });
 
+/**
+ * Site-wide defaults ONLY.
+ *
+ * Deliberately no `alternates.canonical` here: Next.js inherits it into every
+ * page that does not override it, which previously made all seven pages
+ * canonicalise to the homepage. Each page now sets its own via pageMeta().
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
 
   title: {
     default:
       "FlowFoundry AI Solutions | AI Agents, Automation & Custom Software",
-    template: `%s | ${SITE.name}`,
+    // Short brand suffix. The full legal name stays on the homepage (absolute
+    // title) and in Organization schema; 27 chars of suffix on every page
+    // pushed most titles past where Google truncates.
+    template: `%s | ${SITE.short}`,
   },
 
   description: SITE.description,
   applicationName: SITE.name,
 
-  keywords: [
-    "AI agents",
-    "workflow automation",
-    "custom software",
-    "business automation",
-    "AI voice agents",
-    "CRM integration",
-    "LeadPulz",
-    "FlowFoundry",
-  ],
-
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
   publisher: SITE.name,
-
-  alternates: { canonical: "/" },
 
   /* Favicons are file-based: app/favicon.ico, app/icon.png, app/apple-icon.png */
 
   openGraph: {
     type: "website",
     siteName: SITE.name,
-    title:
-      "FlowFoundry AI Solutions | AI Agents, Automation & Custom Software",
-    description: SITE.description,
-    url: SITE.url,
-    locale: "en_US",
+    locale: "en_IN",
     images: [
       {
-        url: "/images/logo.png",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "FlowFoundry AI Solutions — intelligent business systems",
+        alt: "FlowFoundry AI Solutions — AI agents, automation and custom software",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "FlowFoundry AI Solutions",
-    description: SITE.description,
-    images: ["/images/og-image.png"],
+    images: [OG_IMAGE],
   },
 
   robots: {
@@ -97,74 +96,18 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  // No maximumScale cap below 5 and no user-scalable=no — pinch zoom must work.
   maximumScale: 5,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0a0d14" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0d14" },
-  ],
-  colorScheme: "light",
+  themeColor: "#0a0d14",
+  colorScheme: "dark",
 };
-
-/* =========================================================
-   STRUCTURED DATA
-========================================================= */
-
-const ORG_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": `${SITE.url}/#organization`,
-  name: SITE.name,
-  alternateName: SITE.short,
-  url: SITE.url,
-  email: SITE.email,
-  description: SITE.description,
-  logo: {
-    "@type": "ImageObject",
-    url: `${SITE.url}/logo.png`,
-    width: 512,
-    height: 512,
-  },
-  image: `${SITE.url}/images/logo.png`,
-  sameAs: SOCIALS.map((s) => s.href),
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      contactType: "Sales",
-      email: SITE.email,
-      availableLanguage: ["English", "Hindi", "Telugu"],
-      areaServed: "IN",
-    },
-  ],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Currency Nagar",
-    addressLocality: "Vijayawada",
-    addressRegion: "Andhra Pradesh",
-    addressCountry: "IN",
-  },
-};
-
-const WEBSITE_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${SITE.url}/#website`,
-  url: SITE.url,
-  name: SITE.name,
-  description: SITE.description,
-  publisher: { "@id": `${SITE.url}/#organization` },
-  inLanguage: "en-US",
-};
-
-/* =========================================================
-   ROOT LAYOUT
-========================================================= */
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
+      lang="en-IN"
       className={`${geist.variable} ${geistMono.variable}`}
       suppressHydrationWarning
       style={{ backgroundColor: "#0a0d14" }}
@@ -198,16 +141,17 @@ export default function RootLayout({
 
         <Footer />
 
-        {/* Film grain — fixed, pointer-events none */}
+        {/* Film grain — fixed, pointer-events none, never on a scroller */}
         <div className="grain" aria-hidden="true" />
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_SCHEMA) }}
+        {/*
+          One graph for the whole site: Organization, the founder Person it
+          references, and WebSite. Page-level nodes (WebPage, BreadcrumbList,
+          Service, FAQPage, BlogPosting) are emitted per page and point back
+          at these @ids.
+        */}
+        <JsonLd
+          data={graph(organizationSchema(), founderSchema(), websiteSchema())}
         />
       </body>
     </html>

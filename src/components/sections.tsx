@@ -408,7 +408,7 @@ export function CTA({
   lede,
   primary = { label: "Start a project", href: "/contact" },
   secondary,
-  image = "/images/cta-bg.png",
+  image = "/images/cta-bg.webp",
 }: {
   eyebrow?: string;
   title: string;

@@ -8,36 +8,42 @@ import { Arrow, Button, buttonClass, LiveDot } from "./ui";
 import { Reveal, fadeUp, Magnetic } from "./motion";
 import { Logo } from "./Header";
 
+/**
+ * Footer navigation. Mirrors the real site architecture so every indexable
+ * page is reachable from every page — the cheapest possible guard against
+ * orphan pages, and it distributes internal link equity site-wide.
+ */
 const COLUMNS = [
+  {
+    title: "Solutions",
+    links: [
+      { label: "AI Voice Agents", href: "/solutions/ai-voice-agents" },
+      { label: "WhatsApp Automation", href: "/solutions/whatsapp-automation" },
+      { label: "Workflow Automation", href: "/solutions/workflow-automation" },
+      { label: "CRM Automation", href: "/solutions/crm-automation" },
+      { label: "Business Portals", href: "/solutions/custom-business-portals" },
+      { label: "Shopify Automation", href: "/solutions/shopify-automation" },
+    ],
+  },
+  {
+    title: "Industries",
+    links: [
+      { label: "Dental Clinics", href: "/industries/dental-clinics" },
+      { label: "Healthcare Clinics", href: "/industries/healthcare-clinics" },
+      { label: "Real Estate", href: "/industries/real-estate" },
+      { label: "eCommerce", href: "/industries/ecommerce" },
+      { label: "Service Businesses", href: "/industries/local-service-businesses" },
+    ],
+  },
   {
     title: "Company",
     links: [
-      { label: "Home", href: "/" },
       { label: "About", href: "/about" },
-      { label: "Services", href: "/services" },
-      { label: "Solutions", href: "/solutions" },
-      { label: "Portfolio", href: "/portfolio" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      { label: "AI Agents", href: "/services#ai-agents" },
-      { label: "Workflow Automation", href: "/services#workflow-automation" },
-      { label: "Custom Software", href: "/services#custom-software" },
-      { label: "Web Development", href: "/services#web-development" },
-      { label: "eCommerce", href: "/services#ecommerce" },
-      { label: "Integrations", href: "/services#integrations" },
-    ],
-  },
-  {
-    title: "LeadPulz",
-    links: [
-      { label: "Overview", href: "/leadpulz" },
-      { label: "Voice agents", href: "/leadpulz#capabilities" },
-      { label: "How it works", href: "/leadpulz#how-it-works" },
-      { label: "Book a demo", href: "/contact?interest=leadpulz" },
+      { label: "How We Work", href: "/how-we-work" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Insights", href: "/insights" },
+      { label: "Responsible Automation", href: "/responsible-automation" },
+      { label: "LeadPulz AI", href: "/leadpulz" },
     ],
   },
 ];
@@ -81,7 +87,7 @@ export default function Footer() {
           >
             <Magnetic>
               <Button href="/contact" variant="onDark" size="lg" className="w-full sm:w-auto">
-                Start a project
+                Book a consultation
                 <Arrow />
               </Button>
             </Magnetic>
@@ -223,7 +229,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col items-start gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-2xs text-on-dark-muted">
-            &copy; {year} {SITE.name}. Vijayawada, India.
+            &copy; {year} {SITE.name}. Built in India, working remotely.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {LEGAL.map((l) => (

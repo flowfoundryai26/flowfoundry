@@ -28,14 +28,21 @@ export function Logo({ className = "" }: { className?: string }) {
       className={`group flex shrink-0 items-center gap-3 ${className}`}
     >
       <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-ink-2 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-rotate-6">
+        {/*
+          `unoptimized` used to be set here, which shipped the full 1254px
+          source (1.08MB) on every page for a 36px slot. Removing it lets
+          next/image serve a correctly sized, modern-format derivative.
+          The decorative alt is intentional — the adjacent wordmark is the
+          accessible name, and the parent link already has an aria-label.
+        */}
         <Image
           src="/logo.png"
           alt=""
           width={36}
           height={36}
+          sizes="36px"
           className="h-full w-full object-cover"
           priority
-          unoptimized
         />
       </span>
       <span className="flex flex-col leading-none">
@@ -179,7 +186,7 @@ export default function Header() {
               href="/contact"
               className={buttonClass({ variant: "onDark", size: "sm" })}
             >
-              Start a project
+              Book consultation
               <Arrow />
             </Link>
           </div>
@@ -319,7 +326,7 @@ export default function Header() {
                 href="/contact"
                 className={`${buttonClass({ variant: "onDark", size: "lg" })} w-full`}
               >
-                Start a project
+                Book consultation
                 <Arrow />
               </Link>
               <a

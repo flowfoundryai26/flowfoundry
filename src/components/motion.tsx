@@ -118,7 +118,14 @@ export function Words({
 }) {
   const words = text.split(" ");
   return (
-    <span className={`inline ${className}`} aria-label={text}>
+    /*
+      Every word span is aria-hidden so assistive tech does not read the
+      headline word-by-word. An aria-label on a plain <span> is not reliably
+      exposed (it has no role), so the accessible text is a real sr-only node
+      rather than an attribute.
+    */
+    <span className={`inline ${className}`}>
+      <span className="sr-only">{text}</span>
       {words.map((word, i) => (
         <span
           key={`${word}-${i}`}
