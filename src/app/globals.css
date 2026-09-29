@@ -159,6 +159,81 @@
 }
 
 /* ============================================================
+   SPLASH — full-page loading screen (see components/LoadingScreen)
+
+   Server-rendered so it paints with the first frame. Removed from the
+   layer entirely once <html data-splash="done"> is set, so it can never
+   swallow clicks after it fades.
+   ============================================================ */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: var(--color-ink);
+  opacity: 1;
+  transition: opacity 420ms var(--ease-out-expo);
+}
+
+[data-splash="done"] .splash {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 420ms var(--ease-out-expo), visibility 0s linear 420ms;
+}
+
+.splash-mark {
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: var(--radius-md);
+  background: var(--color-ink-2);
+  animation: splash-in 700ms var(--ease-out-expo) both;
+}
+
+.splash-word {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  animation: splash-in 700ms var(--ease-out-expo) 80ms both;
+}
+
+/* Indeterminate: it reports activity, never a fake percentage. */
+.splash-rail {
+  position: relative;
+  width: 132px;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.1);
+}
+
+.splash-bar {
+  position: absolute;
+  inset-block: 0;
+  width: 42%;
+  border-radius: 2px;
+  background: var(--color-accent-dark);
+  animation: splash-slide 1.15s var(--ease-out-expo) infinite;
+}
+
+@keyframes splash-in {
+  from { opacity: 0; transform: translate3d(0, 8px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes splash-slide {
+  from { transform: translate3d(-115%, 0, 0); }
+  to   { transform: translate3d(315%, 0, 0); }
+}
+
+/* ============================================================
    CARET
    ============================================================ */
 @keyframes caret {
@@ -194,6 +269,10 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .marquee-track { animation: none; }
+  .splash,
+  [data-splash="done"] .splash { transition: none; }
+  .splash-mark,
+  .splash-word { animation: none; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;

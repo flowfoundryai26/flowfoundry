@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import LoadingScreen from "@/components/LoadingScreen";
 import { SITE } from "@/lib/site";
 import { OG_IMAGE } from "@/lib/seo";
 import {
@@ -116,6 +117,13 @@ export default function RootLayout({
         suppressHydrationWarning
         className="min-h-dvh bg-ink font-sans text-body antialiased"
       >
+        {/*
+          Splash first in the body so it is in the first painted frame.
+          It sits above everything (z-90) and removes itself from the
+          layer once dismissed.
+        */}
+        <LoadingScreen />
+
         <a
           href="#main"
           className="
