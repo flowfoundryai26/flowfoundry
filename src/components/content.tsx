@@ -320,7 +320,7 @@ export function Compare({
             variant === "yes"
               ? "bg-live/12 text-live"
               : dark
-                ? "bg-surface/[0.07] text-on-dark-muted"
+                ? "bg-white/[0.07] text-on-dark-muted"
                 : "bg-surface-2 text-muted"
           }`}
         >
@@ -346,7 +346,7 @@ export function Compare({
                 variant === "yes"
                   ? "bg-live"
                   : dark
-                    ? "bg-surface/25"
+                    ? "bg-white/25"
                     : "bg-line-strong"
               }`}
             />
@@ -395,7 +395,7 @@ export function Callout({
     <aside
       className={`rounded-xl border-l-2 py-5 pl-6 pr-5 ${
         dark
-          ? "border-l-accent-dark bg-surface/[0.03]"
+          ? "border-l-accent-dark bg-white/[0.03]"
           : "border-l-accent bg-surface-2"
       }`}
     >
@@ -495,7 +495,7 @@ export function IntegrationChips({
           key={i}
           className={`rounded-full border px-3.5 py-2 text-xs font-medium ${
             dark
-              ? "border-white/10 bg-surface/[0.04] text-on-dark"
+              ? "border-white/10 bg-white/[0.04] text-on-dark"
               : "border-line bg-surface text-body"
           }`}
         >
@@ -575,7 +575,7 @@ export function MetricSlots({
               <p
                 className={`mt-2.5 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] ${
                   dark
-                    ? "border-white/10 bg-surface/[0.03] text-on-dark-muted"
+                    ? "border-white/10 bg-white/[0.03] text-on-dark-muted"
                     : "border-line bg-surface-2 text-muted"
                 }`}
               >
@@ -711,7 +711,7 @@ export function Conversation({
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-3 text-[14.5px] leading-relaxed sm:max-w-[74%] ${
                   isAgent
-                    ? "rounded-bl-md border border-white/[0.08] bg-surface/[0.04] text-on-dark"
+                    ? "rounded-bl-md border border-white/[0.08] bg-white/[0.04] text-on-dark"
                     : "rounded-br-md bg-accent/90 text-white"
                 }`}
               >

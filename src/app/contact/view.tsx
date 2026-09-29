@@ -17,7 +17,7 @@ import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { EVENTS, track } from "@/lib/analytics";
 import { buttonClass, Container, Eyebrow, LiveDot, SectionHeading } from "@/components/ui";
-import { Magnetic, Reveal, Words, fadeUp, scaleIn, stagger } from "@/components/motion";
+import { Reveal, Words, fadeUp, scaleIn, stagger } from "@/components/motion";
 
 const WHATSAPP = SITE.whatsapp.replace(/[^0-9]/g, "");
 const waLink = (text: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
@@ -96,7 +96,7 @@ export default function ContactPage() {
           >
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
               <Eyebrow dark>Contact</Eyebrow>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface/[0.04] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark">
                 <LiveDot />
                 Taking new projects
               </span>
@@ -489,17 +489,17 @@ function ContactForm() {
       />
 
       <div className="flex flex-col gap-5 pt-2">
-        <Magnetic strength={0.2} className="shrink-0 self-start">
+        <div className="shrink-0 self-start">
           <button
             type="submit"
             disabled={status === "sending"}
-            className="group/btn inline-flex h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-mint px-7 text-[15px] font-medium text-mint-ink shadow-[0_1px_0_rgba(255,255,255,0.18)_inset,0_10px_24px_-12px_rgba(77,255,210,0.45)] transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-mint/90 active:translate-y-px active:scale-[0.98] disabled:opacity-60 sm:w-auto"
+            className="group/btn inline-flex h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-mint px-7 text-[15px] font-medium text-mint-ink shadow-[0_1px_0_rgba(255,255,255,0.14)_inset,0_8px_20px_-10px_rgba(11,16,32,0.7)] transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-mint/90 active:translate-y-px active:scale-[0.98] disabled:opacity-60 sm:w-auto"
           >
             <WhatsappLogo weight="fill" className="h-4.5 w-4.5 text-mint-ink" />
             {status === "sending" ? "Opening WhatsApp…" : "Send via WhatsApp"}
             <ArrowRight weight="bold" className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
           </button>
-        </Magnetic>
+        </div>
 
         {/* Privacy note — states plainly where the data goes. */}
         <p className="max-w-[62ch] text-xs leading-relaxed text-muted">

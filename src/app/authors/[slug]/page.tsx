@@ -122,7 +122,7 @@ export default async function Page({ params }: Props) {
                           href={l.href}
                           target="_blank"
                           rel="me noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-surface/[0.04] px-4 py-2 text-xs font-medium text-on-dark transition-colors hover:border-white/30 hover:text-white"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.04] px-4 py-2 text-xs font-medium text-on-dark transition-colors hover:border-white/30 hover:text-white"
                         >
                           {l.label}
                           <ArrowUpRight

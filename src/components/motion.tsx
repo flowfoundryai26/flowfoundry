@@ -109,51 +109,35 @@ export function Words({
   text,
   className = "",
   delay = 0,
-  step = 0.045,
 }: {
   text: string;
   className?: string;
   delay?: number;
+  /** Retained so existing call sites keep type-checking; no longer used. */
   step?: number;
 }) {
-  const words = text.split(" ");
+  /*
+    Was a per-word rise with a staggered delay. That is a MOTION 7+ device
+    and this brief is enterprise trust, where the headline should settle
+    rather than perform. One fade-and-rise for the whole line: the entrance
+    still reads, without the headline assembling itself in front of the
+    reader.
+
+    The word-splitting also went, which removes the aria-hidden spans and
+    the sr-only duplicate - the text is now just text, so assistive tech
+    reads it directly.
+  */
   return (
-    /*
-      Every word span is aria-hidden so assistive tech does not read the
-      headline word-by-word. An aria-label on a plain <span> is not reliably
-      exposed (it has no role), so the accessible text is a real sr-only node
-      rather than an attribute.
-    */
-    <span className={`inline ${className}`}>
-      <span className="sr-only">{text}</span>
-      {words.map((word, i) => (
-        <span
-          key={`${word}-${i}`}
-          className="inline-block overflow-hidden pb-[0.15em] -mb-[0.15em] align-bottom"
-          aria-hidden="true"
-        >
-          <motion.span
-            className="inline-block"
-            initial={{ y: "110%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            transition={{
-              duration: 0.9,
-              ease: EASE,
-              delay: delay + i * step,
-            }}
-          >
-            {word}
-            {i < words.length - 1 ? " " : ""}
-          </motion.span>
-        </span>
-      ))}
-    </span>
+    <motion.span
+      className={`inline ${className}`}
+      initial={{ y: "0.35em", opacity: 0 }}
+      animate={{ y: "0em", opacity: 1 }}
+      transition={{ duration: 0.7, ease: EASE, delay }}
+    >
+      {text}
+    </motion.span>
   );
 }
-
-/* =========================================================
-   MAGNETIC - pulls toward the cursor. Motion values only.
-========================================================= */
 
 export function Magnetic({
   children,

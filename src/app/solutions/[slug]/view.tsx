@@ -126,7 +126,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
 
             {/* Capability rail instead of a decorative photo */}
             <motion.div variants={scaleIn} className="min-w-0 lg:justify-self-end">
-              <div className="rounded-2xl border border-white/[0.08] bg-surface/[0.02] p-7">
+              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-7">
                 <p className="font-mono text-2xs uppercase tracking-[0.16em] text-on-dark-muted">
                   Connects with
                 </p>

@@ -15,7 +15,6 @@ import {
 } from "./ui";
 import {
   EASE,
-  Magnetic,
   Reveal,
   Spotlight,
   Words,
@@ -123,12 +122,10 @@ export function PageHero({
                 className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
               >
                 {primaryCta ? (
-                  <Magnetic>
                     <Button href={primaryCta.href} variant="onDark" size="lg" className="w-full sm:w-auto">
                       {primaryCta.label}
                       <Arrow />
                     </Button>
-                  </Magnetic>
                 ) : null}
                 {secondaryCta ? (
                   <Button href={secondaryCta.href} variant="outlineOnDark" size="lg" className="w-full sm:w-auto">
@@ -310,7 +307,7 @@ export function Process({
     <div ref={ref} className="relative">
       <div
         className={`absolute inset-x-0 top-[5px] hidden h-px lg:block ${
-          dark ? "bg-surface/10" : "bg-line-strong"
+          dark ? "bg-white/10" : "bg-line-strong"
         }`}
       >
         <motion.div
@@ -449,12 +446,10 @@ export function CTA({
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-end xl:flex-row">
-              <Magnetic>
                 <Button href={primary.href} variant="onDark" size="lg" className="w-full sm:w-auto">
                   {primary.label}
                   <Arrow />
                 </Button>
-              </Magnetic>
               {secondary ? (
                 <Button href={secondary.href} variant="outlineOnDark" size="lg" className="w-full sm:w-auto">
                   {secondary.label}
@@ -500,14 +495,14 @@ export function Bento({
             dark={dark}
             className={`flex h-full flex-col rounded-2xl border p-7 transition-colors duration-500 sm:p-8 ${
               dark
-                ? "border-white/[0.08] bg-surface/[0.02] hover:bg-surface/[0.04]"
+                ? "border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04]"
                 : "border-line bg-surface hover:border-line-strong"
             }`}
           >
             <div className="flex items-center justify-between">
               <span
                 className={`flex h-10 w-10 items-center justify-center rounded-md ${
-                  dark ? "bg-surface/[0.06] text-accent-dark" : "bg-accent-soft text-accent-strong"
+                  dark ? "bg-white/[0.06] text-accent-dark" : "bg-accent-soft text-accent-strong"
                 }`}
               >
                 {it.icon}

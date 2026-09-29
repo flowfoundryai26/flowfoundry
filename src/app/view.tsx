@@ -14,7 +14,7 @@ import {
   SectionHeading,
   Status,
 } from "@/components/ui";
-import { Magnetic, Marquee, Reveal, Words, fadeUp, scaleIn, stagger } from "@/components/motion";
+import { Marquee, Reveal, Words, fadeUp, scaleIn, stagger } from "@/components/motion";
 import { AgentConsole, Device, SystemFlow } from "@/components/visuals";
 import {
   CTA,
@@ -252,12 +252,10 @@ function Hero() {
             </motion.p>
 
             <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Magnetic>
                 <Button href="/contact" variant="onDark" size="lg" className="w-full sm:w-auto">
                   Book consultation
                   <Arrow />
                 </Button>
-              </Magnetic>
               <Button href="/solutions" variant="outlineOnDark" size="lg" className="w-full sm:w-auto">
                 Explore our solutions
               </Button>

@@ -156,7 +156,7 @@ export default function Header() {
                     <motion.span
                       layoutId="nav-pill"
                       transition={SPRING_SNAPPY}
-                      className="absolute inset-0 rounded-full bg-surface/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                      className="absolute inset-0 rounded-full bg-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
                     />
                   )}
 
@@ -168,7 +168,7 @@ export default function Header() {
                           <Link
                             key={child.href}
                             href={child.href}
-                            className="group/item flex items-center justify-between gap-3 rounded-md px-3 py-2.5 text-[13px] text-on-dark transition-colors duration-200 hover:bg-surface/[0.06] hover:text-white"
+                            className="group/item flex items-center justify-between gap-3 rounded-md px-3 py-2.5 text-[13px] text-on-dark transition-colors duration-200 hover:bg-white/[0.06] hover:text-white"
                           >
                             <span className="flex items-center gap-3">
                               <span className="font-mono text-2xs text-on-dark-muted">
@@ -215,22 +215,26 @@ export default function Header() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-surface/[0.04] transition-colors duration-300 hover:bg-surface/[0.08] active:scale-95 lg:hidden"
+            className={`relative flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-300 active:scale-95 lg:hidden ${
+              open
+                ? "border-mint/40 bg-mint/10"
+                : "border-white/15 bg-white/[0.04] hover:bg-white/[0.08]"
+            }`}
           >
             <span className="relative block h-[14px] w-[18px]">
               <span
-                className={`absolute left-0 block h-[1.5px] w-full bg-surface transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  open ? "top-[6px] rotate-45" : "top-0"
+                className={`absolute left-0 block h-[1.5px] w-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  open ? "top-[6px] rotate-45 bg-mint" : "top-0 bg-fg"
                 }`}
               />
               <span
-                className={`absolute left-0 top-[6px] block h-[1.5px] w-full bg-surface transition-all duration-300 ${
+                className={`absolute left-0 top-[6px] block h-[1.5px] w-full bg-fg transition-all duration-300 ${
                   open ? "opacity-0" : "opacity-100"
                 }`}
               />
               <span
-                className={`absolute left-0 block h-[1.5px] w-full bg-surface transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  open ? "top-[6px] -rotate-45" : "top-[12px]"
+                className={`absolute left-0 block h-[1.5px] w-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  open ? "top-[6px] -rotate-45 bg-mint" : "top-[12px] bg-fg"
                 }`}
               />
             </span>
@@ -291,7 +295,7 @@ export default function Header() {
                           }
                           aria-expanded={isExpanded}
                           aria-label={`Toggle ${item.label} submenu`}
-                          className="flex h-10 w-10 items-center justify-center rounded-full text-on-dark-muted transition-colors hover:bg-surface/[0.06] hover:text-white"
+                          className="flex h-10 w-10 items-center justify-center rounded-full text-on-dark-muted transition-colors hover:bg-white/[0.06] hover:text-white"
                         >
                           <CaretDown
                             weight="bold"

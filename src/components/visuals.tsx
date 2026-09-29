@@ -130,7 +130,7 @@ export const AgentConsole = memo(function AgentConsole() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.4, ease: EASE }}
-                  className="flex items-center gap-3 rounded-md border border-white/[0.08] bg-surface/[0.03] px-3.5 py-3"
+                  className="flex items-center gap-3 rounded-md border border-white/[0.08] bg-white/[0.03] px-3.5 py-3"
                 >
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-dark opacity-70" />
@@ -155,7 +155,7 @@ export const AgentConsole = memo(function AgentConsole() {
                   className={`max-w-[88%] rounded-xl px-3.5 py-2.5 text-[12.5px] leading-relaxed ${
                     m.who === "agent"
                       ? "rounded-br-sm bg-accent text-white"
-                      : "rounded-bl-sm border border-white/[0.08] bg-surface/[0.04] text-on-dark"
+                      : "rounded-bl-sm border border-white/[0.08] bg-white/[0.04] text-on-dark"
                   }`}
                 >
                   {m.text}
@@ -171,7 +171,7 @@ export const AgentConsole = memo(function AgentConsole() {
                   TRANSCRIPT[line].who === "agent" ? "justify-end" : "justify-start"
                 }`}
               >
-                <span className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-surface/[0.04] px-3 py-2">
+                <span className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-2">
                   {[0, 1, 2].map((d) => (
                     <motion.span
                       key={d}
@@ -206,7 +206,7 @@ export const AgentConsole = memo(function AgentConsole() {
                   >
                     <span
                       className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md ${
-                        isDone ? "bg-live text-white" : "bg-surface/[0.06]"
+                        isDone ? "bg-live text-white" : "bg-white/[0.06]"
                       }`}
                     >
                       <AnimatePresence mode="wait" initial={false}>
@@ -403,7 +403,7 @@ export function SystemFlow() {
                 {n.detail.map((d, j) => (
                   <motion.li
                     key={d}
-                    className="rounded-md border border-white/[0.08] bg-surface/[0.03] px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-on-dark"
+                    className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-on-dark"
                     animate={{ opacity: [0.55, 1, 0.55] }}
                     transition={{
                       duration: 3.2,
@@ -477,10 +477,10 @@ export function Device({
     <Tilt className={`rounded-2xl ${className}`} max={5}>
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-ink-2 shadow-dark">
         <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-2.5">
-          <span className="h-2 w-2 rounded-full bg-surface/15" />
-          <span className="h-2 w-2 rounded-full bg-surface/15" />
-          <span className="h-2 w-2 rounded-full bg-surface/15" />
-          <span className="ml-3 h-5 flex-1 rounded-md bg-surface/[0.05]" />
+          <span className="h-2 w-2 rounded-full bg-white/15" />
+          <span className="h-2 w-2 rounded-full bg-white/15" />
+          <span className="h-2 w-2 rounded-full bg-white/15" />
+          <span className="ml-3 h-5 flex-1 rounded-md bg-white/[0.05]" />
         </div>
         <Image
           src={src}

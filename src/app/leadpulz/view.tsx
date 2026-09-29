@@ -168,7 +168,7 @@ export default function LeadPulzPage() {
               </motion.div>
             </Reveal>
             <Reveal as="ol" step={0.12} className="relative">
-              <div className="absolute bottom-6 left-[19px] top-6 w-px bg-surface/10" aria-hidden="true" />
+              <div className="absolute bottom-6 left-[19px] top-6 w-px bg-white/10" aria-hidden="true" />
               {FLOW.map((f, i) => (
                 <motion.li key={f.name} variants={fadeUp} className="relative flex items-start gap-6 py-4">
                   <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-ink font-mono text-2xs text-accent-dark">
@@ -305,7 +305,7 @@ function CallCard() {
             {["Clinic · 12 staff", "Budget confirmed", "Decision maker", "Thu 10:30"].map((t, i) => (
               <span key={t} className="flex items-center gap-2">
                 <motion.span
-                  className="rounded-md border border-white/10 bg-surface/[0.04] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.1em] text-on-dark"
+                  className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.1em] text-on-dark"
                   animate={{ opacity: [0.6, 1, 0.6] }}
                   transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
                 >

@@ -83,21 +83,21 @@ const BTN_VARIANT: Record<BtnVariant, string> = {
     accessibly, so the violet fill uses the derived --color-accent-fill.
   */
   primary:
-    "bg-mint text-mint-ink shadow-[0_10px_30px_-12px_rgba(77,255,210,0.45)] " +
+    "bg-mint text-mint-ink shadow-[0_1px_0_rgba(255,255,255,0.14)_inset,0_8px_20px_-10px_rgba(11,16,32,0.7)] " +
     "hover:bg-mint/90 focus-visible:ring-mint focus-visible:ring-offset-ink",
   accent:
-    "bg-accent-fill text-fg shadow-[0_10px_30px_-12px_rgba(91,51,255,0.6)] " +
+    "bg-accent-fill text-fg shadow-[0_1px_0_rgba(255,255,255,0.10)_inset,0_8px_20px_-10px_rgba(11,16,32,0.7)] " +
     "hover:bg-accent focus-visible:ring-accent focus-visible:ring-offset-ink",
   secondary:
     "border border-line-strong bg-ink-2 text-fg " +
     "hover:border-accent/50 hover:bg-ink-3 focus-visible:ring-accent focus-visible:ring-offset-ink",
   onDark:
-    "bg-mint text-mint-ink shadow-[0_10px_30px_-12px_rgba(77,255,210,0.45)] " +
+    "bg-mint text-mint-ink shadow-[0_1px_0_rgba(255,255,255,0.14)_inset,0_8px_20px_-10px_rgba(11,16,32,0.7)] " +
     "hover:bg-mint/90 focus-visible:ring-mint focus-visible:ring-offset-ink",
   outlineOnDark:
-    "border border-white/15 bg-surface/[0.04] text-fg backdrop-blur-sm " +
+    "border border-white/15 bg-white/[0.04] text-fg backdrop-blur-sm " +
     "shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] " +
-    "hover:border-accent/50 hover:bg-surface/[0.08] focus-visible:ring-accent focus-visible:ring-offset-ink",
+    "hover:border-accent/50 hover:bg-white/[0.08] focus-visible:ring-accent focus-visible:ring-offset-ink",
   ghost:
     "text-body hover:bg-ink-2 hover:text-fg focus-visible:ring-accent focus-visible:ring-offset-ink",
 };
@@ -297,7 +297,7 @@ export function Chip({
     <span
       className={`inline-flex items-center rounded-full border px-3.5 py-2 text-xs font-medium transition-colors duration-300 ${
         isDark
-          ? "border-white/10 bg-surface/[0.04] text-on-dark hover:border-white/25 hover:text-white"
+          ? "border-white/10 bg-white/[0.04] text-on-dark hover:border-white/25 hover:text-white"
           : "border-line bg-surface text-body hover:border-accent/40 hover:text-accent-strong"
       } ${className}`}
     >
@@ -320,7 +320,7 @@ export function Badge({
   const variants = {
     default: "bg-accent-soft text-accent-strong",
     live: "bg-live/10 text-live",
-    dark: "border border-white/12 bg-surface/5 text-white",
+    dark: "border border-white/12 bg-white/5 text-white",
   };
   return (
     <span

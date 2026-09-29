@@ -216,7 +216,7 @@ export default function SolutionsPage() {
                                     className={`rounded-md border px-2.5 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.1em] ${
                                       j === s.workflow.length - 1
                                         ? "border-live/30 bg-live/10 text-[#5fd39e]"
-                                        : "border-white/10 bg-surface/[0.04] text-on-dark"
+                                        : "border-white/10 bg-white/[0.04] text-on-dark"
                                     }`}
                                     animate={{ opacity: [0.6, 1, 0.6] }}
                                     transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: j * 0.35 }}

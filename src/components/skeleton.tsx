@@ -27,7 +27,7 @@ export function Skeleton({
   return (
     <div
       className={`shimmer rounded-md ${
-        surface === "dark" ? "bg-surface/[0.07]" : "bg-line"
+        surface === "dark" ? "bg-white/[0.07]" : "bg-line"
       } ${className}`}
     />
   );

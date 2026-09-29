@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUp, EnvelopeSimple, WhatsappLogo, Clock } from "@phosphor-icons/react";
 import { SITE, SOCIALS } from "@/lib/site";
 import { Arrow, Button, buttonClass, LiveDot } from "./ui";
-import { Reveal, fadeUp, Magnetic } from "./motion";
+import { Reveal, fadeUp } from "./motion";
 import { Logo } from "./Header";
 
 /**
@@ -85,12 +85,10 @@ export default function Footer() {
             variants={fadeUp}
             className="flex flex-col gap-3 sm:flex-row lg:justify-end"
           >
-            <Magnetic>
               <Button href="/contact" variant="onDark" size="lg" className="w-full sm:w-auto">
                 Book consultation
                 <Arrow />
               </Button>
-            </Magnetic>
             <a
               href={whatsappUrl}
               target="_blank"
@@ -114,7 +112,7 @@ export default function Footer() {
               AI agents, automation, and custom software built around the way
               your business actually works.
             </p>
-            <div className="mt-5 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-surface/[0.03] px-3 py-1.5">
+            <div className="mt-5 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">
               <LiveDot />
               <span className="font-mono text-2xs uppercase tracking-[0.12em] text-on-dark">
                 Taking new projects
