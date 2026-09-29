@@ -325,7 +325,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
         eyebrow="Next step"
         title="Need something built to this standard?"
         lede="Describe the system you have in mind. We will tell you what it takes, what we would do differently, and whether we are the right team for it."
-        primary={{ label: "Book a consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "All case studies", href: "/case-studies" }}
         image={c.image}
       />

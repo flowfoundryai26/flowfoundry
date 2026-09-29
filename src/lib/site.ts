@@ -123,6 +123,26 @@ export const INTEGRATIONS = [
   "Google Sheets", "Supabase", "Slack", "REST APIs",
 ] as const;
 
+/**
+ * The subset of INTEGRATIONS we can show as a real brand mark. Simple Icons
+ * delisted Salesforce, Twilio and Slack on trademark grounds, so those stay
+ * in the list above (schema, copy, the About orbit) but are not rendered as
+ * logos - a text wordmark sitting among real logos looks broken.
+ * Files: public/images/logos/<slug>.svg, single-colour white.
+ */
+export const INTEGRATION_LOGOS = [
+  { name: "HubSpot", slug: "hubspot" },
+  { name: "Zoho", slug: "zoho" },
+  { name: "Shopify", slug: "shopify" },
+  { name: "WooCommerce", slug: "woocommerce" },
+  { name: "Stripe", slug: "stripe" },
+  { name: "WhatsApp", slug: "whatsapp" },
+  { name: "Google Calendar", slug: "googlecalendar" },
+  { name: "Google Sheets", slug: "googlesheets" },
+  { name: "Calendly", slug: "calendly" },
+  { name: "Supabase", slug: "supabase" },
+] as const;
+
 /** The systems we connect rather than replace. Drives the homepage trust section. */
 export const EXISTING_STACK = [
   "CRM", "WhatsApp", "Email", "Calendars", "Shopify",
@@ -137,12 +157,12 @@ export const EXISTING_STACK = [
 export const FOUNDER = {
   slug: "sri-harsha",
   name: "Sri Harsha M",
-  role: "Founder — FlowFoundry AI Solutions",
+  role: "Founder - FlowFoundry AI Solutions",
   shortRole: "Founder & CTO",
   avatar: "/images/team/harsha.webp",
   place: "Vijayawada, Andhra Pradesh",
   bio:
-    "Sri Harsha M founded FlowFoundry AI Solutions after seeing businesses told to replace their entire software stack in order to automate a single process. He works directly on delivery — mapping the workflow a business already runs, architecting the automation and integration layer, and building the AI agents and software that sit on top of it.",
+    "Sri Harsha M founded FlowFoundry AI Solutions after seeing businesses told to replace their entire software stack in order to automate a single process. He works directly on delivery - mapping the workflow a business already runs, architecting the automation and integration layer, and building the AI agents and software that sit on top of it.",
   expertise: [
     "AI agent design and voice automation",
     "Workflow and CRM automation architecture",
@@ -193,7 +213,7 @@ export const TEAM = [
 ] as const;
 
 /* =========================================================
-   PROJECTS — summary cards. Full detail in content/case-studies.
+   PROJECTS - summary cards. Full detail in content/case-studies.
 ========================================================= */
 
 export type Project = {
@@ -254,13 +274,13 @@ export const PROJECTS: Project[] = [
     status: "In development",
     tone: "cyan",
     summary:
-      "A bilingual Japanese–English conversation school platform with student, teacher and admin portals, lesson scheduling and localised workflows.",
+      "A bilingual Japanese - English conversation school platform with student, teacher and admin portals, lesson scheduling and localised workflows.",
     highlights: [
       "Student, teacher and admin portals",
       "Lesson scheduling",
       "Lesson management",
       "Role-based dashboards",
-      "Japanese–English localisation",
+      "Japanese - English localisation",
       "Timezone-aware booking",
     ],
     services: ["Custom Software", "Web Development"],
@@ -288,7 +308,7 @@ export const PROJECTS: Project[] = [
 ];
 
 /* =========================================================
-   HOW WE WORK — the 8-step delivery process
+   HOW WE WORK - the 8-step delivery process
 ========================================================= */
 
 export const PROCESS_STEPS = [

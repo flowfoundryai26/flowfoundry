@@ -9,7 +9,7 @@ const TRAIL = [{ name: "Contact", path: "/contact" }];
 export const metadata = pageMeta({
   title: "Contact Us | Book an Automation Consultation",
   description:
-    "Tell us which workflow is slowing your business down. We reply within one business day with a clear next step — no generic pitch, no obligation.",
+    "Tell us which workflow is slowing your business down. We reply within one business day with a clear next step - no generic pitch, no obligation.",
   path: PATH,
 });
 

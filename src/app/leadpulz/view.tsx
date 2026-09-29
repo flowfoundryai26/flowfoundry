@@ -76,7 +76,7 @@ export default function LeadPulzPage() {
         eyebrow="LeadPulz · AI revenue agent"
         title="Turn business calls into measurable action."
         lede="LeadPulz is an AI voice automation platform that manages calls, qualifies leads, schedules appointments, automates follow-ups, and connects every conversation to your business workflows."
-        secondary="Give every conversation a structured next step — without your team manually managing every interaction."
+        secondary="Give every conversation a structured next step - without your team manually managing every interaction."
         primaryCta={{ label: "Book a demo", href: "/contact?interest=leadpulz" }}
         secondaryCta={{ label: "See the product", href: "#product" }}
         aside={<CallCard />}
@@ -231,7 +231,7 @@ export default function LeadPulzPage() {
               <div>
                 <Eyebrow>Built around your business</Eyebrow>
                 <h2 className="mt-5 text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.06] tracking-[-0.03em] text-fg text-balance">
-                  Your agent should understand your process — not read a generic script.
+                  Your agent should understand your process - not read a generic script.
                 </h2>
                 <p className="mt-5 max-w-[56ch] text-[15px] leading-relaxed text-body">
                   Configure conversation logic, qualification criteria, business
@@ -266,7 +266,7 @@ export default function LeadPulzPage() {
 }
 
 /* =========================================================
-   CALL CARD — hero aside with live voice wave
+   CALL CARD - hero aside with live voice wave
 ========================================================= */
 
 function CallCard() {

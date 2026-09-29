@@ -20,8 +20,8 @@ export default function PortfolioPage() {
       <PageHero
         eyebrow="Portfolio"
         title="What we're building right now."
-        lede="The platforms currently in development at FlowFoundry — eCommerce, AI revenue automation, education, and the internal systems we run our own business on."
-        primaryCta={{ label: "Start a project", href: "/contact" }}
+        lede="The platforms currently in development at FlowFoundry - eCommerce, AI revenue automation, education, and the internal systems we run our own business on."
+        primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Our services", href: "/services" }}
         image="/images/use-cases/custom.webp"
         strip={
@@ -127,7 +127,7 @@ export default function PortfolioPage() {
         eyebrow="Your project"
         title="Want to see your platform on this page?"
         lede="Tell us how your business works today. We'll help you scope the AI, automation, integrations, or custom software that would move it forward."
-        primary={{ label: "Book a free consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
         image="/images/mission.webp"
       />

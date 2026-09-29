@@ -68,7 +68,7 @@ export default function ResponsibleAutomationView() {
             >
               An agent with write access to your CRM, your calendar and your
               customer records is a security surface. If you are evaluating us,
-              you should ask how that is controlled — so here it is in full.
+              you should ask how that is controlled - so here it is in full.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9">
               <Button href="/contact" variant="onDark" size="lg">
@@ -189,7 +189,7 @@ export default function ResponsibleAutomationView() {
           <ContentHeading
             eyebrow="During discovery"
             title="Questions worth asking us."
-            lede="If we cannot answer these clearly for your specific workflow, that is a reason to be cautious — of us or of anyone else."
+            lede="If we cannot answer these clearly for your specific workflow, that is a reason to be cautious - of us or of anyone else."
           />
           <div className="lg:pt-2">
             <Bullets
@@ -211,7 +211,7 @@ export default function ResponsibleAutomationView() {
         eyebrow="Next step"
         title="Bring us a workflow and we will map the risk with it."
         lede="Scoping a build includes deciding what the automation may do on its own. That conversation happens in discovery, before anything is built."
-        primary={{ label: "Book a consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "How we work", href: "/how-we-work" }}
         image="/images/why/architecture.webp"
       />

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
 /* ============================================================
-   TONES — kept for data compatibility. One accent only.
+   TONES - kept for data compatibility. One accent only.
 ============================================================ */
 
 export type Tone = "indigo" | "cyan" | "violet" | "emerald" | "amber" | "rose";
@@ -162,7 +162,7 @@ export function ArrowUp({ className = "" }: { className?: string }) {
 }
 
 /* ============================================================
-   EYEBROW — mono label, no pill
+   EYEBROW - mono label, no pill
 ============================================================ */
 
 export function Eyebrow({
@@ -193,7 +193,7 @@ export function Eyebrow({
 }
 
 /* ============================================================
-   SECTION HEADING — left-aligned by default (anti-center bias)
+   SECTION HEADING - left-aligned by default (anti-center bias)
 ============================================================ */
 
 export function SectionHeading({
@@ -352,7 +352,7 @@ export function Status({ children, dark = false }: { children: ReactNode; dark?:
 }
 
 /* ============================================================
-   INDEX — mono step number
+   INDEX - mono step number
 ============================================================ */
 
 export function Index({

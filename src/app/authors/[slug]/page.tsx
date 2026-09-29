@@ -250,7 +250,7 @@ export default async function Page({ params }: Props) {
 
             <div className="mt-12">
               <Button href="/contact" variant="primary">
-                Book a consultation with Sri Harsha
+                Book consultation with Sri Harsha
                 <Arrow />
               </Button>
             </div>

@@ -115,7 +115,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
                 className="mt-9 flex flex-col gap-3 sm:flex-row"
               >
                 <Button href="/contact" variant="onDark" size="lg">
-                  Book an automation consultation
+                  Book consultation
                   <Arrow />
                 </Button>
                 <Button href="#how-it-works" variant="outlineOnDark" size="lg">
@@ -273,7 +273,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
           <ContentHeading
             eyebrow="Implementation"
             title="How an engagement runs."
-            lede="Eight steps, start to finish. Discovery is where scope gets decided — not before."
+            lede="Eight steps, start to finish. Discovery is where scope gets decided - not before."
           />
           <div>
             <Reveal amount={0.2}>
@@ -310,7 +310,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
         eyebrow="Next step"
         title={`Talk through your ${s.name.toLowerCase()} workflow.`}
         lede="Tell us how the process runs today. We will map what can be automated, what should stay manual, and what it would take to build."
-        primary={{ label: "Book a consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "View case studies", href: "/case-studies" }}
         image={s.image}
       />

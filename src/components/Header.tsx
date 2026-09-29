@@ -4,7 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
 import { CaretDown, WhatsappLogo } from "@phosphor-icons/react";
 import { NAV, SITE } from "@/lib/site";
 import { Arrow, buttonClass } from "./ui";
@@ -32,7 +37,7 @@ export function Logo({ className = "" }: { className?: string }) {
           `unoptimized` used to be set here, which shipped the full 1254px
           source (1.08MB) on every page for a 36px slot. Removing it lets
           next/image serve a correctly sized, modern-format derivative.
-          The decorative alt is intentional — the adjacent wordmark is the
+          The decorative alt is intentional - the adjacent wordmark is the
           accessible name, and the parent link already has an aria-label.
         */}
         <Image
@@ -69,12 +74,24 @@ export default function Header() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const whatsappUrl = getWhatsAppUrl();
 
+  /*
+    A plain scroll listener calling setScrolled ran on every scroll frame and
+    re-rendered the whole header (nav, dropdowns and all) each time. Reading
+    the motion value instead keeps the per-frame work off the React tree, and
+    state is only written when the boolean actually flips.
+  */
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const next = y > 12;
+    setScrolled((prev) => (prev === next ? prev : next));
+  });
+
+  // Covers a reload that restores the page mid-scroll, where no change event
+  // fires until the user moves.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    setScrolled(scrollY.get() > 12);
+  }, [scrollY]);
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -151,7 +168,7 @@ export default function Header() {
                           <Link
                             key={child.href}
                             href={child.href}
-                            className="group/item flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-[13px] text-on-dark transition-colors duration-200 hover:bg-white/[0.06] hover:text-white"
+                            className="group/item flex items-center justify-between gap-3 rounded-md px-3 py-2.5 text-[13px] text-on-dark transition-colors duration-200 hover:bg-white/[0.06] hover:text-white"
                           >
                             <span className="flex items-center gap-3">
                               <span className="font-mono text-2xs text-on-dark-muted">

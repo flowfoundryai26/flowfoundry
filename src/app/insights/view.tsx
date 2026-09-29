@@ -63,13 +63,13 @@ export default function InsightsView() {
               variants={fadeUp}
               className="mt-7 max-w-[58ch] text-base leading-relaxed text-on-dark sm:text-lg"
             >
-              Long, specific articles on automation workflows — how they are
+              Long, specific articles on automation workflows - how they are
               built, where they break, and what we would not automate. Written by
               the person doing the engineering, not a content team.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9">
               <Button href="/contact" variant="onDark" size="lg">
-                Book a consultation
+                Book consultation
                 <Arrow />
               </Button>
             </motion.div>
@@ -210,7 +210,7 @@ export default function InsightsView() {
         eyebrow="Next step"
         title="Prefer to talk it through?"
         lede="A consultation covers the same ground as these articles, applied to your actual workflow."
-        primary={{ label: "Book a consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
         image="/images/mission.webp"
       />

@@ -9,7 +9,7 @@ import Image from "next/image";
    Brand splash for full page loads. Deliberately NOT a
    hydration-gated overlay: the markup is server-rendered so it is
    painted with the first frame, otherwise it would pop in after
-   hydration — worse than no splash at all.
+   hydration - worse than no splash at all.
 
    Dismissal is driven by real signals, not a fixed timer:
      - window "load", or
@@ -18,8 +18,8 @@ import Image from "next/image";
 
    It shows once per tab. The inline script below reads that flag
    before first paint, so a repeat load never flashes the splash.
-   Client-side route changes do not re-run this at all — the layout
-   is not re-rendered — so navigation feedback is the job of the
+   Client-side route changes do not re-run this at all - the layout
+   is not re-rendered - so navigation feedback is the job of the
    loading.tsx skeletons instead.
 ========================================================= */
 

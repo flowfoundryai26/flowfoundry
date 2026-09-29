@@ -28,7 +28,7 @@ import {
 
 /* =========================================================
    BLOCK RENDERER
-   Semantic elements only — h2/h3 keep the document outline
+   Semantic elements only - h2/h3 keep the document outline
    intact, which is what makes the table of contents honest.
 ========================================================= */
 
@@ -305,7 +305,7 @@ export default function ArticleView({ article: a }: { article: Article }) {
 
               <div className="mt-8 border-t border-line pt-6">
                 <Button href="/contact" variant="secondary" size="sm">
-                  Book a consultation
+                  Book consultation
                   <Arrow />
                 </Button>
               </div>
@@ -336,7 +336,7 @@ export default function ArticleView({ article: a }: { article: Article }) {
                     }
                     className={buttonClass({ variant: "primary" })}
                   >
-                    Book an automation consultation
+                    Book consultation
                     <Arrow />
                   </Link>
                   {a.relatedSolutions[0] ? (
@@ -412,7 +412,7 @@ export default function ArticleView({ article: a }: { article: Article }) {
         eyebrow="Next step"
         title="Map this against your own workflow."
         lede="A consultation is a conversation about how your process runs today, not a pitch. You will leave with a view on what is worth automating first."
-        primary={{ label: "Book a consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Read more insights", href: "/insights" }}
         image={a.image}
       />

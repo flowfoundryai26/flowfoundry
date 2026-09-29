@@ -64,7 +64,7 @@ export const stagger = (step = 0.08, delay = 0.08): Variants => ({
 });
 
 /* =========================================================
-   REVEAL — a section that plays its variants once in view
+   REVEAL - a section that plays its variants once in view
 ========================================================= */
 
 export function Reveal({
@@ -102,7 +102,7 @@ export function Reveal({
 }
 
 /* =========================================================
-   WORD REVEAL — headline words rise in sequence
+   WORD REVEAL - headline words rise in sequence
 ========================================================= */
 
 export function Words({
@@ -152,7 +152,7 @@ export function Words({
 }
 
 /* =========================================================
-   MAGNETIC — pulls toward the cursor. Motion values only.
+   MAGNETIC - pulls toward the cursor. Motion values only.
 ========================================================= */
 
 export function Magnetic({
@@ -199,7 +199,7 @@ export function Magnetic({
 }
 
 /* =========================================================
-   TILT — 3D parallax card following the cursor
+   TILT - 3D parallax card following the cursor
 ========================================================= */
 
 export function Tilt({
@@ -264,7 +264,7 @@ export function Tilt({
 }
 
 /* =========================================================
-   SPOTLIGHT — border illuminates under the cursor
+   SPOTLIGHT - border illuminates under the cursor
 ========================================================= */
 
 export function Spotlight({
@@ -316,7 +316,7 @@ export function Spotlight({
 }
 
 /* =========================================================
-   COUNTER — spring-counted number on enter
+   COUNTER - spring-counted number on enter
 ========================================================= */
 
 export function Counter({
@@ -359,7 +359,7 @@ export function Counter({
 }
 
 /* =========================================================
-   PARALLAX — image drifts with scroll
+   PARALLAX - image drifts with scroll
 ========================================================= */
 
 export function Parallax({
@@ -393,7 +393,7 @@ export function Parallax({
 }
 
 /* =========================================================
-   MARQUEE — infinite kinetic band
+   MARQUEE - infinite kinetic band
 ========================================================= */
 
 export function Marquee({
@@ -421,7 +421,7 @@ export function Marquee({
 }
 
 /* =========================================================
-   TYPEWRITER — cycles through phrases with a caret
+   TYPEWRITER - cycles through phrases with a caret
 ========================================================= */
 
 export function Typewriter({

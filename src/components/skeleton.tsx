@@ -75,7 +75,7 @@ export function LoadingStatus({ label = "Loading" }: { label?: string }) {
 }
 
 /* ============================================================
-   HERO — matches the dark hero every page opens with
+   HERO - matches the dark hero every page opens with
 ============================================================ */
 
 export function HeroSkeleton() {
@@ -178,7 +178,7 @@ export function CardGridSkeleton({
 }
 
 /* ============================================================
-   PAGE SHELLS — what loading.tsx actually renders
+   PAGE SHELLS - what loading.tsx actually renders
 ============================================================ */
 
 /** Hero + one white section. The generic fallback. */

@@ -52,7 +52,7 @@ export const INDUSTRIES: Industry[] = [
     problem: {
       title: "The front desk cannot be in two places",
       body:
-        "Between chairside assistance, payments, insurance paperwork and walk-ins, the phone is the first thing to go unanswered. A new-patient enquiry that rings out does not call back — dental demand is local and comparison-shopped, so the next clinic in the search results gets the appointment. Meanwhile the reminder calls that prevent no-shows are the easiest task to skip when the day is busy, which is exactly when the schedule can least afford a gap.",
+        "Between chairside assistance, payments, insurance paperwork and walk-ins, the phone is the first thing to go unanswered. A new-patient enquiry that rings out does not call back - dental demand is local and comparison-shopped, so the next clinic in the search results gets the appointment. Meanwhile the reminder calls that prevent no-shows are the easiest task to skip when the day is busy, which is exactly when the schedule can least afford a gap.",
     },
     manualWorkflow: [
       { step: "Call arrives", detail: "Often while the coordinator is chairside or mid-payment." },
@@ -84,7 +84,7 @@ export const INDUSTRIES: Industry[] = [
     exampleAgentFlow: {
       title: "New-patient enquiry, received at 8:40pm",
       turns: [
-        { who: "Agent", line: "Good evening, you've reached Riverside Dental. I'm an automated assistant — I can book appointments or answer questions, and I can take a callback request for anything clinical. How can I help?" },
+        { who: "Agent", line: "Good evening, you've reached Riverside Dental. I'm an automated assistant - I can book appointments or answer questions, and I can take a callback request for anything clinical. How can I help?" },
         { who: "Caller", line: "I chipped a tooth this evening. Can someone see me?" },
         { who: "Agent", line: "I'm sorry to hear that. Is there significant pain or bleeding right now?" },
         { who: "Caller", line: "It aches but it's not bleeding." },
@@ -122,7 +122,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       {
         q: "Can the agent handle a dental emergency correctly?",
-        a: "It handles the scheduling side of one. It can recognise urgency signals, prioritise an emergency assessment slot, and escalate to an on-call clinician. It does not give clinical advice — the boundary is deliberate and configured explicitly, not left to the model's judgement.",
+        a: "It handles the scheduling side of one. It can recognise urgency signals, prioritise an emergency assessment slot, and escalate to an on-call clinician. It does not give clinical advice - the boundary is deliberate and configured explicitly, not left to the model's judgement.",
       },
       {
         q: "Will this work with our practice-management software?",
@@ -130,7 +130,7 @@ export const INDUSTRIES: Industry[] = [
       },
       {
         q: "What about patient data and privacy?",
-        a: "We capture the minimum needed to book — name, contact number, treatment type, urgency — and nothing clinical. Access is role-based, data is stored in systems you control, and automated messages never include treatment detail that would be a problem if the phone were seen by someone else.",
+        a: "We capture the minimum needed to book - name, contact number, treatment type, urgency - and nothing clinical. Access is role-based, data is stored in systems you control, and automated messages never include treatment detail that would be a problem if the phone were seen by someone else.",
       },
       {
         q: "How do we measure whether it worked?",
@@ -148,7 +148,7 @@ export const INDUSTRIES: Industry[] = [
     h1: "Automation for clinics with more enquiries than front-desk hours.",
     metaTitle: "AI Automation for Healthcare Clinics",
     metaDescription:
-      "Appointment booking, enquiry handling and reminder automation for multi-speciality clinics — built around your existing scheduling system and escalation rules.",
+      "Appointment booking, enquiry handling and reminder automation for multi-speciality clinics - built around your existing scheduling system and escalation rules.",
     eyebrow: "Healthcare",
     lede:
       "Multi-speciality clinics have a routing problem before they have a volume problem. The caller does not know which department they need, and the front desk becomes a switchboard.",
@@ -170,7 +170,7 @@ export const INDUSTRIES: Industry[] = [
     recommendation: {
       title: "Automate routing and pre-visit instructions first",
       body:
-        "The highest-value workflow is not booking — it is the triage conversation that precedes it. An agent that maps described needs to the right department using rules you define, checks that consultant's live availability, books, and then sends the correct pre-visit instructions for that appointment type removes the bulk of repetitive desk work. Pre-visit instructions in particular are worth automating because a patient who arrives unprepared costs a slot.",
+        "The highest-value workflow is not booking - it is the triage conversation that precedes it. An agent that maps described needs to the right department using rules you define, checks that consultant's live availability, books, and then sends the correct pre-visit instructions for that appointment type removes the bulk of repetitive desk work. Pre-visit instructions in particular are worth automating because a patient who arrives unprepared costs a slot.",
     },
     exampleAutomation: {
       title: "Appointment-type-aware pre-visit sequence",
@@ -179,7 +179,7 @@ export const INDUSTRIES: Industry[] = [
         "Look up the instruction set for that appointment type",
         "Send confirmation with consultant, department, date, time and location",
         "Send preparation instructions specific to the appointment type",
-        "Send a document checklist — ID, insurance, prior reports, referral",
+        "Send a document checklist - ID, insurance, prior reports, referral",
         "Reminder 24 hours before with a confirm or reschedule option",
         "If unconfirmed, escalate to the front desk for a call",
         "After the visit, trigger the follow-up booking prompt on the consultant's protocol",
@@ -188,13 +188,13 @@ export const INDUSTRIES: Industry[] = [
     exampleAgentFlow: {
       title: "Symptom-to-department routing",
       turns: [
-        { who: "Agent", line: "Thank you for calling Anjaneya Multi-Speciality. This is an automated assistant — I can help with appointments and directions, and I'll connect you to a person for anything clinical. What do you need?" },
+        { who: "Agent", line: "Thank you for calling Anjaneya Multi-Speciality. This is an automated assistant - I can help with appointments and directions, and I'll connect you to a person for anything clinical. What do you need?" },
         { who: "Caller", line: "I need to see someone about persistent knee pain." },
         { who: "Agent", line: "I can book you with Orthopaedics. Has this been assessed here before, or is this a first visit?" },
         { who: "Caller", line: "First visit." },
         { who: "Agent", line: "Dr. Raghunath has Thursday 10:30am, or Dr. Preetha has Friday 4:00pm. Either works for a first orthopaedic consultation." },
         { who: "Caller", line: "Thursday, please." },
-        { who: "Agent", line: "Booked. You'll receive a WhatsApp message with the consultant, the time, and what to bring — including any previous X-rays if you have them. Shall I also note your preferred language for the consultation?" },
+        { who: "Agent", line: "Booked. You'll receive a WhatsApp message with the consultant, the time, and what to bring - including any previous X-rays if you have them. Shall I also note your preferred language for the consultation?" },
       ],
     },
     integrations: [
@@ -224,7 +224,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       {
         q: "Is it safe to let automation near patient scheduling?",
-        a: "Scheduling, yes — with strict boundaries. The agent selects a department and a slot using rules you write, and hands anything clinical to a person. We treat the scope as a whitelist rather than a filter: the agent can only do what it is explicitly allowed to do.",
+        a: "Scheduling, yes - with strict boundaries. The agent selects a department and a slot using rules you write, and hands anything clinical to a person. We treat the scope as a whitelist rather than a filter: the agent can only do what it is explicitly allowed to do.",
       },
       {
         q: "What happens with an emergency call?",
@@ -258,13 +258,13 @@ export const INDUSTRIES: Industry[] = [
     problem: {
       title: "High lead volume, thin qualification, slow first response",
       body:
-        "Leads arrive from portals, ad campaigns, WhatsApp and walk-ins, and most are unqualified — wrong budget, wrong location, wrong timeline, or simply browsing. Agents spend their day filtering rather than selling, and because filtering is slow, the genuinely serious buyer waits alongside everyone else. By the time someone calls, a competitor has already booked the site visit.",
+        "Leads arrive from portals, ad campaigns, WhatsApp and walk-ins, and most are unqualified - wrong budget, wrong location, wrong timeline, or simply browsing. Agents spend their day filtering rather than selling, and because filtering is slow, the genuinely serious buyer waits alongside everyone else. By the time someone calls, a competitor has already booked the site visit.",
     },
     manualWorkflow: [
       { step: "Lead arrives", detail: "From a portal, ad form, WhatsApp or a walk-in, into different inboxes." },
       { step: "Manual collation", detail: "Someone consolidates sources into a sheet or CRM, usually in a daily batch." },
       { step: "Assignment", detail: "Distributed to agents over chat, with no ownership record." },
-      { step: "First call", detail: "Happens when the agent gets to it — often hours or days later." },
+      { step: "First call", detail: "Happens when the agent gets to it - often hours or days later." },
       { step: "Qualification", detail: "Budget, location, configuration, timeline and finance asked inconsistently." },
       { step: "Site visit", detail: "Coordinated over several messages between agent and buyer." },
       { step: "Follow-up", detail: "Depends entirely on individual discipline; most leads simply go cold." },
@@ -291,13 +291,13 @@ export const INDUSTRIES: Industry[] = [
     exampleAgentFlow: {
       title: "Portal enquiry qualified over WhatsApp, four minutes after submission",
       turns: [
-        { who: "Agent", line: "Hi Aravind — thanks for your enquiry about Sattva Greenscape. This is Anika, an automated assistant from the sales desk. A few quick questions so I connect you with the right person. Which configuration are you looking at?" },
+        { who: "Agent", line: "Hi Aravind - thanks for your enquiry about Sattva Greenscape. This is Anika, an automated assistant from the sales desk. A few quick questions so I connect you with the right person. Which configuration are you looking at?" },
         { who: "Buyer", line: "3BHK ideally." },
         { who: "Agent", line: "Got it. Is your budget broadly within 1.4 to 1.8 crore for that configuration?" },
         { who: "Buyer", line: "Up to about 1.6." },
         { who: "Agent", line: "That works for two of the available units. Are you looking to buy within the next three months, or planning further ahead?" },
         { who: "Buyer", line: "Next two months, we've already got a loan pre-approval." },
-        { who: "Agent", line: "That's helpful. Ravi from the sales team handles this project and I'm passing him your details now — he'll call within the hour. Would Saturday morning suit you for a site visit? I can hold 11am." },
+        { who: "Agent", line: "That's helpful. Ravi from the sales team handles this project and I'm passing him your details now - he'll call within the hour. Would Saturday morning suit you for a site visit? I can hold 11am." },
         { who: "Buyer", line: "Saturday 11 is fine." },
         { who: "Agent", line: "Held. Ravi will confirm on his call and send the location and the documents to bring." },
       ],
@@ -343,7 +343,7 @@ export const INDUSTRIES: Industry[] = [
       },
       {
         q: "What about leads that are not ready to buy?",
-        a: "They go into a long-cycle nurture track with inventory and price updates, not a discard pile. Property cycles run in months, so a buyer who is six months out is worth staying in front of — and automation is the only economical way to do that at volume.",
+        a: "They go into a long-cycle nurture track with inventory and price updates, not a discard pile. Property cycles run in months, so a buyer who is six months out is worth staying in front of - and automation is the only economical way to do that at volume.",
       },
     ],
     relatedSolutions: ["crm-automation", "whatsapp-automation", "ai-voice-agents"],
@@ -379,7 +379,7 @@ export const INDUSTRIES: Industry[] = [
     recommendation: {
       title: "Start with order messaging and status enquiries",
       body:
-        "Order and shipping notifications, plus an agent that answers status questions from live order data, remove the largest single block of repetitive work and are measurable immediately in support volume. Once that is running, the affiliate and commission layer is the next highest-value piece for stores with a partner programme, because manual commission maths does not just cost time — it erodes partner trust when it is wrong.",
+        "Order and shipping notifications, plus an agent that answers status questions from live order data, remove the largest single block of repetitive work and are measurable immediately in support volume. Once that is running, the affiliate and commission layer is the next highest-value piece for stores with a partner programme, because manual commission maths does not just cost time - it erodes partner trust when it is wrong.",
     },
     exampleAutomation: {
       title: "Order lifecycle messaging with attribution",
@@ -399,11 +399,11 @@ export const INDUSTRIES: Industry[] = [
       title: "Delivery status enquiry on WhatsApp",
       turns: [
         { who: "Customer", line: "where is my order" },
-        { who: "Agent", line: "Hi Deepthi — I can check that. I have order #4471 placed on the 21st, two items. It was dispatched yesterday via Delhivery and is currently at the Hyderabad hub, on track for delivery tomorrow. Tracking: DL-88214077." },
+        { who: "Agent", line: "Hi Deepthi - I can check that. I have order #4471 placed on the 21st, two items. It was dispatched yesterday via Delhivery and is currently at the Hyderabad hub, on track for delivery tomorrow. Tracking: DL-88214077." },
         { who: "Customer", line: "can i change the address" },
         { who: "Agent", line: "Because it's already dispatched I can't change the address myself, but the courier can redirect within the same city. Shall I raise that request with our team? Someone will confirm within the hour." },
         { who: "Customer", line: "yes please" },
-        { who: "Agent", line: "Raised — reference RQ-2209. You'll get a confirmation here once the redirect is accepted." },
+        { who: "Agent", line: "Raised - reference RQ-2209. You'll get a confirmation here once the redirect is accepted." },
       ],
     },
     integrations: [
@@ -430,12 +430,12 @@ export const INDUSTRIES: Industry[] = [
       "Refunds, cancellations and payouts are approval steps, not autonomous actions.",
       "The agent reads live order data rather than generating a status, so it cannot invent a delivery date.",
       "Marketing messages run inside WhatsApp template policy and opt-in rules.",
-      "Payment details are never handled by the agent — it links to the store's own secure flow.",
+      "Payment details are never handled by the agent - it links to the store's own secure flow.",
     ],
     faqs: [
       {
         q: "Will this replace our support team?",
-        a: "No, and framing it that way usually produces a worse result. It removes the repetitive tier — status, tracking, policy questions — so the team handles exceptions, complaints and the conversations where judgement matters. That is where support actually affects repeat purchase.",
+        a: "No, and framing it that way usually produces a worse result. It removes the repetitive tier - status, tracking, policy questions - so the team handles exceptions, complaints and the conversations where judgement matters. That is where support actually affects repeat purchase.",
       },
       {
         q: "Does this work with WooCommerce too?",
@@ -443,7 +443,7 @@ export const INDUSTRIES: Industry[] = [
       },
       {
         q: "Can you build a multi-level affiliate programme?",
-        a: "Yes — it is one of the things we are building on iLoveSurprises. The difficult part is not commission percentages; it is attribution rules, self-referral prevention, clawbacks on returns, and a ledger that reconciles cleanly. That is where the design effort goes.",
+        a: "Yes - it is one of the things we are building on iLoveSurprises. The difficult part is not commission percentages; it is attribution rules, self-referral prevention, clawbacks on returns, and a ledger that reconciles cleanly. That is where the design effort goes.",
       },
       {
         q: "We already pay for several Shopify apps. Is this redundant?",
@@ -461,7 +461,7 @@ export const INDUSTRIES: Industry[] = [
     h1: "Automation for service businesses where the owner is the bottleneck.",
     metaTitle: "AI Automation for Service Businesses",
     metaDescription:
-      "Answer every enquiry call, quote faster, schedule jobs and chase follow-ups automatically — automation for service businesses without an operations team.",
+      "Answer every enquiry call, quote faster, schedule jobs and chase follow-ups automatically - automation for service businesses without an operations team.",
     eyebrow: "Service Businesses",
     lede:
       "In most local service businesses one person is sales, scheduling, dispatch and accounts. Every one of those roles competes for the same attention.",
@@ -469,7 +469,7 @@ export const INDUSTRIES: Industry[] = [
     problem: {
       title: "The owner is the single point of coordination",
       body:
-        "Enquiries arrive while the owner is on site, quoting, or driving. Calls go unanswered, quotes are promised and delayed, jobs are scheduled from memory, and follow-up on an unaccepted quote almost never happens. The business is not short of demand — it is short of a coordination layer, and hiring for that is expensive before revenue is predictable.",
+        "Enquiries arrive while the owner is on site, quoting, or driving. Calls go unanswered, quotes are promised and delayed, jobs are scheduled from memory, and follow-up on an unaccepted quote almost never happens. The business is not short of demand - it is short of a coordination layer, and hiring for that is expensive before revenue is predictable.",
     },
     manualWorkflow: [
       { step: "Enquiry arrives", detail: "By call or WhatsApp, usually while the owner is mid-job." },
@@ -483,7 +483,7 @@ export const INDUSTRIES: Industry[] = [
     recommendation: {
       title: "Capture the enquiry, then chase the quote",
       body:
-        "Two automations change the economics. First, never miss an enquiry: an agent answers, captures job type, location, urgency and access details, and books the estimate. Second, chase every quote automatically — a structured three-touch follow-up on quotes that have not been accepted is usually the single highest-return automation a service business can run, because the work is already scoped and priced.",
+        "Two automations change the economics. First, never miss an enquiry: an agent answers, captures job type, location, urgency and access details, and books the estimate. Second, chase every quote automatically - a structured three-touch follow-up on quotes that have not been accepted is usually the single highest-return automation a service business can run, because the work is already scoped and priced.",
     },
     exampleAutomation: {
       title: "Quote follow-up sequence",
@@ -501,7 +501,7 @@ export const INDUSTRIES: Industry[] = [
     exampleAgentFlow: {
       title: "Enquiry captured while the owner is on a job",
       turns: [
-        { who: "Agent", line: "Thanks for calling Sundara Electricals. This is an automated assistant — Bhaskar is on a job right now, but I can take the details and get you a callback. What do you need doing?" },
+        { who: "Agent", line: "Thanks for calling Sundara Electricals. This is an automated assistant - Bhaskar is on a job right now, but I can take the details and get you a callback. What do you need doing?" },
         { who: "Caller", line: "Half the power in my flat has gone out." },
         { who: "Agent", line: "That sounds like it needs looking at quickly. Is there any burning smell or visible damage?" },
         { who: "Caller", line: "No smell, the lights in two rooms just stopped." },
@@ -532,14 +532,14 @@ export const INDUSTRIES: Industry[] = [
     ],
     considerations: [
       "Pricing is quoted only from a rate card you maintain, or deferred to the owner.",
-      "Safety-relevant enquiries — gas, electrical damage, water ingress — escalate immediately rather than being scheduled.",
+      "Safety-relevant enquiries - gas, electrical damage, water ingress - escalate immediately rather than being scheduled.",
       "The agent states it is automated and offers a callback from a person.",
       "Follow-up sequences stop on any reply and honour opt-out.",
     ],
     faqs: [
       {
         q: "We are a small team. Is this worth it at our size?",
-        a: "It is most worth it at small size, because the constraint is attention rather than headcount. Start with one automation — missed-call capture or quote follow-up — and judge it on a number you can see, like quotes accepted. If it does not move, it was a small commitment.",
+        a: "It is most worth it at small size, because the constraint is attention rather than headcount. Start with one automation - missed-call capture or quote follow-up - and judge it on a number you can see, like quotes accepted. If it does not move, it was a small commitment.",
       },
       {
         q: "Can it quote prices?",
@@ -547,11 +547,11 @@ export const INDUSTRIES: Industry[] = [
       },
       {
         q: "What if customers just want to talk to me?",
-        a: "Most do, and the automation is built to get them to you faster with the details already gathered. It answers when you genuinely cannot, and the alternative to an automated answer is not a personal one — it is a missed call.",
+        a: "Most do, and the automation is built to get them to you faster with the details already gathered. It answers when you genuinely cannot, and the alternative to an automated answer is not a personal one - it is a missed call.",
       },
       {
         q: "How much does this cost to run?",
-        a: "Ongoing cost is mostly third-party usage — telephony minutes, WhatsApp message fees, AI model calls — which scales with volume and is usually modest at small-business levels. We put the expected running cost in front of you during scoping, because a solution you cannot afford to operate is not a solution.",
+        a: "Ongoing cost is mostly third-party usage - telephony minutes, WhatsApp message fees, AI model calls - which scales with volume and is usually modest at small-business levels. We put the expected running cost in front of you during scoping, because a solution you cannot afford to operate is not a solution.",
       },
     ],
     relatedSolutions: ["ai-voice-agents", "whatsapp-automation", "workflow-automation"],

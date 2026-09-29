@@ -8,7 +8,7 @@ import { Container, Eyebrow, Index, SectionHeading } from "./ui";
 import { Reveal, fadeUp } from "./motion";
 
 /* =========================================================
-   SECTION SHELL — consistent rhythm, alternating surfaces
+   SECTION SHELL - consistent rhythm, alternating surfaces
 ========================================================= */
 
 export function Section({
@@ -35,7 +35,7 @@ export function Section({
 }
 
 /* =========================================================
-   BREADCRUMBS — visible trail matching BreadcrumbList schema
+   BREADCRUMBS - visible trail matching BreadcrumbList schema
 ========================================================= */
 
 export function Breadcrumbs({
@@ -83,7 +83,7 @@ export function Breadcrumbs({
 }
 
 /* =========================================================
-   FLOW — a numbered step sequence. The workflow diagram.
+   FLOW - a numbered step sequence. The workflow diagram.
    Rail on the left, steps hanging off it. No cards.
 ========================================================= */
 
@@ -148,7 +148,7 @@ export function Flow({
 }
 
 /* =========================================================
-   PLAIN STEP LIST — for "how it runs manually today"
+   PLAIN STEP LIST - for "how it runs manually today"
 ========================================================= */
 
 export function StepList({
@@ -187,7 +187,7 @@ export function StepList({
 }
 
 /* =========================================================
-   BULLETS — dot list, no boxes
+   BULLETS - dot list, no boxes
 ========================================================= */
 
 export function Bullets({
@@ -229,7 +229,7 @@ export function Bullets({
 }
 
 /* =========================================================
-   DEFINITION ROWS — title + body pairs. Lines, not cards.
+   DEFINITION ROWS - title + body pairs. Lines, not cards.
 ========================================================= */
 
 export function DefRows({
@@ -290,7 +290,7 @@ export function DefRows({
 }
 
 /* =========================================================
-   COMPARE — two columns. Used for scope boundaries.
+   COMPARE - two columns. Used for scope boundaries.
 ========================================================= */
 
 export function Compare({
@@ -379,7 +379,7 @@ export function Compare({
 }
 
 /* =========================================================
-   CALLOUT — a single framed aside. Used sparingly.
+   CALLOUT - a single framed aside. Used sparingly.
 ========================================================= */
 
 export function Callout({
@@ -418,7 +418,7 @@ export function Callout({
 }
 
 /* =========================================================
-   FAQ — native details/summary. Keyboard accessible for free,
+   FAQ - native details/summary. Keyboard accessible for free,
    and the answer text is always in the DOM, which is what makes
    FAQPage markup legitimate here.
 ========================================================= */
@@ -507,7 +507,7 @@ export function IntegrationChips({
 }
 
 /* =========================================================
-   METRIC SLOTS — case-study results.
+   METRIC SLOTS - case-study results.
    A slot without a verified value renders as pending. It is
    never dressed up as an achievement.
 ========================================================= */
@@ -600,7 +600,7 @@ export function MetricSlots({
 }
 
 /* =========================================================
-   RELATED — internal linking block. Prevents orphan pages.
+   RELATED - internal linking block. Prevents orphan pages.
 ========================================================= */
 
 export function Related({
@@ -678,7 +678,7 @@ export function Related({
 }
 
 /* =========================================================
-   CONVERSATION — example agent dialogue
+   CONVERSATION - example agent dialogue
 ========================================================= */
 
 export function Conversation({

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
-import { EXISTING_STACK, INTEGRATIONS, PROJECTS } from "@/lib/site";
+import { EXISTING_STACK, INTEGRATION_LOGOS, PROJECTS } from "@/lib/site";
 import {
   Arrow,
   Button,
@@ -59,7 +59,7 @@ const CAPABILITIES = [
     id: "custom-software",
     index: "03",
     title: "Custom Software",
-    body: "Applications shaped around how your team works — portals, dashboards, internal tools, and platforms.",
+    body: "Applications shaped around how your team works - portals, dashboards, internal tools, and platforms.",
     meta: ["Portals", "Dashboards", "SaaS", "Internal tools"],
   },
   {
@@ -122,7 +122,7 @@ const WHY = [
   {
     index: "01",
     title: "Business-first architecture",
-    body: "We start with the process, the bottleneck, and the outcome you want — then choose the technology.",
+    body: "We start with the process, the bottleneck, and the outcome you want - then choose the technology.",
     image: "/images/why/architecture.webp",
     alt: "Connected business architecture diagram",
   },
@@ -174,6 +174,7 @@ export default function HomePage() {
     <div className="w-full overflow-x-clip">
       <Hero />
       <IntegrationBand />
+      <SignalBand />
       <ExistingBusiness />
       <Positioning />
       <Capabilities />
@@ -185,8 +186,8 @@ export default function HomePage() {
       <ProcessSection />
       <CTA
         title="What would you automate if your team had more time?"
-        lede="Tell us what's slowing your business down. We'll map the system that removes it — AI, automation, software, or all three."
-        primary={{ label: "Book a free consultation", href: "/contact" }}
+        lede="Tell us what's slowing your business down. We'll map the system that removes it - AI, automation, software, or all three."
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "See our services", href: "/services" }}
         image="/images/mission.webp"
       />
@@ -238,16 +239,14 @@ function Hero() {
               variants={fadeUp}
               className="mt-7 max-w-[54ch] text-base leading-relaxed text-on-dark sm:text-lg"
             >
-              FlowFoundry builds AI agents, automation, custom software and
-              integrations around the way your business already works — so you
-              respond faster and coordinate less, without replacing the tools
-              your team already uses.
+              AI agents, automation and custom software, built around the
+              tools your team already uses.
             </motion.p>
 
             <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Magnetic>
                 <Button href="/contact" variant="onDark" size="lg" className="w-full sm:w-auto">
-                  Book a consultation
+                  Book consultation
                   <Arrow />
                 </Button>
               </Magnetic>
@@ -256,35 +255,6 @@ function Hero() {
               </Button>
             </motion.div>
 
-            {/* Capability line — what we do, in four words a buyer scans */}
-            <motion.ul
-              variants={fadeUp}
-              className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-2xs uppercase tracking-[0.16em] text-on-dark-muted"
-            >
-              {["AI Agents", "Automation", "Custom Software", "Integrations"].map(
-                (c, i) => (
-                  <li key={c} className="flex items-center gap-3">
-                    {i > 0 ? (
-                      <span
-                        aria-hidden="true"
-                        className="h-1 w-1 rounded-full bg-white/25"
-                      />
-                    ) : null}
-                    {c}
-                  </li>
-                )
-              )}
-            </motion.ul>
-
-            <motion.div variants={fadeUp} className="mt-10">
-              <StatStrip
-                items={[
-                  { value: "4", label: "Platforms in build" },
-                  { value: "16+", label: "Integrations" },
-                  { value: "<24h", label: "Response time" },
-                ]}
-              />
-            </motion.div>
           </motion.div>
 
           <motion.div
@@ -305,18 +275,74 @@ function Hero() {
 
 function IntegrationBand() {
   return (
-    <section className="w-full border-y border-white/[0.06] bg-ink py-6">
-      <Marquee duration={48}>
-        {INTEGRATIONS.map((name) => (
-          <span
-            key={name}
-            className="flex items-center gap-8 pr-8 font-mono text-xs uppercase tracking-[0.18em] text-on-dark-muted"
+    <section className="w-full border-y border-white/[0.06] bg-ink py-7">
+      <Container>
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-10">
+          {/*
+            A single lead-in for the whole strip. Without it a logo row under
+            a hero reads as "our customers", and these are systems we connect
+            to, not clients. Per-logo captions stay off.
+          */}
+          <p className="shrink-0 font-mono text-2xs uppercase tracking-[0.18em] text-on-dark-muted">
+            Connects with
+          </p>
+
+          <Marquee duration={54} className="min-w-0 flex-1">
+            {INTEGRATION_LOGOS.map(({ name, slug }) => (
+              <span key={slug} className="flex shrink-0 items-center pr-12">
+                {/*
+                  Plain <img>: these are tiny single-colour SVGs, so the
+                  optimiser has nothing to do and next/image would only add
+                  a request per mark.
+                */}
+                <img
+                  src={`/images/logos/${slug}.svg`}
+                  alt={name}
+                  width={22}
+                  height={22}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-[22px] w-auto opacity-45 transition-opacity duration-300 hover:opacity-90"
+                />
+              </span>
+            ))}
+          </Marquee>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ---------------- SIGNALS ----------------
+   The three figures that used to sit inside the hero. They are real
+   operating facts, so they keep their place on the page - just not
+   competing with the headline for the first impression.
+------------------------------------------------ */
+
+function SignalBand() {
+  return (
+    <section className="w-full bg-ink py-14 lg:py-18">
+      <Container>
+        <Reveal className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-16">
+          <motion.p
+            variants={fadeUp}
+            className="max-w-[34ch] text-lg leading-snug tracking-[-0.02em] text-white sm:text-xl"
           >
-            {name}
-            <span className="h-1 w-1 rounded-full bg-white/20" aria-hidden="true" />
-          </span>
-        ))}
-      </Marquee>
+            Small team, working systems, and a reply before you have moved on
+            to something else.
+          </motion.p>
+
+          <motion.div variants={fadeUp}>
+            <StatStrip
+              items={[
+                { value: "4", label: "Platforms in build" },
+                { value: "16+", label: "Integrations" },
+                { value: "<24h", label: "Response time" },
+              ]}
+            />
+          </motion.div>
+        </Reveal>
+      </Container>
     </section>
   );
 }
@@ -335,7 +361,6 @@ function ExistingBusiness() {
           <motion.div variants={fadeUp}>
             <SectionHeading
               align="split"
-              eyebrow="Built around your existing business"
               title="We don't ask you to replace what already works."
               lede="Most automation projects fail because they start with a migration. We start with the systems you already run and connect them."
             />
@@ -465,7 +490,6 @@ function Positioning() {
     <section className="w-full bg-white py-24 lg:py-32">
       <Container>
         <Split
-          eyebrow="About FlowFoundry"
           title={
             <>
               We build systems,
@@ -479,8 +503,8 @@ function Positioning() {
           reverse
         >
           <p className="text-[17px] leading-relaxed">
-            We start by understanding how your business actually works — the
-            workflows, bottlenecks, customer interactions, and existing tools —
+            We start by understanding how your business actually works - the
+            workflows, bottlenecks, customer interactions, and existing tools - 
             then design technology around those processes.
           </p>
           <div className="pt-4">
@@ -508,7 +532,6 @@ function Capabilities() {
           <motion.div variants={fadeUp}>
             <SectionHeading
               align="split"
-              eyebrow="What we do"
               title="From disconnected tools to one intelligent system."
               lede="Instead of adding more software to your stack, we design a system around the way your business actually operates."
             />
@@ -549,8 +572,7 @@ function System() {
             <SectionHeading
               invert
               align="split"
-              eyebrow="How it connects"
-              title="Conversations, logic, data, actions — one route."
+              title="Conversations, logic, data, actions - one route."
               lede="We connect every layer so your business doesn't stop at collecting information. It acts on it."
             />
           </motion.div>
@@ -631,9 +653,8 @@ function UseCases() {
         <Reveal amount={0.3} className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <motion.div variants={fadeUp}>
             <SectionHeading
-              eyebrow="Use cases"
               title="Built around real business processes."
-              lede="Different teams have different workflows. The system adapts to your operation — not the other way around."
+              lede="Different teams have different workflows. The system adapts to your operation - not the other way around."
             />
           </motion.div>
           <motion.div variants={fadeUp} className="flex gap-2">
@@ -778,8 +799,7 @@ function Why() {
               <motion.div variants={fadeUp}>
                 <SectionHeading
                   invert
-                  eyebrow="Why FlowFoundry"
-                  title="Technology built around the business — not the other way around."
+                  title="Technology built around the business - not the other way around."
                   lede="Good automation isn't about connecting random tools. It's about understanding the process first, then designing the right system around it."
                 />
               </motion.div>
@@ -808,7 +828,6 @@ function ProcessSection() {
           <motion.div variants={fadeUp}>
             <SectionHeading
               align="split"
-              eyebrow="How we work"
               title="From process to production."
               lede="Start with the business problem. Design the system. Build, integrate, launch, and improve."
             />

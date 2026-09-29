@@ -21,7 +21,7 @@ const FOUNDER_LINKS = [
 ].filter((l) => l.href.length > 0);
 
 const PRINCIPLES = [
-  { index: "01", title: "Process before tools", body: "We begin with how the business actually works — the workflow, people, bottlenecks, decisions, and desired outcome." },
+  { index: "01", title: "Process before tools", body: "We begin with how the business actually works - the workflow, people, bottlenecks, decisions, and desired outcome." },
   { index: "02", title: "Outcome before features", body: "Technology should create measurable operational value, not simply add more software to the stack." },
   { index: "03", title: "Integration before isolation", body: "We design systems that work with your existing tools, data, and processes instead of creating another disconnected silo." },
   { index: "04", title: "Automation with human control", body: "AI and automation should remove repetitive work while keeping important decisions visible and controllable." },
@@ -59,7 +59,7 @@ export default function AboutPage() {
         title="Building smarter ways for businesses to work."
         lede="FlowFoundry AI Solutions helps businesses turn ideas, manual processes, and disconnected tools into intelligent business systems."
         secondary="We combine AI engineering, automation, software development, and integrations to connect conversations, business logic, data, and actions around the way your business actually operates."
-        primaryCta={{ label: "Book a free consultation", href: "/contact" }}
+        primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Explore our services", href: "/services" }}
         image="/images/use-cases/services.webp"
         strip={
@@ -101,7 +101,7 @@ export default function AboutPage() {
               rules, data, and systems that keep an organization moving.
             </p>
             <p className="text-[16px] leading-relaxed">
-              From there we design practical technology around those processes —
+              From there we design practical technology around those processes - 
               reducing repetitive work, connecting disconnected systems,
               improving response times, and creating a stronger foundation for
               growth.
@@ -165,7 +165,7 @@ export default function AboutPage() {
               </h3>
               <p className="mt-6 max-w-[42ch] text-[16px] leading-relaxed text-body">
                 Businesses where conversations, decisions, data, and actions move
-                without friction — giving teams more time for customers,
+                without friction - giving teams more time for customers,
                 creativity, strategy, and growth.
               </p>
             </motion.article>
@@ -221,7 +221,7 @@ export default function AboutPage() {
                   invert
                   eyebrow="Integration-first"
                   title="We work with the tools you already run."
-                  lede="CRMs, calendars, messaging, payments, storefronts, spreadsheets, and custom APIs — connected into one operating flow, not another silo."
+                  lede="CRMs, calendars, messaging, payments, storefronts, spreadsheets, and custom APIs - connected into one operating flow, not another silo."
                 />
               </motion.div>
               <motion.div variants={fadeUp} className="mt-8">
@@ -262,7 +262,7 @@ export default function AboutPage() {
       {/*
         FOUNDER
         The strongest E-E-A-T signal available to a young company is a named,
-        identifiable person who is accountable for the work — so the founder
+        identifiable person who is accountable for the work - so the founder
         gets a dedicated section above the team grid, not a card inside it.
       */}
       <section className="w-full bg-white py-24 lg:py-32">
@@ -375,7 +375,7 @@ export default function AboutPage() {
                   <Arrow />
                 </Button>
                 <Button href="/contact" variant="primary">
-                  Book a consultation
+                  Book consultation
                   <Arrow />
                 </Button>
               </motion.div>
@@ -393,7 +393,7 @@ export default function AboutPage() {
                 align="split"
                 eyebrow="The team"
                 title="The people building FlowFoundry."
-                lede="A distributed team across Andhra Pradesh, Tamil Nadu, and Gujarat — engineering, automation, software, and business development."
+                lede="A distributed team across Andhra Pradesh, Tamil Nadu, and Gujarat - engineering, automation, software, and business development."
               />
             </motion.div>
           </Reveal>
@@ -444,7 +444,7 @@ export default function AboutPage() {
               <div>
                 <Eyebrow>What we&apos;re building</Eyebrow>
                 <h2 className="mt-4 text-[clamp(1.5rem,2.8vw,2.2rem)] font-medium leading-[1.08] tracking-[-0.025em] text-fg">
-                  LeadPulz — our AI revenue agent platform.
+                  LeadPulz - our AI revenue agent platform.
                 </h2>
                 <p className="mt-4 max-w-[64ch] text-[15px] leading-relaxed text-body">
                   Alongside client work, we are building LeadPulz: an AI voice
@@ -466,7 +466,7 @@ export default function AboutPage() {
         eyebrow="Let's build"
         title="Have a process, bottleneck, or system idea?"
         lede="Tell us how your business works today. We'll help you explore how AI, automation, integrations, or custom software could make it work better."
-        primary={{ label: "Book a free consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore our services", href: "/services" }}
         image="/images/contact.webp"
       />

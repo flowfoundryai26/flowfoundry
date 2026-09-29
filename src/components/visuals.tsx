@@ -24,7 +24,7 @@ import { EASE, SPRING } from "./motion";
 import { Tilt } from "./motion";
 
 /* =========================================================
-   AGENT CONSOLE — hero visual.
+   AGENT CONSOLE - hero visual.
    A single looping "run": lead arrives → agent converses →
    logic decides → systems update → meeting booked.
    Isolated + memoized so its timers never re-render the page.
@@ -34,7 +34,7 @@ const TRANSCRIPT = [
   { who: "lead", text: "Hi, I run a 12-person clinic. We miss calls after 6pm." },
   { who: "agent", text: "Understood. Do you use a booking system today?" },
   { who: "lead", text: "Google Calendar and a Zoho CRM." },
-  { who: "agent", text: "Great — I can check availability and book directly. Thursday 10:30 works?" },
+  { who: "agent", text: "Great - I can check availability and book directly. Thursday 10:30 works?" },
   { who: "lead", text: "Yes, that's fine." },
 ] as const;
 
@@ -111,9 +111,9 @@ export const AgentConsole = memo(function AgentConsole() {
             </span>
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-on-dark-muted">
-                Live run
+                Sample run
               </p>
-              <p className="text-xs font-medium text-white">Inbound enquiry · AI agent</p>
+              <p className="text-xs font-medium text-white">Inbound enquiry, AI agent</p>
             </div>
           </div>
           <PhasePill phase={phase} />
@@ -130,14 +130,14 @@ export const AgentConsole = memo(function AgentConsole() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.4, ease: EASE }}
-                  className="flex items-center gap-3 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3.5 py-3"
+                  className="flex items-center gap-3 rounded-md border border-white/[0.08] bg-white/[0.03] px-3.5 py-3"
                 >
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-dark opacity-70" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-dark" />
                   </span>
                   <span className="text-xs text-on-dark">
-                    Incoming call · +91 98•• ••• 4127
+                    Incoming call
                   </span>
                 </motion.div>
               )}
@@ -198,7 +198,7 @@ export const AgentConsole = memo(function AgentConsole() {
                 return (
                   <li
                     key={a.label}
-                    className={`flex items-center gap-2.5 rounded-lg border px-3 py-2 text-xs transition-colors duration-500 ${
+                    className={`flex items-center gap-2.5 rounded-md border px-3 py-2 text-xs transition-colors duration-500 ${
                       isDone
                         ? "border-live/25 bg-live/[0.08] text-white"
                         : "border-white/[0.06] bg-transparent text-on-dark-muted"
@@ -239,7 +239,7 @@ export const AgentConsole = memo(function AgentConsole() {
           {[
             ["Response", "0.8s"],
             ["Duration", "1m 42s"],
-            ["Outcome", phase === "done" ? "Booked" : "—"],
+            ["Outcome", phase === "done" ? "Booked" : " - "],
           ].map(([k, v]) => (
             <div key={k} className="px-4 py-3">
               <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-on-dark-muted">
@@ -261,7 +261,7 @@ export const AgentConsole = memo(function AgentConsole() {
             transition={{ type: "spring", stiffness: 420, damping: 18 }}
             className="absolute -bottom-7 left-1/2 flex w-max -translate-x-1/2 items-center gap-3 rounded-xl border border-white/10 bg-white px-4 py-3 text-fg shadow-lift sm:left-auto sm:right-6 sm:translate-x-0"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-live/10 text-live">
+            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-live/10 text-live">
               <CalendarCheck weight="fill" className="h-4 w-4" />
             </span>
             <div>
@@ -302,7 +302,7 @@ function PhasePill({ phase }: { phase: Phase }) {
 }
 
 /* =========================================================
-   SYSTEM FLOW — Conversations → Logic → Data → Actions
+   SYSTEM FLOW - Conversations → Logic → Data → Actions
    SVG path draws with scroll; a pulse travels the route.
 ========================================================= */
 
@@ -425,7 +425,7 @@ export function SystemFlow() {
 }
 
 /* =========================================================
-   VOICE WAVE — perpetual bars
+   VOICE WAVE - perpetual bars
 ========================================================= */
 
 export const VoiceWave = memo(function VoiceWave({
@@ -459,7 +459,7 @@ export const VoiceWave = memo(function VoiceWave({
 });
 
 /* =========================================================
-   DEVICE — dashboard in a tilting browser frame
+   DEVICE - dashboard in a tilting browser frame
 ========================================================= */
 
 export function Device({
@@ -497,7 +497,7 @@ export function Device({
 }
 
 /* =========================================================
-   SYNC ORBIT — integrations orbit a core (about / services)
+   SYNC ORBIT - integrations orbit a core (about / services)
 ========================================================= */
 
 export const SyncOrbit = memo(function SyncOrbit({ items }: { items: string[] }) {

@@ -27,7 +27,7 @@ const CHANNELS = [
     icon: WhatsappLogo,
     label: "WhatsApp",
     value: "+91 73309 37354",
-    hint: "Fastest — usually within minutes",
+    hint: "Fastest - usually within minutes",
     href: waLink("Hi FlowFoundry, I'd like to know more about your services."),
     external: true,
   },
@@ -49,7 +49,7 @@ const CHANNELS = [
     icon: MapPin,
     label: "Where we are",
     value: "Distributed across India",
-    hint: "Andhra Pradesh, Tamil Nadu and Gujarat — remote-first",
+    hint: "Andhra Pradesh, Tamil Nadu and Gujarat - remote-first",
   },
 ];
 
@@ -106,7 +106,7 @@ export default function ContactPage() {
             </h1>
             <motion.p variants={fadeUp} className="mt-7 max-w-[50ch] text-base leading-relaxed text-on-dark sm:text-lg">
               Share the workflow, bottleneck, or system idea. We&apos;ll come
-              back within one business day with a clear next step — no
+              back within one business day with a clear next step - no
               generic pitch.
             </motion.p>
           </motion.div>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                   const Icon = c.icon;
                   const inner = (
                     <div className="group flex items-center gap-4 py-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-paper text-fg">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-paper text-fg">
                         <Icon className="h-4.5 w-4.5" />
                       </span>
                       <span className="min-w-0 flex-1">
@@ -355,18 +355,18 @@ function ContactForm() {
       "I'd like to book an automation consultation. My details:",
       "",
       `*Name:* ${form.name}`,
-      `*Company:* ${form.company || "—"}`,
-      `*Website:* ${form.website || "—"}`,
+      `*Company:* ${form.company || " - "}`,
+      `*Website:* ${form.website || " - "}`,
       `*Phone:* ${form.phone}`,
       `*Email:* ${form.email}`,
-      `*Industry:* ${form.industry || "—"}`,
-      `*Wants to improve:* ${form.goal || form.subject || "—"}`,
-      `*Current tools:* ${form.tools || "—"}`,
+      `*Industry:* ${form.industry || " - "}`,
+      `*Wants to improve:* ${form.goal || form.subject || " - "}`,
+      `*Current tools:* ${form.tools || " - "}`,
       "",
       "*What's happening now:*",
       form.message,
       "",
-      "— Sent from the FlowFoundry website",
+      " - Sent from the FlowFoundry website",
     ];
     const body = lines.join("\n");
     setComposed(body);
@@ -393,7 +393,7 @@ function ContactForm() {
         </h2>
         <p className="mt-3 max-w-[48ch] text-[15px] leading-relaxed text-body">
           Hit send in WhatsApp and we&apos;ll reply there, usually within a few
-          hours. Didn&apos;t open? Your message is still here — use either option
+          hours. Didn&apos;t open? Your message is still here - use either option
           below and nothing is lost.
         </p>
 
@@ -475,7 +475,7 @@ function ContactForm() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Website" name="website" value={form.website} onChange={set("website")} placeholder="yourcompany.com" helper="Optional" autoComplete="url" />
-        <Field label="Current tools" name="tools" value={form.tools} onChange={set("tools")} placeholder="e.g. Zoho, Google Calendar, Shopify" helper="Optional — helps us scope integrations" />
+        <Field label="Current tools" name="tools" value={form.tools} onChange={set("tools")} placeholder="e.g. Zoho, Google Calendar, Shopify" helper="Optional - helps us scope integrations" />
       </div>
 
       <Field
@@ -504,7 +504,7 @@ function ContactForm() {
 
         {/* Privacy note — states plainly where the data goes. */}
         <p className="max-w-[62ch] text-xs leading-relaxed text-muted">
-          Submitting opens WhatsApp with your message ready to send — nothing is
+          Submitting opens WhatsApp with your message ready to send - nothing is
           stored on our servers until you send it. We use what you share only to
           respond to this enquiry, and we don&apos;t sell or pass it to anyone.
           See our{" "}
@@ -529,7 +529,7 @@ function ContactForm() {
 }
 
 /* =========================================================
-   SELECT — same visual language as Field
+   SELECT - same visual language as Field
 ========================================================= */
 
 function Select({

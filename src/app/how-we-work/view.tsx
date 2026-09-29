@@ -35,7 +35,7 @@ const STEP_DETAIL: Record<string, { produces: string; involves: string }> = {
     involves: "Reviewing the map with your team to catch the exceptions nobody documented.",
   },
   "Solution architecture": {
-    produces: "A scoped plan naming what gets automated, integrated or custom-built — and what stays manual.",
+    produces: "A scoped plan naming what gets automated, integrated or custom-built - and what stays manual.",
     involves: "Confirming integration feasibility against your actual systems, not assumed ones.",
   },
   Build: {
@@ -112,7 +112,7 @@ export default function HowWeWorkView() {
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9">
               <Button href="/contact" variant="onDark" size="lg">
-                Book an automation consultation
+                Book consultation
                 <Arrow />
               </Button>
             </motion.div>
@@ -290,7 +290,7 @@ export default function HowWeWorkView() {
         eyebrow="Next step"
         title="Start with discovery. It costs you a conversation."
         lede="Describe the process that is slowing you down. You will get a clear view of what is worth automating, and an honest answer if the answer is nothing."
-        primary={{ label: "Book an automation consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "View case studies", href: "/case-studies" }}
         image="/images/why/implementation.webp"
       />

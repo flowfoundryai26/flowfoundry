@@ -15,7 +15,7 @@ const TRAIL = [{ name: "Industries", path: PATH }];
 export const metadata = pageMeta({
   title: "AI Automation by Industry",
   description:
-    "AI and automation for dental clinics, healthcare, real estate, eCommerce and local service businesses — with the real workflow each industry runs explained.",
+    "AI and automation for dental clinics, healthcare, real estate, eCommerce and local service businesses - with the real workflow each industry runs explained.",
   path: PATH,
 });
 

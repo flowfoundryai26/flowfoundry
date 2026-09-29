@@ -26,7 +26,7 @@ import {
 } from "./motion";
 
 /* =========================================================
-   PAGE HERO — dark, asymmetric, optional photo fade
+   PAGE HERO - dark, asymmetric, optional photo fade
 ========================================================= */
 
 export function PageHero({
@@ -160,7 +160,7 @@ export function PageHero({
 }
 
 /* =========================================================
-   STAT STRIP — mono numbers, divide lines, no boxes
+   STAT STRIP - mono numbers, divide lines, no boxes
 ========================================================= */
 
 export function StatStrip({
@@ -208,7 +208,7 @@ export function StatStrip({
 }
 
 /* =========================================================
-   ROW LIST — index | title | body. No cards.
+   ROW LIST - index | title | body. No cards.
 ========================================================= */
 
 export function RowList({
@@ -289,7 +289,7 @@ export function RowList({
 }
 
 /* =========================================================
-   PROCESS — timeline with a scroll-drawn progress line
+   PROCESS - timeline with a scroll-drawn progress line
 ========================================================= */
 
 export function Process({
@@ -346,7 +346,7 @@ export function Process({
 }
 
 /* =========================================================
-   STICKY STACK — cards stick and pile as you scroll
+   STICKY STACK - cards stick and pile as you scroll
 ========================================================= */
 
 export function StickyStack({
@@ -399,14 +399,14 @@ export function StickyStack({
 }
 
 /* =========================================================
-   CTA — dark panel, asymmetric, photo fade
+   CTA - dark panel, asymmetric, photo fade
 ========================================================= */
 
 export function CTA({
   eyebrow = "Start a conversation",
   title,
   lede,
-  primary = { label: "Start a project", href: "/contact" },
+  primary = { label: "Book consultation", href: "/contact" },
   secondary,
   image = "/images/cta-bg.webp",
 }: {
@@ -469,7 +469,7 @@ export function CTA({
 }
 
 /* =========================================================
-   FEATURE GRID — asymmetric bento (2 cols, first spans)
+   FEATURE GRID - asymmetric bento (2 cols, first spans)
 ========================================================= */
 
 export function Bento({
@@ -506,7 +506,7 @@ export function Bento({
           >
             <div className="flex items-center justify-between">
               <span
-                className={`flex h-10 w-10 items-center justify-center rounded-lg ${
+                className={`flex h-10 w-10 items-center justify-center rounded-md ${
                   dark ? "bg-white/[0.06] text-accent-dark" : "bg-accent-soft text-accent-strong"
                 }`}
               >
@@ -546,7 +546,7 @@ export function Bento({
 }
 
 /* =========================================================
-   SPLIT — statement + image with offset stat card
+   SPLIT - statement + image with offset stat card
 ========================================================= */
 
 export function Split({
@@ -559,7 +559,8 @@ export function Split({
   stat,
   dark = false,
 }: {
-  eyebrow: string;
+  // Optional: most sections carry their message in the headline alone.
+  eyebrow?: string;
   title: ReactNode;
   children: ReactNode;
   image: string;
@@ -618,7 +619,7 @@ export function Split({
 }
 
 /* =========================================================
-   CHECK LIST — two column, no boxes
+   CHECK LIST - two column, no boxes
 ========================================================= */
 
 export function Checks({
@@ -649,7 +650,7 @@ export function Checks({
 }
 
 /* =========================================================
-   LEGAL — privacy / terms layout with sticky index
+   LEGAL - privacy / terms layout with sticky index
 ========================================================= */
 
 export function Legal({

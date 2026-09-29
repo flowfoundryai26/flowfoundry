@@ -57,7 +57,7 @@ export const SOLUTIONS: Solution[] = [
     problem: {
       title: "Missed calls are missed revenue",
       body:
-        "For most service businesses the phone is still the highest-intent channel — and the least reliably answered. Calls arrive while the team is with a customer, after hours, or during a rush. The caller does not leave a voicemail. They call the next business on the list.",
+        "For most service businesses the phone is still the highest-intent channel - and the least reliably answered. Calls arrive while the team is with a customer, after hours, or during a rush. The caller does not leave a voicemail. They call the next business on the list.",
       symptoms: [
         "Calls ring out during busy periods and after hours",
         "Enquiry details live in someone's memory, not the CRM",
@@ -78,7 +78,7 @@ export const SOLUTIONS: Solution[] = [
       {
         step: "Call arrives",
         detail:
-          "Inbound call hits your existing number. The agent answers on a configured rule — after hours, after N rings, or on overflow when the team is engaged.",
+          "Inbound call hits your existing number. The agent answers on a configured rule - after hours, after N rings, or on overflow when the team is engaged.",
       },
       {
         step: "Agent converses",
@@ -88,7 +88,7 @@ export const SOLUTIONS: Solution[] = [
       {
         step: "Qualification",
         detail:
-          "It asks your qualifying questions in your order — service needed, location, urgency, budget band — and records structured answers rather than a transcript blob.",
+          "It asks your qualifying questions in your order - service needed, location, urgency, budget band - and records structured answers rather than a transcript blob.",
       },
       {
         step: "Availability check",
@@ -108,7 +108,7 @@ export const SOLUTIONS: Solution[] = [
       {
         step: "Follow-up",
         detail:
-          "If the call did not reach an outcome, a follow-up sequence is triggered on your rules — SMS, WhatsApp or email.",
+          "If the call did not reach an outcome, a follow-up sequence is triggered on your rules - SMS, WhatsApp or email.",
       },
     ],
     capabilities: [
@@ -135,7 +135,7 @@ export const SOLUTIONS: Solution[] = [
       {
         title: "Custom knowledge",
         body:
-          "Answers from a knowledge base you maintain — services, pricing bands, hours, locations, policies.",
+          "Answers from a knowledge base you maintain - services, pricing bands, hours, locations, policies.",
       },
       {
         title: "Escalation rules",
@@ -179,7 +179,7 @@ export const SOLUTIONS: Solution[] = [
     faqs: [
       {
         q: "Do we have to change our phone number?",
-        a: "No. The agent sits behind your existing number using a telephony provider such as Twilio. You keep the number your customers already have and choose the rule that decides when the agent answers — after hours, after a set number of rings, or when the team is already on a call.",
+        a: "No. The agent sits behind your existing number using a telephony provider such as Twilio. You keep the number your customers already have and choose the rule that decides when the agent answers - after hours, after a set number of rings, or when the team is already on a call.",
       },
       {
         q: "Will the caller know they are talking to an AI agent?",
@@ -213,7 +213,7 @@ export const SOLUTIONS: Solution[] = [
       "WhatsApp automation for Indian businesses: qualify enquiries, send follow-ups, confirm appointments and sync conversations to your CRM without losing the personal channel.",
     eyebrow: "AI Agents",
     lede:
-      "In India, WhatsApp is where the enquiry actually lands. We automate the repetitive half of that conversation — qualification, confirmation, reminders and follow-up — without turning it into a phone tree.",
+      "In India, WhatsApp is where the enquiry actually lands. We automate the repetitive half of that conversation - qualification, confirmation, reminders and follow-up - without turning it into a phone tree.",
     image: "/images/use-cases/support.webp",
     problem: {
       title: "The enquiry channel nobody can report on",
@@ -244,7 +244,7 @@ export const SOLUTIONS: Solution[] = [
       {
         step: "Intent detection",
         detail:
-          "The agent classifies what the message is about — new enquiry, existing customer, support issue, booking change — and routes accordingly.",
+          "The agent classifies what the message is about - new enquiry, existing customer, support issue, booking change - and routes accordingly.",
       },
       {
         step: "Qualification",
@@ -324,7 +324,7 @@ export const SOLUTIONS: Solution[] = [
       "Conversations survive a staff member being unavailable",
     ],
     humanOversight:
-      "Automation handles qualification, confirmation and status updates. Anything involving a commitment — final pricing, a complaint, a medical or legal question — escalates to a person. We also set a hard rule that a customer who asks for a human gets one.",
+      "Automation handles qualification, confirmation and status updates. Anything involving a commitment - final pricing, a complaint, a medical or legal question - escalates to a person. We also set a hard rule that a customer who asks for a human gets one.",
     faqs: [
       {
         q: "Does this need the official WhatsApp Business API?",
@@ -355,7 +355,7 @@ export const SOLUTIONS: Solution[] = [
     h1: "Workflow automation that removes the coordination, not the control.",
     metaTitle: "Business Workflow Automation",
     metaDescription:
-      "Workflow automation that connects your existing tools, moves data between systems and triggers the right action automatically — without replacing your software stack.",
+      "Workflow automation that connects your existing tools, moves data between systems and triggers the right action automatically - without replacing your software stack.",
     eyebrow: "Automation",
     lede:
       "Most operational delay is not work. It is waiting: for a handover, an approval, a copy-paste between two systems. We automate the coordination layer and leave the decisions with your team.",
@@ -373,7 +373,7 @@ export const SOLUTIONS: Solution[] = [
       ],
     },
     manualToday: [
-      "A trigger arrives — a form, an order, an email, a request",
+      "A trigger arrives - a form, an order, an email, a request",
       "Someone notices it, at some point",
       "They copy details into the system of record",
       "They message the next person in the chain",
@@ -394,7 +394,7 @@ export const SOLUTIONS: Solution[] = [
       {
         step: "Route on business rules",
         detail:
-          "The workflow evaluates your conditions — value, region, service type, ownership — and routes to the right path.",
+          "The workflow evaluates your conditions - value, region, service type, ownership - and routes to the right path.",
       },
       {
         step: "Act across systems",
@@ -479,7 +479,7 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         q: "What if our process is not documented?",
-        a: "That is the normal starting point. Discovery and workflow mapping exist precisely to write the process down — including the undocumented exceptions people handle by instinct. Those exceptions are usually where the automation earns its value.",
+        a: "That is the normal starting point. Discovery and workflow mapping exist precisely to write the process down - including the undocumented exceptions people handle by instinct. Those exceptions are usually where the automation earns its value.",
       },
       {
         q: "Where should we start?",
@@ -502,7 +502,7 @@ export const SOLUTIONS: Solution[] = [
     h1: "CRM automation that stops leads falling through the cracks.",
     metaTitle: "CRM Automation & Integration",
     metaDescription:
-      "CRM automation that captures every lead, assigns an owner, enforces follow-up and keeps your pipeline accurate — on HubSpot, Zoho, Salesforce or GoHighLevel.",
+      "CRM automation that captures every lead, assigns an owner, enforces follow-up and keeps your pipeline accurate - on HubSpot, Zoho, Salesforce or GoHighLevel.",
     eyebrow: "Automation",
     lede:
       "Most CRMs do not fail because of the software. They fail because updating them is manual work nobody is rewarded for. We automate the record-keeping so the pipeline reflects reality.",
@@ -510,7 +510,7 @@ export const SOLUTIONS: Solution[] = [
     problem: {
       title: "A CRM the team works around",
       body:
-        "When the CRM is a reporting obligation rather than a working tool, data entry slips. Stages go stale, owners are unclear, and the forecast becomes a guess. The fix is rarely more training — it is removing the manual entry that made the CRM unreliable in the first place.",
+        "When the CRM is a reporting obligation rather than a working tool, data entry slips. Stages go stale, owners are unclear, and the forecast becomes a guess. The fix is rarely more training - it is removing the manual entry that made the CRM unreliable in the first place.",
       symptoms: [
         "Leads arrive in channels the CRM never sees",
         "Deal stages are updated in a rush before a review",
@@ -541,7 +541,7 @@ export const SOLUTIONS: Solution[] = [
       {
         step: "Score and qualify",
         detail:
-          "Your criteria — service, budget band, region, urgency, source — are applied consistently to every lead.",
+          "Your criteria - service, budget band, region, urgency, source - are applied consistently to every lead.",
       },
       {
         step: "Assign an owner",
@@ -561,7 +561,7 @@ export const SOLUTIONS: Solution[] = [
       {
         step: "Keep stages honest",
         detail:
-          "Stage changes are driven by real events — a booking made, a proposal sent, a payment received — not by manual recall.",
+          "Stage changes are driven by real events - a booking made, a proposal sent, a payment received - not by manual recall.",
       },
     ],
     capabilities: [
@@ -593,7 +593,7 @@ export const SOLUTIONS: Solution[] = [
       {
         title: "Reporting foundations",
         body:
-          "Consistent source, stage and outcome fields — the prerequisite for any report worth reading.",
+          "Consistent source, stage and outcome fields - the prerequisite for any report worth reading.",
       },
     ],
     integrations: [
@@ -620,7 +620,7 @@ export const SOLUTIONS: Solution[] = [
     faqs: [
       {
         q: "Which CRMs do you work with?",
-        a: "Most commonly HubSpot, Zoho, Salesforce and GoHighLevel. Anything with a documented API is workable. If you are on spreadsheets today, we can automate around those first and migrate later — starting with a CRM purchase is often the wrong order.",
+        a: "Most commonly HubSpot, Zoho, Salesforce and GoHighLevel. Anything with a documented API is workable. If you are on spreadsheets today, we can automate around those first and migrate later - starting with a CRM purchase is often the wrong order.",
       },
       {
         q: "Will this fix our existing bad data?",
@@ -632,7 +632,7 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         q: "How do we know it is working?",
-        a: "We instrument the specific numbers the workflow was built to change — time to first response, percentage of leads with an owner, follow-ups completed on schedule, stage-change latency. Those are measured from your own data, not asserted by us.",
+        a: "We instrument the specific numbers the workflow was built to change - time to first response, percentage of leads with an owner, follow-ups completed on schedule, stage-change latency. Those are measured from your own data, not asserted by us.",
       },
     ],
     relatedSolutions: ["workflow-automation", "ai-voice-agents", "whatsapp-automation"],
@@ -647,7 +647,7 @@ export const SOLUTIONS: Solution[] = [
     h1: "Custom portals for the process no product quite fits.",
     metaTitle: "Custom Business Software & Portals",
     metaDescription:
-      "Custom business portals, operations dashboards and internal tools built around your actual workflow — replacing the spreadsheet stack your team works around.",
+      "Custom business portals, operations dashboards and internal tools built around your actual workflow - replacing the spreadsheet stack your team works around.",
     eyebrow: "Custom Software",
     lede:
       "Every business has one process that no off-the-shelf product handles, so it lives in a spreadsheet with six tabs and one person who understands it. That is what a portal is for.",
@@ -676,7 +676,7 @@ export const SOLUTIONS: Solution[] = [
       {
         step: "Model the domain",
         detail:
-          "Define the real entities — client, project, allocation, task, payout — and the relationships between them, instead of inferring them from columns.",
+          "Define the real entities - client, project, allocation, task, payout - and the relationships between them, instead of inferring them from columns.",
       },
       {
         step: "Encode the rules",
@@ -774,7 +774,7 @@ export const SOLUTIONS: Solution[] = [
     faqs: [
       {
         q: "Why build instead of buying a product?",
-        a: "Buy whenever a product fits — it is cheaper and better supported. Building is the right call when the process is genuinely specific to how you operate, when you are paying for ten products to cover one workflow, or when the workaround has become the risk. We will say so if an off-the-shelf tool would serve you better.",
+        a: "Buy whenever a product fits - it is cheaper and better supported. Building is the right call when the process is genuinely specific to how you operate, when you are paying for ten products to cover one workflow, or when the workaround has become the risk. We will say so if an off-the-shelf tool would serve you better.",
       },
       {
         q: "What happens to the data in our spreadsheets?",
@@ -804,7 +804,7 @@ export const SOLUTIONS: Solution[] = [
       "Shopify automation and integrations: order workflows, customer messaging, affiliate and referral tracking, and syncing your store with the systems behind it.",
     eyebrow: "Integrations",
     lede:
-      "Shopify handles the storefront well. The work that follows an order — messaging, fulfilment coordination, attribution, commissions, support — is usually still manual.",
+      "Shopify handles the storefront well. The work that follows an order - messaging, fulfilment coordination, attribution, commissions, support - is usually still manual.",
     image: "/images/use-cases/ecommerce.webp",
     problem: {
       title: "Everything after the order is still manual",
@@ -830,7 +830,7 @@ export const SOLUTIONS: Solution[] = [
       {
         step: "Order webhook",
         detail:
-          "Shopify emits the order event and the workflow picks it up immediately — no export, no polling delay.",
+          "Shopify emits the order event and the workflow picks it up immediately - no export, no polling delay.",
       },
       {
         step: "Attribute",
@@ -923,11 +923,11 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         q: "Can you build multi-level affiliate commissions?",
-        a: "Yes — it is one of the things we are building on iLoveSurprises. The difficult part is not the percentage maths, it is attribution rules, self-referral prevention, clawbacks on returns, and keeping a ledger that reconciles. That is where the design effort goes.",
+        a: "Yes - it is one of the things we are building on iLoveSurprises. The difficult part is not the percentage maths, it is attribution rules, self-referral prevention, clawbacks on returns, and keeping a ledger that reconciles. That is where the design effort goes.",
       },
       {
         q: "Will this work with WooCommerce instead?",
-        a: "Yes. The pattern is the same — webhook in, business logic, action out. The store platform is an integration target rather than the architecture.",
+        a: "Yes. The pattern is the same - webhook in, business logic, action out. The store platform is an integration target rather than the architecture.",
       },
       {
         q: "What about existing Shopify apps we already pay for?",

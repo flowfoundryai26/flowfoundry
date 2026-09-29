@@ -115,7 +115,7 @@ export default function ServicesPage() {
         eyebrow="Services"
         title="Technology built around your business."
         lede="FlowFoundry designs AI agents, automation, custom software, websites, eCommerce systems, and integrations around the processes that actually run your business."
-        secondary="Start with the workflow, bottleneck, or opportunity. We design the technology around it — not the other way around."
+        secondary="Start with the workflow, bottleneck, or opportunity. We design the technology around it - not the other way around."
         primaryCta={{ label: "Discuss your project", href: "/contact" }}
         secondaryCta={{ label: "Explore solutions", href: "/solutions" }}
         image="/images/use-cases/operations.webp"
@@ -273,7 +273,7 @@ export default function ServicesPage() {
                 </p>
                 <div className="mt-8">
                   <Button href="/contact" variant="primary">
-                    Start a project
+                    Book consultation
                     <Arrow />
                   </Button>
                 </div>
@@ -299,7 +299,7 @@ export default function ServicesPage() {
         eyebrow="Start a project"
         title="Tell us what your business needs to do better."
         lede="Share the workflow, bottleneck, or system you're working on. We'll help you explore the right combination of AI, automation, software, and integrations."
-        primary={{ label: "Book a free consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
         image="/images/use-cases/custom.webp"
       />

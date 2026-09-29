@@ -87,7 +87,7 @@ export default function Footer() {
           >
             <Magnetic>
               <Button href="/contact" variant="onDark" size="lg" className="w-full sm:w-auto">
-                Book a consultation
+                Book consultation
                 <Arrow />
               </Button>
             </Magnetic>

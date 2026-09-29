@@ -64,7 +64,7 @@ export default function IndustriesView() {
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9">
               <Button href="/contact" variant="onDark" size="lg">
-                Book an automation consultation
+                Book consultation
                 <Arrow />
               </Button>
             </motion.div>
@@ -138,7 +138,7 @@ export default function IndustriesView() {
         <ContentHeading
           eyebrow="Not listed?"
           title="The pattern transfers."
-          lede="These five are the industries we have written up. The underlying work — mapping a workflow, automating the coordination, integrating what you already run — is not industry-specific."
+          lede="These five are the industries we have written up. The underlying work - mapping a workflow, automating the coordination, integrating what you already run - is not industry-specific."
         />
         <div className="mt-10">
           <Button href="/contact" variant="primary">
@@ -186,7 +186,7 @@ export default function IndustriesView() {
         eyebrow="Next step"
         title="Which process is costing you the most right now?"
         lede="That is the one to automate first. Tell us how it runs today and we will map what it would take."
-        primary={{ label: "Book a consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "See our solutions", href: "/solutions" }}
         image="/images/cta-bg.webp"
       />

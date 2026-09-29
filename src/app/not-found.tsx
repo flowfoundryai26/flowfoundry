@@ -68,7 +68,7 @@ export default function NotFound() {
             </h1>
             <p className="mt-6 max-w-[48ch] text-base leading-relaxed text-on-dark sm:text-lg">
               The link may be out of date, or the address may have a typo. The
-              site itself is fine — here is the way back in.
+              site itself is fine - here is the way back in.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button href="/" variant="onDark" size="lg">
@@ -76,7 +76,7 @@ export default function NotFound() {
                 <Arrow />
               </Button>
               <Button href="/contact" variant="outlineOnDark" size="lg">
-                Book a consultation
+                Book consultation
               </Button>
             </div>
           </div>

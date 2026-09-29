@@ -110,8 +110,8 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Business solutions"
         title="Automate the process, not just the task."
-        lede="FlowFoundry designs intelligent workflows around real business challenges — from lead handling and sales to support, operations, CRM, and appointment management."
-        secondary="We connect conversations, business logic, data, and actions so your systems do more than store information — they move work forward."
+        lede="FlowFoundry designs intelligent workflows around real business challenges - from lead handling and sales to support, operations, CRM, and appointment management."
+        secondary="We connect conversations, business logic, data, and actions so your systems do more than store information - they move work forward."
         primaryCta={{ label: "Discuss your workflow", href: "/contact" }}
         secondaryCta={{ label: "Our services", href: "/services" }}
         image="/images/use-cases/support.webp"
@@ -354,8 +354,8 @@ export default function SolutionsPage() {
       <CTA
         eyebrow="Your workflow"
         title="Which process should stop depending on manual follow-up?"
-        lede="Tell us how it works today. We'll map the conversations, logic, data, and actions — and show you what an automated version looks like."
-        primary={{ label: "Book a free consultation", href: "/contact" }}
+        lede="Tell us how it works today. We'll map the conversations, logic, data, and actions - and show you what an automated version looks like."
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Our services", href: "/services" }}
         image="/images/use-cases/ecommerce.webp"
       />

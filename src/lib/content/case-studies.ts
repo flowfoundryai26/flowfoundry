@@ -73,7 +73,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     businessProblem: {
       title: "Voice is the highest-intent channel and the least instrumented",
       body:
-        "A phone enquiry signals more intent than almost any web form, and yet it is the channel with the least data attached. Calls go unanswered outside business hours, qualification questions are asked inconsistently, and what the caller actually wanted survives only in someone's memory. Existing voice tools tended to solve the conversation and stop there — leaving the part that matters commercially, the write-back into calendars and CRM systems, as an exercise for the buyer.",
+        "A phone enquiry signals more intent than almost any web form, and yet it is the channel with the least data attached. Calls go unanswered outside business hours, qualification questions are asked inconsistently, and what the caller actually wanted survives only in someone's memory. Existing voice tools tended to solve the conversation and stop there - leaving the part that matters commercially, the write-back into calendars and CRM systems, as an exercise for the buyer.",
     },
     requirements: [
       "Answer inbound calls on configurable rules including after-hours and overflow",
@@ -110,7 +110,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         layer: "Actions",
         detail:
-          "An integration layer performs the outward writes — calendar events, CRM records, follow-up triggers, notifications — behind a retry and idempotency wrapper so a network failure cannot double-book a slot.",
+          "An integration layer performs the outward writes - calendar events, CRM records, follow-up triggers, notifications - behind a retry and idempotency wrapper so a network failure cannot double-book a slot.",
       },
       {
         layer: "Interface",
@@ -127,7 +127,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       { group: "Integrations", items: ["Google Calendar", "Outlook", "HubSpot", "Zoho", "WhatsApp"] },
     ],
     coreFeatures: [
-      { title: "Inbound call handling", body: "Answers on configurable rules — after hours, ring count, or overflow when the team is engaged." },
+      { title: "Inbound call handling", body: "Answers on configurable rules - after hours, ring count, or overflow when the team is engaged." },
       { title: "Outbound campaigns", body: "Works a lead list with configurable pacing, retry rules and outcome recording." },
       { title: "Structured qualification", body: "Captures named, typed fields the CRM can filter and report on." },
       { title: "Calendar-aware booking", body: "Offers only genuinely free slots and writes the confirmed event back." },
@@ -199,7 +199,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     faqs: [
       {
         q: "Can we use LeadPulz today?",
-        a: "Not as a self-serve product — it is in active development. We do deploy the underlying capability as part of client engagements, which is how it gets tested against real call volume. If voice automation is what you need, that is the route to start on.",
+        a: "Not as a self-serve product - it is in active development. We do deploy the underlying capability as part of client engagements, which is how it gets tested against real call volume. If voice automation is what you need, that is the route to start on.",
       },
       {
         q: "Does it work in languages other than English?",
@@ -232,7 +232,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     businessProblem: {
       title: "Commission maths in a spreadsheet does not survive growth",
       body:
-        "Affiliate programmes fail on trust. A partner who cannot see what they earned, or who is paid an amount they cannot reconcile, stops promoting. Doing multi-level commission calculation by hand means month-end reconstruction from links and memory, no clear audit trail, and disputes that cannot be settled with evidence. Add returns — which should claw back commission already accrued — and manual calculation becomes untenable.",
+        "Affiliate programmes fail on trust. A partner who cannot see what they earned, or who is paid an amount they cannot reconcile, stops promoting. Doing multi-level commission calculation by hand means month-end reconstruction from links and memory, no clear audit trail, and disputes that cannot be settled with evidence. Add returns - which should claw back commission already accrued - and manual calculation becomes untenable.",
     },
     requirements: [
       "Integrate with Shopify for catalogue, orders and fulfilment events",
@@ -249,7 +249,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         layer: "Storefront",
         detail:
-          "Shopify owns catalogue, cart, checkout and payment. Deliberately not rebuilt — it is the part that already works and is PCI-handled.",
+          "Shopify owns catalogue, cart, checkout and payment. Deliberately not rebuilt - it is the part that already works and is PCI-handled.",
       },
       {
         layer: "Attribution",
@@ -264,7 +264,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         layer: "Ledger",
         detail:
-          "Append-only entries with states — accrued, approved, paid, reversed. Nothing is edited in place, which is what makes the ledger auditable and disputes resolvable.",
+          "Append-only entries with states - accrued, approved, paid, reversed. Nothing is edited in place, which is what makes the ledger auditable and disputes resolvable.",
       },
       {
         layer: "Data",
@@ -359,7 +359,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         q: "Can this pattern be applied to another store?",
-        a: "The architecture transfers — webhook ingestion, attribution, a versioned commission engine, an append-only ledger. The commission rules themselves are always business-specific, so it is a reusable pattern rather than a reusable product.",
+        a: "The architecture transfers - webhook ingestion, attribution, a versioned commission engine, an append-only ledger. The commission rules themselves are always business-specific, so it is a reusable pattern rather than a reusable product.",
       },
     ],
     relatedSolutions: ["shopify-automation", "custom-business-portals", "whatsapp-automation"],
@@ -377,14 +377,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: "Education platform",
     status: "In development",
     summary:
-      "A Japanese–English conversation school platform with three role-specific portals, timezone-aware lesson scheduling and full bilingual localisation.",
+      "A Japanese - English conversation school platform with three role-specific portals, timezone-aware lesson scheduling and full bilingual localisation.",
     image: "/images/use-cases/custom.webp",
     overview:
-      "A client platform for an online Japanese–English conversation school. Three distinct user types — students, teachers and administrators — need genuinely different interfaces over the same scheduling and lesson data, and the entire product has to work equally well in Japanese and English. Neither localisation nor timezone handling is a feature here; both are structural constraints that shape the data model. In active development.",
+      "A client platform for an online Japanese - English conversation school. Three distinct user types - students, teachers and administrators - need genuinely different interfaces over the same scheduling and lesson data, and the entire product has to work equally well in Japanese and English. Neither localisation nor timezone handling is a feature here; both are structural constraints that shape the data model. In active development.",
     businessProblem: {
       title: "Scheduling across timezones, in two languages, for three roles",
       body:
-        "Conversation schools live and die on scheduling. Teachers set availability in their local time, students book in theirs, and a one-hour error means a missed lesson and a refund. Running that on shared calendars and messaging does not survive growth: teachers double-book, students cannot self-serve reschedules, and administrators have no reliable view of delivery. Doing it bilingually adds a requirement most scheduling tools handle poorly — every date, time and notification has to be correct in both languages and locales.",
+        "Conversation schools live and die on scheduling. Teachers set availability in their local time, students book in theirs, and a one-hour error means a missed lesson and a refund. Running that on shared calendars and messaging does not survive growth: teachers double-book, students cannot self-serve reschedules, and administrators have no reliable view of delivery. Doing it bilingually adds a requirement most scheduling tools handle poorly - every date, time and notification has to be correct in both languages and locales.",
     },
     requirements: [
       "Separate student, teacher and administrator portals over shared data",
@@ -470,7 +470,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         challenge: "Reschedules against policy",
         approach:
-          "Policy is encoded — notice period, remaining reschedules, credit treatment — so students self-serve within the rules instead of negotiating each case with an administrator.",
+          "Policy is encoded - notice period, remaining reschedules, credit treatment - so students self-serve within the rules instead of negotiating each case with an administrator.",
       },
     ],
     implementation: [
@@ -528,14 +528,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: "Internal operations platform",
     status: "In development",
     summary:
-      "Our internal platform: lead tracking, projects, team allocation, client records, tasks and reporting — replacing the spreadsheet stack we had outgrown.",
+      "Our internal platform: lead tracking, projects, team allocation, client records, tasks and reporting - replacing the spreadsheet stack we had outgrown.",
     image: "/images/use-cases/operations.webp",
     overview:
-      "FoundryPulse is the system FlowFoundry runs its own business on. We built it for the ordinary reason a business builds internal software: the spreadsheets worked until they did not. It is included here because it is the most honest example we can offer — we are the client, we absorb every design mistake ourselves, and it demonstrates the same architecture we propose for operational portals. In active development and used daily.",
+      "FoundryPulse is the system FlowFoundry runs its own business on. We built it for the ordinary reason a business builds internal software: the spreadsheets worked until they did not. It is included here because it is the most honest example we can offer - we are the client, we absorb every design mistake ourselves, and it demonstrates the same architecture we propose for operational portals. In active development and used daily.",
     businessProblem: {
       title: "We were running delivery on files we could not report on",
       body:
-        "Leads sat in one sheet, projects in another, allocation in a third, and the connection between them existed only in the founder's head. Answering a basic question — who is over-allocated next week, which leads went quiet, what is the status of a client's work — meant opening several files and reconciling them by eye. That is exactly the condition we tell clients to fix, and continuing to operate that way while advising against it was not defensible.",
+        "Leads sat in one sheet, projects in another, allocation in a third, and the connection between them existed only in the founder's head. Answering a basic question - who is over-allocated next week, which leads went quiet, what is the status of a client's work - meant opening several files and reconciling them by eye. That is exactly the condition we tell clients to fix, and continuing to operate that way while advising against it was not defensible.",
     },
     requirements: [
       "Track leads from first contact through to won or lost with an owner and stage",
@@ -551,7 +551,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         layer: "Domain model",
         detail:
-          "Leads, clients, projects, milestones, tasks, people and allocations as first-class related entities. The relationships are the point — they are what a spreadsheet cannot express.",
+          "Leads, clients, projects, milestones, tasks, people and allocations as first-class related entities. The relationships are the point - they are what a spreadsheet cannot express.",
       },
       {
         layer: "Workflow and state",
@@ -645,7 +645,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Migrating a spreadsheet means resolving its ambiguity, not copying it. The ambiguity is the actual work.",
       "An internal tool that demands data entry without giving something back gets abandoned. Usefulness is a retention feature.",
       "Live dashboards beat exports. Every export is a chance for two numbers to disagree.",
-      "Building it ourselves changed how we scope client portals — we now argue for a narrower first module, because that is what worked here.",
+      "Building it ourselves changed how we scope client portals - we now argue for a narrower first module, because that is what worked here.",
     ],
     faqs: [
       {
@@ -654,7 +654,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         q: "Why show your own internal tool as a case study?",
-        a: "Because we can be completely open about it. There is no client to protect, so we can describe the design mistakes and the migration difficulties honestly — which is more useful to someone evaluating us than a polished summary would be.",
+        a: "Because we can be completely open about it. There is no client to protect, so we can describe the design mistakes and the migration difficulties honestly - which is more useful to someone evaluating us than a polished summary would be.",
       },
     ],
     relatedSolutions: ["custom-business-portals", "workflow-automation", "crm-automation"],

@@ -31,7 +31,7 @@ export const SECURITY_PRACTICES = [
   {
     title: "Data minimisation",
     body:
-      "We capture the fields a workflow actually needs and no more. For a booking that usually means name, contact and appointment type — not a full customer history. Data you never collected cannot leak.",
+      "We capture the fields a workflow actually needs and no more. For a booking that usually means name, contact and appointment type - not a full customer history. Data you never collected cannot leak.",
   },
   {
     title: "Credential management",
@@ -71,7 +71,7 @@ export const SENSITIVE_SURFACES = [
   {
     surface: "Customer information",
     risk:
-      "Over-collection and over-exposure — the agent holding or repeating more than it needs.",
+      "Over-collection and over-exposure - the agent holding or repeating more than it needs.",
     control:
       "Minimal field capture, role-based read access, and automated messages that deliberately exclude sensitive detail in case a device is shared.",
   },

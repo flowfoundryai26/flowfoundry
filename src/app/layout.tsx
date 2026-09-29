@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
-  preload: false, // mono is used for small labels only — not needed for first paint
+  preload: false, // mono is used for small labels only - not needed for first paint
 });
 
 /**
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "FlowFoundry AI Solutions — AI agents, automation and custom software",
+        alt: "FlowFoundry AI Solutions - AI agents, automation and custom software",
       },
     ],
   },

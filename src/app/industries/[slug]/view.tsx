@@ -114,7 +114,7 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
               className="mt-9 flex flex-col gap-3 sm:flex-row"
             >
               <Button href="/contact" variant="onDark" size="lg">
-                Book an automation consultation
+                Book consultation
                 <Arrow />
               </Button>
               <Button href="#workflow" variant="outlineOnDark" size="lg">
@@ -297,7 +297,7 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
         eyebrow="Next step"
         title={`Map the workflow in your ${ind.name.toLowerCase().replace(/s$/, "")}.`}
         lede="Describe how the process runs today. We will come back with what can be automated, what should stay with your team, and what it would take to build."
-        primary={{ label: "Book an automation consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
         image={ind.image}
       />

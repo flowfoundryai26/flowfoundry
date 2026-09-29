@@ -13,7 +13,7 @@ const TRAIL = [
 export const metadata = pageMeta({
   title: "How We Work | Our Delivery Process",
   description:
-    "The eight steps we follow on every project — discovery, workflow mapping, architecture, build, integration, testing, launch and optimisation.",
+    "The eight steps we follow on every project - discovery, workflow mapping, architecture, build, integration, testing, launch and optimisation.",
   path: PATH,
 });
 

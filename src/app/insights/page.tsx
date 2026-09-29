@@ -15,7 +15,7 @@ const TRAIL = [{ name: "Insights", path: PATH }];
 export const metadata = pageMeta({
   title: "Insights | AI Automation Write-Ups",
   description:
-    "Long-form articles on AI voice agents, WhatsApp automation and CRM workflows — how they are built, where they break, and what not to automate.",
+    "Long-form articles on AI voice agents, WhatsApp automation and CRM workflows - how they are built, where they break, and what not to automate.",
   path: PATH,
 });
 

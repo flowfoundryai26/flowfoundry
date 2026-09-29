@@ -93,7 +93,7 @@ export default function CaseStudiesView() {
               <Callout title="What you can judge us on instead">
                 The engineering reasoning. Each write-up covers the architecture
                 we chose, the failure modes we designed for, and the mistakes we
-                made — which tells you more about how we would handle your
+                made - which tells you more about how we would handle your
                 project than a metric with no methodology attached.
               </Callout>
             </div>
@@ -169,7 +169,7 @@ export default function CaseStudiesView() {
         eyebrow="Next step"
         title="Have a system like one of these in mind?"
         lede="Tell us what it needs to do. We will map the architecture and be straight with you about what it takes to build."
-        primary={{ label: "Book a consultation", href: "/contact" }}
+        primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
         image="/images/use-cases/custom.webp"
       />

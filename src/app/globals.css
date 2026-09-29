@@ -46,7 +46,13 @@
   --text-xs: 12.5px;
   --text-xs--line-height: 1.5;
 
-  /* ---------- Radii ---------- */
+  /* ---------- Radii ----------
+     SHAPE RULE - one scale per role, applied everywhere:
+       rounded-full  interactive: buttons, pills, chips, avatars
+       rounded-2xl   cards, panels, media containers
+       rounded-xl    inner panels, form fields
+       rounded-md    small squares: icon tiles, inline tags
+     Do not reach outside these four. */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
