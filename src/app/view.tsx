@@ -228,7 +228,7 @@ function Hero() {
               "Scale without scaling repetitive work" names the outcome;
               the sub-head names the capability and the constraint.
             */}
-            <h1 className="mt-7 max-w-[19ch] text-[clamp(2.3rem,4.8vw,4.2rem)] font-medium leading-[1] tracking-[-0.035em] text-white text-balance">
+            <h1 className="mt-7 max-w-[26ch] text-[clamp(2.05rem,3.05vw,2.6rem)] font-medium leading-[1.04] tracking-[-0.03em] text-white text-balance">
               <Words
                 text="Scale your business without scaling repetitive work."
                 delay={0.2}
@@ -287,25 +287,44 @@ function IntegrationBand() {
             Connects with
           </p>
 
+          {/*
+            The set is rendered twice. Marquee loops by translating its track
+            -50%, so ONE copy of the children has to be at least as wide as
+            the visible strip or a gap cycles through the window. Ten marks
+            run about 700px; the strip is ~990px at 1440 and wider still on
+            a large display. The repeat is aria-hidden so each brand is
+            announced once.
+          */}
           <Marquee duration={54} className="min-w-0 flex-1">
-            {INTEGRATION_LOGOS.map(({ name, slug }) => (
-              <span key={slug} className="flex shrink-0 items-center pr-12">
+            {[0, 1].map((copy) =>
+              INTEGRATION_LOGOS.map((logo) => (
+              <span
+                key={`${copy}-${logo.slug}`}
+                aria-hidden={copy === 1 ? "true" : undefined}
+                className="flex shrink-0 items-center pr-12"
+              >
                 {/*
                   Plain <img>: these are tiny single-colour SVGs, so the
                   optimiser has nothing to do and next/image would only add
                   a request per mark.
                 */}
                 <img
-                  src={`/images/logos/${slug}.svg`}
-                  alt={name}
-                  width={22}
-                  height={22}
+                  src={`/images/logos/${logo.slug}.svg`}
+                  alt={logo.name}
+                  width={26}
+                  height={26}
                   loading="lazy"
                   decoding="async"
-                  className="h-[22px] w-auto opacity-45 transition-opacity duration-300 hover:opacity-90"
+                  style={
+                    "scale" in logo
+                      ? { transform: `scale(${logo.scale})` }
+                      : undefined
+                  }
+                  className="h-[26px] w-auto opacity-60 transition-opacity duration-300 hover:opacity-100"
                 />
               </span>
-            ))}
+              ))
+            )}
           </Marquee>
         </div>
       </Container>

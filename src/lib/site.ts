@@ -132,16 +132,23 @@ export const INTEGRATIONS = [
  */
 export const INTEGRATION_LOGOS = [
   { name: "HubSpot", slug: "hubspot" },
-  { name: "Zoho", slug: "zoho" },
+  // Optical sizing: every Simple Icons glyph sits in a 24x24 box, but a few
+  // brands are wide wordmarks rather than square icons, so their ink ends up
+  // a fraction of the height of the others. `scale` evens out the weight.
+  { name: "Zoho", slug: "zoho", scale: 1.9 },
   { name: "Shopify", slug: "shopify" },
-  { name: "WooCommerce", slug: "woocommerce" },
+  { name: "WooCommerce", slug: "woocommerce", scale: 2.1 },
   { name: "Stripe", slug: "stripe" },
   { name: "WhatsApp", slug: "whatsapp" },
   { name: "Google Calendar", slug: "googlecalendar" },
   { name: "Google Sheets", slug: "googlesheets" },
   { name: "Calendly", slug: "calendly" },
   { name: "Supabase", slug: "supabase" },
-] as const;
+] as const satisfies ReadonlyArray<{
+  name: string;
+  slug: string;
+  scale?: number;
+}>;
 
 /** The systems we connect rather than replace. Drives the homepage trust section. */
 export const EXISTING_STACK = [

@@ -25,7 +25,15 @@
   --color-accent-soft: #e9f0fd;
   --color-accent-dark: #6d9bff;   /* accent on dark surfaces */
 
-  /* Semantic only — never decorative */
+  /* ---------- Brand marks (sampled from public/logo.png) ----------
+     The logo is a blue-to-cyan ramp on a near-black navy ground. These
+     are the mark's own values, kept separate from --color-accent so the
+     UI accent stays a single flat colour per the one-accent rule. */
+  --brand-blue: #0878f8;
+  --brand-cyan: #08d8f8;
+  --brand-ground: #080818;
+
+  /* Semantic only - never decorative */
   --color-live: #22a06b;
   --color-warn: #c98a1b;
   --color-danger: #d1435b;
@@ -265,6 +273,50 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================================
+   SCROLLBAR - drawn from the logo's blue-to-cyan ramp
+
+   Firefox gets `scrollbar-color` (two solids, no gradient support);
+   WebKit gets the actual ramp. The horizontal .rail elements opt out
+   below, since they hide their scrollbar entirely.
+   ============================================================ */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-blue) var(--color-ink);
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-ground);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid var(--brand-ground);  /* inset, so the bar reads slim */
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    var(--brand-blue) 0%,
+    var(--brand-cyan) 100%
+  );
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border-width: 2px;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--brand-ground);
+}
+
+/* Rails hide their scrollbar and must keep doing so. */
 .rail::-webkit-scrollbar {
   display: none;
 }
