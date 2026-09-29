@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
+import { ArrowUpRight, CaretRight } from "@phosphor-icons/react";
 import { EXISTING_STACK, INTEGRATION_LOGOS, PROJECTS } from "@/lib/site";
 import {
   Arrow,
@@ -15,16 +14,7 @@ import {
   SectionHeading,
   Status,
 } from "@/components/ui";
-import {
-  Magnetic,
-  Marquee,
-  Reveal,
-  Spotlight,
-  Words,
-  fadeUp,
-  scaleIn,
-  stagger,
-} from "@/components/motion";
+import { Magnetic, Marquee, Reveal, Words, fadeUp, scaleIn, stagger } from "@/components/motion";
 import { AgentConsole, Device, SystemFlow } from "@/components/visuals";
 import {
   CTA,
@@ -79,42 +69,60 @@ const ABOUT_POINTS = [
   "Designed to evolve as your business scales",
 ] as const;
 
+/*
+  Six use cases laid out as an asymmetric bento. `span` is the lg column
+  count out of six, so each row closes exactly: 4+2, 2+2+2, 6. `media`
+  marks the three cells that carry a photograph, which keeps the grid
+  from reading as six identical text tiles.
+*/
 const USE_CASES = [
   {
     title: "Sales teams",
     body: "Respond to leads in seconds, qualify intelligently, and move prospects into booked meetings.",
     image: "/images/use-cases/sales.webp",
-    flow: "Lead → Qualified → Meeting",
+    flow: ["Lead", "Qualified", "Meeting"],
+    span: 4,
+    media: true,
   },
   {
     title: "Customer support",
     body: "Answer common questions from your knowledge base and escalate the rest to the right person.",
     image: "/images/use-cases/support.webp",
-    flow: "Customer → AI → Resolution",
+    flow: ["Customer", "AI", "Resolution"],
+    span: 2,
+    media: false,
   },
   {
     title: "Service businesses",
     body: "Collect requirements, check availability, and coordinate bookings without the admin.",
     image: "/images/use-cases/services.webp",
-    flow: "Enquiry → Requirements → Booking",
+    flow: ["Enquiry", "Requirements", "Booking"],
+    span: 2,
+    media: false,
   },
   {
     title: "eCommerce",
     body: "Connect conversations, orders, support, and notifications into one operational flow.",
     image: "/images/use-cases/ecommerce.webp",
-    flow: "Customer → Order → Support",
+    flow: ["Customer", "Order", "Support"],
+    span: 2,
+    media: true,
   },
   {
     title: "Operations",
     body: "Automate approvals and updates between systems and remove the bottlenecks between teams.",
     image: "/images/use-cases/operations.webp",
-    flow: "Request → Approval → Action",
+    flow: ["Request", "Approval", "Action"],
+    span: 2,
+    media: false,
   },
   {
     title: "Custom workflows",
     body: "Your process doesn't have to fit a template. We design the system around how your team actually works.",
     image: "/images/use-cases/custom.webp",
-    flow: "Your process → Your system",
+    flow: ["Your process", "Your system"],
+    span: 6,
+    media: true,
   },
 ];
 
@@ -212,8 +220,8 @@ function Hero() {
             className="object-cover object-[65%_center] opacity-[0.28] saturate-[0.8]"
           />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#0a0d14_0%,#0a0d14_30%,rgba(10,13,20,0.75)_60%,rgba(10,13,20,0.6)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0.5)_0%,rgba(10,13,20,0)_35%,#0a0d14_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,#0b1020_30%,rgba(11,16,32,0.75)_60%,rgba(11,16,32,0.6)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.5)_0%,rgba(11,16,32,0)_35%,#0b1020_100%)]" />
       </div>
 
       <Container className="relative z-10">
@@ -374,7 +382,7 @@ function SignalBand() {
 
 function ExistingBusiness() {
   return (
-    <section className="w-full bg-white py-24 lg:py-32">
+    <section className="w-full bg-surface py-24 lg:py-32">
       <Container>
         <Reveal amount={0.3}>
           <motion.div variants={fadeUp}>
@@ -396,7 +404,7 @@ function ExistingBusiness() {
               {EXISTING_STACK.map((s) => (
                 <li
                   key={s}
-                  className="rounded-full border border-line bg-white px-3.5 py-2 text-xs font-medium text-body transition-colors duration-300 hover:border-accent/40 hover:text-accent-strong"
+                  className="rounded-full border border-line bg-surface px-3.5 py-2 text-xs font-medium text-body transition-colors duration-300 hover:border-accent/40 hover:text-accent-strong"
                 >
                   {s}
                 </li>
@@ -473,7 +481,7 @@ function ExistingBusiness() {
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute -left-[5.5px] top-[7px] h-[9px] w-[9px] rounded-full border-2 border-accent bg-white"
+                    className="absolute -left-[5.5px] top-[7px] h-[9px] w-[9px] rounded-full border-2 border-accent bg-surface"
                   />
                   <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-strong">
                     {s.layer}
@@ -506,7 +514,7 @@ function ExistingBusiness() {
 
 function Positioning() {
   return (
-    <section className="w-full bg-white py-24 lg:py-32">
+    <section className="w-full bg-surface py-24 lg:py-32">
       <Container>
         <Split
           title={
@@ -545,7 +553,7 @@ function Positioning() {
 
 function Capabilities() {
   return (
-    <section className="w-full bg-paper py-24 lg:py-32">
+    <section className="w-full bg-surface-2 py-24 lg:py-32">
       <Container>
         <Reveal amount={0.3}>
           <motion.div variants={fadeUp}>
@@ -609,7 +617,7 @@ function System() {
 
 function LeadPulz() {
   return (
-    <section id="leadpulz" className="w-full overflow-hidden bg-white py-24 lg:py-32">
+    <section id="leadpulz" className="w-full overflow-hidden bg-surface py-24 lg:py-32">
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <Reveal amount={0.3} className="min-w-0">
@@ -637,7 +645,7 @@ function LeadPulz() {
                 <Arrow />
               </Button>
               <Button href="/contact?interest=leadpulz" variant="secondary">
-                Book a demo
+                Book consultation
               </Button>
             </motion.div>
           </Reveal>
@@ -653,99 +661,142 @@ function LeadPulz() {
   );
 }
 
-/* ---------------- USE CASES — horizontal rail ---------------- */
+/* ---------------- USE CASES - asymmetric bento ----------------
+   Was a horizontal rail of 620px-tall photo cards: the title and body
+   sat below the fold of each card, and the flow and index labels were
+   overlaid directly on the photography. Rebuilt as a bento so the copy
+   leads and the imagery supports it, and so the page carries a layout
+   family other than the two-column split it uses five times elsewhere.
+--------------------------------------------------------------- */
+
+function UseCaseFlow({ steps, dark }: { steps: readonly string[]; dark: boolean }) {
+  return (
+    <ol
+      className={`flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] uppercase tracking-[0.14em] ${
+        dark ? "text-accent-dark" : "text-accent-strong"
+      }`}
+    >
+      {steps.map((step, i) => (
+        <li key={step} className="flex items-center gap-2">
+          {i > 0 ? (
+            <CaretRight
+              weight="bold"
+              aria-hidden="true"
+              className="h-2.5 w-2.5 opacity-50"
+            />
+          ) : null}
+          {step}
+        </li>
+      ))}
+    </ol>
+  );
+}
 
 function UseCases() {
-  const railRef = useRef<HTMLDivElement>(null);
-
-  const scrollBy = (dir: 1 | -1) => {
-    const el = railRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-card]");
-    const w = card ? card.offsetWidth + 20 : 360;
-    el.scrollBy({ left: dir * w, behavior: "smooth" });
-  };
-
   return (
-    <section className="w-full overflow-hidden bg-paper py-24 lg:py-32">
+    <section className="w-full bg-surface-2 py-24 lg:py-32">
       <Container>
-        <Reveal amount={0.3} className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <motion.div variants={fadeUp}>
+        <Reveal amount={0.3}>
+          <motion.div variants={fadeUp} className="max-w-[46ch]">
             <SectionHeading
               title="Built around real business processes."
-              lede="Different teams have different workflows. The system adapts to your operation - not the other way around."
+              lede="Different teams have different workflows. The system adapts to your operation, not the other way around."
             />
-          </motion.div>
-          <motion.div variants={fadeUp} className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => scrollBy(-1)}
-              aria-label="Previous"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-white text-fg transition-all duration-300 hover:border-fg/40 active:scale-95"
-            >
-              <ArrowLeft weight="bold" className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollBy(1)}
-              aria-label="Next"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-white text-fg transition-all duration-300 hover:border-fg/40 active:scale-95"
-            >
-              <ArrowRight weight="bold" className="h-4 w-4" />
-            </button>
           </motion.div>
         </Reveal>
-      </Container>
 
-      <div
-        ref={railRef}
-        className="rail mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
-        style={{ paddingInline: "max(1.25rem, calc((100vw - 1240px) / 2 + 3rem))" }}
-      >
-        {USE_CASES.map((u, i) => (
-          <motion.article
-            key={u.title}
-            data-card
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: (i % 3) * 0.08 }}
-            className={`group relative shrink-0 snap-start overflow-hidden rounded-2xl bg-ink ${
-              i % 3 === 0 ? "w-[86vw] sm:w-[520px]" : "w-[78vw] sm:w-[400px]"
-            } aspect-[4/5] sm:aspect-[5/6]`}
-          >
-            <Image
-              src={u.image}
-              alt={`${u.title} automation`}
-              fill
-              sizes="(max-width: 640px) 86vw, 520px"
-              className="object-cover saturate-[0.85] transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0.15)_0%,rgba(10,13,20,0.2)_45%,rgba(10,13,20,0.92)_100%)]" />
-            <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5">
-              <Index dark>0{i + 1}</Index>
-              <span className="rounded-full border border-white/15 bg-ink/50 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white backdrop-blur-sm">
-                {u.flow}
-              </span>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 p-6">
-              <h3 className="text-2xl font-medium tracking-[-0.02em] text-white">{u.title}</h3>
-              <p className="mt-2 max-w-[40ch] text-sm leading-relaxed text-on-dark">{u.body}</p>
-            </div>
-          </motion.article>
-        ))}
-      </div>
+        <Reveal
+          step={0.07}
+          amount={0.15}
+          className="mt-14 grid gap-4 sm:grid-cols-2 lg:mt-18 lg:grid-cols-6 lg:gap-5"
+        >
+          {USE_CASES.map((u) => {
+            const wide = u.span === 6;
+            return (
+              <motion.article
+                key={u.title}
+                variants={fadeUp}
+                className={`group relative flex min-h-[260px] flex-col overflow-hidden rounded-2xl ${
+                  wide ? "sm:col-span-2" : ""
+                } ${
+                  u.span === 4
+                    ? "lg:col-span-4"
+                    : u.span === 6
+                      ? "lg:col-span-6"
+                      : "lg:col-span-2"
+                } ${
+                  u.media
+                    ? "bg-ink"
+                    : "border border-line bg-surface"
+                }`}
+              >
+                {u.media ? (
+                  <>
+                    <Image
+                      src={u.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 60vw"
+                      className="object-cover saturate-[0.85] transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
+                    />
+                    {/* Legible floor for the copy, not a decorative wash */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.35)_0%,rgba(11,16,32,0.55)_45%,rgba(11,16,32,0.94)_100%)]"
+                    />
+                  </>
+                ) : null}
+
+                <div
+                  className={`relative flex h-full flex-col gap-4 p-7 lg:p-8 ${
+                    // photo cards sit their copy on the dark floor of the
+                    // gradient; text cards read top-down with the flow pinned
+                    u.media ? "justify-end" : "justify-between"
+                  }`}
+                >
+                  <div>
+                    <h3
+                      className={`text-xl font-medium tracking-[-0.02em] lg:text-2xl ${
+                        u.media ? "text-white" : "text-fg"
+                      }`}
+                    >
+                      {u.title}
+                    </h3>
+                    <p
+                      className={`mt-3 max-w-[46ch] text-sm leading-relaxed ${
+                        u.media ? "text-on-dark" : "text-body"
+                      }`}
+                    >
+                      {u.body}
+                    </p>
+                  </div>
+                  <UseCaseFlow steps={u.flow} dark={u.media} />
+                </div>
+              </motion.article>
+            );
+          })}
+        </Reveal>
+      </Container>
     </section>
   );
 }
 
-/* ---------------- PROJECTS ---------------- */
+/* ---------------- PROJECTS - editorial index ----------------
+   Was a 2-col card grid where the featured card carried lg:row-span-2
+   and ran ~450px of dead white below its content. There are no product
+   screenshots for these platforms, and dropping stock photography in
+   would imply shipped UI that does not exist, so this leans typographic
+   instead: rows size to their content, and the whole row is the target.
+------------------------------------------------------------- */
 
 function Projects() {
   return (
-    <section id="projects" className="w-full bg-white py-24 lg:py-32">
+    <section id="projects" className="w-full bg-surface py-24 lg:py-32">
       <Container>
-        <Reveal amount={0.3} className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <Reveal
+          amount={0.3}
+          className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+        >
           <motion.div variants={fadeUp}>
             <SectionHeading
               eyebrow="Work in progress"
@@ -761,44 +812,59 @@ function Projects() {
           </motion.div>
         </Reveal>
 
-        <Reveal step={0.08} className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr] lg:gap-5">
-          {PROJECTS.map((p, i) => (
-            <motion.div key={p.slug} variants={fadeUp} className={i === 0 ? "lg:row-span-2" : ""}>
-              <Spotlight className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 transition-colors duration-500 hover:border-line-strong sm:p-8">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+        <Reveal
+          step={0.07}
+          amount={0.15}
+          className="mt-14 border-t border-line lg:mt-18"
+        >
+          {PROJECTS.map((p) => (
+            <motion.article
+              key={p.slug}
+              variants={fadeUp}
+              className="border-b border-line"
+            >
+              <Link
+                href={p.href ?? "/portfolio"}
+                className="group grid gap-6 py-9 transition-colors duration-500 lg:grid-cols-[minmax(0,0.38fr)_minmax(0,1fr)_auto] lg:gap-12 lg:py-11"
+              >
+                <div className="min-w-0">
+                  <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
                     {p.category}
-                  </span>
-                  <Status>{p.status}</Status>
-                </div>
-                <h3 className={`mt-8 font-medium tracking-[-0.025em] text-fg ${i === 0 ? "text-3xl sm:text-4xl" : "text-2xl"}`}>
-                  {p.name}
-                </h3>
-                <p className="mt-3 max-w-[52ch] text-[15px] leading-relaxed text-body">{p.summary}</p>
-                <ul className={`mt-6 grid gap-x-6 gap-y-2 ${i === 0 ? "sm:grid-cols-2" : ""}`}>
-                  {(i === 0 ? p.highlights : p.highlights.slice(0, 3)).map((h) => (
-                    <li key={h} className="flex items-center gap-2.5 text-sm text-body">
-                      <span className="h-1 w-1 rounded-full bg-accent" />
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto flex items-center justify-between pt-8">
-                  <p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-muted">
-                    {p.services.join(" · ")}
                   </p>
-                  {p.href ? (
-                    <Link
-                      href={p.href}
-                      className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-fg"
-                    >
-                      Explore
-                      <ArrowUpRight weight="bold" className="h-4 w-4 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
-                    </Link>
-                  ) : null}
+                  <h3 className="mt-3 text-2xl font-medium tracking-[-0.025em] text-fg transition-colors duration-500 group-hover:text-accent-strong lg:text-[2rem] lg:leading-[1.1]">
+                    {p.name}
+                  </h3>
                 </div>
-              </Spotlight>
-            </motion.div>
+
+                <div className="min-w-0">
+                  <p className="max-w-[58ch] text-[15px] leading-relaxed text-body">
+                    {p.summary}
+                  </p>
+                  {/*
+                    Chips rather than a dotted bullet list: four capabilities
+                    scan faster side by side, and it drops a decorative dot
+                    from every line.
+                  */}
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {p.highlights.slice(0, 4).map((h) => (
+                      <li
+                        key={h}
+                        className="rounded-full border border-line bg-surface-2 px-3 py-1 text-xs text-body"
+                      >
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex items-center justify-between gap-5 lg:flex-col lg:items-end lg:justify-start lg:gap-6">
+                  <Status>{p.status}</Status>
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-fg transition-all duration-500 group-hover:border-accent group-hover:bg-accent group-hover:text-white">
+                    <ArrowUpRight weight="bold" className="h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
+            </motion.article>
           ))}
         </Reveal>
       </Container>
@@ -841,7 +907,7 @@ function Why() {
 
 function ProcessSection() {
   return (
-    <section className="w-full bg-white py-24 lg:py-32">
+    <section className="w-full bg-surface py-24 lg:py-32">
       <Container>
         <Reveal amount={0.3}>
           <motion.div variants={fadeUp}>

@@ -83,8 +83,8 @@ export default function ContactPage() {
               className="object-cover object-[70%_center] opacity-40 saturate-[0.8]"
             />
           </div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0a0d14_0%,#0a0d14_32%,rgba(10,13,20,0.65)_65%,rgba(10,13,20,0.5)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0.5)_0%,rgba(10,13,20,0)_40%,#0a0d14_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,#0b1020_32%,rgba(11,16,32,0.65)_65%,rgba(11,16,32,0.5)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.5)_0%,rgba(11,16,32,0)_40%,#0b1020_100%)]" />
         </div>
 
         <Container className="relative z-10">
@@ -96,7 +96,7 @@ export default function ContactPage() {
           >
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
               <Eyebrow dark>Contact</Eyebrow>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface/[0.04] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark">
                 <LiveDot />
                 Taking new projects
               </span>
@@ -105,16 +105,15 @@ export default function ContactPage() {
               <Words text="Tell us how your business works today." delay={0.15} />
             </h1>
             <motion.p variants={fadeUp} className="mt-7 max-w-[50ch] text-base leading-relaxed text-on-dark sm:text-lg">
-              Share the workflow, bottleneck, or system idea. We&apos;ll come
-              back within one business day with a clear next step - no
-              generic pitch.
+              Share the workflow, bottleneck, or idea. We reply within one
+              business day with a clear next step.
             </motion.p>
           </motion.div>
         </Container>
       </section>
 
       {/* FORM + CHANNELS */}
-      <section className="w-full bg-white py-20 lg:py-28">
+      <section className="w-full bg-surface py-20 lg:py-28">
         <Container>
           <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             {/* Channels */}
@@ -131,7 +130,7 @@ export default function ContactPage() {
                   const Icon = c.icon;
                   const inner = (
                     <div className="group flex items-center gap-4 py-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-paper text-fg">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-surface-2 text-fg">
                         <Icon className="h-4.5 w-4.5" />
                       </span>
                       <span className="min-w-0 flex-1">
@@ -168,7 +167,7 @@ export default function ContactPage() {
             <Reveal amount={0.15}>
               <motion.div
                 variants={scaleIn}
-                className="rounded-[24px] border border-line bg-paper p-6 sm:p-9 lg:p-11"
+                className="rounded-[24px] border border-line bg-surface-2 p-6 sm:p-9 lg:p-11"
               >
                 <Suspense fallback={<FormSkeleton />}>
                   <ContactForm />
@@ -186,7 +185,7 @@ export default function ContactPage() {
         would rather not make. Setting response expectations converts better
         than a map on a B2B contact page anyway.
       */}
-      <section className="w-full bg-paper py-20 lg:py-28">
+      <section className="w-full bg-surface-2 py-20 lg:py-28">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <Reveal amount={0.3}>
@@ -494,9 +493,9 @@ function ContactForm() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="group/btn inline-flex h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-fg px-7 text-[15px] font-medium text-white shadow-[0_1px_0_rgba(255,255,255,0.08)_inset,0_10px_24px_-12px_rgba(14,17,24,0.5)] transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-ink-3 active:translate-y-px active:scale-[0.98] disabled:opacity-60 sm:w-auto"
+            className="group/btn inline-flex h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-mint px-7 text-[15px] font-medium text-mint-ink shadow-[0_1px_0_rgba(255,255,255,0.18)_inset,0_10px_24px_-12px_rgba(77,255,210,0.45)] transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-mint/90 active:translate-y-px active:scale-[0.98] disabled:opacity-60 sm:w-auto"
           >
-            <WhatsappLogo weight="fill" className="h-4.5 w-4.5 text-[#5fd39e]" />
+            <WhatsappLogo weight="fill" className="h-4.5 w-4.5 text-mint-ink" />
             {status === "sending" ? "Opening WhatsApp…" : "Send via WhatsApp"}
             <ArrowRight weight="bold" className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
           </button>
@@ -561,7 +560,7 @@ function Select({
           value={value}
           onChange={onChange}
           aria-describedby={helper ? `${name}-helper` : undefined}
-          className="w-full appearance-none rounded-xl border border-line-strong bg-white px-4 py-3.5 pr-10 text-[15px] text-fg transition-[border-color,box-shadow] duration-300 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/10"
+          className="w-full appearance-none rounded-xl border border-line-strong bg-surface px-4 py-3.5 pr-10 text-[15px] text-fg transition-[border-color,box-shadow] duration-300 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/10"
         >
           <option value="">{placeholder}</option>
           {options.map((o) => (
@@ -611,7 +610,7 @@ function Field({
   autoComplete?: string;
 }) {
   const base =
-    "w-full rounded-xl border bg-white px-4 py-3.5 text-[15px] text-fg placeholder:text-muted/70 transition-[border-color,box-shadow] duration-300 focus:outline-none focus:ring-4 " +
+    "w-full rounded-xl border bg-surface px-4 py-3.5 text-[15px] text-fg placeholder:text-muted/70 transition-[border-color,box-shadow] duration-300 focus:outline-none focus:ring-4 " +
     (error
       ? "border-danger/60 focus:border-danger focus:ring-danger/10"
       : "border-line-strong focus:border-accent focus:ring-accent/10");

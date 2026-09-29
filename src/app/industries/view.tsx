@@ -58,9 +58,8 @@ export default function IndustriesView() {
               variants={fadeUp}
               className="mt-7 max-w-[58ch] text-base leading-relaxed text-on-dark sm:text-lg"
             >
-              Repetitive coordination looks different in a dental clinic than it
-              does in a property business. These pages describe the workflow each
-              industry actually runs today, and what we would automate first.
+              Repetitive coordination looks different in a dental clinic than a
+              property business. Each page covers one industry.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9">
               <Button href="/contact" variant="onDark" size="lg">
@@ -90,7 +89,7 @@ export default function IndustriesView() {
               variants={fadeUp}
               className={i === 0 ? "md:col-span-2" : ""}
             >
-              <Spotlight className="h-full rounded-2xl border border-line bg-white transition-colors duration-500 hover:border-line-strong">
+              <Spotlight className="h-full rounded-2xl border border-line bg-surface transition-colors duration-500 hover:border-line-strong">
                 <Link
                   href={`/industries/${ind.slug}`}
                   className="flex h-full flex-col p-7 sm:p-8"
@@ -142,7 +141,7 @@ export default function IndustriesView() {
         />
         <div className="mt-10">
           <Button href="/contact" variant="primary">
-            Describe your workflow
+            Book consultation
             <Arrow />
           </Button>
         </div>

@@ -122,7 +122,7 @@ export default async function Page({ params }: Props) {
                           href={l.href}
                           target="_blank"
                           rel="me noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.04] px-4 py-2 text-xs font-medium text-on-dark transition-colors hover:border-white/30 hover:text-white"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-surface/[0.04] px-4 py-2 text-xs font-medium text-on-dark transition-colors hover:border-white/30 hover:text-white"
                         >
                           {l.label}
                           <ArrowUpRight
@@ -154,7 +154,7 @@ export default async function Page({ params }: Props) {
         </section>
 
         {/* EXPERTISE */}
-        <section className="w-full bg-white py-20 lg:py-28">
+        <section className="w-full bg-surface py-20 lg:py-28">
           <Container>
             <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
               <div>
@@ -206,7 +206,7 @@ export default async function Page({ params }: Props) {
         </section>
 
         {/* ARTICLES */}
-        <section className="w-full bg-paper py-20 lg:py-28">
+        <section className="w-full bg-surface-2 py-20 lg:py-28">
           <Container>
             <p className="font-mono text-2xs uppercase tracking-[0.18em] text-muted">
               Articles
@@ -250,7 +250,7 @@ export default async function Page({ params }: Props) {
 
             <div className="mt-12">
               <Button href="/contact" variant="primary">
-                Book consultation with Sri Harsha
+                Book consultation
                 <Arrow />
               </Button>
             </div>

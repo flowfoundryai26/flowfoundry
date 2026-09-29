@@ -115,8 +115,7 @@ export default function ServicesPage() {
         eyebrow="Services"
         title="Technology built around your business."
         lede="FlowFoundry designs AI agents, automation, custom software, websites, eCommerce systems, and integrations around the processes that actually run your business."
-        secondary="Start with the workflow, bottleneck, or opportunity. We design the technology around it - not the other way around."
-        primaryCta={{ label: "Discuss your project", href: "/contact" }}
+        primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Explore solutions", href: "/solutions" }}
         image="/images/use-cases/operations.webp"
         strip={
@@ -140,7 +139,7 @@ export default function ServicesPage() {
       />
 
       {/* SERVICES BENTO */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-surface py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -159,7 +158,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ENGINEERING */}
-      <section className="w-full bg-paper py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-24 lg:py-32">
         <Container>
           <div className="grid items-start gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
             <Reveal amount={0.3} className="lg:sticky lg:top-28">
@@ -183,7 +182,7 @@ export default function ServicesPage() {
                 <motion.div
                   key={e.index}
                   variants={fadeUp}
-                  className="rounded-2xl border border-line bg-white p-7 transition-colors duration-500 hover:border-line-strong"
+                  className="rounded-2xl border border-line bg-surface p-7 transition-colors duration-500 hover:border-line-strong"
                 >
                   <Index>{e.index}</Index>
                   <h3 className="mt-6 text-xl font-medium tracking-[-0.02em] text-fg">{e.title}</h3>
@@ -196,7 +195,7 @@ export default function ServicesPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-surface py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -224,7 +223,7 @@ export default function ServicesPage() {
             sizes="42vw"
             className="object-cover opacity-[0.12] saturate-0"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0a0d14_0%,rgba(10,13,20,0.4)_60%,rgba(10,13,20,0.7)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,rgba(11,16,32,0.4)_60%,rgba(11,16,32,0.7)_100%)]" />
         </div>
         <Container className="relative">
           <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
@@ -254,12 +253,12 @@ export default function ServicesPage() {
       </section>
 
       {/* COMMON PROJECTS */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-surface py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div
               variants={scaleIn}
-              className="grid gap-10 rounded-2xl border border-line bg-paper p-8 sm:p-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:p-14"
+              className="grid gap-10 rounded-2xl border border-line bg-surface-2 p-8 sm:p-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:p-14"
             >
               <div>
                 <Eyebrow>Common projects</Eyebrow>

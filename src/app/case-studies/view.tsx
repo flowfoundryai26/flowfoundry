@@ -59,14 +59,12 @@ export default function CaseStudiesView() {
               variants={fadeUp}
               className="mt-7 max-w-[58ch] text-base leading-relaxed text-on-dark sm:text-lg"
             >
-              Four platforms, written up in full: the business problem, the
-              architecture, the technologies, the problems we hit, and what we
-              would do differently. Every one is currently in development and
-              labelled as such.
+              Four platforms in development, written up in full: the problem, the
+              architecture, and what we would do differently.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9">
               <Button href="/contact" variant="onDark" size="lg">
-                Discuss your project
+                Book consultation
                 <Arrow />
               </Button>
             </motion.div>
@@ -105,7 +103,7 @@ export default function CaseStudiesView() {
         <Reveal step={0.08} className="grid gap-4 lg:gap-5">
           {CASE_STUDIES.map((c, i) => (
             <motion.div key={c.slug} variants={fadeUp}>
-              <Spotlight className="rounded-2xl border border-line bg-white transition-colors duration-500 hover:border-line-strong">
+              <Spotlight className="rounded-2xl border border-line bg-surface transition-colors duration-500 hover:border-line-strong">
                 <Link
                   href={`/case-studies/${c.slug}`}
                   className="grid gap-8 p-7 sm:p-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14"

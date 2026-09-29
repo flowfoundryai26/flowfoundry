@@ -63,9 +63,8 @@ export default function InsightsView() {
               variants={fadeUp}
               className="mt-7 max-w-[58ch] text-base leading-relaxed text-on-dark sm:text-lg"
             >
-              Long, specific articles on automation workflows - how they are
-              built, where they break, and what we would not automate. Written by
-              the person doing the engineering, not a content team.
+              How automation workflows are built and where they break, written by
+              the engineer who builds them.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9">
               <Button href="/contact" variant="onDark" size="lg">
@@ -89,7 +88,7 @@ export default function InsightsView() {
         <Reveal step={0.08} className="mt-14 grid gap-4 lg:mt-18 lg:gap-5">
           {ARTICLES.map((a, i) => (
             <motion.article key={a.slug} variants={fadeUp}>
-              <Spotlight className="rounded-2xl border border-line bg-white transition-colors duration-500 hover:border-line-strong">
+              <Spotlight className="rounded-2xl border border-line bg-surface transition-colors duration-500 hover:border-line-strong">
                 <Link
                   href={`/insights/${a.slug}`}
                   className="grid gap-7 p-7 sm:p-9 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14"

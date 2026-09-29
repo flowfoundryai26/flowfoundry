@@ -121,7 +121,7 @@ export const AgentConsole = memo(function AgentConsole() {
 
         <div className="grid gap-0 md:grid-cols-[1.25fr_1fr]">
           {/* Transcript */}
-          <div className="min-h-[268px] space-y-3 border-b border-white/[0.06] p-5 md:border-b-0 md:border-r">
+          <div data-chat className="min-h-[268px] space-y-3 border-b border-white/[0.06] p-5 md:border-b-0 md:border-r">
             <AnimatePresence initial={false}>
               {phase === "incoming" && (
                 <motion.div
@@ -130,7 +130,7 @@ export const AgentConsole = memo(function AgentConsole() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.4, ease: EASE }}
-                  className="flex items-center gap-3 rounded-md border border-white/[0.08] bg-white/[0.03] px-3.5 py-3"
+                  className="flex items-center gap-3 rounded-md border border-white/[0.08] bg-surface/[0.03] px-3.5 py-3"
                 >
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-dark opacity-70" />
@@ -155,7 +155,7 @@ export const AgentConsole = memo(function AgentConsole() {
                   className={`max-w-[88%] rounded-xl px-3.5 py-2.5 text-[12.5px] leading-relaxed ${
                     m.who === "agent"
                       ? "rounded-br-sm bg-accent text-white"
-                      : "rounded-bl-sm border border-white/[0.08] bg-white/[0.04] text-on-dark"
+                      : "rounded-bl-sm border border-white/[0.08] bg-surface/[0.04] text-on-dark"
                   }`}
                 >
                   {m.text}
@@ -171,7 +171,7 @@ export const AgentConsole = memo(function AgentConsole() {
                   TRANSCRIPT[line].who === "agent" ? "justify-end" : "justify-start"
                 }`}
               >
-                <span className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-2">
+                <span className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-surface/[0.04] px-3 py-2">
                   {[0, 1, 2].map((d) => (
                     <motion.span
                       key={d}
@@ -206,7 +206,7 @@ export const AgentConsole = memo(function AgentConsole() {
                   >
                     <span
                       className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md ${
-                        isDone ? "bg-live text-white" : "bg-white/[0.06]"
+                        isDone ? "bg-live text-white" : "bg-surface/[0.06]"
                       }`}
                     >
                       <AnimatePresence mode="wait" initial={false}>
@@ -259,7 +259,7 @@ export const AgentConsole = memo(function AgentConsole() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ type: "spring", stiffness: 420, damping: 18 }}
-            className="absolute -bottom-7 left-1/2 flex w-max -translate-x-1/2 items-center gap-3 rounded-xl border border-white/10 bg-white px-4 py-3 text-fg shadow-lift sm:left-auto sm:right-6 sm:translate-x-0"
+            className="absolute -bottom-7 left-1/2 flex w-max -translate-x-1/2 items-center gap-3 rounded-xl border border-white/10 bg-surface px-4 py-3 text-fg shadow-lift sm:left-auto sm:right-6 sm:translate-x-0"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-md bg-live/10 text-live">
               <CalendarCheck weight="fill" className="h-4 w-4" />
@@ -357,13 +357,13 @@ export function SystemFlow() {
             y1="0.5"
             x2="100%"
             y2="0.5"
-            stroke="#6d9bff"
+            stroke="#08a8f8"
             strokeWidth="1.5"
             style={{ pathLength }}
           />
         </svg>
         <motion.span
-          className="absolute -top-[3px] h-[7px] w-[7px] rounded-full bg-white shadow-[0_0_0_4px_rgba(109,155,255,0.25)]"
+          className="absolute -top-[3px] h-[7px] w-[7px] rounded-full bg-surface shadow-[0_0_0_4px_rgba(109,155,255,0.25)]"
           style={{ left: pulseX }}
         />
       </div>
@@ -403,7 +403,7 @@ export function SystemFlow() {
                 {n.detail.map((d, j) => (
                   <motion.li
                     key={d}
-                    className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-on-dark"
+                    className="rounded-md border border-white/[0.08] bg-surface/[0.03] px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-on-dark"
                     animate={{ opacity: [0.55, 1, 0.55] }}
                     transition={{
                       duration: 3.2,
@@ -477,10 +477,10 @@ export function Device({
     <Tilt className={`rounded-2xl ${className}`} max={5}>
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-ink-2 shadow-dark">
         <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-2.5">
-          <span className="h-2 w-2 rounded-full bg-white/15" />
-          <span className="h-2 w-2 rounded-full bg-white/15" />
-          <span className="h-2 w-2 rounded-full bg-white/15" />
-          <span className="ml-3 h-5 flex-1 rounded-md bg-white/[0.05]" />
+          <span className="h-2 w-2 rounded-full bg-surface/15" />
+          <span className="h-2 w-2 rounded-full bg-surface/15" />
+          <span className="h-2 w-2 rounded-full bg-surface/15" />
+          <span className="ml-3 h-5 flex-1 rounded-md bg-surface/[0.05]" />
         </div>
         <Image
           src={src}

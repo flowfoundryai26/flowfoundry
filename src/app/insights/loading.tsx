@@ -12,7 +12,7 @@ export default function Loading() {
     <div className="w-full overflow-x-clip">
       <LoadingStatus label="Loading insights" />
       <HeroSkeleton />
-      <section className="w-full bg-white py-20 lg:py-28" aria-hidden="true">
+      <section className="w-full bg-surface py-20 lg:py-28" aria-hidden="true">
         <Container>
           <HeadingSkeleton />
           <CardGridSkeleton

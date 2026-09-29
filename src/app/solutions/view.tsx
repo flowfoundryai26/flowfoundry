@@ -110,9 +110,8 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Business solutions"
         title="Automate the process, not just the task."
-        lede="FlowFoundry designs intelligent workflows around real business challenges - from lead handling and sales to support, operations, CRM, and appointment management."
-        secondary="We connect conversations, business logic, data, and actions so your systems do more than store information - they move work forward."
-        primaryCta={{ label: "Discuss your workflow", href: "/contact" }}
+        lede="Intelligent workflows built around real business problems: lead handling, sales, support, operations, CRM, and appointments."
+        primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Our services", href: "/services" }}
         image="/images/use-cases/support.webp"
         strip={
@@ -136,7 +135,7 @@ export default function SolutionsPage() {
       />
 
       {/* INTRO */}
-      <section className="w-full bg-white pt-24 lg:pt-32">
+      <section className="w-full bg-surface pt-24 lg:pt-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -152,7 +151,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* SOLUTIONS — alternating */}
-      <section className="w-full bg-white py-16 lg:py-24">
+      <section className="w-full bg-surface py-16 lg:py-24">
         <Container>
           <div className="space-y-8 lg:space-y-10">
             {SOLUTIONS.map((s, i) => {
@@ -160,7 +159,7 @@ export default function SolutionsPage() {
               return (
                 <Reveal key={s.id} amount={0.2} id={s.id} className="scroll-mt-24">
                   <motion.article variants={fadeUp}>
-                    <Spotlight className="overflow-hidden rounded-[24px] border border-line bg-white transition-colors duration-500 hover:border-line-strong">
+                    <Spotlight className="overflow-hidden rounded-[24px] border border-line bg-surface transition-colors duration-500 hover:border-line-strong">
                       <div className={`grid ${flip ? "lg:grid-cols-[0.85fr_1.15fr]" : "lg:grid-cols-[1.15fr_0.85fr]"}`}>
                         {/* Copy */}
                         <div className={`p-7 sm:p-10 lg:p-12 ${flip ? "lg:order-2" : ""}`}>
@@ -186,7 +185,7 @@ export default function SolutionsPage() {
                             href={`/contact?solution=${s.id}`}
                             className="group/link mt-9 inline-flex items-center gap-2 text-sm font-medium text-fg"
                           >
-                            Discuss this workflow
+                            Book consultation
                             <ArrowUpRight
                               weight="bold"
                               className="h-4 w-4 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
@@ -204,7 +203,7 @@ export default function SolutionsPage() {
                               sizes="(max-width: 1023px) 100vw, 40vw"
                               className="object-cover opacity-40 saturate-[0.7]"
                             />
-                            <div className="absolute inset-0 bg-[linear-gradient(0deg,#0a0d14_10%,rgba(10,13,20,0.45)_60%,rgba(10,13,20,0.7)_100%)]" />
+                            <div className="absolute inset-0 bg-[linear-gradient(0deg,#0b1020_10%,rgba(11,16,32,0.45)_60%,rgba(11,16,32,0.7)_100%)]" />
                           </div>
                           <div className="relative p-7 sm:p-8">
                             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-on-dark-muted">
@@ -217,7 +216,7 @@ export default function SolutionsPage() {
                                     className={`rounded-md border px-2.5 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.1em] ${
                                       j === s.workflow.length - 1
                                         ? "border-live/30 bg-live/10 text-[#5fd39e]"
-                                        : "border-white/10 bg-white/[0.04] text-on-dark"
+                                        : "border-white/10 bg-surface/[0.04] text-on-dark"
                                     }`}
                                     animate={{ opacity: [0.6, 1, 0.6] }}
                                     transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: j * 0.35 }}
@@ -251,7 +250,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* SYSTEM THINKING */}
-      <section className="w-full bg-paper py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-24 lg:py-32">
         <Container>
           <div className="grid items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <Reveal amount={0.3} className="lg:sticky lg:top-28">
@@ -268,7 +267,7 @@ export default function SolutionsPage() {
                 <motion.div
                   key={l.index}
                   variants={fadeUp}
-                  className="rounded-2xl border border-line bg-white p-7 transition-colors duration-500 hover:border-line-strong"
+                  className="rounded-2xl border border-line bg-surface p-7 transition-colors duration-500 hover:border-line-strong"
                 >
                   <Index>{l.index}</Index>
                   <h3 className="mt-6 text-xl font-medium tracking-[-0.02em] text-fg">{l.title}</h3>
@@ -281,7 +280,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-surface py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -300,12 +299,12 @@ export default function SolutionsPage() {
       </section>
 
       {/* INDUSTRIES + LEADPULZ */}
-      <section className="w-full bg-white pb-8">
+      <section className="w-full bg-surface pb-8">
         <Container>
           <Reveal amount={0.3} className="grid gap-5 lg:grid-cols-[1fr_1fr]">
             <motion.div
               variants={scaleIn}
-              className="rounded-2xl border border-line bg-paper p-8 sm:p-10"
+              className="rounded-2xl border border-line bg-surface-2 p-8 sm:p-10"
             >
               <Eyebrow>Where it applies</Eyebrow>
               <h2 className="mt-4 text-[clamp(1.5rem,2.6vw,2rem)] font-medium leading-[1.08] tracking-[-0.025em] text-fg">
@@ -327,7 +326,7 @@ export default function SolutionsPage() {
             >
               <div className="pointer-events-none absolute inset-0" aria-hidden="true">
                 <Image src="/images/dashboard.jpeg" alt="" fill sizes="50vw" className="object-cover object-top opacity-[0.14] saturate-0" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0.5)_0%,#0a0d14_80%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.5)_0%,#0b1020_80%)]" />
               </div>
               <div className="relative">
                 <Eyebrow dark>LeadPulz</Eyebrow>

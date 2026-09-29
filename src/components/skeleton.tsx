@@ -27,7 +27,7 @@ export function Skeleton({
   return (
     <div
       className={`shimmer rounded-md ${
-        surface === "dark" ? "bg-white/[0.07]" : "bg-line"
+        surface === "dark" ? "bg-surface/[0.07]" : "bg-line"
       } ${className}`}
     />
   );
@@ -131,7 +131,7 @@ export function HeadingSkeleton({ className = "" }: { className?: string }) {
 export function CardSkeleton({ media = true }: { media?: boolean }) {
   return (
     <div
-      className="overflow-hidden rounded-2xl border border-line bg-white"
+      className="overflow-hidden rounded-2xl border border-line bg-surface"
       aria-hidden="true"
     >
       {media ? <Skeleton className="h-52 w-full rounded-none sm:h-64" /> : null}
@@ -187,7 +187,7 @@ export function PageSkeleton({ children }: { children?: ReactNode }) {
     <div className="w-full overflow-x-clip">
       <LoadingStatus />
       <HeroSkeleton />
-      <section className="w-full bg-white py-20 lg:py-28" aria-hidden="true">
+      <section className="w-full bg-surface py-20 lg:py-28" aria-hidden="true">
         <Container>
           {children ?? (
             <>
@@ -207,7 +207,7 @@ export function ArticleSkeleton() {
     <div className="w-full overflow-x-clip">
       <LoadingStatus label="Loading article" />
       <HeroSkeleton />
-      <section className="w-full bg-white py-20 lg:py-28" aria-hidden="true">
+      <section className="w-full bg-surface py-20 lg:py-28" aria-hidden="true">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-16">
             <div className="max-w-[68ch] space-y-10">

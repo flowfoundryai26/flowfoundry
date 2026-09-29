@@ -75,15 +75,14 @@ export default function LeadPulzPage() {
       <PageHero
         eyebrow="LeadPulz · AI revenue agent"
         title="Turn business calls into measurable action."
-        lede="LeadPulz is an AI voice automation platform that manages calls, qualifies leads, schedules appointments, automates follow-ups, and connects every conversation to your business workflows."
-        secondary="Give every conversation a structured next step - without your team manually managing every interaction."
+        lede="An AI voice platform that answers calls, qualifies leads, books appointments, and follows up."
         primaryCta={{ label: "Book a demo", href: "/contact?interest=leadpulz" }}
         secondaryCta={{ label: "See the product", href: "#product" }}
         aside={<CallCard />}
       />
 
       {/* PRODUCT */}
-      <section id="product" className="w-full scroll-mt-20 bg-white py-24 lg:py-32">
+      <section id="product" className="w-full scroll-mt-20 bg-surface py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -101,7 +100,7 @@ export default function LeadPulzPage() {
               <motion.div
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-3 top-12 hidden items-center gap-3 rounded-xl border border-line bg-white px-4 py-3 shadow-lift md:flex"
+                className="absolute -right-3 top-12 hidden items-center gap-3 rounded-xl border border-line bg-surface px-4 py-3 shadow-lift md:flex"
               >
                 <span className="flex h-7 w-7 items-center justify-center rounded-md bg-live/10 text-live">
                   <CalendarCheck weight="fill" className="h-4 w-4" />
@@ -117,7 +116,7 @@ export default function LeadPulzPage() {
       </section>
 
       {/* CAPABILITIES */}
-      <section id="capabilities" className="w-full scroll-mt-20 bg-paper py-24 lg:py-32">
+      <section id="capabilities" className="w-full scroll-mt-20 bg-surface-2 py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -136,7 +135,7 @@ export default function LeadPulzPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how-it-works" className="w-full scroll-mt-20 bg-white py-24 lg:py-32">
+      <section id="how-it-works" className="w-full scroll-mt-20 bg-surface py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -169,7 +168,7 @@ export default function LeadPulzPage() {
               </motion.div>
             </Reveal>
             <Reveal as="ol" step={0.12} className="relative">
-              <div className="absolute bottom-6 left-[19px] top-6 w-px bg-white/10" aria-hidden="true" />
+              <div className="absolute bottom-6 left-[19px] top-6 w-px bg-surface/10" aria-hidden="true" />
               {FLOW.map((f, i) => (
                 <motion.li key={f.name} variants={fadeUp} className="relative flex items-start gap-6 py-4">
                   <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-ink font-mono text-2xs text-accent-dark">
@@ -193,7 +192,7 @@ export default function LeadPulzPage() {
       </section>
 
       {/* USE CASES */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-surface py-24 lg:py-32">
         <Container>
           <div className="grid items-start gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <Reveal amount={0.3} className="lg:sticky lg:top-28">
@@ -208,7 +207,7 @@ export default function LeadPulzPage() {
             <Reveal step={0.07} className="grid gap-4 sm:grid-cols-2">
               {USE_CASES.map((u) => (
                 <motion.div key={u.index} variants={fadeUp}>
-                  <Spotlight className="h-full rounded-2xl border border-line bg-white p-7 transition-colors duration-500 hover:border-line-strong">
+                  <Spotlight className="h-full rounded-2xl border border-line bg-surface p-7 transition-colors duration-500 hover:border-line-strong">
                     <Index>{u.index}</Index>
                     <h3 className="mt-6 text-lg font-medium tracking-[-0.015em] text-fg">{u.title}</h3>
                     <p className="mt-2 text-[15px] leading-relaxed text-body">{u.body}</p>
@@ -221,12 +220,12 @@ export default function LeadPulzPage() {
       </section>
 
       {/* CUSTOMIZATION */}
-      <section className="w-full bg-white pb-8">
+      <section className="w-full bg-surface pb-8">
         <Container>
           <Reveal amount={0.3}>
             <motion.div
               variants={scaleIn}
-              className="relative grid gap-10 overflow-hidden rounded-2xl border border-line bg-paper p-8 sm:p-10 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:p-14"
+              className="relative grid gap-10 overflow-hidden rounded-2xl border border-line bg-surface-2 p-8 sm:p-10 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:p-14"
             >
               <div>
                 <Eyebrow>Built around your business</Eyebrow>
@@ -258,7 +257,7 @@ export default function LeadPulzPage() {
         title="What could your team do if every lead got the right next step?"
         lede="Tell us how your business handles calls and leads today. We'll show you how LeadPulz fits into the workflow."
         primary={{ label: "Book a demo", href: "/contact?interest=leadpulz" }}
-        secondary={{ label: "Contact us", href: "/contact" }}
+        secondary={{ label: "Book a demo", href: "/contact?interest=leadpulz" }}
         image="/images/contact.webp"
       />
     </div>
@@ -306,7 +305,7 @@ function CallCard() {
             {["Clinic · 12 staff", "Budget confirmed", "Decision maker", "Thu 10:30"].map((t, i) => (
               <span key={t} className="flex items-center gap-2">
                 <motion.span
-                  className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.1em] text-on-dark"
+                  className="rounded-md border border-white/10 bg-surface/[0.04] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.1em] text-on-dark"
                   animate={{ opacity: [0.6, 1, 0.6] }}
                   transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
                 >
@@ -321,7 +320,7 @@ function CallCard() {
 
       <div className="pointer-events-none absolute -bottom-10 -left-8 -z-10 hidden h-48 w-64 overflow-hidden rounded-2xl opacity-60 lg:block" aria-hidden="true">
         <Image src="/images/dashboard.jpeg" alt="" fill sizes="256px" className="object-cover object-top saturate-0" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0.3),#0a0d14)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.3),#0b1020)]" />
       </div>
     </div>
   );

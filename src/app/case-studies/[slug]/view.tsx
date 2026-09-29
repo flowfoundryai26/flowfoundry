@@ -110,7 +110,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
 
             <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact" variant="onDark" size="lg">
-                Discuss a similar system
+                Book consultation
                 <Arrow />
               </Button>
               <Button href="#architecture" variant="outlineOnDark" size="lg">

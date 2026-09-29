@@ -105,10 +105,8 @@ export default function HowWeWorkView() {
               variants={fadeUp}
               className="mt-7 max-w-[58ch] text-base leading-relaxed text-on-dark sm:text-lg"
             >
-              Most automation projects fail in the first two steps, by building
-              before the process is understood. This is the sequence we follow,
-              with the deliverable for each stage stated so you know what you are
-              getting.
+              Most automation projects fail by building before the process is
+              understood. This is the sequence we follow instead.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9">
               <Button href="/contact" variant="onDark" size="lg">

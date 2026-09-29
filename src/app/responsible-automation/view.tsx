@@ -66,13 +66,12 @@ export default function ResponsibleAutomationView() {
               variants={fadeUp}
               className="mt-7 max-w-[60ch] text-base leading-relaxed text-on-dark sm:text-lg"
             >
-              An agent with write access to your CRM, your calendar and your
-              customer records is a security surface. If you are evaluating us,
-              you should ask how that is controlled - so here it is in full.
+              An agent with write access to your CRM, calendar and customer
+              records is a security surface. Here are the controls.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9">
               <Button href="/contact" variant="onDark" size="lg">
-                Ask us about a specific workflow
+                Book consultation
                 <Arrow />
               </Button>
             </motion.div>

@@ -5,42 +5,46 @@
    Geist + Geist Mono. Off-black base, zinc neutrals, one accent.
    ============================================================ */
 @theme {
-  /* ---------- Surfaces ---------- */
-  --color-ink: #0a0d14;        /* primary dark surface, matches logo */
-  --color-ink-2: #10141d;      /* raised dark panel */
-  --color-ink-3: #171c27;      /* dark hover / border base */
-  --color-paper: #f6f6f7;      /* light section alt */
-  --color-white: #ffffff;
+  /* ---------- Surfaces ----------
+     Dark theme. Navy and slate sit only 1.07:1 apart, so sections are
+     separated by borders and elevation, never by background alone. */
+  --color-ink: #0b1020;        /* Near-Black Navy - deepest surface */
+  --color-ink-2: #1c2340;      /* raised panel, 1.15:1 off slate */
+  --color-ink-3: #232b45;      /* hover / border base, 1.27:1 off slate */
+  --color-surface: #12172b;    /* Deep Slate - default content surface */
+  --color-surface-2: #0b1020;  /* alternate section */
+  --color-paper: #0b1020;      /* legacy alias, now the alternate section */
+  --color-white: #ffffff;      /* UNCHANGED: text-white depends on it */
 
-  /* ---------- Text ---------- */
-  --color-fg: #0e1118;         /* headings on light */
-  --color-body: #4b5160;       /* body on light */
-  --color-muted: #7a8090;      /* labels on light */
-  --color-on-dark: rgb(255 255 255 / 0.74);
-  --color-on-dark-muted: rgb(255 255 255 / 0.52);
+  /* ---------- Text (measured on Deep Slate) ---------- */
+  --color-fg: #e8eaf2;         /* Soft White, headings      14.78:1 */
+  --color-body: #b4bbce;       /* body                       9.25:1 */
+  --color-muted: #8a90a6;      /* Cool Grey, labels          5.60:1 */
+  --color-on-dark: #b4bbce;
+  --color-on-dark-muted: #8a90a6;
 
-  /* ---------- Accent (single) ---------- */
-  --color-accent: #3b74e6;
-  --color-accent-strong: #2a5fd0;
-  --color-accent-soft: #e9f0fd;
-  --color-accent-dark: #6d9bff;   /* accent on dark surfaces */
-
-  /* ---------- Brand marks (sampled from public/logo.png) ----------
-     The logo is a blue-to-cyan ramp on a near-black navy ground. These
-     are the mark's own values, kept separate from --color-accent so the
-     UI accent stays a single flat colour per the one-accent rule. */
-  --brand-blue: #0878f8;
-  --brand-cyan: #08d8f8;
-  --brand-ground: #080818;
+  /* ---------- Accents ----------
+     Two brand colours with split roles, so the page still reads as
+     having one action colour: violet carries structure and brand
+     (borders, rings, large display), mint is the single action colour.
+     Raw #7C5CFF carries NO text accessibly - white 4.35, navy 4.36 -
+     so the text and fill variants below are hue-locked derivatives. */
+  --color-accent: #7c5cff;         /* Violet: borders, rings, non-text UI */
+  --color-accent-strong: #8c70ff;  /* violet as TEXT on dark      4.97:1 */
+  --color-accent-fill: #5b33ff;    /* violet fill + Soft White    5.20:1 */
+  --color-accent-soft: #1e2145;    /* violet-tinted chip ground */
+  --color-accent-dark: #8c70ff;    /* violet on the deepest surface */
+  --color-mint: #4dffd2;           /* Neon Mint: primary CTA     14.92:1 on navy */
+  --color-mint-ink: #0b1020;       /* the only text colour for a mint fill */
 
   /* Semantic only - never decorative */
-  --color-live: #22a06b;
-  --color-warn: #c98a1b;
-  --color-danger: #d1435b;
+  --color-live: #4dffd2;
+  --color-warn: #f0c36b;
+  --color-danger: #ff6b81;
 
   /* ---------- Lines ---------- */
-  --color-line: rgb(14 17 24 / 0.08);
-  --color-line-strong: rgb(14 17 24 / 0.14);
+  --color-line: rgb(255 255 255 / 0.09);
+  --color-line-strong: rgb(255 255 255 / 0.17);
   --color-line-dark: rgb(255 255 255 / 0.08);
   --color-line-dark-strong: rgb(255 255 255 / 0.16);
 
@@ -278,7 +282,7 @@
 }
 
 /* ============================================================
-   SCROLLBAR - drawn from the logo's blue-to-cyan ramp
+   SCROLLBAR - drawn from the violet-to-mint accent ramp
 
    Firefox gets `scrollbar-color` (two solids, no gradient support);
    WebKit gets the actual ramp. The horizontal .rail elements opt out
@@ -286,7 +290,7 @@
    ============================================================ */
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--brand-blue) var(--color-ink);
+  scrollbar-color: var(--color-accent) var(--color-ink);
 }
 
 ::-webkit-scrollbar {
@@ -295,16 +299,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--brand-ground);
+  background: var(--color-ink);
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 3px solid var(--brand-ground);  /* inset, so the bar reads slim */
+  border: 3px solid var(--color-ink);  /* inset, so the bar reads slim */
   border-radius: 999px;
   background: linear-gradient(
     180deg,
-    var(--brand-blue) 0%,
-    var(--brand-cyan) 100%
+    var(--color-accent) 0%,
+    var(--color-mint) 100%
   );
 }
 
@@ -313,12 +317,68 @@ html {
 }
 
 ::-webkit-scrollbar-corner {
-  background: var(--brand-ground);
+  background: var(--color-ink);
 }
 
 /* Rails hide their scrollbar and must keep doing so. */
 .rail::-webkit-scrollbar {
   display: none;
+}
+
+/* ============================================================
+   MOBILE CENTRING
+
+   Below Tailwind's `sm` the whole page reads centred. Done once here
+   rather than as `text-center sm:text-left` on several hundred
+   elements. Two things make it work:
+     - `text-align` also centres inline-flex children, so buttons and
+       pills fall into place without touching their markup
+     - a narrow measure (max-w-[46ch] and friends) would still sit left
+       inside a full-width parent, so those get auto side margins
+
+   Opted out below: forms, where centred labels, inputs and error text
+   are hard to scan, and the chat bubbles in the agent demo, which
+   carry meaning in their left/right alignment.
+   ============================================================ */
+@media (max-width: 639px) {
+  main {
+    text-align: center;
+  }
+
+  main [class*="max-w-"] {
+    margin-inline: auto;
+  }
+
+  /* Flex rows that lay content out horizontally need the line centred
+     too; text-align does not reach them. */
+  main :is(ul, ol, dl)[class*="flex"],
+  main [class*="flex-wrap"],
+  main [class*="inline-flex"] {
+    justify-content: center;
+  }
+
+  /* --- opt-outs --- */
+  main form,
+  main form :is(p, label, span, div, li, input, textarea, select) {
+    text-align: left;
+  }
+
+  main form [class*="flex-wrap"] {
+    justify-content: flex-start;
+  }
+
+  /* Conversation bubbles: the side IS the speaker, so the text inside
+     them stays left and their rows keep their own justification. */
+  [data-chat],
+  [data-chat] :is(p, span, div) {
+    text-align: left;
+  }
+
+  /* The eyebrow's leading rule becomes an orphan once its label centres,
+     especially when the label wraps. It is decorative and aria-hidden. */
+  [data-eyebrow-rule] {
+    display: none;
+  }
 }
 
 /* ============================================================

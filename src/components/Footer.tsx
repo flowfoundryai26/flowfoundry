@@ -114,7 +114,7 @@ export default function Footer() {
               AI agents, automation, and custom software built around the way
               your business actually works.
             </p>
-            <div className="mt-5 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">
+            <div className="mt-5 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-surface/[0.03] px-3 py-1.5">
               <LiveDot />
               <span className="font-mono text-2xs uppercase tracking-[0.12em] text-on-dark">
                 Taking new projects

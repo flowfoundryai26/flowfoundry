@@ -276,7 +276,7 @@ export default function ArticleView({ article: a }: { article: Article }) {
       </section>
 
       {/* ---------------- BODY + TOC ---------------- */}
-      <section className="w-full bg-white py-16 lg:py-24">
+      <section className="w-full bg-surface py-16 lg:py-24">
         <Container>
           <div className="grid gap-14 lg:grid-cols-[240px_1fr] lg:gap-20">
             {/* TOC */}
@@ -316,7 +316,7 @@ export default function ArticleView({ article: a }: { article: Article }) {
               <Blocks blocks={a.body} />
 
               {/* Mid-article CTA, contextual to the topic */}
-              <div className="mt-16 rounded-2xl border border-line bg-paper p-7 sm:p-9">
+              <div className="mt-16 rounded-2xl border border-line bg-surface-2 p-7 sm:p-9">
                 <p className="font-mono text-2xs uppercase tracking-[0.16em] text-accent-strong">
                   Related service
                 </p>

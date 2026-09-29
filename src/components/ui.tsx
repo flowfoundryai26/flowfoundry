@@ -75,24 +75,31 @@ const BTN_SIZE: Record<BtnSize, string> = {
 };
 
 const BTN_VARIANT: Record<BtnVariant, string> = {
+  /*
+    Dark theme. The old set assumed a light page: `primary` was
+    bg-fg + text-white, which inverts to Soft White on Soft White.
+    Mint is the single action colour and is the only fill that carries
+    text at full AA (navy on mint, 14.92:1). Raw violet carries no text
+    accessibly, so the violet fill uses the derived --color-accent-fill.
+  */
   primary:
-    "bg-fg text-white shadow-[0_1px_0_rgba(255,255,255,0.08)_inset,0_10px_24px_-12px_rgba(14,17,24,0.5)] " +
-    "hover:bg-ink-3 focus-visible:ring-fg focus-visible:ring-offset-white",
+    "bg-mint text-mint-ink shadow-[0_10px_30px_-12px_rgba(77,255,210,0.45)] " +
+    "hover:bg-mint/90 focus-visible:ring-mint focus-visible:ring-offset-ink",
   accent:
-    "bg-accent text-white shadow-[0_1px_0_rgba(255,255,255,0.18)_inset,0_10px_24px_-12px_rgba(59,116,230,0.55)] " +
-    "hover:bg-accent-strong focus-visible:ring-accent focus-visible:ring-offset-white",
+    "bg-accent-fill text-fg shadow-[0_10px_30px_-12px_rgba(91,51,255,0.6)] " +
+    "hover:bg-accent focus-visible:ring-accent focus-visible:ring-offset-ink",
   secondary:
-    "border border-line-strong bg-white text-fg " +
-    "hover:border-fg/40 hover:bg-paper focus-visible:ring-accent focus-visible:ring-offset-white",
+    "border border-line-strong bg-ink-2 text-fg " +
+    "hover:border-accent/50 hover:bg-ink-3 focus-visible:ring-accent focus-visible:ring-offset-ink",
   onDark:
-    "bg-white text-fg shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] " +
-    "hover:bg-[#f0f1f4] focus-visible:ring-white focus-visible:ring-offset-ink",
+    "bg-mint text-mint-ink shadow-[0_10px_30px_-12px_rgba(77,255,210,0.45)] " +
+    "hover:bg-mint/90 focus-visible:ring-mint focus-visible:ring-offset-ink",
   outlineOnDark:
-    "border border-white/15 bg-white/[0.04] text-white backdrop-blur-sm " +
+    "border border-white/15 bg-surface/[0.04] text-fg backdrop-blur-sm " +
     "shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] " +
-    "hover:border-white/30 hover:bg-white/[0.08] focus-visible:ring-white focus-visible:ring-offset-ink",
+    "hover:border-accent/50 hover:bg-surface/[0.08] focus-visible:ring-accent focus-visible:ring-offset-ink",
   ghost:
-    "text-body hover:bg-paper hover:text-fg focus-visible:ring-accent focus-visible:ring-offset-white",
+    "text-body hover:bg-ink-2 hover:text-fg focus-visible:ring-accent focus-visible:ring-offset-ink",
 };
 
 export function buttonClass({
@@ -185,6 +192,7 @@ export function Eyebrow({
     >
       <span
         aria-hidden="true"
+        data-eyebrow-rule
         className={`h-px w-6 ${isDark ? "bg-accent-dark/70" : "bg-accent/70"}`}
       />
       {children}
@@ -289,8 +297,8 @@ export function Chip({
     <span
       className={`inline-flex items-center rounded-full border px-3.5 py-2 text-xs font-medium transition-colors duration-300 ${
         isDark
-          ? "border-white/10 bg-white/[0.04] text-on-dark hover:border-white/25 hover:text-white"
-          : "border-line bg-white text-body hover:border-accent/40 hover:text-accent-strong"
+          ? "border-white/10 bg-surface/[0.04] text-on-dark hover:border-white/25 hover:text-white"
+          : "border-line bg-surface text-body hover:border-accent/40 hover:text-accent-strong"
       } ${className}`}
     >
       {children}
@@ -312,7 +320,7 @@ export function Badge({
   const variants = {
     default: "bg-accent-soft text-accent-strong",
     live: "bg-live/10 text-live",
-    dark: "border border-white/12 bg-white/5 text-white",
+    dark: "border border-white/12 bg-surface/5 text-white",
   };
   return (
     <span

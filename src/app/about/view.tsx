@@ -58,7 +58,6 @@ export default function AboutPage() {
         eyebrow="About us"
         title="Building smarter ways for businesses to work."
         lede="FlowFoundry AI Solutions helps businesses turn ideas, manual processes, and disconnected tools into intelligent business systems."
-        secondary="We combine AI engineering, automation, software development, and integrations to connect conversations, business logic, data, and actions around the way your business actually operates."
         primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Explore our services", href: "/services" }}
         image="/images/use-cases/services.webp"
@@ -75,7 +74,7 @@ export default function AboutPage() {
       />
 
       {/* WHO WE ARE */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-surface py-24 lg:py-32">
         <Container>
           <Split
             eyebrow="Who we are"
@@ -111,7 +110,7 @@ export default function AboutPage() {
       </section>
 
       {/* FOCUS AREAS */}
-      <section className="w-full bg-paper py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -157,7 +156,7 @@ export default function AboutPage() {
 
             <motion.article
               variants={fadeUp}
-              className="relative overflow-hidden rounded-2xl bg-white p-8 sm:p-10 lg:p-14"
+              className="relative overflow-hidden rounded-2xl bg-surface p-8 sm:p-10 lg:p-14"
             >
               <Eyebrow>Our vision</Eyebrow>
               <h3 className="mt-6 max-w-[18ch] text-[clamp(1.6rem,2.8vw,2.3rem)] font-medium leading-[1.08] tracking-[-0.03em] text-fg text-balance">
@@ -174,7 +173,7 @@ export default function AboutPage() {
       </section>
 
       {/* SYSTEM PHILOSOPHY */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-surface py-24 lg:py-32">
         <Container>
           <div className="grid items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <Reveal amount={0.3} className="lg:sticky lg:top-28">
@@ -241,7 +240,7 @@ export default function AboutPage() {
       </section>
 
       {/* PRINCIPLES */}
-      <section className="w-full bg-paper py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -265,7 +264,7 @@ export default function AboutPage() {
         identifiable person who is accountable for the work - so the founder
         gets a dedicated section above the team grid, not a card inside it.
       */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-surface py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -385,7 +384,7 @@ export default function AboutPage() {
       </section>
 
       {/* TEAM */}
-      <section className="w-full bg-paper py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -414,7 +413,7 @@ export default function AboutPage() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover object-top saturate-[0.85] transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0)_45%,rgba(10,13,20,0.92)_100%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0)_45%,rgba(11,16,32,0.92)_100%)]" />
                     <div className="absolute inset-x-0 bottom-0 p-6">
                       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dark">{m.role}</p>
                       <h3 className={`mt-2 font-medium tracking-[-0.02em] text-white ${i === 0 ? "text-3xl" : "text-xl"}`}>
@@ -434,12 +433,12 @@ export default function AboutPage() {
       </section>
 
       {/* LEADPULZ CALLOUT */}
-      <section className="w-full bg-white pb-8">
+      <section className="w-full bg-surface pb-8">
         <Container>
           <Reveal amount={0.3}>
             <motion.div
               variants={fadeUp}
-              className="grid items-center gap-8 rounded-2xl border border-line bg-paper p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:p-12"
+              className="grid items-center gap-8 rounded-2xl border border-line bg-surface-2 p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:p-12"
             >
               <div>
                 <Eyebrow>What we&apos;re building</Eyebrow>

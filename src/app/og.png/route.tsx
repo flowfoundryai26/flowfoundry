@@ -25,7 +25,7 @@ export function GET() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0a0d14",
+          background: "#0b1020",
           padding: "72px 80px",
           position: "relative",
         }}
@@ -50,7 +50,7 @@ export function GET() {
             height: 620,
             borderRadius: 999,
             background:
-              "radial-gradient(circle, rgba(59,116,230,0.30) 0%, rgba(10,13,20,0) 68%)",
+              "radial-gradient(circle, rgba(59,116,230,0.30) 0%, rgba(11,16,32,0) 68%)",
           }}
         />
 
@@ -62,7 +62,7 @@ export function GET() {
             style={{
               width: 12,
               height: 44,
-              background: "#3b74e6",
+              background: "#0771ea",
               borderRadius: 2,
             }}
           />

@@ -20,7 +20,7 @@ export default function PortfolioPage() {
       <PageHero
         eyebrow="Portfolio"
         title="What we're building right now."
-        lede="The platforms currently in development at FlowFoundry - eCommerce, AI revenue automation, education, and the internal systems we run our own business on."
+        lede="The platforms in development at FlowFoundry: eCommerce, AI revenue automation, education, and our own internal systems."
         primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Our services", href: "/services" }}
         image="/images/use-cases/custom.webp"
@@ -37,7 +37,7 @@ export default function PortfolioPage() {
       />
 
       {/* PROJECTS */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-surface py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -54,9 +54,9 @@ export default function PortfolioPage() {
             {PROJECTS.map((p, i) => (
               <Reveal key={p.slug} amount={0.2} id={p.slug} className="scroll-mt-24">
                 <motion.article variants={fadeUp}>
-                  <Spotlight className="rounded-[24px] border border-line bg-white transition-colors duration-500 hover:border-line-strong">
+                  <Spotlight className="rounded-2xl border border-line bg-surface transition-colors duration-500 hover:border-line-strong">
                     <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[120px_1.2fr_1fr] lg:gap-12 lg:p-12">
-                      <div className="flex items-start justify-between lg:flex-col lg:gap-6">
+                      <div className="flex items-start justify-between lg:flex-col lg:justify-start lg:gap-5">
                         <Index className="text-base">0{i + 1}</Index>
                         <Status>{p.status}</Status>
                       </div>
@@ -68,7 +68,7 @@ export default function PortfolioPage() {
                         </h3>
                         <p className="mt-5 max-w-[56ch] text-[16px] leading-relaxed text-body">{p.summary}</p>
                         <p className="mt-6 font-mono text-[10.5px] uppercase tracking-[0.12em] text-muted">
-                          {p.services.join("  ·  ")}
+                          {p.services.join(", ")}
                         </p>
                         {p.href ? (
                           <Link
@@ -86,10 +86,12 @@ export default function PortfolioPage() {
 
                       <div className="lg:border-l lg:border-line lg:pl-12">
                         <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">What we&apos;re building</p>
-                        <ul className="mt-4 divide-y divide-line">
+                        <ul className="mt-5 flex flex-wrap gap-2">
                           {p.highlights.map((h) => (
-                            <li key={h} className="flex items-center gap-3 py-2.5 text-[15px] text-fg">
-                              <span className="h-1 w-1 shrink-0 rounded-full bg-accent" />
+                            <li
+                              key={h}
+                              className="rounded-full border border-line bg-surface-2 px-3 py-1.5 text-[13px] text-body"
+                            >
                               {h}
                             </li>
                           ))}
@@ -105,7 +107,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* APPROACH */}
-      <section className="w-full bg-paper py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-24 lg:py-32">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>

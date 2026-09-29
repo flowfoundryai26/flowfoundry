@@ -99,7 +99,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   // No maximumScale cap below 5 and no user-scalable=no — pinch zoom must work.
   maximumScale: 5,
-  themeColor: "#0a0d14",
+  themeColor: "#0b1020",
   colorScheme: "dark",
 };
 
@@ -111,7 +111,7 @@ export default function RootLayout({
       lang="en-IN"
       className={`${geist.variable} ${geistMono.variable}`}
       suppressHydrationWarning
-      style={{ backgroundColor: "#0a0d14" }}
+      style={{ backgroundColor: "#0b1020" }}
     >
       <body
         suppressHydrationWarning
@@ -143,7 +143,7 @@ export default function RootLayout({
 
         <Header />
 
-        <main id="main" className="relative bg-white">
+        <main id="main" className="relative bg-surface">
           {children}
         </main>
 

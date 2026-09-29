@@ -68,8 +68,8 @@ export function PageHero({
               className="object-cover object-center opacity-40 saturate-[0.85]"
             />
           </div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0a0d14_0%,#0a0d14_28%,rgba(10,13,20,0.7)_58%,rgba(10,13,20,0.55)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,20,0.6)_0%,rgba(10,13,20,0)_40%,#0a0d14_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,#0b1020_28%,rgba(11,16,32,0.7)_58%,rgba(11,16,32,0.55)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.6)_0%,rgba(11,16,32,0)_40%,#0b1020_100%)]" />
         </div>
       ) : (
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -97,7 +97,7 @@ export function PageHero({
               <Eyebrow dark>{eyebrow}</Eyebrow>
             </motion.div>
 
-            <h1 className="mt-6 max-w-[20ch] text-[clamp(2.2rem,4.6vw,4rem)] font-medium leading-[1] tracking-[-0.035em] text-white text-balance">
+            <h1 className="mt-6 max-w-[26ch] text-[clamp(2.05rem,3.4vw,2.9rem)] font-medium leading-[1.04] tracking-[-0.03em] text-white text-balance">
               <Words text={title} delay={0.15} />
             </h1>
 
@@ -310,7 +310,7 @@ export function Process({
     <div ref={ref} className="relative">
       <div
         className={`absolute inset-x-0 top-[5px] hidden h-px lg:block ${
-          dark ? "bg-white/10" : "bg-line-strong"
+          dark ? "bg-surface/10" : "bg-line-strong"
         }`}
       >
         <motion.div
@@ -324,7 +324,7 @@ export function Process({
           <motion.div key={s.number} variants={fadeUp} className="relative">
             <span
               className={`relative z-10 mb-6 hidden h-[11px] w-[11px] rounded-full border-2 lg:block ${
-                dark ? "border-accent-dark bg-ink" : "border-accent bg-white"
+                dark ? "border-accent-dark bg-ink" : "border-accent bg-surface"
               }`}
             />
             <Index dark={dark}>{s.number}</Index>
@@ -418,7 +418,7 @@ export function CTA({
   image?: string;
 }) {
   return (
-    <section className="w-full bg-white px-5 pb-20 sm:px-8 lg:px-12 lg:pb-28">
+    <section className="w-full bg-surface px-5 pb-20 sm:px-8 lg:px-12 lg:pb-28">
       <Reveal amount={0.3} className="mx-auto w-full max-w-[1400px]">
         <motion.div
           variants={scaleIn}
@@ -434,8 +434,8 @@ export function CTA({
                 className="object-cover opacity-30 saturate-[0.7]"
               />
             </div>
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,#0a0d14_0%,#0a0d14_40%,rgba(10,13,20,0.55)_100%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(0deg,#0a0d14_0%,rgba(10,13,20,0)_50%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,#0b1020_40%,rgba(11,16,32,0.55)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,#0b1020_0%,rgba(11,16,32,0)_50%)]" />
           </div>
 
           <div className="relative z-10 grid gap-10 px-7 py-16 sm:px-12 sm:py-20 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:px-16 lg:py-24">
@@ -500,14 +500,14 @@ export function Bento({
             dark={dark}
             className={`flex h-full flex-col rounded-2xl border p-7 transition-colors duration-500 sm:p-8 ${
               dark
-                ? "border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04]"
-                : "border-line bg-white hover:border-line-strong"
+                ? "border-white/[0.08] bg-surface/[0.02] hover:bg-surface/[0.04]"
+                : "border-line bg-surface hover:border-line-strong"
             }`}
           >
             <div className="flex items-center justify-between">
               <span
                 className={`flex h-10 w-10 items-center justify-center rounded-md ${
-                  dark ? "bg-white/[0.06] text-accent-dark" : "bg-accent-soft text-accent-strong"
+                  dark ? "bg-surface/[0.06] text-accent-dark" : "bg-accent-soft text-accent-strong"
                 }`}
               >
                 {it.icon}
@@ -603,7 +603,7 @@ export function Split({
           <div
             className={`absolute -bottom-6 rounded-xl border px-5 py-4 shadow-lift ${
               reverse ? "-right-2 sm:-right-6" : "-left-2 sm:-left-6"
-            } ${dark ? "border-white/10 bg-ink-2" : "border-line bg-white"}`}
+            } ${dark ? "border-white/10 bg-ink-2" : "border-line bg-surface"}`}
           >
             <p className={`tnum text-3xl font-medium tracking-[-0.03em] ${dark ? "text-white" : "text-fg"}`}>
               {stat.value}
@@ -680,7 +680,7 @@ export function Legal({
         }
       />
 
-      <section className="w-full bg-white py-20 lg:py-28">
+      <section className="w-full bg-surface py-20 lg:py-28">
         <Container>
           <div className="grid gap-14 lg:grid-cols-[260px_1fr] lg:gap-20">
             <nav aria-label="Sections" className="lg:sticky lg:top-28 lg:self-start">
@@ -726,7 +726,7 @@ export function Legal({
           </div>
 
           <Reveal amount={0.4} className="mt-16 lg:ml-[calc(260px+5rem)]">
-            <motion.div variants={fadeUp} className="rounded-2xl border border-line bg-paper p-8">
+            <motion.div variants={fadeUp} className="rounded-2xl border border-line bg-surface-2 p-8">
               <h2 className="text-xl font-medium tracking-[-0.02em] text-fg">Questions about this policy?</h2>
               <p className="mt-2 max-w-[56ch] text-[15px] leading-relaxed text-body">
                 Email us at{" "}
