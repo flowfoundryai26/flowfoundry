@@ -194,22 +194,10 @@ export const TEAM = [
     avatar: "/images/team/harsha.webp",
   },
   {
-    name: "Nithish",
-    role: "Tech Lead",
-    place: "Madurai, Tamil Nadu",
-    avatar: "/images/team/nithish.webp",
-  },
-  {
     name: "Ajay",
     role: "Backend Developer",
     place: "Vijayawada, Andhra Pradesh",
     avatar: "/images/team/ajay.webp",
-  },
-  {
-    name: "Janarthanan",
-    role: "Frontend Developer",
-    place: "Madurai, Tamil Nadu",
-    avatar: "/images/team/jana.webp",
   },
   {
     name: "Ravi Vaghela",
