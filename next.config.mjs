@@ -9,5 +9,14 @@ const projectRoot = dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   reactStrictMode: true,
   turbopack: { root: projectRoot },
+  async redirects() {
+    return [
+      {
+        source: "/case-studies/talkbridge",
+        destination: "/case-studies/repoatlas",
+        permanent: true,
+      },
+    ];
+  },
 };
 export default nextConfig;

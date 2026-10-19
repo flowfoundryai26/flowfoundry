@@ -32,7 +32,7 @@ export type CaseStudy = {
   metaDescription: string;
   category: string;
   /** Rendered verbatim as a status badge. Honesty over polish. */
-  status: "In development" | "Live";
+  status: "In development" | "In Validation" | "Live";
   /** One-line positioning for cards. */
   summary: string;
   image: string;
@@ -368,153 +368,197 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   /* ------------------------------------------------------------------ */
   {
-    slug: "talkbridge",
-    name: "TalkBridge",
-    h1: "TalkBridge: a bilingual conversation school platform.",
-    metaTitle: "TalkBridge | Bilingual Education Platform",
+    slug: "repoatlas",
+    name: "RepoAtlas",
+    h1: "RepoAtlas: an AI platform for understanding codebases and keeping documentation in sync.",
+    metaTitle: "RepoAtlas | AI Repository Intelligence & Documentation",
     metaDescription:
-      "How we are building TalkBridge: a Japanese-English conversation school platform with student, teacher and admin portals, scheduling and localised workflows.",
-    category: "Education platform",
-    status: "In development",
+      "Explore RepoAtlas, an AI-powered GitHub repository intelligence platform in development for codebase understanding, technical documentation, and documentation drift detection.",
+    category: "AI Repository Intelligence",
+    status: "In Validation",
     summary:
-      "A Japanese - English conversation school platform with three role-specific portals, timezone-aware lesson scheduling and full bilingual localisation.",
+      "An AI-powered repository intelligence platform being developed to help software teams understand GitHub repositories, generate technical documentation, identify documentation drift, and explore codebases through repository-grounded AI conversations.",
     image: "/images/use-cases/custom.webp",
     overview:
-      "A client platform for an online Japanese - English conversation school. Three distinct user types - students, teachers and administrators - need genuinely different interfaces over the same scheduling and lesson data, and the entire product has to work equally well in Japanese and English. Neither localisation nor timezone handling is a feature here; both are structural constraints that shape the data model. In active development.",
+      "An AI-powered repository intelligence and documentation platform being developed to help engineering teams understand existing code, reduce documentation maintenance overhead, and improve knowledge accessibility. RepoAtlas is a FlowFoundry product initiative rather than a client engagement, and it is currently in concept validation and development planning - not generally available.",
     businessProblem: {
-      title: "Scheduling across timezones, in two languages, for three roles",
+      title: "Documentation becomes outdated faster than teams can maintain it",
       body:
-        "Conversation schools live and die on scheduling. Teachers set availability in their local time, students book in theirs, and a one-hour error means a missed lesson and a refund. Running that on shared calendars and messaging does not survive growth: teachers double-book, students cannot self-serve reschedules, and administrators have no reliable view of delivery. Doing it bilingually adds a requirement most scheduling tools handle poorly - every date, time and notification has to be correct in both languages and locales.",
+        "Technical documentation goes stale as code evolves, and new developers spend significant time understanding unfamiliar repositories as a result. Architecture knowledge ends up scattered across files, pull requests and conversations, so developers repeatedly investigate code that a teammate already understands. Manual documentation updates are easy to postpone, and existing repository search does not explain how different components actually interact. RepoAtlas aims to address these problems through repository-aware AI assistance - connecting repository structure, code changes, documentation and natural-language questions into one workflow, so documentation gets easier to maintain as the software evolves rather than just generated once.",
     },
     requirements: [
-      "Separate student, teacher and administrator portals over shared data",
-      "Teacher availability management in the teacher's local timezone",
-      "Student booking that displays and confirms in the student's timezone",
-      "Lesson lifecycle: booked, completed, cancelled, no-show, rescheduled",
-      "Complete Japanese and English localisation including dates and times",
-      "Cancellation and reschedule policy enforced in code",
-      "Lesson credit or package tracking per student",
-      "Administrative reporting on delivery, attendance and utilisation",
-      "Automated reminders in the recipient's language and timezone",
+      "Connect securely to authorized GitHub repositories, including private ones",
+      "Parse and index repository structure, major modules and dependencies",
+      "Generate structured technical documentation from repository contents",
+      "Detect when code changes diverge from existing documentation",
+      "Answer developer questions with explanations grounded in the actual repository",
+      "Respect GitHub permission boundaries so a user can only query repositories they are authorized for",
+      "Keep AI-generated documentation subject to developer review before publishing",
+      "Remain usable across repositories of meaningfully different size and language mix",
     ],
     architecture: [
       {
-        layer: "Identity and roles",
+        layer: "GitHub authentication and access",
         detail:
-          "One authentication system with role-based authorisation. Student, teacher and admin capabilities are distinct permission sets over shared entities rather than three separate applications.",
+          "Proposed: OAuth-based GitHub authentication scoped to the repositories a user explicitly authorizes, so the platform only ever has the access a user has granted.",
       },
       {
-        layer: "Scheduling core",
+        layer: "Repository ingestion",
         detail:
-          "All instants stored in UTC; every display converts to the viewer's timezone. Availability is modelled as recurring rules plus explicit exceptions, not as pre-generated slot rows, which keeps the data tractable as teachers change their patterns.",
+          "Proposed: a pipeline that pulls and processes repository files and metadata into a form the rest of the system can reason about.",
       },
       {
-        layer: "Booking logic",
+        layer: "Code structure and dependency analysis",
         detail:
-          "Availability, existing bookings, notice periods, student credits and cancellation policy are evaluated atomically, so two students cannot take the same slot.",
+          "Proposed: static analysis of modules, dependencies and implementation patterns to build a structural map of the codebase.",
       },
       {
-        layer: "Localisation",
+        layer: "AI-assisted documentation generation",
         detail:
-          "Message catalogues plus locale-aware date, time and number formatting. Locale is a user property that flows through the UI and every outbound notification.",
+          "Proposed: structured technical documentation drafted from repository contents, intended as a starting point for developer review rather than a final, unreviewed artifact.",
       },
       {
-        layer: "Data",
+        layer: "Context retrieval and Q&A",
         detail:
-          "Postgres via Supabase with row-level security: a student reads only their own lessons, a teacher only their own schedule.",
+          "Proposed: retrieval over indexed repository content so developer questions are answered with references back to the actual files and commits involved.",
       },
       {
-        layer: "Notifications",
+        layer: "Repository change monitoring",
         detail:
-          "Reminder and confirmation messages rendered in the recipient's locale and timezone, scheduled relative to the lesson instant.",
+          "Proposed: tracking of commits and pull requests against the indexed repository state to detect what has changed since it was last processed.",
+      },
+      {
+        layer: "Documentation drift evaluation",
+        detail:
+          "Proposed: comparison of code changes against existing documentation to flag likely mismatches for review.",
+      },
+      {
+        layer: "Developer-facing dashboard",
+        detail:
+          "Proposed: a Next.js interface for connecting repositories, reviewing generated documentation, and asking questions about the codebase.",
       },
     ],
-    technologies: [
-      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
-      { group: "Backend", items: ["Node.js", "TypeScript", "Scheduled jobs"] },
-      { group: "Data", items: ["Supabase", "PostgreSQL", "Row-level security"] },
-      { group: "Internationalisation", items: ["Message catalogues", "Locale-aware formatting", "IANA timezones"] },
-      { group: "Notifications", items: ["Transactional email", "In-app notifications"] },
-    ],
+    technologies: [],
     coreFeatures: [
-      { title: "Student portal", body: "Browse teachers, book and reschedule lessons, track remaining credits and lesson history." },
-      { title: "Teacher portal", body: "Manage recurring availability and exceptions, view the schedule, record lesson outcomes." },
-      { title: "Admin portal", body: "Manage users, packages and policies; view delivery, attendance and utilisation reporting." },
-      { title: "Timezone-correct scheduling", body: "UTC storage with per-viewer conversion so both parties see the same moment in their own time." },
-      { title: "Bilingual interface", body: "Full Japanese and English coverage including locale-correct dates and times." },
-      { title: "Policy enforcement", body: "Notice periods, cancellation windows and credit rules applied in code rather than by staff judgement." },
-      { title: "Lesson credits", body: "Package purchase, consumption and expiry tracked per student." },
-      { title: "Automated reminders", body: "Sent in the recipient's language and timezone ahead of each lesson." },
+      {
+        title: "GitHub repository integration",
+        body: "Planned: connect authorized GitHub repositories to give the platform the codebase context it needs.",
+      },
+      {
+        title: "AI-powered codebase understanding",
+        body: "Planned: analyze repository structure, major modules, dependencies and implementation patterns to help developers navigate unfamiliar systems.",
+      },
+      {
+        title: "Automated technical documentation",
+        body: "Planned: generate structured technical documentation from repository contents, subject to developer review before it is published.",
+      },
+      {
+        title: "Documentation drift detection",
+        body: "Planned: identify potential mismatches between code changes and existing documentation as the repository evolves.",
+      },
+      {
+        title: "Repository-grounded AI Q&A",
+        body: "Planned: let developers ask questions about their codebase and get context-aware explanations supported by references to the actual repository.",
+      },
+      {
+        title: "Change-aware documentation workflows",
+        body: "Being explored: approaches for keeping documentation aligned with repository updates and pull requests, rather than treating documentation as a one-time artifact.",
+      },
     ],
     challenges: [
       {
-        challenge: "Timezones and daylight saving",
+        challenge: "Understanding relationships across large repositories",
         approach:
-          "Store UTC, convert at display, and store recurring availability as rules against an IANA timezone rather than fixed offsets. Japan has no DST but students do, and a rule stored as an offset breaks silently twice a year.",
+          "Being researched: how to build a structural map of a codebase - modules, dependencies, call paths - that stays useful on repositories too large to reason about file by file.",
       },
       {
-        challenge: "Concurrent booking of one slot",
+        challenge: "Context limits on extensive codebases",
         approach:
-          "Availability, conflicts, notice period and credits are validated inside a single transaction with the slot locked. Checking then writing leaves a race that will eventually be hit.",
+          "Being researched: retrieval strategies that surface the relevant slice of a large repository instead of requiring the full codebase to fit in a single context window.",
       },
       {
-        challenge: "Localisation beyond string replacement",
+        challenge: "Preventing inaccurate AI-generated explanations",
         approach:
-          "Japanese date conventions, name ordering and text length all differ. Locale is threaded through formatting and layout rather than handled by swapping strings into an English-shaped UI.",
+          "Being addressed by design: every answer is intended to be grounded in and traceable back to specific repository content, so a developer can verify it rather than take it on faith.",
       },
       {
-        challenge: "Three roles over one dataset",
+        challenge: "Keeping documentation aligned with changing code",
         approach:
-          "Row-level security in the database so authorisation is structural. Three portals filtering in application code is three chances to leak.",
+          "Being researched: this is the core problem the drift-detection and change-monitoring layers exist to address, rather than something left to a one-time generation pass.",
       },
       {
-        challenge: "Reschedules against policy",
+        challenge: "Handling GitHub permissions and private repository data securely",
         approach:
-          "Policy is encoded - notice period, remaining reschedules, credit treatment - so students self-serve within the rules instead of negotiating each case with an administrator.",
+          "Being addressed by design: access is scoped to repositories a user explicitly authorizes, with permission boundaries enforced rather than assumed.",
+      },
+      {
+        challenge: "Managing AI processing and infrastructure costs",
+        approach:
+          "Being researched: indexing and retrieval approaches that avoid reprocessing an entire repository on every change, since cost at scale is a real constraint on viability.",
+      },
+      {
+        challenge: "Providing source-grounded answers developers can verify",
+        approach:
+          "Being addressed by design: responses are planned to reference the specific files, commits or pull requests they draw on, so a developer can check the source rather than trust the summary.",
       },
     ],
     implementation: [
-      "Modelled users, roles, availability rules, lessons, packages and credits",
-      "Built the scheduling core with UTC storage and rule-based availability",
-      "Implemented transactional booking with conflict and policy validation",
-      "Built the three role-specific portals over the shared model",
-      "Added the localisation layer across UI and notifications",
-      "Implemented credit tracking and policy enforcement",
-      "Added administrative reporting",
-      "Currently: reporting depth and notification coverage",
+      "Phase 1 - Validation: testing the documentation and codebase-understanding problem directly with software agencies and developers",
+      "Phase 2 - Repository Intelligence: developing GitHub repository connectivity, indexing and codebase-understanding capabilities",
+      "Phase 3 - Documentation: introducing AI-assisted technical documentation generation",
+      "Phase 4 - Change Awareness: developing documentation drift detection and synchronisation workflows",
+      "Phase 5 - AI Knowledge Assistant: building repository-grounded Q&A",
+      "Phase 6 - Product Evaluation: evaluating accuracy, usability, adoption and operating cost with real engineering teams",
+      "Currently: in Phase 1, validating the problem with software agencies and developers before committing to a build sequence",
     ],
-    integrations: [
-      "Supabase",
-      "Transactional email",
-      "Google Calendar",
-      "Payment gateway",
-      "REST APIs",
-    ],
+    integrations: ["GitHub", "GitHub Pull Requests"],
     results: [
-      { label: "Scheduling conflicts per term", method: "Double-bookings and timezone errors recorded per academic term" },
-      { label: "Self-served reschedules", method: "Share of reschedules completed without administrator involvement" },
-      { label: "Lesson attendance rate", method: "Completed lessons as a share of booked lessons" },
-      { label: "Administrative hours per week", method: "Staff time on scheduling, baselined against the previous process" },
+      { label: "Developer onboarding time", method: "Pending measurement - planned: time for a new developer to become productive in an unfamiliar repository" },
+      { label: "Time spent understanding unfamiliar modules", method: "Pending measurement - planned: time developers spend investigating code a teammate already understands" },
+      { label: "Documentation coverage", method: "Pending measurement - planned: share of major modules with current generated documentation" },
+      { label: "Documentation freshness", method: "Pending measurement - planned: time between a code change and its documentation being flagged or updated" },
+      { label: "Accuracy of repository-grounded answers", method: "Pending measurement - planned: developer-verified correctness of AI answers against cited source references" },
+      { label: "Documentation maintenance effort", method: "Pending measurement - planned: hours spent manually updating documentation, baselined against the pre-RepoAtlas process" },
     ],
     lessons: [
-      "Timezone handling is an architectural decision. Retrofitting it means rewriting the scheduling core.",
-      "Store recurring availability as rules against a named timezone, never as generated slots or fixed offsets.",
-      "Localisation is layout and formatting, not a string table. Japanese and English do not occupy the same space.",
-      "Encode the cancellation policy. Every case left to staff judgement becomes an inconsistency and then a complaint.",
-      "Role separation belongs in the database when three interfaces share one dataset.",
+      "Documentation debt is rarely solved by a one-time generation pass - it has to be tracked as code keeps changing, which is why drift detection is a core capability and not an add-on.",
+      "Developers trust an explanation more when it can be traced back to the actual file, commit or pull request it came from, rather than taken as an unsupported summary.",
+      "Treating documentation drift as a detection problem, not just a generation problem, is what would make the tool useful past the first week.",
+      "Private repository access has to be scoped and revocable from day one. Retrofitting permission boundaries onto a system that already has broad access is a much harder problem.",
+      "The harder part is unlikely to be generating a plausible explanation - it is generating one a developer can verify quickly enough to trust it.",
     ],
     faqs: [
       {
-        q: "Why not use an off-the-shelf booking tool?",
-        a: "Generic booking tools handle one-to-one appointments well. They do not handle lesson credits, package expiry, bilingual notifications, reschedule policy and three-role reporting over shared data. The school had already assembled four tools to approximate it, which is usually the signal that one system is cheaper.",
+        q: "What is RepoAtlas?",
+        a: "RepoAtlas is an AI-powered repository intelligence platform being developed by FlowFoundry to help software teams understand GitHub repositories, generate technical documentation, identify documentation drift, and explore codebases through repository-grounded AI conversations. It is currently in concept validation and development planning.",
       },
       {
-        q: "Does this only work for language schools?",
-        a: "The scheduling core and role model transfer to any tutoring, coaching or consultation business with recurring availability and package-based billing. The localisation depth is specific to this client's bilingual requirement.",
+        q: "Who is RepoAtlas designed for?",
+        a: "Software development agencies, engineering teams, technical leads, and growing software companies who deal with unfamiliar or evolving codebases and documentation that struggles to keep up with them.",
+      },
+      {
+        q: "How is RepoAtlas different from traditional documentation tools?",
+        a: "Most documentation tools generate a snapshot once and leave it to go stale. RepoAtlas is being designed to monitor repository changes over time, flag likely documentation drift, and let developers ask questions answered with references back to the actual code - rather than producing a one-time, unmaintained document.",
+      },
+      {
+        q: "Will RepoAtlas support private GitHub repositories?",
+        a: "Yes - private repository support is part of the plan. Access is intended to be scoped to repositories a user explicitly authorizes via GitHub, with permission boundaries enforced rather than assumed.",
+      },
+      {
+        q: "Can RepoAtlas automatically update documentation?",
+        a: "The intention is to detect likely documentation drift and assist with updates, with AI-generated changes subject to developer review before anything is published. We are not planning full, unreviewed auto-publishing of documentation.",
+      },
+      {
+        q: "How will RepoAtlas reduce AI hallucinations?",
+        a: "By grounding answers in retrieved repository content and referencing the specific files, commits or pull requests an explanation draws on, so a developer can verify the source rather than take the answer on trust. This is a design goal we are actively working through, not a guarantee of zero errors.",
+      },
+      {
+        q: "Is RepoAtlas currently available?",
+        a: "No. RepoAtlas is in concept validation - we are talking with software agencies and engineering teams to confirm the problem and shape the first version before committing to a build. It is not yet a self-serve product.",
       },
     ],
     relatedSolutions: ["custom-business-portals", "workflow-automation"],
-    relatedIndustries: ["local-service-businesses"],
+    relatedIndustries: [],
   },
 
   /* ------------------------------------------------------------------ */

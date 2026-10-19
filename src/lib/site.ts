@@ -181,7 +181,7 @@ export const FOUNDER = {
   work: [
     { label: "LeadPulz", href: "/case-studies/leadpulz" },
     { label: "iLoveSurprises", href: "/case-studies/ilovesurprises" },
-    { label: "TalkBridge", href: "/case-studies/talkbridge" },
+    { label: "RepoAtlas", href: "/case-studies/repoatlas" },
     { label: "FoundryPulse", href: "/case-studies/foundrypulse" },
   ],
 } as const;
@@ -215,7 +215,7 @@ export type Project = {
   slug: string;
   name: string;
   category: string;
-  status: "In development" | "Live";
+  status: "In development" | "In Validation" | "Live";
   tone: "indigo" | "cyan" | "violet" | "emerald" | "amber" | "rose";
   summary: string;
   highlights: string[];
@@ -263,23 +263,21 @@ export const PROJECTS: Project[] = [
     href: "/case-studies/leadpulz",
   },
   {
-    slug: "talkbridge",
-    name: "TalkBridge",
-    category: "Education platform",
-    status: "In development",
+    slug: "repoatlas",
+    name: "RepoAtlas",
+    category: "AI Developer Tools",
+    status: "In Validation",
     tone: "cyan",
     summary:
-      "A bilingual Japanese - English conversation school platform with student, teacher and admin portals, lesson scheduling and localised workflows.",
+      "An AI-powered GitHub repository intelligence platform designed to simplify codebase understanding, automate technical documentation, and help engineering teams keep documentation aligned with code changes.",
     highlights: [
-      "Student, teacher and admin portals",
-      "Lesson scheduling",
-      "Lesson management",
-      "Role-based dashboards",
-      "Japanese - English localisation",
-      "Timezone-aware booking",
+      "AI-assisted codebase understanding",
+      "Automated technical documentation",
+      "Documentation drift detection",
+      "Repository-grounded AI Q&A",
     ],
-    services: ["Custom Software", "Web Development"],
-    href: "/case-studies/talkbridge",
+    services: ["AI Engineering", "Developer Tools", "Software Automation"],
+    href: "/case-studies/repoatlas",
   },
   {
     slug: "foundrypulse",

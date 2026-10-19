@@ -791,7 +791,7 @@ export const SOLUTIONS: Solution[] = [
     ],
     relatedSolutions: ["workflow-automation", "crm-automation", "shopify-automation"],
     relatedIndustries: ["real-estate", "ecommerce", "local-service-businesses", "healthcare-clinics"],
-    relatedCaseStudies: ["foundrypulse", "talkbridge", "ilovesurprises"],
+    relatedCaseStudies: ["foundrypulse", "repoatlas", "ilovesurprises"],
   },
 
   /* ------------------------------------------------------------------ */

@@ -10,7 +10,7 @@ const TRAIL = [{ name: "Portfolio", path: "/portfolio" }];
 export const metadata = pageMeta({
   title: "Portfolio | What We Are Building",
   description:
-    "The platforms FlowFoundry is building now: LeadPulz, iLoveSurprises, TalkBridge and FoundryPulse. AI voice, eCommerce, education and internal operations.",
+    "The platforms FlowFoundry is building now: LeadPulz, iLoveSurprises, RepoAtlas and FoundryPulse. AI voice, eCommerce, developer tools and internal operations.",
   path: PATH,
 });
 

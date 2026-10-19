@@ -174,32 +174,34 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
       </Section>
 
       {/* ---------------- TECHNOLOGIES ---------------- */}
-      <Section surface="white">
-        <ContentHeading
-          align="split"
-          eyebrow="Technologies"
-          title="What it is built with."
-        />
-        <Reveal
-          step={0.06}
-          className="mt-14 grid gap-x-10 gap-y-10 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {c.technologies.map((g) => (
-            <motion.div key={g.group} variants={fadeUp}>
-              <h3 className="font-mono text-2xs uppercase tracking-[0.18em] text-muted">
-                {g.group}
-              </h3>
-              <ul className="mt-4 space-y-2">
-                {g.items.map((it) => (
-                  <li key={it} className="text-[15px] text-body">
-                    {it}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </Reveal>
-      </Section>
+      {c.technologies.length > 0 ? (
+        <Section surface="white">
+          <ContentHeading
+            align="split"
+            eyebrow="Technologies"
+            title="What it is built with."
+          />
+          <Reveal
+            step={0.06}
+            className="mt-14 grid gap-x-10 gap-y-10 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {c.technologies.map((g) => (
+              <motion.div key={g.group} variants={fadeUp}>
+                <h3 className="font-mono text-2xs uppercase tracking-[0.18em] text-muted">
+                  {g.group}
+                </h3>
+                <ul className="mt-4 space-y-2">
+                  {g.items.map((it) => (
+                    <li key={it} className="text-[15px] text-body">
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </Reveal>
+        </Section>
+      ) : null}
 
       {/* ---------------- FEATURES ---------------- */}
       <Section surface="paper">
@@ -245,9 +247,17 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
       <Section surface="paper">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <ContentHeading
-            eyebrow="Implementation"
-            title="The order we built it in."
-            lede="Sequence matters. Each step was chosen because it de-risked the next one."
+            eyebrow={c.status === "In Validation" ? "Roadmap" : "Implementation"}
+            title={
+              c.status === "In Validation"
+                ? "The plan, in sequence."
+                : "The order we built it in."
+            }
+            lede={
+              c.status === "In Validation"
+                ? "Nothing here has shipped yet. This is the planned sequence, and why each phase has to come before the next."
+                : "Sequence matters. Each step was chosen because it de-risked the next one."
+            }
           />
           <div>
             <StepList items={c.implementation} />
@@ -276,9 +286,11 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
             />
             <div className="mt-8">
               <Callout title="Why these are empty" dark>
-                {c.status === "In development"
-                  ? "This platform is still in development, so there is no verified production data to publish. Each metric below names what we will measure and how. A figure appears here only once it has been measured and dated."
-                  : "Each metric names what is measured and how. A figure appears only once it has been verified and dated."}
+                {c.status === "Live"
+                  ? "Each metric names what is measured and how. A figure appears only once it has been verified and dated."
+                  : c.status === "In Validation"
+                  ? "This platform is in early validation, so there is no production data yet. Each metric below names what we plan to measure once development and real usage begin."
+                  : "This platform is still in development, so there is no verified production data to publish. Each metric below names what we will measure and how. A figure appears here only once it has been measured and dated."}
               </Callout>
             </div>
           </div>

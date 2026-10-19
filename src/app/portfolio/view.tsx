@@ -29,8 +29,8 @@ export default function PortfolioPage() {
             className="lg:grid-cols-1 lg:gap-y-8"
             items={[
               { value: PROJECTS.length, label: "Platforms in build" },
-              { value: "2", label: "Client platforms" },
-              { value: "2", label: "Built for ourselves" },
+              { value: "1", label: "Client platforms" },
+              { value: "3", label: "Built for ourselves" },
             ]}
           />
         }
