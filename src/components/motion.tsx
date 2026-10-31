@@ -4,10 +4,8 @@ import {
   motion,
   useMotionValue,
   useSpring,
-  useTransform,
   useInView,
   useReducedMotion,
-  useScroll,
   type Variants,
   type MotionProps,
 } from "framer-motion";
@@ -21,44 +19,35 @@ import {
 
 /* =========================================================
    TOKENS
-   Springs for interactive elements; expo-out for reveals.
+
+   One easing curve and a short set of durations. Entrances rise
+   8px, not 28; a press takes 2% off. Nothing springs, nothing
+   overshoots, nothing loops.
 ========================================================= */
 
-export const EASE = [0.16, 1, 0.3, 1] as const;
+export const EASE = [0.22, 1, 0.36, 1] as const;
 
-export const SPRING = { type: "spring", stiffness: 100, damping: 20 } as const;
-export const SPRING_SNAPPY = { type: "spring", stiffness: 260, damping: 24 } as const;
+/* Kept as named exports because call sites import them. Both are now
+   the one curve with a duration, not a spring, so no UI overshoots. */
+export const SPRING = { duration: 0.32, ease: EASE } as const;
+export const SPRING_SNAPPY = { duration: 0.18, ease: EASE } as const;
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
+  hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
 };
 
 export const fadeIn: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.9, ease: EASE } },
+  visible: { opacity: 1, transition: { duration: 0.4, ease: EASE } },
 };
 
-export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.96, y: 24 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.9, ease: EASE },
-  },
-};
+/* No scale on enter any more - a card that grows into place is the
+   thing the brief asks us to remove. Kept as a name so the twenty
+   call sites compile; it is a fade and rise like everything else. */
+export const scaleIn: Variants = fadeUp;
 
-export const clipUp: Variants = {
-  hidden: { clipPath: "inset(100% 0 0 0)", y: 24 },
-  visible: {
-    clipPath: "inset(0% 0 0 0)",
-    y: 0,
-    transition: { duration: 0.9, ease: EASE },
-  },
-};
-
-export const stagger = (step = 0.08, delay = 0.08): Variants => ({
+export const stagger = (step = 0.05, delay = 0.04): Variants => ({
   hidden: {},
   visible: { transition: { staggerChildren: step, delayChildren: delay } },
 });
@@ -71,8 +60,8 @@ export function Reveal({
   children,
   className = "",
   amount = 0.15,
-  step = 0.08,
-  delay = 0.05,
+  step = 0.05,
+  delay = 0.04,
   as = "div",
   id,
   ...rest
@@ -102,7 +91,11 @@ export function Reveal({
 }
 
 /* =========================================================
-   WORD REVEAL - headline words rise in sequence
+   WORDS - one fade and rise for a headline
+
+   Not a per-word assembly. The headline settles; it does not
+   perform. The text stays one text node, so assistive tech reads
+   it directly.
 ========================================================= */
 
 export function Words({
@@ -116,74 +109,27 @@ export function Words({
   /** Retained so existing call sites keep type-checking; no longer used. */
   step?: number;
 }) {
-  /*
-    Was a per-word rise with a staggered delay. That is a MOTION 7+ device
-    and this brief is enterprise trust, where the headline should settle
-    rather than perform. One fade-and-rise for the whole line: the entrance
-    still reads, without the headline assembling itself in front of the
-    reader.
-
-    The word-splitting also went, which removes the aria-hidden spans and
-    the sr-only duplicate - the text is now just text, so assistive tech
-    reads it directly.
-  */
   return (
     <motion.span
       className={`inline ${className}`}
-      initial={{ y: "0.35em", opacity: 0 }}
-      animate={{ y: "0em", opacity: 1 }}
-      transition={{ duration: 0.7, ease: EASE, delay }}
+      initial={{ y: 8, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.45, ease: EASE, delay }}
     >
       {text}
     </motion.span>
   );
 }
 
-export function Magnetic({
-  children,
-  strength = 0.35,
-  className = "",
-}: {
-  children: ReactNode;
-  strength?: number;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 180, damping: 18, mass: 0.4 });
-  const sy = useSpring(y, { stiffness: 180, damping: 18, mass: 0.4 });
-
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (reduce) return;
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    x.set((e.clientX - (r.left + r.width / 2)) * strength);
-    y.set((e.clientY - (r.top + r.height / 2)) * strength);
-  };
-
-  const onLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ x: sx, y: sy }}
-      className={`inline-block ${className}`}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 /* =========================================================
-   TILT - 3D parallax card following the cursor
+   TILT / SPOTLIGHT - now plain containers.
+
+   Both used to track the cursor: Tilt rotated the card in 3D and
+   painted a 420px white radial under the pointer, Spotlight lit its
+   border with a blue glow. Three cursor-following effects on one
+   page is a trend, not a design, and neither told the reader
+   anything. The components stay so call sites compile; the hover
+   state that matters now lives on the element itself.
 ========================================================= */
 
 export function Tilt({
@@ -195,61 +141,9 @@ export function Tilt({
   className?: string;
   max?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const px = useMotionValue(0.5);
-  const py = useMotionValue(0.5);
-  const rx = useSpring(useTransform(py, [0, 1], [max, -max]), SPRING);
-  const ry = useSpring(useTransform(px, [0, 1], [-max, max]), SPRING);
-  const glowX = useTransform(px, [0, 1], ["0%", "100%"]);
-  const glowY = useTransform(py, [0, 1], ["0%", "100%"]);
-
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (reduce) return;
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    px.set((e.clientX - r.left) / r.width);
-    py.set((e.clientY - r.top) / r.height);
-  };
-
-  const onLeave = () => {
-    px.set(0.5);
-    py.set(0.5);
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{
-        rotateX: rx,
-        rotateY: ry,
-        transformStyle: "preserve-3d",
-        transformPerspective: 1200,
-      }}
-      className={`relative ${className}`}
-    >
-      {children}
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-[inherit]"
-        style={{
-          background: useTransform(
-            [glowX, glowY],
-            ([gx, gy]) =>
-              `radial-gradient(420px circle at ${gx} ${gy}, rgba(255,255,255,0.14), transparent 60%)`
-          ),
-        }}
-      />
-    </motion.div>
-  );
+  void max;
+  return <div className={`relative ${className}`}>{children}</div>;
 }
-
-/* =========================================================
-   SPOTLIGHT - border illuminates under the cursor
-========================================================= */
 
 export function Spotlight({
   children,
@@ -261,46 +155,19 @@ export function Spotlight({
   className?: string;
   dark?: boolean;
 } & ComponentPropsWithoutRef<"div">) {
-  const x = useMotionValue(-400);
-  const y = useMotionValue(-400);
-
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    x.set(e.clientX - r.left);
-    y.set(e.clientY - r.top);
-  };
-
-  const color = dark ? "rgba(109,155,255,0.35)" : "rgba(59,116,230,0.28)";
-
+  void dark;
   return (
     <div
-      onMouseMove={onMove}
-      className={`group/spot relative ${className}`}
+      className={`relative transition-colors duration-200 ${className}`}
       {...rest}
     >
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition-opacity duration-500 group-hover/spot:opacity-100"
-        style={{
-          background: useTransform(
-            [x, y],
-            ([cx, cy]) =>
-              `radial-gradient(360px circle at ${cx}px ${cy}px, ${color}, transparent 55%)`
-          ),
-          maskImage:
-            "linear-gradient(#000,#000) content-box, linear-gradient(#000,#000)",
-          maskComposite: "exclude",
-          WebkitMaskComposite: "xor",
-          padding: "1px",
-        }}
-      />
       {children}
     </div>
   );
 }
 
 /* =========================================================
-   COUNTER - spring-counted number on enter
+   COUNTER - a changed number tweens to its new value
 ========================================================= */
 
 export function Counter({
@@ -318,18 +185,22 @@ export function Counter({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const reduce = useReducedMotion();
   const mv = useMotionValue(0);
-  const spring = useSpring(mv, { stiffness: 60, damping: 22, mass: 1 });
+  const spring = useSpring(mv, { stiffness: 90, damping: 26, mass: 1 });
   const [display, setDisplay] = useState("0");
 
   useEffect(() => {
-    if (inView) mv.set(to);
-  }, [inView, mv, to]);
+    if (!inView) return;
+    if (reduce) {
+      setDisplay(to.toFixed(decimals));
+      return;
+    }
+    mv.set(to);
+  }, [inView, mv, to, reduce, decimals]);
 
   useEffect(() => {
-    const unsub = spring.on("change", (v) =>
-      setDisplay(v.toFixed(decimals))
-    );
+    const unsub = spring.on("change", (v) => setDisplay(v.toFixed(decimals)));
     return unsub;
   }, [spring, decimals]);
 
@@ -343,41 +214,11 @@ export function Counter({
 }
 
 /* =========================================================
-   PARALLAX - image drifts with scroll
-========================================================= */
+   MARQUEE - the integrations strip.
 
-export function Parallax({
-  children,
-  className = "",
-  range = 40,
-}: {
-  children: ReactNode;
-  className?: string;
-  range?: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    reduce ? [0, 0] : [range, -range]
-  );
-
-  return (
-    <div ref={ref} className={`overflow-hidden ${className}`}>
-      <motion.div style={{ y }} className="h-full w-full will-change-transform">
-        {children}
-      </motion.div>
-    </div>
-  );
-}
-
-/* =========================================================
-   MARQUEE - infinite kinetic band
+   The one loop left on the page, and it earns it: the strip is
+   wider than the window, so the loop is how the rest of the marks
+   are reachable. It pauses on hover.
 ========================================================= */
 
 export function Marquee({
@@ -405,7 +246,11 @@ export function Marquee({
 }
 
 /* =========================================================
-   TYPEWRITER - cycles through phrases with a caret
+   TYPEWRITER - the voice demo on /leadpulz.
+
+   Kept because it explains something: the product transcribes a
+   call as it happens, and the text appearing IS the thing being
+   shown. Nowhere else.
 ========================================================= */
 
 export function Typewriter({

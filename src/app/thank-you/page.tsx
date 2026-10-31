@@ -23,14 +23,14 @@ export default function ThankYouPage() {
       />
       <Container className="relative z-10 py-24">
         <div className="max-w-2xl">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-live/15 text-[#5fd39e]">
-            <Check weight="bold" className="h-5 w-5" />
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-live/15 text-live">
+            <Check className="h-5 w-5" />
           </span>
           <div className="mt-8">
             <Eyebrow dark>Enquiry received</Eyebrow>
           </div>
           <h1 className="mt-5 text-[clamp(2.2rem,5vw,4rem)] font-medium leading-[1] tracking-[-0.035em] text-white text-balance">
-            Thanks for reaching out.
+            Thanks for reaching out
           </h1>
           <p className="mt-6 max-w-[50ch] text-base leading-relaxed text-on-dark sm:text-lg">
             We&apos;ve received your enquiry. We&apos;ll review what you shared

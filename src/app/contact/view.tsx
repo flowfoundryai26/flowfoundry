@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -72,37 +71,22 @@ export default function ContactPage() {
     <div className="w-full overflow-x-clip">
       {/* HERO */}
       <section className="relative w-full overflow-hidden bg-ink">
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="absolute inset-y-0 right-0 w-full lg:w-[60%]">
-            <Image
-              src="/images/contact.webp"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 1023px) 100vw, 60vw"
-              className="object-cover object-[70%_center] opacity-40 saturate-[0.8]"
-            />
-          </div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,#0b1020_32%,rgba(11,16,32,0.65)_65%,rgba(11,16,32,0.5)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.5)_0%,rgba(11,16,32,0)_40%,#0b1020_100%)]" />
-        </div>
-
         <Container className="relative z-10">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={stagger(0.1, 0.05)}
-            className="py-20 lg:py-28"
+            className="py-20 lg:py-24"
           >
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
               <Eyebrow dark>Contact</Eyebrow>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-mono text-2xs text-on-dark">
                 <LiveDot />
                 Taking new projects
               </span>
             </motion.div>
             <h1 className="mt-6 max-w-[18ch] text-[clamp(2.2rem,4.6vw,4rem)] font-medium leading-[1] tracking-[-0.035em] text-white text-balance">
-              <Words text="Tell us how your business works today." delay={0.15} />
+              <Words text="Tell us how your business works today" delay={0.15} />
             </h1>
             <motion.p variants={fadeUp} className="mt-7 max-w-[50ch] text-base leading-relaxed text-on-dark sm:text-lg">
               Share the workflow, bottleneck, or idea. We reply within one
@@ -113,7 +97,7 @@ export default function ContactPage() {
       </section>
 
       {/* FORM + CHANNELS */}
-      <section className="w-full bg-surface py-20 lg:py-28">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             {/* Channels */}
@@ -121,7 +105,7 @@ export default function ContactPage() {
               <motion.div variants={fadeUp}>
                 <SectionHeading
                   eyebrow="Reach us"
-                  title="Pick whichever channel is easiest."
+                  title="Pick whichever channel is easiest"
                   lede="WhatsApp gets the fastest reply. Email works if you'd rather send a brief."
                 />
               </motion.div>
@@ -134,7 +118,7 @@ export default function ContactPage() {
                         <Icon className="h-4.5 w-4.5" />
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-muted">{c.label}</span>
+                        <span className="block font-mono text-2xs text-muted">{c.label}</span>
                         <span className="mt-0.5 block truncate text-[15px] font-medium text-fg">{c.value}</span>
                         <span className="block text-xs text-muted">{c.hint}</span>
                       </span>
@@ -185,14 +169,14 @@ export default function ContactPage() {
         would rather not make. Setting response expectations converts better
         than a map on a B2B contact page anyway.
       */}
-      <section className="w-full bg-surface-2 py-20 lg:py-28">
+      <section className="w-full bg-surface-2 py-20 lg:py-24">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <Reveal amount={0.3}>
               <motion.div variants={fadeUp}>
                 <SectionHeading
                   eyebrow="What happens next"
-                  title="No pitch deck, no obligation."
+                  title="No pitch deck, no obligation"
                   lede="A consultation is a working conversation about how your process runs today. Here is the sequence."
                 />
               </motion.div>
@@ -385,10 +369,10 @@ function ContactForm() {
         className="flex min-h-[420px] flex-col items-start justify-center"
       >
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-live/10 text-live">
-          <Check weight="bold" className="h-5 w-5" />
+          <Check className="h-5 w-5" />
         </span>
         <h2 className="mt-6 text-2xl font-medium tracking-[-0.02em] text-fg">
-          WhatsApp is open with your message.
+          WhatsApp is open with your message
         </h2>
         <p className="mt-3 max-w-[48ch] text-[15px] leading-relaxed text-body">
           Hit send in WhatsApp and we&apos;ll reply there, usually within a few
@@ -409,7 +393,7 @@ function ContactForm() {
             onClick={() => track(EVENTS.whatsappClick, { source: "form_fallback" })}
             className={buttonClass({ variant: "primary" })}
           >
-            <WhatsappLogo weight="fill" className="h-4 w-4 text-[#5fd39e]" />
+            <WhatsappLogo className="h-4 w-4" />
             Open WhatsApp again
           </a>
           <a
@@ -493,11 +477,11 @@ function ContactForm() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="group/btn inline-flex h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-mint px-7 text-[15px] font-medium text-mint-ink shadow-[0_1px_0_rgba(255,255,255,0.14)_inset,0_8px_20px_-10px_rgba(11,16,32,0.7)] transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-mint/90 active:translate-y-px active:scale-[0.98] disabled:opacity-60 sm:w-auto"
+            className="group/btn inline-flex h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-mint px-7 text-[15px] font-medium text-mint-ink shadow-[0_1px_0_rgba(255,255,255,0.14)_inset,0_8px_20px_-10px_rgba(19,18,16,0.7)] transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-mint/90 active:translate-y-px active:scale-[0.98] disabled:opacity-60 sm:w-auto"
           >
-            <WhatsappLogo weight="fill" className="h-4.5 w-4.5 text-mint-ink" />
+            <WhatsappLogo className="h-4.5 w-4.5 text-mint-ink" />
             {status === "sending" ? "Opening WhatsApp…" : "Send via WhatsApp"}
-            <ArrowRight weight="bold" className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
           </button>
         </div>
 
@@ -570,7 +554,6 @@ function Select({
           ))}
         </select>
         <CaretDown
-          weight="bold"
           aria-hidden="true"
           className="pointer-events-none absolute right-4 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted"
         />
@@ -620,7 +603,7 @@ function Field({
       <label htmlFor={name} className="flex items-baseline justify-between">
         <span className="text-[13px] font-medium text-fg">{label}</span>
         {required ? (
-          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">Required</span>
+          <span className="font-mono text-2xs text-muted">Required</span>
         ) : null}
       </label>
       {textarea ? (

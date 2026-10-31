@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Robot,
@@ -113,23 +112,22 @@ export default function ServicesPage() {
     <div className="w-full overflow-x-clip">
       <PageHero
         eyebrow="Services"
-        title="Technology built around your business."
+        title="Technology built around your business"
         lede="FlowFoundry designs AI agents, automation, custom software, websites, eCommerce systems, and integrations around the processes that actually run your business."
         primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Explore solutions", href: "/solutions" }}
-        image="/images/use-cases/operations.webp"
         strip={
           <ul className="grid gap-3 lg:justify-items-end">
             {SERVICES.map((s) => (
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-on-dark-muted transition-colors hover:text-white"
+                  className="group inline-flex items-center gap-3 font-mono text-xs text-on-dark-muted transition-colors hover:text-white"
                 >
                   <span className="text-[10px]">{s.index}</span>
                   <span className="relative">
                     {s.title}
-                    <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-accent-dark transition-transform duration-500 group-hover:scale-x-100" />
+                    <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-fg transition-transform duration-200 group-hover:scale-x-100" />
                   </span>
                 </a>
               </li>
@@ -139,14 +137,14 @@ export default function ServicesPage() {
       />
 
       {/* SERVICES BENTO */}
-      <section className="w-full bg-surface py-24 lg:py-32">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="Our services"
-                title="One team for the systems your business runs on."
+                title="One team for the systems your business runs on"
                 lede="Combine AI, automation, software, and integrations into a solution designed around your operation."
               />
             </motion.div>
@@ -158,7 +156,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ENGINEERING */}
-      <section className="w-full bg-surface-2 py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-20 lg:py-24">
         <Container>
           <div className="grid items-start gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
             <Reveal amount={0.3} className="lg:sticky lg:top-28">
@@ -169,7 +167,7 @@ export default function ServicesPage() {
                     <>
                       We don&apos;t start with the tool.
                       <br />
-                      We start with the workflow.
+                      We start with the workflow
                     </>
                   }
                   lede="The right solution might be an AI agent, automation, a custom application, an integration, or all four. The architecture should follow the business problem."
@@ -195,14 +193,14 @@ export default function ServicesPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="w-full bg-surface py-24 lg:py-32">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="How we work"
-                title="From business problem to working system."
+                title="From business problem to working system"
                 lede="A structured process keeps technology aligned with the outcome you're trying to create."
               />
             </motion.div>
@@ -214,17 +212,7 @@ export default function ServicesPage() {
       </section>
 
       {/* TECHNOLOGY */}
-      <section className="relative w-full overflow-hidden bg-ink py-24 lg:py-32">
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] lg:block" aria-hidden="true">
-          <Image
-            src="/images/why/architecture.webp"
-            alt=""
-            fill
-            sizes="42vw"
-            className="object-cover opacity-[0.12] saturate-0"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,rgba(11,16,32,0.4)_60%,rgba(11,16,32,0.7)_100%)]" />
-        </div>
+      <section className="relative w-full overflow-hidden bg-ink py-20 lg:py-24">
         <Container className="relative">
           <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <Reveal amount={0.3}>
@@ -232,7 +220,7 @@ export default function ServicesPage() {
                 <SectionHeading
                   invert
                   eyebrow="Technology"
-                  title="Modern technology. Chosen for the problem."
+                  title="Modern technology. Chosen for the problem"
                   lede="We avoid forcing every project into the same stack. Tools, platforms, and architecture are selected according to the requirements of the system."
                 />
               </motion.div>
@@ -253,7 +241,7 @@ export default function ServicesPage() {
       </section>
 
       {/* COMMON PROJECTS */}
-      <section className="w-full bg-surface py-24 lg:py-32">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div
@@ -280,7 +268,7 @@ export default function ServicesPage() {
               <div className="grid gap-8 sm:grid-cols-2">
                 {PROJECT_GROUPS.map((g) => (
                   <div key={g.label}>
-                    <h3 className="font-mono text-2xs uppercase tracking-[0.16em] text-accent-strong">{g.label}</h3>
+                    <h3 className="font-mono text-2xs text-muted">{g.label}</h3>
                     <ul className="mt-4 divide-y divide-line">
                       {g.items.map((it) => (
                         <li key={it} className="py-2.5 text-[15px] text-fg">{it}</li>
@@ -296,11 +284,10 @@ export default function ServicesPage() {
 
       <CTA
         eyebrow="Start a project"
-        title="Tell us what your business needs to do better."
+        title="Tell us what your business needs to do better"
         lede="Share the workflow, bottleneck, or system you're working on. We'll help you explore the right combination of AI, automation, software, and integrations."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
-        image="/images/use-cases/custom.webp"
       />
     </div>
   );

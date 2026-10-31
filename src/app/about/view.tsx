@@ -56,11 +56,10 @@ export default function AboutPage() {
     <div className="w-full overflow-x-clip">
       <PageHero
         eyebrow="About us"
-        title="Building smarter ways for businesses to work."
+        title="Building smarter ways for businesses to work"
         lede="FlowFoundry AI Solutions helps businesses turn ideas, manual processes, and disconnected tools into intelligent business systems."
         primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Explore our services", href: "/services" }}
-        image="/images/use-cases/services.webp"
         strip={
           <StatStrip
             className="lg:grid-cols-1 lg:gap-y-8"
@@ -74,7 +73,7 @@ export default function AboutPage() {
       />
 
       {/* WHO WE ARE */}
-      <section className="w-full bg-surface py-24 lg:py-32">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <Split
             eyebrow="Who we are"
@@ -82,11 +81,9 @@ export default function AboutPage() {
               <>
                 We build systems,
                 <br />
-                not just software.
+                not just software
               </>
             }
-            image="/images/mission.webp"
-            imageAlt="The FlowFoundry team working through an intelligent workflow"
             stat={{ value: "5", label: "People · three cities" }}
           >
             <p className="text-xl font-medium leading-snug tracking-[-0.015em] text-fg">
@@ -110,14 +107,14 @@ export default function AboutPage() {
       </section>
 
       {/* FOCUS AREAS */}
-      <section className="w-full bg-surface-2 py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="What we bring together"
-                title="Four disciplines. One connected solution."
+                title="Four disciplines. One connected solution"
                 lede="We combine everything required to move from a business problem to a complete, working system."
               />
             </motion.div>
@@ -136,7 +133,7 @@ export default function AboutPage() {
       </section>
 
       {/* MISSION + VISION */}
-      <section className="w-full bg-ink py-24 lg:py-32">
+      <section className="w-full bg-ink py-20 lg:py-24">
         <Container>
           <Reveal amount={0.2} className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
             <motion.article
@@ -145,7 +142,7 @@ export default function AboutPage() {
             >
               <Eyebrow dark>Our mission</Eyebrow>
               <h3 className="mt-6 max-w-[18ch] text-[clamp(1.8rem,3.4vw,2.8rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white text-balance">
-                Turn complex business processes into intelligent, connected systems.
+                Turn complex business processes into intelligent, connected systems
               </h3>
               <p className="mt-6 max-w-[48ch] text-[16px] leading-relaxed text-on-dark">
                 Our mission is to help businesses remove operational friction,
@@ -160,7 +157,7 @@ export default function AboutPage() {
             >
               <Eyebrow>Our vision</Eyebrow>
               <h3 className="mt-6 max-w-[18ch] text-[clamp(1.6rem,2.8vw,2.3rem)] font-medium leading-[1.08] tracking-[-0.03em] text-fg text-balance">
-                A future where every growing business can operate intelligently.
+                A future where every growing business can operate intelligently
               </h3>
               <p className="mt-6 max-w-[42ch] text-[16px] leading-relaxed text-body">
                 Businesses where conversations, decisions, data, and actions move
@@ -173,7 +170,7 @@ export default function AboutPage() {
       </section>
 
       {/* SYSTEM PHILOSOPHY */}
-      <section className="w-full bg-surface py-24 lg:py-32">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <div className="grid items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <Reveal amount={0.3} className="lg:sticky lg:top-28">
@@ -186,7 +183,7 @@ export default function AboutPage() {
                       <br />
                       Logic. Data.
                       <br />
-                      Actions.
+                      Actions
                     </>
                   }
                   lede="These are the layers we connect to turn disconnected business processes into intelligent operating systems."
@@ -211,7 +208,7 @@ export default function AboutPage() {
       </section>
 
       {/* INTEGRATION ORBIT */}
-      <section className="w-full overflow-hidden bg-ink py-24 lg:py-32">
+      <section className="w-full overflow-hidden bg-ink py-20 lg:py-24">
         <Container>
           <div className="grid items-center gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
             <Reveal amount={0.3}>
@@ -219,7 +216,7 @@ export default function AboutPage() {
                 <SectionHeading
                   invert
                   eyebrow="Integration-first"
-                  title="We work with the tools you already run."
+                  title="We work with the tools you already run"
                   lede="CRMs, calendars, messaging, payments, storefronts, spreadsheets, and custom APIs - connected into one operating flow, not another silo."
                 />
               </motion.div>
@@ -240,14 +237,14 @@ export default function AboutPage() {
       </section>
 
       {/* PRINCIPLES */}
-      <section className="w-full bg-surface-2 py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="How we think"
-                title="Principles behind every system we build."
+                title="Principles behind every system we build"
                 lede="Five ideas that guide how we design, build, and evolve every engagement."
               />
             </motion.div>
@@ -264,14 +261,14 @@ export default function AboutPage() {
         identifiable person who is accountable for the work - so the founder
         gets a dedicated section above the team grid, not a card inside it.
       */}
-      <section className="w-full bg-surface py-24 lg:py-32">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="Founder"
-                title="Who you'll actually be talking to."
+                title="Who you'll actually be talking to"
                 lede="FlowFoundry is small, and that is a deliberate stage rather than a marketing angle. The founder does the discovery calls and works on delivery."
               />
             </motion.div>
@@ -294,7 +291,7 @@ export default function AboutPage() {
                   <h3 className="text-2xl font-medium tracking-[-0.025em] text-fg">
                     {FOUNDER.name}
                   </h3>
-                  <p className="mt-1.5 font-mono text-2xs uppercase tracking-[0.16em] text-accent-strong">
+                  <p className="mt-1.5 font-mono text-2xs text-muted">
                     {FOUNDER.role}
                   </p>
                   <p className="mt-2 flex items-center gap-2 text-sm text-muted">
@@ -335,7 +332,7 @@ export default function AboutPage() {
               </motion.p>
 
               <motion.div variants={fadeUp} className="mt-10">
-                <p className="font-mono text-2xs uppercase tracking-[0.18em] text-muted">
+                <p className="font-mono text-2xs text-muted">
                   Areas of expertise
                 </p>
                 <ul className="mt-5 divide-y divide-line border-y border-line">
@@ -351,7 +348,7 @@ export default function AboutPage() {
               </motion.div>
 
               <motion.div variants={fadeUp} className="mt-10">
-                <p className="font-mono text-2xs uppercase tracking-[0.18em] text-muted">
+                <p className="font-mono text-2xs text-muted">
                   Platforms worked on
                 </p>
                 <ul className="mt-5 flex flex-wrap gap-2">
@@ -384,14 +381,14 @@ export default function AboutPage() {
       </section>
 
       {/* TEAM */}
-      <section className="w-full bg-surface-2 py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="The team"
-                title="The people building FlowFoundry."
+                title="The people building FlowFoundry"
                 lede="A distributed team across Andhra Pradesh, Tamil Nadu, and Gujarat - engineering, automation, software, and business development."
               />
             </motion.div>
@@ -411,11 +408,11 @@ export default function AboutPage() {
                       alt={`${m.name}, ${m.role}`}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover object-top saturate-[0.85] transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                      className="object-cover object-top"
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0)_45%,rgba(11,16,32,0.92)_100%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(19,18,16,0)_45%,rgba(19,18,16,0.92)_100%)]" />
                     <div className="absolute inset-x-0 bottom-0 p-6">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dark">{m.role}</p>
+                      <p className="font-mono text-2xs text-muted">{m.role}</p>
                       <h3 className={`mt-2 font-medium tracking-[-0.02em] text-white ${i === 0 ? "text-3xl" : "text-xl"}`}>
                         {m.name}
                       </h3>
@@ -443,7 +440,7 @@ export default function AboutPage() {
               <div>
                 <Eyebrow>What we&apos;re building</Eyebrow>
                 <h2 className="mt-4 text-[clamp(1.5rem,2.8vw,2.2rem)] font-medium leading-[1.08] tracking-[-0.025em] text-fg">
-                  LeadPulz - our AI revenue agent platform.
+                  LeadPulz - our AI revenue agent platform
                 </h2>
                 <p className="mt-4 max-w-[64ch] text-[15px] leading-relaxed text-body">
                   Alongside client work, we are building LeadPulz: an AI voice
@@ -467,7 +464,6 @@ export default function AboutPage() {
         lede="Tell us how your business works today. We'll help you explore how AI, automation, integrations, or custom software could make it work better."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore our services", href: "/services" }}
-        image="/images/contact.webp"
       />
     </div>
   );

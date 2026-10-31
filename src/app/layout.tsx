@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import LoadingScreen from "@/components/LoadingScreen";
 import { SITE } from "@/lib/site";
 import { OG_IMAGE } from "@/lib/seo";
 import {
@@ -99,7 +98,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   // No maximumScale cap below 5 and no user-scalable=no — pinch zoom must work.
   maximumScale: 5,
-  themeColor: "#0b1020",
+  themeColor: "#131210",
   colorScheme: "dark",
 };
 
@@ -111,19 +110,12 @@ export default function RootLayout({
       lang="en-IN"
       className={`${geist.variable} ${geistMono.variable}`}
       suppressHydrationWarning
-      style={{ backgroundColor: "#0b1020" }}
+      style={{ backgroundColor: "#131210" }}
     >
       <body
         suppressHydrationWarning
         className="min-h-dvh bg-ink font-sans text-body antialiased"
       >
-        {/*
-          Splash first in the body so it is in the first painted frame.
-          It sits above everything (z-90) and removes itself from the
-          layer once dismissed.
-        */}
-        <LoadingScreen />
-
         <a
           href="#main"
           className="
@@ -148,9 +140,6 @@ export default function RootLayout({
         </main>
 
         <Footer />
-
-        {/* Film grain — fixed, pointer-events none, never on a scroller */}
-        <div className="grain" aria-hidden="true" />
 
         {/*
           One graph for the whole site: Organization, the founder Person it

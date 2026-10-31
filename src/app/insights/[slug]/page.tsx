@@ -29,7 +29,6 @@ export async function generateMetadata({ params }: Props) {
     title: a.metaTitle,
     description: a.metaDescription,
     path: `/insights/${a.slug}`,
-    image: a.image,
     type: "article",
     publishedTime: a.published,
     modifiedTime: a.updated,
@@ -65,7 +64,6 @@ export default async function Page({ params }: Props) {
             description: a.metaDescription,
             published: a.published,
             updated: a.updated,
-            image: a.image,
             wordCount: wordCountOf(a),
           }),
           ...(a.faqs.length ? [faqSchema(path, a.faqs)] : [])

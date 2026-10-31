@@ -242,13 +242,13 @@ export default function ArticleView({ article: a }: { article: Article }) {
                   <span className="block text-sm font-medium text-white transition-colors group-hover:text-accent-dark">
                     {FOUNDER.name}
                   </span>
-                  <span className="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark-muted">
+                  <span className="mt-0.5 block font-mono text-2xs text-on-dark-muted">
                     {FOUNDER.role}
                   </span>
                 </span>
               </Link>
 
-              <dl className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark-muted">
+              <dl className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-2xs text-on-dark-muted">
                 <div>
                   <dt className="inline">Published </dt>
                   <dd className="inline text-on-dark">
@@ -284,7 +284,7 @@ export default function ArticleView({ article: a }: { article: Article }) {
               aria-label="On this page"
               className="lg:sticky lg:top-28 lg:self-start"
             >
-              <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+            <p className="font-mono text-2xs text-muted">
                 On this page
               </p>
               <ol className="mt-4 space-y-2.5">
@@ -317,7 +317,7 @@ export default function ArticleView({ article: a }: { article: Article }) {
 
               {/* Mid-article CTA, contextual to the topic */}
               <div className="mt-16 rounded-2xl border border-line bg-surface-2 p-7 sm:p-9">
-                <p className="font-mono text-2xs uppercase tracking-[0.16em] text-accent-strong">
+                <p className="font-mono text-2xs text-muted">
                   Related service
                 </p>
                 <h2 className="mt-3 max-w-[30ch] text-2xl font-medium tracking-[-0.025em] text-fg">
@@ -376,7 +376,7 @@ export default function ArticleView({ article: a }: { article: Article }) {
                     />
                   </span>
                   <div className="min-w-0">
-                    <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+                    <p className="font-mono text-2xs text-muted">
                       Written by
                     </p>
                     <h2 className="mt-2 text-xl font-medium tracking-[-0.02em] text-fg">
@@ -402,7 +402,7 @@ export default function ArticleView({ article: a }: { article: Article }) {
 
       {/* ---------------- RELATED ---------------- */}
       <Section surface="paper">
-        <ContentHeading eyebrow="Keep reading" title="Related to this." />
+        <ContentHeading eyebrow="Keep reading" title="Related to this" />
         <div className="mt-12">
           <Related groups={related} />
         </div>
@@ -410,11 +410,10 @@ export default function ArticleView({ article: a }: { article: Article }) {
 
       <CTA
         eyebrow="Next step"
-        title="Map this against your own workflow."
+        title="Map this against your own workflow"
         lede="A consultation is a conversation about how your process runs today, not a pitch. You will leave with a view on what is worth automating first."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Read more insights", href: "/insights" }}
-        image={a.image}
       />
     </div>
   );

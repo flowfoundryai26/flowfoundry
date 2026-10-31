@@ -1,82 +1,91 @@
 @import "tailwindcss";
 
 /* ============================================================
-   FLOWFOUNDRY DESIGN SYSTEM v2
-   Geist + Geist Mono. Off-black base, zinc neutrals, one accent.
+   FLOWFOUNDRY DESIGN SYSTEM v3 — "foundry"
+   Geist + Geist Mono. Warm graphite ramp, one ember accent.
+
+   The world is the name: a working shop floor. Cast and machined
+   metal, blueprint sheets, a workbench under one warm lamp. So the
+   neutrals carry a trace of brown rather than blue, and the single
+   accent is pulled off hot metal.
    ============================================================ */
 @theme {
   /* ---------- Surfaces ----------
-     Dark theme. Navy and slate sit only 1.07:1 apart, so sections are
-     separated by borders and elevation, never by background alone. */
-  --color-ink: #0b1020;        /* Near-Black Navy - deepest surface */
-  --color-ink-2: #1c2340;      /* raised panel, 1.15:1 off slate */
-  --color-ink-3: #232b45;      /* hover / border base, 1.27:1 off slate */
-  --color-surface: #12172b;    /* Deep Slate - default content surface */
-  --color-surface-2: #0b1020;  /* alternate section */
-  --color-paper: #0b1020;      /* legacy alias, now the alternate section */
+     One ramp, four steps. Sections are separated by a surface step
+     and a hairline, never by a hue. */
+  --color-ink: #131210;        /* page / deepest surface */
+  --color-ink-2: #201e1b;      /* card, raised panel */
+  --color-ink-3: #2a2724;      /* hover / active row */
+  --color-surface: #1a1816;    /* alternate section */
+  --color-surface-2: #131210;  /* alternate section, back to deepest */
+  --color-paper: #131210;      /* legacy alias */
   --color-white: #ffffff;      /* UNCHANGED: text-white depends on it */
 
-  /* ---------- Text (measured on Deep Slate) ---------- */
-  --color-fg: #e8eaf2;         /* Soft White, headings      14.78:1 */
-  --color-body: #b4bbce;       /* body                       9.25:1 */
-  --color-muted: #8a90a6;      /* Cool Grey, labels          5.60:1 */
-  --color-on-dark: #b4bbce;
-  --color-on-dark-muted: #8a90a6;
+  /* ---------- Text (three roles, measured on --color-surface) ---------- */
+  --color-fg: #efe9de;         /* headings                  14.65:1 */
+  --color-body: #aaa398;       /* body                       7.03:1 */
+  --color-muted: #8a847a;      /* meta and captions          4.77:1 */
+  --color-on-dark: #aaa398;
+  --color-on-dark-muted: #8a847a;
 
-  /* ---------- Accents ----------
-     Two brand colours with split roles, so the page still reads as
-     having one action colour: violet carries structure and brand
-     (borders, rings, large display), mint is the single action colour.
-     Raw #7C5CFF carries NO text accessibly - white 4.35, navy 4.36 -
-     so the text and fill variants below are hue-locked derivatives. */
-  --color-accent: #7c5cff;         /* Violet: borders, rings, non-text UI */
-  --color-accent-strong: #8c70ff;  /* violet as TEXT on dark      4.97:1 */
-  --color-accent-fill: #5b33ff;    /* violet fill + Soft White    5.20:1 */
-  --color-accent-soft: #1e2145;    /* violet-tinted chip ground */
-  --color-accent-dark: #8c70ff;    /* violet on the deepest surface */
-  --color-mint: #4dffd2;           /* Neon Mint: primary CTA     14.92:1 on navy */
-  --color-mint-ink: #0b1020;       /* the only text colour for a mint fill */
+  /* ---------- Accent ----------
+     ONE accent, ember off hot metal, used rarely: the selection, one
+     figure, the signature rule. The primary button is an off-white
+     from the ramp with dark text, which on a dark theme reads more
+     deliberate than a coloured fill. The variants below are the same
+     hue at the contrast each job needs, not three colours. */
+  --color-accent: #e8873c;         /* rules, dots, non-text UI */
+  --color-accent-strong: #f0a358;  /* ember as TEXT on dark      8.93:1 */
+  --color-accent-fill: #e8873c;    /* ember fill + ink text      6.76:1 */
+  --color-accent-soft: #241c15;    /* ember-tinted chip ground */
+  --color-accent-dark: #f0a358;    /* ember on the deepest surface */
+  --color-accent-ink: #1a1714;     /* the only text colour on an ember fill */
 
-  /* Semantic only - never decorative */
-  --color-live: #4dffd2;
-  --color-warn: #f0c36b;
-  --color-danger: #ff6b81;
+  /* Primary action: off-white from the ramp. `mint` is kept as the
+     token NAME so the pages that call bg-mint keep working. */
+  --color-mint: #efe9de;
+  --color-mint-ink: #16130f;
 
-  /* ---------- Lines ---------- */
-  --color-line: rgb(255 255 255 / 0.09);
-  --color-line-strong: rgb(255 255 255 / 0.17);
-  --color-line-dark: rgb(255 255 255 / 0.08);
-  --color-line-dark-strong: rgb(255 255 255 / 0.16);
+  /* Semantic only — never decorative, toned to sit inside the ramp */
+  --color-live: #7fb894;
+  --color-warn: #d6a95f;
+  --color-danger: #e07a72;
+
+  /* ---------- Lines — quiet hairlines off the text colour ---------- */
+  --color-line: rgb(239 233 222 / 0.08);
+  --color-line-strong: rgb(239 233 222 / 0.14);
+  --color-line-dark: rgb(239 233 222 / 0.08);
+  --color-line-dark-strong: rgb(239 233 222 / 0.14);
 
   /* ---------- Typography ---------- */
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
-  --text-2xs: 11px;
+  --text-2xs: 12px;
   --text-2xs--line-height: 1.4;
-  --text-xs: 12.5px;
+  --text-xs: 13px;
   --text-xs--line-height: 1.5;
 
   /* ---------- Radii ----------
-     SHAPE RULE - one scale per role, applied everywhere:
-       rounded-full  interactive: buttons, pills, chips, avatars
-       rounded-2xl   cards, panels, media containers
-       rounded-xl    inner panels, form fields
-       rounded-md    small squares: icon tiles, inline tags
-     Do not reach outside these four. */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
-  --radius-2xl: 28px;
+     Radius by size, not one pill for everything:
+       rounded-md   6    keycap, tag, serial
+       rounded-lg   10   button, input, row
+       rounded-xl   14   card
+       rounded-2xl  18   panel, window, media
+     rounded-full stays for dots and avatars only. */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
 
-  /* ---------- Shadows (tinted to surface, never neon) ---------- */
-  --shadow-soft: 0 1px 2px rgb(14 17 24 / 0.04), 0 12px 32px -16px rgb(14 17 24 / 0.16);
-  --shadow-lift: 0 2px 4px rgb(14 17 24 / 0.05), 0 32px 64px -28px rgb(14 17 24 / 0.28);
-  --shadow-dark: 0 40px 100px -40px rgb(0 0 0 / 0.7);
+  /* ---------- Depth — surface steps and hairlines, never a glow ---------- */
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.24);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.26), 0 18px 40px -24px rgb(0 0 0 / 0.55);
+  --shadow-dark: 0 24px 64px -32px rgb(0 0 0 / 0.65);
 
-  /* ---------- Easing ---------- */
+  /* ---------- Easing — one curve ---------- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -103,7 +112,7 @@
 
   ::selection {
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-accent-ink);
   }
 
   :focus-visible {
@@ -119,17 +128,17 @@
 }
 
 /* ============================================================
-   FILM GRAIN — fixed, pointer-events none, never on scrollers
+   SERIAL — the signature.
+
+   Every index numeral on the site is struck into the surface, the
+   way a part number is stamped into a casting: one dark line above,
+   one light line below. Indices only. Nowhere else.
    ============================================================ */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.045;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
+.serial {
+  font-variant-numeric: tabular-nums;
+  text-shadow:
+    0 -1px 0 rgb(0 0 0 / 0.55),
+    0 1px 0 rgb(239 233 222 / 0.07);
 }
 
 /* ============================================================
@@ -151,7 +160,11 @@
 }
 
 /* ============================================================
-   SHIMMER (skeleton + processing states)
+   SHIMMER — skeletons only.
+
+   Kept because a skeleton IS live: something is actually loading and
+   the sweep says so. Calmed from a 35% white flash to a 10% pass, so
+   it reports work rather than performing.
    ============================================================ */
 @keyframes shimmer {
   from { transform: translateX(-100%); }
@@ -170,85 +183,10 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgb(255 255 255 / 0.35) 50%,
+    rgb(239 233 222 / 0.1) 50%,
     transparent 100%
   );
-  animation: shimmer 1.6s var(--ease-out-expo) infinite;
-}
-
-/* ============================================================
-   SPLASH — full-page loading screen (see components/LoadingScreen)
-
-   Server-rendered so it paints with the first frame. Removed from the
-   layer entirely once <html data-splash="done"> is set, so it can never
-   swallow clicks after it fades.
-   ============================================================ */
-.splash {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  background: var(--color-ink);
-  opacity: 1;
-  transition: opacity 420ms var(--ease-out-expo);
-}
-
-[data-splash="done"] .splash {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition: opacity 420ms var(--ease-out-expo), visibility 0s linear 420ms;
-}
-
-.splash-mark {
-  width: 56px;
-  height: 56px;
-  overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 0.1);
-  border-radius: var(--radius-md);
-  background: var(--color-ink-2);
-  animation: splash-in 700ms var(--ease-out-expo) both;
-}
-
-.splash-word {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1;
-  animation: splash-in 700ms var(--ease-out-expo) 80ms both;
-}
-
-/* Indeterminate: it reports activity, never a fake percentage. */
-.splash-rail {
-  position: relative;
-  width: 132px;
-  height: 2px;
-  overflow: hidden;
-  border-radius: 2px;
-  background: rgb(255 255 255 / 0.1);
-}
-
-.splash-bar {
-  position: absolute;
-  inset-block: 0;
-  width: 42%;
-  border-radius: 2px;
-  background: var(--color-accent-dark);
-  animation: splash-slide 1.15s var(--ease-out-expo) infinite;
-}
-
-@keyframes splash-in {
-  from { opacity: 0; transform: translate3d(0, 8px, 0); }
-  to   { opacity: 1; transform: translate3d(0, 0, 0); }
-}
-
-@keyframes splash-slide {
-  from { transform: translate3d(-115%, 0, 0); }
-  to   { transform: translate3d(315%, 0, 0); }
+  animation: shimmer 2s var(--ease-out-expo) infinite;
 }
 
 /* ============================================================
@@ -282,15 +220,11 @@
 }
 
 /* ============================================================
-   SCROLLBAR - drawn from the violet-to-mint accent ramp
-
-   Firefox gets `scrollbar-color` (two solids, no gradient support);
-   WebKit gets the actual ramp. The horizontal .rail elements opt out
-   below, since they hide their scrollbar entirely.
+   SCROLLBAR — a step of the ramp, not a brand moment
    ============================================================ */
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-accent) var(--color-ink);
+  scrollbar-color: #3a3632 var(--color-ink);
 }
 
 ::-webkit-scrollbar {
@@ -305,15 +239,11 @@ html {
 ::-webkit-scrollbar-thumb {
   border: 3px solid var(--color-ink);  /* inset, so the bar reads slim */
   border-radius: 999px;
-  background: linear-gradient(
-    180deg,
-    var(--color-accent) 0%,
-    var(--color-mint) 100%
-  );
+  background: #3a3632;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  border-width: 2px;
+  background: #4a4540;
 }
 
 ::-webkit-scrollbar-corner {
@@ -373,12 +303,6 @@ html {
   [data-chat] :is(p, span, div) {
     text-align: left;
   }
-
-  /* The eyebrow's leading rule becomes an orphan once its label centres,
-     especially when the label wraps. It is decorative and aria-hidden. */
-  [data-eyebrow-rule] {
-    display: none;
-  }
 }
 
 /* ============================================================
@@ -387,10 +311,6 @@ html {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .marquee-track { animation: none; }
-  .splash,
-  [data-splash="done"] .splash { transition: none; }
-  .splash-mark,
-  .splash-word { animation: none; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;

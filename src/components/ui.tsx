@@ -9,9 +9,9 @@ import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 export type Tone = "indigo" | "cyan" | "violet" | "emerald" | "amber" | "rose";
 
 const ONE_TONE = {
-  border: "border-accent/25",
-  bg: "bg-accent-soft",
-  text: "text-accent-strong",
+  border: "border-line-strong",
+  bg: "bg-ink-2",
+  text: "text-body",
   dot: "bg-accent",
 };
 
@@ -50,6 +50,11 @@ export function Container({
 
 /* ============================================================
    BUTTONS
+
+   Radius by size, not one pill for everything: a 44px control takes
+   10px corners. Depth is a hairline and a soft top highlight, never
+   a coloured shadow. The press is a 2% scale down; nothing grows on
+   hover.
 ============================================================ */
 
 type BtnVariant =
@@ -62,42 +67,41 @@ type BtnVariant =
 type BtnSize = "sm" | "md" | "lg";
 
 const BTN_BASE =
-  "group/btn relative inline-flex select-none items-center justify-center gap-2 rounded-full font-medium " +
-  "transition-[transform,background-color,border-color,box-shadow,color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] " +
-  "active:scale-[0.98] active:translate-y-px " +
+  "group/btn relative inline-flex select-none items-center justify-center gap-2 rounded-lg font-medium " +
+  "transition-[background-color,border-color,color,transform] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] " +
+  "active:scale-[0.98] " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 " +
   "disabled:pointer-events-none disabled:opacity-50";
 
 const BTN_SIZE: Record<BtnSize, string> = {
-  sm: "h-10 px-4 text-[13px]",
-  md: "h-12 px-6 text-sm",
-  lg: "h-14 px-7 text-[15px]",
+  sm: "h-9 px-4 text-[13px]",
+  md: "h-11 px-5 text-sm",
+  lg: "h-12 px-6 text-[15px]",
 };
 
 const BTN_VARIANT: Record<BtnVariant, string> = {
   /*
-    Dark theme. The old set assumed a light page: `primary` was
-    bg-fg + text-white, which inverts to Soft White on Soft White.
-    Mint is the single action colour and is the only fill that carries
-    text at full AA (navy on mint, 14.92:1). Raw violet carries no text
-    accessibly, so the violet fill uses the derived --color-accent-fill.
+    Dark theme, so the primary action is an off-white from the ramp
+    with ink text. That reads more deliberate than a coloured fill and
+    leaves the ember accent free for the one thing it marks: the path
+    the work travels. `--color-mint` is that off-white now; the token
+    name is legacy and kept so existing call sites compile.
   */
   primary:
-    "bg-mint text-mint-ink shadow-[0_1px_0_rgba(255,255,255,0.14)_inset,0_8px_20px_-10px_rgba(11,16,32,0.7)] " +
-    "hover:bg-mint/90 focus-visible:ring-mint focus-visible:ring-offset-ink",
+    "bg-mint text-mint-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] " +
+    "hover:bg-[#fdf8ee] focus-visible:ring-mint focus-visible:ring-offset-ink",
   accent:
-    "bg-accent-fill text-fg shadow-[0_1px_0_rgba(255,255,255,0.10)_inset,0_8px_20px_-10px_rgba(11,16,32,0.7)] " +
-    "hover:bg-accent focus-visible:ring-accent focus-visible:ring-offset-ink",
+    "bg-accent-fill text-accent-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] " +
+    "hover:bg-accent-strong focus-visible:ring-accent focus-visible:ring-offset-ink",
   secondary:
     "border border-line-strong bg-ink-2 text-fg " +
-    "hover:border-accent/50 hover:bg-ink-3 focus-visible:ring-accent focus-visible:ring-offset-ink",
+    "hover:bg-ink-3 focus-visible:ring-accent focus-visible:ring-offset-ink",
   onDark:
-    "bg-mint text-mint-ink shadow-[0_1px_0_rgba(255,255,255,0.14)_inset,0_8px_20px_-10px_rgba(11,16,32,0.7)] " +
-    "hover:bg-mint/90 focus-visible:ring-mint focus-visible:ring-offset-ink",
+    "bg-mint text-mint-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] " +
+    "hover:bg-[#fdf8ee] focus-visible:ring-mint focus-visible:ring-offset-ink",
   outlineOnDark:
-    "border border-white/15 bg-white/[0.04] text-fg backdrop-blur-sm " +
-    "shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] " +
-    "hover:border-accent/50 hover:bg-white/[0.08] focus-visible:ring-accent focus-visible:ring-offset-ink",
+    "border border-line-strong bg-ink-2 text-fg " +
+    "hover:bg-ink-3 focus-visible:ring-accent focus-visible:ring-offset-ink",
   ghost:
     "text-body hover:bg-ink-2 hover:text-fg focus-visible:ring-accent focus-visible:ring-offset-ink",
 };
@@ -151,8 +155,8 @@ export function Button({
 export function Arrow({ className = "" }: { className?: string }) {
   return (
     <ArrowRight
-      weight="bold"
-      className={`h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 ${className}`}
+      weight="regular"
+      className={`h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-0.5 ${className}`}
       aria-hidden="true"
     />
   );
@@ -161,15 +165,19 @@ export function Arrow({ className = "" }: { className?: string }) {
 export function ArrowUp({ className = "" }: { className?: string }) {
   return (
     <ArrowUpRight
-      weight="bold"
-      className={`h-4 w-4 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 ${className}`}
+      weight="regular"
+      className={`h-4 w-4 transition-transform duration-200 group-hover/btn:-translate-y-0.5 ${className}`}
       aria-hidden="true"
     />
   );
 }
 
 /* ============================================================
-   EYEBROW - mono label, no pill
+   EYEBROW
+
+   Sentence case at normal tracking. The 24px rule in front of it is
+   one of the few places ember appears: it is the hot line, the path
+   the work travels through the page.
 ============================================================ */
 
 export function Eyebrow({
@@ -183,18 +191,13 @@ export function Eyebrow({
   className?: string;
   dark?: boolean;
 }) {
-  const isDark = dark || tone === "dark";
+  void tone;
+  void dark;
   return (
     <span
-      className={`inline-flex items-center gap-2.5 font-mono text-2xs font-medium uppercase tracking-[0.18em] ${
-        isDark ? "text-accent-dark" : "text-accent-strong"
-      } ${className}`}
+      className={`inline-flex items-center gap-3 text-[13px] font-medium text-muted ${className}`}
     >
-      <span
-        aria-hidden="true"
-        data-eyebrow-rule
-        className={`h-px w-6 ${isDark ? "bg-accent-dark/70" : "bg-accent/70"}`}
-      />
+      <span aria-hidden="true" className="h-px w-6 shrink-0 bg-accent" />
       {children}
     </span>
   );
@@ -221,18 +224,19 @@ export function SectionHeading({
   className?: string;
   size?: "md" | "lg";
 }) {
+  void invert; // one ramp now - headings are --color-fg on every surface
   const h2 =
     size === "lg"
       ? "text-[clamp(2.25rem,5vw,4rem)]"
-      : "text-[clamp(1.9rem,3.6vw,2.9rem)]";
+      : "text-[clamp(2rem,3.8vw,3rem)]";
 
   const heading = (
     <>
-      {eyebrow ? <Eyebrow dark={invert}>{eyebrow}</Eyebrow> : null}
+      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <h2
-        className={`mt-5 ${h2} font-medium leading-[1.04] tracking-[-0.03em] text-balance ${
-          invert ? "text-white" : "text-fg"
-        }`}
+        className={`${
+          eyebrow ? "mt-5" : ""
+        } ${h2} font-medium leading-[1.06] tracking-[-0.03em] text-balance text-fg`}
       >
         {title}
       </h2>
@@ -240,13 +244,7 @@ export function SectionHeading({
   );
 
   const ledeEl = lede ? (
-    <p
-      className={`text-base leading-relaxed sm:text-[17px] ${
-        invert ? "text-on-dark" : "text-body"
-      }`}
-    >
-      {lede}
-    </p>
+    <p className="text-base leading-relaxed text-body sm:text-[17px]">{lede}</p>
   ) : null;
 
   if (align === "split") {
@@ -278,7 +276,7 @@ export function SectionHeading({
 }
 
 /* ============================================================
-   CHIP
+   CHIP - a tag, so a tag's radius
 ============================================================ */
 
 export function Chip({
@@ -292,14 +290,11 @@ export function Chip({
   tone?: Tone | "dark";
   dark?: boolean;
 }) {
-  const isDark = dark || tone === "dark";
+  void tone;
+  void dark;
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-3.5 py-2 text-xs font-medium transition-colors duration-300 ${
-        isDark
-          ? "border-white/10 bg-white/[0.04] text-on-dark hover:border-white/25 hover:text-white"
-          : "border-line bg-surface text-body hover:border-accent/40 hover:text-accent-strong"
-      } ${className}`}
+      className={`inline-flex items-center rounded-md border border-line bg-ink-2 px-3 py-1.5 text-[13px] text-body transition-colors duration-200 hover:border-line-strong hover:text-fg ${className}`}
     >
       {children}
     </span>
@@ -307,7 +302,7 @@ export function Chip({
 }
 
 /* ============================================================
-   BADGE
+   BADGE - quiet text, sentence case
 ============================================================ */
 
 export function Badge({
@@ -318,13 +313,13 @@ export function Badge({
   variant?: "default" | "live" | "dark";
 }) {
   const variants = {
-    default: "bg-accent-soft text-accent-strong",
-    live: "bg-live/10 text-live",
-    dark: "border border-white/12 bg-white/5 text-white",
+    default: "border-line bg-ink-2 text-body",
+    live: "border-line bg-ink-2 text-live",
+    dark: "border-line bg-ink-2 text-fg",
   };
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-2xs font-medium uppercase tracking-[0.12em] ${variants[variant]}`}
+      className={`inline-flex items-center gap-2 rounded-md border px-2.5 py-1 font-mono text-2xs ${variants[variant]}`}
     >
       {children}
     </span>
@@ -332,27 +327,29 @@ export function Badge({
 }
 
 /* ============================================================
-   LIVE DOT
+   LIVE DOT - static. Nothing on this page is streaming, so nothing
+   pings. The dot is a state marker, not an animation.
 ============================================================ */
 
 export function LiveDot({ className = "" }: { className?: string }) {
   return (
-    <span className={`relative flex h-1.5 w-1.5 ${className}`} aria-hidden="true">
-      <span className="absolute inline-flex h-full w-full rounded-full bg-live opacity-70 motion-safe:animate-ping" />
-      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-live" />
-    </span>
+    <span
+      className={`inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-live ${className}`}
+      aria-hidden="true"
+    />
   );
 }
 
-export function Status({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
+export function Status({
+  children,
+  dark = false,
+}: {
+  children: ReactNode;
+  dark?: boolean;
+}) {
+  void dark;
   return (
-    <span
-      className={`inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full border px-2.5 py-1 font-mono text-2xs font-medium uppercase tracking-[0.1em] ${
-        dark
-          ? "border-live/30 bg-live/10 text-[#5fd39e]"
-          : "border-live/25 bg-live/8 text-live"
-      }`}
-    >
+    <span className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md border border-line bg-ink-2 px-2.5 py-1 font-mono text-2xs text-body">
       <LiveDot />
       {children}
     </span>
@@ -360,7 +357,11 @@ export function Status({ children, dark = false }: { children: ReactNode; dark?:
 }
 
 /* ============================================================
-   INDEX - mono step number
+   INDEX - the signature.
+
+   Every index numeral on the site is struck into the surface, the
+   way a part number is stamped into a casting. See `.serial` in
+   globals.css. Indices only, nowhere else.
 ============================================================ */
 
 export function Index({
@@ -372,12 +373,9 @@ export function Index({
   dark?: boolean;
   className?: string;
 }) {
+  void dark;
   return (
-    <span
-      className={`font-mono text-xs tabular-nums tracking-[0.1em] ${
-        dark ? "text-on-dark-muted" : "text-muted"
-      } ${className}`}
-    >
+    <span className={`serial font-mono text-xs text-muted ${className}`}>
       {children}
     </span>
   );

@@ -19,11 +19,10 @@ export default function PortfolioPage() {
     <div className="w-full overflow-x-clip">
       <PageHero
         eyebrow="Portfolio"
-        title="What we're building right now."
+        title="What we're building right now"
         lede="The platforms in development at FlowFoundry: eCommerce, AI revenue automation, education, and our own internal systems."
         primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Our services", href: "/services" }}
-        image="/images/use-cases/custom.webp"
         strip={
           <StatStrip
             className="lg:grid-cols-1 lg:gap-y-8"
@@ -37,14 +36,14 @@ export default function PortfolioPage() {
       />
 
       {/* PROJECTS */}
-      <section className="w-full bg-surface py-24 lg:py-32">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="Ongoing projects"
-                title="Four platforms, one way of building."
+                title="Four platforms, one way of building"
                 lede="Different industries, the same approach: understand the process, design the system around it, then build and integrate it end to end."
               />
             </motion.div>
@@ -62,12 +61,12 @@ export default function PortfolioPage() {
                       </div>
 
                       <div>
-                        <p className="font-mono text-2xs uppercase tracking-[0.16em] text-accent-strong">{p.category}</p>
+                        <p className="font-mono text-2xs text-muted">{p.category}</p>
                         <h3 className="mt-3 text-[clamp(1.8rem,3.4vw,2.8rem)] font-medium leading-[1.04] tracking-[-0.03em] text-fg">
                           {p.name}
                         </h3>
                         <p className="mt-5 max-w-[56ch] text-[16px] leading-relaxed text-body">{p.summary}</p>
-                        <p className="mt-6 font-mono text-[10.5px] uppercase tracking-[0.12em] text-muted">
+                        <p className="mt-6 font-mono text-2xs text-muted">
                           {p.services.join(", ")}
                         </p>
                         {p.href ? (
@@ -77,7 +76,6 @@ export default function PortfolioPage() {
                           >
                             Explore {p.name}
                             <ArrowUpRight
-                              weight="bold"
                               className="h-4 w-4 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
                             />
                           </Link>
@@ -85,7 +83,7 @@ export default function PortfolioPage() {
                       </div>
 
                       <div className="lg:border-l lg:border-line lg:pl-12">
-                        <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">What we&apos;re building</p>
+                        <p className="font-mono text-2xs text-muted">What we&apos;re building</p>
                         <ul className="mt-5 flex flex-wrap gap-2">
                           {p.highlights.map((h) => (
                             <li
@@ -107,14 +105,14 @@ export default function PortfolioPage() {
       </section>
 
       {/* APPROACH */}
-      <section className="w-full bg-surface-2 py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="How we build"
-                title="The same standard for every project."
+                title="The same standard for every project"
                 lede="Whether it's a client platform or a system for our own operations, the approach doesn't change."
               />
             </motion.div>
@@ -131,7 +129,6 @@ export default function PortfolioPage() {
         lede="Tell us how your business works today. We'll help you scope the AI, automation, integrations, or custom software that would move it forward."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
-        image="/images/mission.webp"
       />
     </div>
   );

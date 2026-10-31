@@ -127,7 +127,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
             {/* Capability rail instead of a decorative photo */}
             <motion.div variants={scaleIn} className="min-w-0 lg:justify-self-end">
               <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-7">
-                <p className="font-mono text-2xs uppercase tracking-[0.16em] text-on-dark-muted">
+              <p className="font-mono text-2xs text-on-dark-muted">
                   Connects with
                 </p>
                 <div className="mt-5">
@@ -158,7 +158,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
             </Reveal>
           </div>
           <div className="lg:pt-4">
-            <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+            <p className="font-mono text-2xs text-muted">
               What it looks like
             </p>
             <div className="mt-6">
@@ -173,13 +173,13 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
         <ContentHeading
           align="split"
           eyebrow="How it works"
-          title="The same process, before and after."
+          title="The same process, before and after"
           lede="Left is the workflow most teams run today. Right is the route the system takes instead."
         />
 
         <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
-            <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+            <p className="font-mono text-2xs text-muted">
               Manual today
             </p>
             <div className="mt-6">
@@ -198,7 +198,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
         <ContentHeading
           align="split"
           eyebrow="What we build"
-          title="The pieces this is assembled from."
+          title="The pieces this is assembled from"
           lede="Scope is chosen in discovery. Most engagements start with one or two of these rather than all of them."
         />
         <div className="mt-14 lg:mt-16">
@@ -213,7 +213,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
             <ContentHeading
               invert
               eyebrow="Integrations"
-              title="Works with your existing stack."
+              title="Works with your existing stack"
               lede="We connect what you already run rather than asking you to migrate."
             />
             <div className="mt-8">
@@ -225,7 +225,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
             <ContentHeading
               invert
               eyebrow="Human oversight"
-              title="Where a person stays in the loop."
+              title="Where a person stays in the loop"
             />
             <Reveal amount={0.3} className="mt-7">
               <motion.p
@@ -258,7 +258,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <ContentHeading
             eyebrow="Outcomes"
-            title="What changes operationally."
+            title="What changes operationally"
             lede="Stated as operational changes rather than percentages. We measure against your own baseline after launch."
           />
           <div className="lg:pt-2">
@@ -272,7 +272,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <ContentHeading
             eyebrow="Implementation"
-            title="How an engagement runs."
+            title="How an engagement runs"
             lede="Eight steps, start to finish. Discovery is where scope gets decided - not before."
           />
           <div>
@@ -292,7 +292,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
       <Section surface="white">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <ContentHeading eyebrow="Questions" title="Straight answers." />
+            <ContentHeading eyebrow="Questions" title="Straight answers" />
           </div>
           <Faqs items={s.faqs} />
         </div>
@@ -300,7 +300,7 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
 
       {/* ---------------- RELATED ---------------- */}
       <Section surface="paper">
-        <ContentHeading eyebrow="Keep reading" title="Related to this." />
+        <ContentHeading eyebrow="Keep reading" title="Related to this" />
         <div className="mt-12">
           <Related groups={related} />
         </div>
@@ -312,7 +312,6 @@ export default function SolutionView({ solution: s }: { solution: Solution }) {
         lede="Tell us how the process runs today. We will map what can be automated, what should stay manual, and what it would take to build."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "View case studies", href: "/case-studies" }}
-        image={s.image}
       />
     </div>
   );

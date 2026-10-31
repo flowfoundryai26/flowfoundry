@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, CaretRight } from "@phosphor-icons/react";
@@ -21,7 +20,6 @@ import {
   Checks,
   Process,
   RowList,
-  Split,
   StatStrip,
   StickyStack,
 } from "@/components/sections";
@@ -70,59 +68,66 @@ const ABOUT_POINTS = [
 ] as const;
 
 /*
-  Six use cases laid out as an asymmetric bento. `span` is the lg column
-  count out of six, so each row closes exactly: 4+2, 2+2+2, 6. `media`
-  marks the three cells that carry a photograph, which keeps the grid
-  from reading as six identical text tiles.
+  The four disciplines, as the four things we actually put our hands
+  on. This replaced a "4-in-1" stat card floating over a generated
+  stock photograph: the photograph was AI-made and carried invented
+  figures baked into its pixels, and the card said less than the list
+  it was sitting on.
+*/
+const DISCIPLINES = [
+  { index: "01", title: "AI", body: "Agents that converse, decide, and act." },
+  { index: "02", title: "Automation", body: "Work that runs without being chased." },
+  { index: "03", title: "Software", body: "Tools shaped around your process." },
+  { index: "04", title: "Integration", body: "The systems you already run, connected." },
+];
+
+/*
+  Six use cases as an asymmetric bento. `span` is the lg column count
+  out of six, so each row closes exactly: 4+2, 2+2+2, 6.
+
+  The photography is gone. All six cells carried images from one
+  generated batch - the same invented office, a fake FlowFoundry
+  logo, and fabricated metrics ("1,248 leads processed", "76%
+  conversion rate") painted into the screens behind the people. The
+  copy was always the point; now it leads, and the grid gets its
+  rhythm from size instead of from pictures.
 */
 const USE_CASES = [
   {
     title: "Sales teams",
     body: "Respond to leads in seconds, qualify intelligently, and move prospects into booked meetings.",
-    image: "/images/use-cases/sales.webp",
     flow: ["Lead", "Qualified", "Meeting"],
     span: 4,
-    media: true,
   },
   {
     title: "Customer support",
     body: "Answer common questions from your knowledge base and escalate the rest to the right person.",
-    image: "/images/use-cases/support.webp",
     flow: ["Customer", "AI", "Resolution"],
     span: 2,
-    media: false,
   },
   {
     title: "Service businesses",
     body: "Collect requirements, check availability, and coordinate bookings without the admin.",
-    image: "/images/use-cases/services.webp",
     flow: ["Enquiry", "Requirements", "Booking"],
     span: 2,
-    media: false,
   },
   {
     title: "eCommerce",
     body: "Connect conversations, orders, support, and notifications into one operational flow.",
-    image: "/images/use-cases/ecommerce.webp",
     flow: ["Customer", "Order", "Support"],
     span: 2,
-    media: true,
   },
   {
     title: "Operations",
     body: "Automate approvals and updates between systems and remove the bottlenecks between teams.",
-    image: "/images/use-cases/operations.webp",
     flow: ["Request", "Approval", "Action"],
     span: 2,
-    media: false,
   },
   {
     title: "Custom workflows",
     body: "Your process doesn't have to fit a template. We design the system around how your team actually works.",
-    image: "/images/use-cases/custom.webp",
     flow: ["Your process", "Your system"],
     span: 6,
-    media: true,
   },
 ];
 
@@ -131,29 +136,21 @@ const WHY = [
     index: "01",
     title: "Business-first architecture",
     body: "We start with the process, the bottleneck, and the outcome you want - then choose the technology.",
-    image: "/images/why/architecture.webp",
-    alt: "Connected business architecture diagram",
   },
   {
     index: "02",
     title: "End-to-end implementation",
     body: "AI, automation, software, integrations, and deployment designed and delivered as one connected system.",
-    image: "/images/why/implementation.webp",
-    alt: "Implementation workflow",
   },
   {
     index: "03",
     title: "Built for integration",
     body: "We work with the tools you already run instead of adding another isolated one to the stack.",
-    image: "/images/why/integration.webp",
-    alt: "Integration between business systems",
   },
   {
     index: "04",
     title: "Designed to scale",
     body: "Build the right foundation now and extend it as customers, operations, and requirements grow.",
-    image: "/images/why/scale.webp",
-    alt: "Scaling business operations",
   },
 ];
 
@@ -197,38 +194,29 @@ export default function HomePage() {
         lede="Tell us what's slowing your business down. We'll map the system that removes it - AI, automation, software, or all three."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "See our services", href: "/services" }}
-        image="/images/mission.webp"
       />
     </div>
   );
 }
 
-/* ---------------- HERO ---------------- */
+/* ---------------- HERO ----------------
+
+   No photograph behind the text any more. The one that was there was
+   a generated conference room at 28% opacity with "Smarter
+   Conversations Bigger Opportunities" painted into the wall, which
+   read as grey mush and claimed nothing true. The console on the
+   right is the visual: it is the product, it is built in code, and
+   it is the only saturated thing on the page.
+--------------------------------------- */
 
 function Hero() {
   return (
-    <section className="relative w-full overflow-hidden bg-ink">
-      {/* Photo, faded into the surface on the right */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
-          <Image
-            src="/images/use-cases/sales.webp"
-            alt=""
-            fill
-            priority
-            sizes="(max-width: 1023px) 100vw, 58vw"
-            className="object-cover object-[65%_center] opacity-[0.28] saturate-[0.8]"
-          />
-        </div>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,#0b1020_30%,rgba(11,16,32,0.75)_60%,rgba(11,16,32,0.6)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.5)_0%,rgba(11,16,32,0)_35%,#0b1020_100%)]" />
-      </div>
-
-      <Container className="relative z-10">
-        <div className="grid min-h-[calc(100dvh-72px)] items-center gap-14 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-20">
-          <motion.div initial="hidden" animate="visible" variants={stagger(0.1, 0.05)} className="min-w-0">
-            <motion.div variants={fadeUp} className="flex items-center gap-4">
-              <Eyebrow dark>For businesses with repetitive operations</Eyebrow>
+    <section className="w-full bg-ink">
+      <Container>
+        <div className="grid items-center gap-14 pb-20 pt-24 lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:pb-28 lg:pt-32">
+          <motion.div initial="hidden" animate="visible" variants={stagger(0.05, 0.04)} className="min-w-0">
+            <motion.div variants={fadeUp}>
+              <Eyebrow>For businesses with repetitive operations</Eyebrow>
             </motion.div>
 
             {/*
@@ -236,38 +224,37 @@ function Hero() {
               "Scale without scaling repetitive work" names the outcome;
               the sub-head names the capability and the constraint.
             */}
-            <h1 className="mt-7 max-w-[26ch] text-[clamp(2.05rem,3.05vw,2.6rem)] font-medium leading-[1.04] tracking-[-0.03em] text-white text-balance">
+            <h1 className="mt-7 max-w-[19ch] text-[clamp(2.25rem,4vw,3.25rem)] font-medium leading-[1.06] tracking-[-0.03em] text-fg text-balance">
               <Words
-                text="Scale your business without scaling repetitive work."
-                delay={0.2}
+                text="Scale your business without scaling repetitive work"
+                delay={0.12}
               />
             </h1>
 
             <motion.p
               variants={fadeUp}
-              className="mt-7 max-w-[54ch] text-base leading-relaxed text-on-dark sm:text-lg"
+              className="mt-7 max-w-[46ch] text-[17px] leading-relaxed text-body sm:text-lg"
             >
               AI agents, automation and custom software, built around the
               tools your team already uses.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Button href="/contact" variant="onDark" size="lg" className="w-full sm:w-auto">
-                  Book consultation
-                  <Arrow />
-                </Button>
+            <motion.div variants={fadeUp} className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button href="/contact" variant="onDark" size="lg" className="w-full sm:w-auto">
+                Book consultation
+                <Arrow />
+              </Button>
               <Button href="/solutions" variant="outlineOnDark" size="lg" className="w-full sm:w-auto">
                 Explore our solutions
               </Button>
             </motion.div>
-
           </motion.div>
 
           <motion.div
             initial="hidden"
             animate="visible"
             variants={scaleIn}
-            className="relative min-w-0 lg:pl-4"
+            className="relative min-w-0"
           >
             <AgentConsole />
           </motion.div>
@@ -281,7 +268,7 @@ function Hero() {
 
 function IntegrationBand() {
   return (
-    <section className="w-full border-y border-white/[0.06] bg-ink py-7">
+    <section className="w-full border-y border-line bg-ink py-7">
       <Container>
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-10">
           {/*
@@ -289,9 +276,7 @@ function IntegrationBand() {
             a hero reads as "our customers", and these are systems we connect
             to, not clients. Per-logo captions stay off.
           */}
-          <p className="shrink-0 font-mono text-2xs uppercase tracking-[0.18em] text-on-dark-muted">
-            Connects with
-          </p>
+          <p className="shrink-0 text-[13px] text-muted">Connects with</p>
 
           {/*
             The set is rendered twice. Marquee loops by translating its track
@@ -304,31 +289,31 @@ function IntegrationBand() {
           <Marquee duration={54} className="min-w-0 flex-1">
             {[0, 1].map((copy) =>
               INTEGRATION_LOGOS.map((logo) => (
-              <span
-                key={`${copy}-${logo.slug}`}
-                aria-hidden={copy === 1 ? "true" : undefined}
-                className="flex shrink-0 items-center pr-12"
-              >
-                {/*
-                  Plain <img>: these are tiny single-colour SVGs, so the
-                  optimiser has nothing to do and next/image would only add
-                  a request per mark.
-                */}
-                <img
-                  src={`/images/logos/${logo.slug}.svg`}
-                  alt={logo.name}
-                  width={26}
-                  height={26}
-                  loading="lazy"
-                  decoding="async"
-                  style={
-                    "scale" in logo
-                      ? { transform: `scale(${logo.scale})` }
-                      : undefined
-                  }
-                  className="h-[26px] w-auto opacity-60 transition-opacity duration-300 hover:opacity-100"
-                />
-              </span>
+                <span
+                  key={`${copy}-${logo.slug}`}
+                  aria-hidden={copy === 1 ? "true" : undefined}
+                  className="flex shrink-0 items-center pr-12"
+                >
+                  {/*
+                    Plain <img>: these are tiny single-colour SVGs, so the
+                    optimiser has nothing to do and next/image would only add
+                    a request per mark.
+                  */}
+                  <img
+                    src={`/images/logos/${logo.slug}.svg`}
+                    alt={logo.name}
+                    width={24}
+                    height={24}
+                    loading="lazy"
+                    decoding="async"
+                    style={
+                      "scale" in logo
+                        ? { transform: `scale(${logo.scale})` }
+                        : undefined
+                    }
+                    className="h-6 w-auto opacity-55 transition-opacity duration-200 hover:opacity-100"
+                  />
+                </span>
               ))
             )}
           </Marquee>
@@ -346,12 +331,12 @@ function IntegrationBand() {
 
 function SignalBand() {
   return (
-    <section className="w-full bg-ink py-14 lg:py-18">
+    <section className="w-full bg-ink py-16 lg:py-20">
       <Container>
-        <Reveal className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-16">
+        <Reveal className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end lg:gap-16">
           <motion.p
             variants={fadeUp}
-            className="max-w-[34ch] text-lg leading-snug tracking-[-0.02em] text-white sm:text-xl"
+            className="max-w-[34ch] text-lg leading-snug tracking-[-0.02em] text-fg sm:text-xl"
           >
             Small team, working systems, and a reply before you have moved on
             to something else.
@@ -376,33 +361,35 @@ function SignalBand() {
    The core differentiator, stated immediately after the hero: we connect
    the stack you run rather than asking you to replace it. Ends on a
    concrete worked example so the claim is not abstract.
+
+   The left column is sticky now. It is much shorter than the six-step
+   route beside it, and side by side they left a 350px dead band at the
+   bottom of the section.
 ------------------------------------------------------------------- */
 
 function ExistingBusiness() {
   return (
-    <section className="w-full bg-surface py-24 lg:py-32">
+    <section className="w-full bg-surface py-20 lg:py-24">
       <Container>
         <Reveal amount={0.3}>
           <motion.div variants={fadeUp}>
             <SectionHeading
               align="split"
-              title="We don't ask you to replace what already works."
+              title="We don't ask you to replace what already works"
               lede="Most automation projects fail because they start with a migration. We start with the systems you already run and connect them."
             />
           </motion.div>
         </Reveal>
 
-        <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+        <div className="mt-14 grid items-start gap-14 lg:mt-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           {/* The stack we connect to */}
-          <div>
-            <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
-              What we connect and improve
-            </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
+          <div className="lg:sticky lg:top-28">
+            <p className="text-[13px] text-muted">What we connect and improve</p>
+            <ul className="mt-5 flex flex-wrap gap-2">
               {EXISTING_STACK.map((s) => (
                 <li
                   key={s}
-                  className="rounded-full border border-line bg-surface px-3.5 py-2 text-xs font-medium text-body transition-colors duration-300 hover:border-accent/40 hover:text-accent-strong"
+                  className="rounded-md border border-line bg-ink-2 px-3 py-1.5 text-[13px] text-body transition-colors duration-200 hover:border-line-strong hover:text-fg"
                 >
                   {s}
                 </li>
@@ -425,14 +412,12 @@ function ExistingBusiness() {
 
           {/* Worked example — a real lead moving through the system */}
           <div>
-            <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
-              One lead, end to end
-            </p>
+            <p className="text-[13px] text-muted">One lead, end to end</p>
 
             <Reveal
               as="ol"
-              step={0.06}
-              className="mt-6 border-l border-line-strong"
+              step={0.05}
+              className="relative mt-5 border-l border-line-strong"
             >
               {[
                 {
@@ -479,18 +464,16 @@ function ExistingBusiness() {
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute -left-[5.5px] top-[7px] h-[9px] w-[9px] rounded-full border-2 border-accent bg-surface"
+                    className="absolute -left-[4px] top-[9px] h-[7px] w-[7px] rounded-full bg-accent"
                   />
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-strong">
-                    {s.layer}
-                  </p>
-                  <div className="mt-1.5 flex flex-wrap items-baseline gap-x-3">
+                  <p className="text-[13px] text-muted">{s.layer}</p>
+                  <div className="mt-2 flex flex-wrap items-baseline gap-x-3">
                     <Index>{String(i + 1).padStart(2, "0")}</Index>
                     <h3 className="text-[17px] font-medium tracking-[-0.015em] text-fg">
                       {s.step}
                     </h3>
                   </div>
-                  <p className="mt-1.5 max-w-[52ch] text-[15px] leading-relaxed text-body">
+                  <p className="mt-2 max-w-[52ch] text-[15px] leading-relaxed text-body">
                     {s.detail}
                   </p>
                 </motion.li>
@@ -508,40 +491,60 @@ function ExistingBusiness() {
   );
 }
 
-/* ---------------- POSITIONING ---------------- */
+/* ---------------- POSITIONING ----------------
+   Was a two-column split against a generated photograph with a
+   "4-in-1" card floating over its corner. The photo invented its own
+   statistics, and "4-in-1" was a number standing in for four nouns.
+   The four nouns are now simply on the page.
+------------------------------------------------ */
 
 function Positioning() {
   return (
-    <section className="w-full bg-surface py-24 lg:py-32">
+    <section className="w-full bg-surface pb-20 lg:pb-24">
       <Container>
-        <Split
-          title={
-            <>
-              We build systems,
-              <br />
-              not just software.
-            </>
-          }
-          image="/images/mission.webp"
-          imageAlt="FlowFoundry team designing an intelligent workflow"
-          stat={{ value: "4-in-1", label: "AI · Automation · Software · Integration" }}
-          reverse
-        >
-          <p className="text-[17px] leading-relaxed">
-            We start by understanding how your business actually works - the
-            workflows, bottlenecks, customer interactions, and existing tools - 
-            then design technology around those processes.
-          </p>
-          <div className="pt-4">
-            <Checks items={ABOUT_POINTS} cols={1} />
-          </div>
-          <div className="pt-6">
-            <Button href="/about" variant="secondary">
-              About FlowFoundry
-              <Arrow />
-            </Button>
-          </div>
-        </Split>
+        <div className="grid gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
+          <Reveal amount={0.3}>
+            <motion.div variants={fadeUp}>
+              <SectionHeading
+                title={
+                  <>
+                    We build systems,
+                    <br />
+                    not just software
+                  </>
+                }
+              />
+            </motion.div>
+            <motion.p variants={fadeUp} className="mt-7 max-w-[52ch] text-[17px] leading-relaxed text-body">
+              We start by understanding how your business actually works - the
+              workflows, bottlenecks, customer interactions, and existing tools
+              - then design technology around those processes.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-8">
+              <Checks items={ABOUT_POINTS} cols={1} />
+            </motion.div>
+            <motion.div variants={fadeUp} className="mt-9">
+              <Button href="/about" variant="secondary">
+                About FlowFoundry
+                <Arrow />
+              </Button>
+            </motion.div>
+          </Reveal>
+
+          <Reveal amount={0.2} step={0.05} as="ul" className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+            {DISCIPLINES.map((d) => (
+              <motion.li key={d.index} variants={fadeUp} className="bg-ink-2 p-7 sm:p-8">
+                <Index>{d.index}</Index>
+                <h3 className="mt-4 text-xl font-medium tracking-[-0.02em] text-fg">
+                  {d.title}
+                </h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-body">
+                  {d.body}
+                </p>
+              </motion.li>
+            ))}
+          </Reveal>
+        </div>
       </Container>
     </section>
   );
@@ -551,13 +554,13 @@ function Positioning() {
 
 function Capabilities() {
   return (
-    <section className="w-full bg-surface-2 py-24 lg:py-32">
+    <section className="w-full bg-surface-2 py-20 lg:py-24">
       <Container>
         <Reveal amount={0.3}>
           <motion.div variants={fadeUp}>
             <SectionHeading
               align="split"
-              title="From disconnected tools to one intelligent system."
+              title="From disconnected tools to one intelligent system"
               lede="Instead of adding more software to your stack, we design a system around the way your business actually operates."
             />
           </motion.div>
@@ -575,8 +578,8 @@ function Capabilities() {
             >
               All services
               <ArrowUpRight
-                weight="bold"
-                className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5"
+                aria-hidden="true"
               />
             </Link>
           </motion.div>
@@ -590,14 +593,13 @@ function Capabilities() {
 
 function System() {
   return (
-    <section className="relative w-full overflow-hidden bg-ink py-24 lg:py-32">
+    <section className="w-full bg-ink py-20 lg:py-24">
       <Container>
         <Reveal amount={0.3}>
           <motion.div variants={fadeUp}>
             <SectionHeading
-              invert
               align="split"
-              title="Conversations, logic, data, actions - one route."
+              title="Conversations, logic, data, actions - one route"
               lede="We connect every layer so your business doesn't stop at collecting information. It acts on it."
             />
           </motion.div>
@@ -615,21 +617,21 @@ function System() {
 
 function LeadPulz() {
   return (
-    <section id="leadpulz" className="w-full overflow-hidden bg-surface py-24 lg:py-32">
+    <section id="leadpulz" className="w-full overflow-hidden bg-surface py-20 lg:py-24">
       <Container>
-        <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <div className="grid items-center gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <Reveal amount={0.3} className="min-w-0">
-            <motion.div variants={fadeUp} className="flex items-center gap-4">
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
               <Eyebrow>LeadPulz</Eyebrow>
               <Status>In build</Status>
             </motion.div>
             <motion.h2
               variants={fadeUp}
-              className="mt-5 text-[clamp(1.9rem,3.8vw,3rem)] font-medium leading-[1.04] tracking-[-0.03em] text-fg text-balance"
+              className="mt-6 max-w-[16ch] text-[clamp(2rem,3.8vw,3rem)] font-medium leading-[1.06] tracking-[-0.03em] text-fg text-balance"
             >
-              Turn every phone call into a next step.
+              Turn every phone call into a next step
             </motion.h2>
-            <motion.p variants={fadeUp} className="mt-5 max-w-[50ch] text-[17px] leading-relaxed text-body">
+            <motion.p variants={fadeUp} className="mt-5 max-w-[48ch] text-[17px] leading-relaxed text-body">
               LeadPulz is our AI voice platform for handling calls, qualifying
               leads, booking appointments, following up, and connecting every
               conversation to your CRM.
@@ -660,27 +662,21 @@ function LeadPulz() {
 }
 
 /* ---------------- USE CASES - asymmetric bento ----------------
-   Was a horizontal rail of 620px-tall photo cards: the title and body
-   sat below the fold of each card, and the flow and index labels were
-   overlaid directly on the photography. Rebuilt as a bento so the copy
-   leads and the imagery supports it, and so the page carries a layout
-   family other than the two-column split it uses five times elsewhere.
+   Copy leads. The grid gets its rhythm from cell size, which is what
+   the bento was for in the first place - the photographs were doing
+   the work of making six cells look different from each other, and
+   they were generated pictures of a company that does not exist.
 --------------------------------------------------------------- */
 
-function UseCaseFlow({ steps, dark }: { steps: readonly string[]; dark: boolean }) {
+function UseCaseFlow({ steps }: { steps: readonly string[] }) {
   return (
-    <ol
-      className={`flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] uppercase tracking-[0.14em] ${
-        dark ? "text-accent-dark" : "text-accent-strong"
-      }`}
-    >
+    <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-muted">
       {steps.map((step, i) => (
         <li key={step} className="flex items-center gap-2">
           {i > 0 ? (
             <CaretRight
-              weight="bold"
               aria-hidden="true"
-              className="h-2.5 w-2.5 opacity-50"
+              className="h-3 w-3 shrink-0 text-muted"
             />
           ) : null}
           {step}
@@ -692,87 +688,47 @@ function UseCaseFlow({ steps, dark }: { steps: readonly string[]; dark: boolean 
 
 function UseCases() {
   return (
-    <section className="w-full bg-surface-2 py-24 lg:py-32">
+    <section className="w-full bg-surface-2 py-20 lg:py-24">
       <Container>
         <Reveal amount={0.3}>
           <motion.div variants={fadeUp} className="max-w-[46ch]">
             <SectionHeading
-              title="Built around real business processes."
+              title="Built around real business processes"
               lede="Different teams have different workflows. The system adapts to your operation, not the other way around."
             />
           </motion.div>
         </Reveal>
 
         <Reveal
-          step={0.07}
+          step={0.05}
           amount={0.15}
-          className="mt-14 grid gap-4 sm:grid-cols-2 lg:mt-18 lg:grid-cols-6 lg:gap-5"
+          className="mt-14 grid gap-4 sm:grid-cols-2 lg:mt-20 lg:grid-cols-6 lg:gap-5"
         >
-          {USE_CASES.map((u) => {
-            const wide = u.span === 6;
-            return (
-              <motion.article
-                key={u.title}
-                variants={fadeUp}
-                className={`group relative flex min-h-[260px] flex-col overflow-hidden rounded-2xl ${
-                  wide ? "sm:col-span-2" : ""
-                } ${
-                  u.span === 4
-                    ? "lg:col-span-4"
-                    : u.span === 6
-                      ? "lg:col-span-6"
-                      : "lg:col-span-2"
-                } ${
-                  u.media
-                    ? "bg-ink"
-                    : "border border-line bg-surface"
-                }`}
-              >
-                {u.media ? (
-                  <>
-                    <Image
-                      src={u.image}
-                      alt=""
-                      fill
-                      sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 60vw"
-                      className="object-cover saturate-[0.85] transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
-                    />
-                    {/* Legible floor for the copy, not a decorative wash */}
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.35)_0%,rgba(11,16,32,0.55)_45%,rgba(11,16,32,0.94)_100%)]"
-                    />
-                  </>
-                ) : null}
-
-                <div
-                  className={`relative flex h-full flex-col gap-4 p-7 lg:p-8 ${
-                    // photo cards sit their copy on the dark floor of the
-                    // gradient; text cards read top-down with the flow pinned
-                    u.media ? "justify-end" : "justify-between"
-                  }`}
-                >
-                  <div>
-                    <h3
-                      className={`text-xl font-medium tracking-[-0.02em] lg:text-2xl ${
-                        u.media ? "text-white" : "text-fg"
-                      }`}
-                    >
-                      {u.title}
-                    </h3>
-                    <p
-                      className={`mt-3 max-w-[46ch] text-sm leading-relaxed ${
-                        u.media ? "text-on-dark" : "text-body"
-                      }`}
-                    >
-                      {u.body}
-                    </p>
-                  </div>
-                  <UseCaseFlow steps={u.flow} dark={u.media} />
-                </div>
-              </motion.article>
-            );
-          })}
+          {USE_CASES.map((u) => (
+            <motion.article
+              key={u.title}
+              variants={fadeUp}
+              className={`group flex min-h-[220px] flex-col justify-between gap-6 rounded-xl border border-line bg-ink-2 p-7 transition-colors duration-200 hover:border-line-strong lg:p-8 ${
+                u.span === 6 ? "sm:col-span-2" : ""
+              } ${
+                u.span === 4
+                  ? "lg:col-span-4"
+                  : u.span === 6
+                    ? "lg:col-span-6"
+                    : "lg:col-span-2"
+              }`}
+            >
+              <div>
+                <h3 className="text-xl font-medium tracking-[-0.02em] text-fg lg:text-2xl">
+                  {u.title}
+                </h3>
+                <p className="mt-3 max-w-[48ch] text-[15px] leading-relaxed text-body">
+                  {u.body}
+                </p>
+              </div>
+              <UseCaseFlow steps={u.flow} />
+            </motion.article>
+          ))}
         </Reveal>
       </Container>
     </section>
@@ -780,16 +736,14 @@ function UseCases() {
 }
 
 /* ---------------- PROJECTS - editorial index ----------------
-   Was a 2-col card grid where the featured card carried lg:row-span-2
-   and ran ~450px of dead white below its content. There are no product
-   screenshots for these platforms, and dropping stock photography in
-   would imply shipped UI that does not exist, so this leans typographic
-   instead: rows size to their content, and the whole row is the target.
+   Rows size to their content and the whole row is the target. There
+   are no product screenshots for these platforms, and stock imagery
+   would imply shipped UI that does not exist.
 ------------------------------------------------------------- */
 
 function Projects() {
   return (
-    <section id="projects" className="w-full bg-surface py-24 lg:py-32">
+    <section id="projects" className="w-full bg-surface py-20 lg:py-24">
       <Container>
         <Reveal
           amount={0.3}
@@ -798,7 +752,7 @@ function Projects() {
           <motion.div variants={fadeUp}>
             <SectionHeading
               eyebrow="Work in progress"
-              title="What we're building right now."
+              title="What we're building right now"
               lede="Client platforms alongside the systems we run FlowFoundry on."
             />
           </motion.div>
@@ -811,9 +765,9 @@ function Projects() {
         </Reveal>
 
         <Reveal
-          step={0.07}
+          step={0.05}
           amount={0.15}
-          className="mt-14 border-t border-line lg:mt-18"
+          className="mt-14 border-t border-line lg:mt-20"
         >
           {PROJECTS.map((p) => (
             <motion.article
@@ -823,13 +777,11 @@ function Projects() {
             >
               <Link
                 href={p.href ?? "/portfolio"}
-                className="group grid gap-6 py-9 transition-colors duration-500 lg:grid-cols-[minmax(0,0.38fr)_minmax(0,1fr)_auto] lg:gap-12 lg:py-11"
+                className="group grid gap-6 py-9 transition-colors duration-200 lg:grid-cols-[minmax(0,0.38fr)_minmax(0,1fr)_auto] lg:gap-12 lg:py-11"
               >
                 <div className="min-w-0">
-                  <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
-                    {p.category}
-                  </p>
-                  <h3 className="mt-3 text-2xl font-medium tracking-[-0.025em] text-fg transition-colors duration-500 group-hover:text-accent-strong lg:text-[2rem] lg:leading-[1.1]">
+                  <p className="text-[13px] text-muted">{p.category}</p>
+                  <h3 className="mt-3 text-2xl font-medium tracking-[-0.025em] text-fg lg:text-[2rem] lg:leading-[1.1]">
                     {p.name}
                   </h3>
                 </div>
@@ -847,7 +799,7 @@ function Projects() {
                     {p.highlights.slice(0, 4).map((h) => (
                       <li
                         key={h}
-                        className="rounded-full border border-line bg-surface-2 px-3 py-1 text-xs text-body"
+                        className="rounded-md border border-line bg-surface-2 px-3 py-1.5 text-[13px] text-muted"
                       >
                         {h}
                       </li>
@@ -857,8 +809,8 @@ function Projects() {
 
                 <div className="flex items-center justify-between gap-5 lg:flex-col lg:items-end lg:justify-start lg:gap-6">
                   <Status>{p.status}</Status>
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-fg transition-all duration-500 group-hover:border-accent group-hover:bg-accent group-hover:text-white">
-                    <ArrowUpRight weight="bold" className="h-4 w-4" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line text-muted transition-colors duration-200 group-hover:border-line-strong group-hover:bg-ink-2 group-hover:text-fg">
+                    <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </span>
                 </div>
               </Link>
@@ -874,15 +826,14 @@ function Projects() {
 
 function Why() {
   return (
-    <section className="w-full bg-ink py-24 lg:py-32">
+    <section className="w-full bg-ink py-20 lg:py-24">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal amount={0.4}>
               <motion.div variants={fadeUp}>
                 <SectionHeading
-                  invert
-                  title="Technology built around the business - not the other way around."
+                  title="Technology built around the business - not the other way around"
                   lede="Good automation isn't about connecting random tools. It's about understanding the process first, then designing the right system around it."
                 />
               </motion.div>
@@ -905,13 +856,13 @@ function Why() {
 
 function ProcessSection() {
   return (
-    <section className="w-full bg-surface py-24 lg:py-32">
+    <section className="w-full bg-surface py-20 lg:py-24">
       <Container>
         <Reveal amount={0.3}>
           <motion.div variants={fadeUp}>
             <SectionHeading
               align="split"
-              title="From process to production."
+              title="From process to production"
               lede="Start with the business problem. Design the system. Build, integrate, launch, and improve."
             />
           </motion.div>

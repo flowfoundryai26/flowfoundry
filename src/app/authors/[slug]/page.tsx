@@ -107,7 +107,7 @@ export default async function Page({ params }: Props) {
                 <h1 className="mt-6 text-[clamp(2.1rem,4.4vw,3.6rem)] font-medium leading-[1.02] tracking-[-0.035em] text-white">
                   {FOUNDER.name}
                 </h1>
-                <p className="mt-4 font-mono text-2xs uppercase tracking-[0.18em] text-accent-dark">
+                <p className="mt-4 font-mono text-2xs text-muted">
                   {FOUNDER.role}
                 </p>
                 <p className="mt-7 max-w-[58ch] text-base leading-relaxed text-on-dark sm:text-lg">
@@ -126,7 +126,6 @@ export default async function Page({ params }: Props) {
                         >
                           {l.label}
                           <ArrowUpRight
-                            weight="bold"
                             className="h-3 w-3"
                             aria-hidden="true"
                           />
@@ -154,15 +153,15 @@ export default async function Page({ params }: Props) {
         </section>
 
         {/* EXPERTISE */}
-        <section className="w-full bg-surface py-20 lg:py-28">
+        <section className="w-full bg-surface py-20 lg:py-24">
           <Container>
             <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
               <div>
-                <p className="font-mono text-2xs uppercase tracking-[0.18em] text-muted">
+                <p className="font-mono text-2xs text-muted">
                   Areas of expertise
                 </p>
                 <h2 className="mt-5 text-[clamp(1.7rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.03em] text-fg">
-                  What Sri Harsha works on.
+                  What Sri Harsha works on
                 </h2>
               </div>
 
@@ -179,7 +178,7 @@ export default async function Page({ params }: Props) {
                 </ul>
 
                 <div className="mt-12">
-                  <p className="font-mono text-2xs uppercase tracking-[0.18em] text-muted">
+                  <p className="font-mono text-2xs text-muted">
                     Platforms worked on
                   </p>
                   <ul className="mt-5 flex flex-wrap gap-2">
@@ -191,7 +190,6 @@ export default async function Page({ params }: Props) {
                         >
                           {w.label}
                           <ArrowUpRight
-                            weight="bold"
                             className="h-3 w-3"
                             aria-hidden="true"
                           />
@@ -206,9 +204,9 @@ export default async function Page({ params }: Props) {
         </section>
 
         {/* ARTICLES */}
-        <section className="w-full bg-surface-2 py-20 lg:py-28">
+        <section className="w-full bg-surface-2 py-20 lg:py-24">
           <Container>
-            <p className="font-mono text-2xs uppercase tracking-[0.18em] text-muted">
+            <p className="font-mono text-2xs text-muted">
               Articles
             </p>
             <h2 className="mt-5 text-[clamp(1.7rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.03em] text-fg">
@@ -231,7 +229,7 @@ export default async function Page({ params }: Props) {
                         {a.lede}
                       </p>
                     </div>
-                    <p className="font-mono text-2xs uppercase tracking-[0.12em] text-muted lg:text-right">
+                    <p className="font-mono text-2xs text-muted lg:text-right">
                       <time dateTime={a.published}>
                         {new Date(a.published).toLocaleDateString("en-IN", {
                           month: "short",

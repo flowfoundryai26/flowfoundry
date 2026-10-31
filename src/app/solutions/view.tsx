@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
+import { ArrowUpRight } from "@phosphor-icons/react";
 import { Arrow, Button, Chip, Container, Eyebrow, Index, SectionHeading } from "@/components/ui";
 import { Reveal, Spotlight, fadeUp, scaleIn } from "@/components/motion";
 import { CTA, PageHero, Process } from "@/components/sections";
@@ -22,7 +21,6 @@ const SOLUTIONS = [
     outcome: "A more consistent lead-handling process with faster routing and better visibility.",
     workflow: ["Lead captured", "AI engagement", "Qualification", "CRM update", "Follow-up"],
     capabilities: ["Multi-channel lead capture", "Qualification workflows", "Lead scoring and routing", "Automated follow-ups", "CRM synchronization"],
-    image: "/images/use-cases/sales.webp",
   },
   {
     id: "sales",
@@ -33,7 +31,6 @@ const SOLUTIONS = [
     outcome: "A cleaner pipeline with fewer manual handoffs and more consistent follow-up.",
     workflow: ["Prospect", "Conversation", "Qualified", "Meeting", "Pipeline"],
     capabilities: ["Lead engagement", "Qualification", "Meeting scheduling", "Follow-up automation", "Pipeline workflows"],
-    image: "/images/mission.webp",
   },
   {
     id: "support",
@@ -44,7 +41,6 @@ const SOLUTIONS = [
     outcome: "More consistent support while preserving human escalation for important conversations.",
     workflow: ["Customer", "AI support", "Knowledge", "Resolution", "Escalation"],
     capabilities: ["AI support agents", "Knowledge base integration", "Conversation routing", "Human escalation", "Support workflow automation"],
-    image: "/images/use-cases/support.webp",
   },
   {
     id: "operations",
@@ -55,7 +51,6 @@ const SOLUTIONS = [
     outcome: "Less repetitive coordination and clearer operational workflows across teams.",
     workflow: ["Request", "Rules", "Approval", "System update", "Notification"],
     capabilities: ["Approval workflows", "Task automation", "Notifications", "Data movement", "Internal process automation"],
-    image: "/images/use-cases/operations.webp",
   },
   {
     id: "crm",
@@ -66,7 +61,6 @@ const SOLUTIONS = [
     outcome: "Cleaner customer data and fewer repetitive CRM updates for the team.",
     workflow: ["Activity", "Capture", "Sync", "CRM", "Next action"],
     capabilities: ["Automatic record updates", "Data synchronization", "Lead stage workflows", "Activity tracking", "System integrations"],
-    image: "/images/why/integration.webp",
   },
   {
     id: "appointments",
@@ -77,7 +71,6 @@ const SOLUTIONS = [
     outcome: "A smoother path from interested prospect to confirmed appointment.",
     workflow: ["Qualified lead", "Availability", "Booking", "Confirmation", "Reminder"],
     capabilities: ["Calendar integration", "Availability checks", "Automated booking", "Confirmations", "Reminder workflows"],
-    image: "/images/use-cases/services.webp",
   },
 ];
 
@@ -109,23 +102,22 @@ export default function SolutionsPage() {
     <div className="w-full overflow-x-clip">
       <PageHero
         eyebrow="Business solutions"
-        title="Automate the process, not just the task."
+        title="Automate the process, not just the task"
         lede="Intelligent workflows built around real business problems: lead handling, sales, support, operations, CRM, and appointments."
         primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Our services", href: "/services" }}
-        image="/images/use-cases/support.webp"
         strip={
           <ul className="grid gap-3 lg:justify-items-end">
             {SOLUTIONS.map((s) => (
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-on-dark-muted transition-colors hover:text-white"
+                  className="group inline-flex items-center gap-3 font-mono text-xs text-on-dark-muted transition-colors hover:text-white"
                 >
                   <span className="text-[10px]">{s.index}</span>
                   <span className="relative">
                     {s.title}
-                    <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-accent-dark transition-transform duration-500 group-hover:scale-x-100" />
+                    <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-fg transition-transform duration-200 group-hover:scale-x-100" />
                   </span>
                 </a>
               </li>
@@ -135,14 +127,14 @@ export default function SolutionsPage() {
       />
 
       {/* INTRO */}
-      <section className="w-full bg-surface pt-24 lg:pt-32">
+      <section className="w-full bg-surface pt-20 lg:pt-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="Where we help"
-                title="Solutions built around real business workflows."
+                title="Solutions built around real business workflows"
                 lede="We don't force every client into the same automation template. Each system is designed around the way the process actually works."
               />
             </motion.div>
@@ -159,25 +151,25 @@ export default function SolutionsPage() {
               return (
                 <Reveal key={s.id} amount={0.2} id={s.id} className="scroll-mt-24">
                   <motion.article variants={fadeUp}>
-                    <Spotlight className="overflow-hidden rounded-[24px] border border-line bg-surface transition-colors duration-500 hover:border-line-strong">
+                    <Spotlight className="overflow-hidden rounded-xl border border-line bg-surface transition-colors duration-200 hover:border-line-strong">
                       <div className={`grid ${flip ? "lg:grid-cols-[0.85fr_1.15fr]" : "lg:grid-cols-[1.15fr_0.85fr]"}`}>
                         {/* Copy */}
                         <div className={`p-7 sm:p-10 lg:p-12 ${flip ? "lg:order-2" : ""}`}>
                           <div className="flex items-center gap-4">
                             <Index>{s.index}</Index>
                             <span className="h-px w-8 bg-line-strong" />
-                            <span className="font-mono text-2xs uppercase tracking-[0.16em] text-accent-strong">Solution</span>
+                            <span className="font-mono text-2xs text-muted">Solution</span>
                           </div>
                           <h3 className="mt-6 text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.06] tracking-[-0.03em] text-fg">
                             {s.title}
                           </h3>
 
                           <dl className="mt-8 grid gap-6 sm:grid-cols-[92px_1fr] sm:gap-x-8">
-                            <dt className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">Problem</dt>
+                            <dt className="font-mono text-2xs text-muted">Problem</dt>
                             <dd className="text-[15px] leading-relaxed text-body">{s.problem}</dd>
-                            <dt className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">Approach</dt>
+                            <dt className="font-mono text-2xs text-muted">Approach</dt>
                             <dd className="text-[15px] leading-relaxed text-body">{s.solution}</dd>
-                            <dt className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">Outcome</dt>
+                            <dt className="font-mono text-2xs text-muted">Outcome</dt>
                             <dd className="text-[15px] font-medium leading-relaxed text-fg">{s.outcome}</dd>
                           </dl>
 
@@ -187,57 +179,51 @@ export default function SolutionsPage() {
                           >
                             Book consultation
                             <ArrowUpRight
-                              weight="bold"
-                              className="h-4 w-4 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                              className="h-4 w-4 transition-transform duration-200 group-hover/link:-translate-y-0.5"
                             />
                           </Link>
                         </div>
 
-                        {/* Visual */}
-                        <div className={`relative flex flex-col justify-end bg-ink ${flip ? "lg:order-1" : ""}`}>
-                          <div className="absolute inset-0">
-                            <Image
-                              src={s.image}
-                              alt=""
-                              fill
-                              sizes="(max-width: 1023px) 100vw, 40vw"
-                              className="object-cover opacity-40 saturate-[0.7]"
-                            />
-                            <div className="absolute inset-0 bg-[linear-gradient(0deg,#0b1020_10%,rgba(11,16,32,0.45)_60%,rgba(11,16,32,0.7)_100%)]" />
-                          </div>
-                          <div className="relative p-7 sm:p-8">
-                            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-on-dark-muted">
-                              Workflow
-                            </p>
-                            <ol className="mt-4 flex flex-wrap items-center gap-2">
-                              {s.workflow.map((w, j) => (
-                                <li key={w} className="flex items-center gap-2">
-                                  <motion.span
-                                    className={`rounded-md border px-2.5 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.1em] ${
-                                      j === s.workflow.length - 1
-                                        ? "border-live/30 bg-live/10 text-[#5fd39e]"
-                                        : "border-white/10 bg-white/[0.04] text-on-dark"
-                                    }`}
-                                    animate={{ opacity: [0.6, 1, 0.6] }}
-                                    transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: j * 0.35 }}
-                                  >
-                                    {w}
-                                  </motion.span>
-                                  {j < s.workflow.length - 1 ? (
-                                    <ArrowRight className="h-3 w-3 text-on-dark-muted" aria-hidden="true" />
-                                  ) : null}
-                                </li>
-                              ))}
-                            </ol>
-                            <ul className="mt-6 grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
-                              {s.capabilities.map((c) => (
-                                <li key={c} className="flex items-center gap-2 text-[13px] text-on-dark">
-                                  <span className="h-1 w-1 rounded-full bg-accent-dark" />
-                                  {c}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                        {/*
+                          Was a photograph at 40% with the workflow chips
+                          pinned to the bottom edge, so with the picture gone
+                          the column was mostly empty. The workflow was always
+                          the content here, so it now runs down the column as
+                          the same ember route the rest of the site uses, with
+                          what the solution includes underneath it.
+                        */}
+                        <div className={`relative bg-ink p-7 sm:p-10 lg:p-12 ${flip ? "lg:order-1" : ""}`}>
+                          <p className="text-[13px] text-muted">Workflow</p>
+                          <ol className="mt-5 border-l border-line-strong">
+                            {s.workflow.map((w, j) => (
+                              <li key={w} className="relative py-2 pl-6">
+                                <span
+                                  aria-hidden="true"
+                                  className="absolute -left-[4px] top-[15px] h-[7px] w-[7px] rounded-full bg-accent"
+                                />
+                                <span className="flex items-baseline gap-3">
+                                  <Index>{String(j + 1).padStart(2, "0")}</Index>
+                                  <span className="text-[15px] text-fg">{w}</span>
+                                </span>
+                              </li>
+                            ))}
+                          </ol>
+
+                          <p className="mt-9 text-[13px] text-muted">What it includes</p>
+                          <ul className="mt-4 grid gap-y-2">
+                            {s.capabilities.map((c) => (
+                              <li
+                                key={c}
+                                className="flex items-start gap-2.5 text-[14px] leading-relaxed text-body"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-line-strong"
+                                />
+                                {c}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       </div>
                     </Spotlight>
@@ -250,14 +236,14 @@ export default function SolutionsPage() {
       </section>
 
       {/* SYSTEM THINKING */}
-      <section className="w-full bg-surface-2 py-24 lg:py-32">
+      <section className="w-full bg-surface-2 py-20 lg:py-24">
         <Container>
           <div className="grid items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <Reveal amount={0.3} className="lg:sticky lg:top-28">
               <motion.div variants={fadeUp}>
                 <SectionHeading
                   eyebrow="System thinking"
-                  title="One process can touch many systems."
+                  title="One process can touch many systems"
                   lede="Real automation usually spans more than one application. That's why we design around the full workflow instead of automating isolated clicks."
                 />
               </motion.div>
@@ -280,14 +266,14 @@ export default function SolutionsPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="w-full bg-surface py-24 lg:py-32">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="From idea to system"
-                title="How we turn workflows into working systems."
+                title="How we turn workflows into working systems"
                 lede="A structured process keeps technology aligned with the outcome you're trying to create."
               />
             </motion.div>
@@ -308,7 +294,7 @@ export default function SolutionsPage() {
             >
               <Eyebrow>Where it applies</Eyebrow>
               <h2 className="mt-4 text-[clamp(1.5rem,2.6vw,2rem)] font-medium leading-[1.08] tracking-[-0.025em] text-fg">
-                Built for different business models.
+                Built for different business models
               </h2>
               <p className="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-body">
                 The same system-thinking adapts to sales-led, service-led, and operations-heavy businesses.
@@ -322,12 +308,8 @@ export default function SolutionsPage() {
 
             <motion.div
               variants={scaleIn}
-              className="relative overflow-hidden rounded-2xl bg-ink p-8 sm:p-10"
+              className="relative overflow-hidden rounded-xl border border-line bg-ink p-8 sm:p-10"
             >
-              <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-                <Image src="/images/dashboard.jpeg" alt="" fill sizes="50vw" className="object-cover object-top opacity-[0.14] saturate-0" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.5)_0%,#0b1020_80%)]" />
-              </div>
               <div className="relative">
                 <Eyebrow dark>LeadPulz</Eyebrow>
                 <h2 className="mt-4 text-[clamp(1.5rem,2.6vw,2rem)] font-medium leading-[1.08] tracking-[-0.025em] text-white">
@@ -356,7 +338,6 @@ export default function SolutionsPage() {
         lede="Tell us how it works today. We'll map the conversations, logic, data, and actions - and show you what an automated version looks like."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Our services", href: "/services" }}
-        image="/images/use-cases/ecommerce.webp"
       />
     </div>
   );

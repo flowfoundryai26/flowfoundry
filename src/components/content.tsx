@@ -27,7 +27,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`w-full scroll-mt-24 ${bg} py-20 lg:py-28 ${className}`}
+      className={`w-full scroll-mt-24 ${bg} py-20 lg:py-24 ${className}`}
     >
       <Container>{children}</Container>
     </section>
@@ -49,7 +49,7 @@ export function Breadcrumbs({
   const strong = dark ? "text-white" : "text-fg";
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-2xs uppercase tracking-[0.14em]">
+      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-2xs">
         <li>
           <Link href="/" className={`${muted} transition-colors hover:${strong}`}>
             Home
@@ -100,7 +100,7 @@ export function Flow({
     <div>
       {title ? (
         <p
-          className={`font-mono text-2xs uppercase tracking-[0.16em] ${
+          className={`font-mono text-2xs ${
             dark ? "text-on-dark-muted" : "text-muted"
           }`}
         >
@@ -325,9 +325,9 @@ export function Compare({
           }`}
         >
           {variant === "yes" ? (
-            <Check weight="bold" className="h-3 w-3" />
+            <Check className="h-3 w-3" />
           ) : (
-            <Minus weight="bold" className="h-3 w-3" />
+            <Minus className="h-3 w-3" />
           )}
         </span>
         <h3 className={`text-[15px] font-medium tracking-[-0.01em] ${head}`}>
@@ -361,7 +361,7 @@ export function Compare({
     <div>
       {title ? (
         <p
-          className={`font-mono text-2xs uppercase tracking-[0.16em] ${
+          className={`font-mono text-2xs ${
             dark ? "text-on-dark-muted" : "text-muted"
           }`}
         >
@@ -400,7 +400,7 @@ export function Callout({
       }`}
     >
       <p
-        className={`font-mono text-2xs uppercase tracking-[0.14em] ${
+        className={`font-mono text-2xs ${
           dark ? "text-accent-dark" : "text-accent-strong"
         }`}
       >
@@ -458,7 +458,6 @@ export function Faqs({
                 }`}
               >
                 <Plus
-                  weight="bold"
                   className="h-3 w-3 transition-transform duration-300 group-open/faq:rotate-45"
                 />
               </span>
@@ -547,7 +546,7 @@ export function MetricSlots({
             }`}
           >
             <p
-              className={`font-mono text-[10px] uppercase tracking-[0.16em] ${
+              className={`font-mono text-2xs ${
                 dark ? "text-on-dark-muted" : "text-muted"
               }`}
             >
@@ -564,7 +563,7 @@ export function MetricSlots({
                   {m.value}
                 </p>
                 <p
-                  className={`mt-1.5 font-mono text-[10px] uppercase tracking-[0.12em] ${
+                  className={`mt-1.5 font-mono text-2xs ${
                     dark ? "text-on-dark-muted" : "text-muted"
                   }`}
                 >
@@ -573,7 +572,7 @@ export function MetricSlots({
               </>
             ) : (
               <p
-                className={`mt-2.5 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] ${
+                className={`mt-2.5 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-2xs ${
                   dark
                     ? "border-white/10 bg-white/[0.03] text-on-dark-muted"
                     : "border-line bg-surface-2 text-muted"
@@ -621,7 +620,7 @@ export function Related({
       {visible.map((g) => (
         <nav key={g.title} aria-label={g.title}>
           <h2
-            className={`font-mono text-2xs uppercase tracking-[0.18em] ${
+            className={`font-mono text-2xs ${
               dark ? "text-on-dark-muted" : "text-muted"
             }`}
           >
@@ -661,9 +660,8 @@ export function Related({
                     ) : null}
                   </span>
                   <ArrowUpRight
-                    weight="bold"
                     aria-hidden="true"
-                    className={`mt-1 h-3.5 w-3.5 shrink-0 opacity-0 transition-all duration-300 group-hover:opacity-100 ${
+                    className={`mt-1 h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
                       dark ? "text-white" : "text-fg"
                     }`}
                   />
@@ -695,7 +693,7 @@ export function Conversation({
           aria-hidden="true"
           className="h-1.5 w-1.5 rounded-full bg-live"
         />
-        <p className="font-mono text-2xs uppercase tracking-[0.14em] text-on-dark-muted">
+        <p className="font-mono text-2xs text-on-dark-muted">
           {title}
         </p>
       </div>
@@ -715,7 +713,7 @@ export function Conversation({
                     : "rounded-br-md bg-accent/90 text-white"
                 }`}
               >
-                <span className="mb-1 block font-mono text-[9.5px] uppercase tracking-[0.14em] opacity-60">
+              <span className="mb-1 block font-mono text-2xs opacity-60">
                   {t.who}
                 </span>
                 {t.line}
