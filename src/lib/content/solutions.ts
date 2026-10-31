@@ -20,7 +20,6 @@ export type Solution = {
   /** Hero paragraph. */
   lede: string;
   /** Hero photo, reused from the existing library. */
-  image: string;
   /** What the business is dealing with before anything is built. */
   problem: { title: string; body: string; symptoms: string[] };
   /** The manual version of the process, step by step. */
@@ -53,7 +52,6 @@ export const SOLUTIONS: Solution[] = [
     eyebrow: "AI Agents",
     lede:
       "A voice agent that picks up when your team cannot, asks the questions a receptionist would ask, and writes the outcome straight into the systems you already use.",
-    image: "/images/use-cases/sales.webp",
     problem: {
       title: "Missed calls are missed revenue",
       body:
@@ -214,7 +212,6 @@ export const SOLUTIONS: Solution[] = [
     eyebrow: "AI Agents",
     lede:
       "In India, WhatsApp is where the enquiry actually lands. We automate the repetitive half of that conversation - qualification, confirmation, reminders and follow-up - without turning it into a phone tree.",
-    image: "/images/use-cases/support.webp",
     problem: {
       title: "The enquiry channel nobody can report on",
       body:
@@ -359,7 +356,6 @@ export const SOLUTIONS: Solution[] = [
     eyebrow: "Automation",
     lede:
       "Most operational delay is not work. It is waiting: for a handover, an approval, a copy-paste between two systems. We automate the coordination layer and leave the decisions with your team.",
-    image: "/images/use-cases/operations.webp",
     problem: {
       title: "The work between the work",
       body:
@@ -506,7 +502,6 @@ export const SOLUTIONS: Solution[] = [
     eyebrow: "Automation",
     lede:
       "Most CRMs do not fail because of the software. They fail because updating them is manual work nobody is rewarded for. We automate the record-keeping so the pipeline reflects reality.",
-    image: "/images/mission.webp",
     problem: {
       title: "A CRM the team works around",
       body:
@@ -651,7 +646,6 @@ export const SOLUTIONS: Solution[] = [
     eyebrow: "Custom Software",
     lede:
       "Every business has one process that no off-the-shelf product handles, so it lives in a spreadsheet with six tabs and one person who understands it. That is what a portal is for.",
-    image: "/images/use-cases/custom.webp",
     problem: {
       title: "The spreadsheet that became a system",
       body:
@@ -805,7 +799,6 @@ export const SOLUTIONS: Solution[] = [
     eyebrow: "Integrations",
     lede:
       "Shopify handles the storefront well. The work that follows an order - messaging, fulfilment coordination, attribution, commissions, support - is usually still manual.",
-    image: "/images/use-cases/ecommerce.webp",
     problem: {
       title: "Everything after the order is still manual",
       body:

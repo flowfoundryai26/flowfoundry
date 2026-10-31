@@ -81,7 +81,7 @@ export default function InsightsView() {
         <ContentHeading
           align="split"
           eyebrow="Published"
-          title="Written properly, and not many of them."
+          title="Written properly, and not many of them"
           lede="Three long articles rather than thirty short ones. Thin pages dilute a site and give a reader no reason to trust it."
         />
 
@@ -96,10 +96,10 @@ export default function InsightsView() {
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-3">
                       <Index>{String(i + 1).padStart(2, "0")}</Index>
-                      <span className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+                      <span className="font-mono text-2xs text-muted">
                         {a.category}
                       </span>
-                      <span className="font-mono text-2xs uppercase tracking-[0.12em] text-muted">
+                      <span className="font-mono text-2xs text-muted">
                         {a.readingMinutes} min read
                       </span>
                     </div>
@@ -115,7 +115,6 @@ export default function InsightsView() {
                     <span className="mt-7 inline-flex items-center gap-1.5 text-sm font-medium text-fg">
                       Read the article
                       <ArrowUpRight
-                        weight="bold"
                         aria-hidden="true"
                         className="h-4 w-4 transition-transform duration-300 group-hover/spot:-translate-y-0.5 group-hover/spot:translate-x-0.5"
                       />
@@ -137,13 +136,13 @@ export default function InsightsView() {
                         <span className="block text-[13px] font-medium text-fg">
                           {FOUNDER.name}
                         </span>
-                        <span className="block font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                        <span className="block font-mono text-2xs text-muted">
                           {FOUNDER.shortRole}
                         </span>
                       </span>
                     </div>
 
-                    <dl className="space-y-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                    <dl className="space-y-1.5 font-mono text-2xs text-muted">
                       <div>
                         <dt className="inline">Published </dt>
                         <dd className="inline text-body">
@@ -173,7 +172,7 @@ export default function InsightsView() {
           <div>
             <ContentHeading
               eyebrow="In the pipeline"
-              title="What we are writing next."
+              title="What we are writing next"
             />
             <div className="mt-8">
               <Callout title="Why these are not published yet">
@@ -211,7 +210,6 @@ export default function InsightsView() {
         lede="A consultation covers the same ground as these articles, applied to your actual workflow."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
-        image="/images/mission.webp"
       />
     </div>
   );

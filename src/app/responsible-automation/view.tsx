@@ -84,7 +84,7 @@ export default function ResponsibleAutomationView() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <ContentHeading
             eyebrow="Our position"
-            title="We do not claim AI should run unattended."
+            title="We do not claim AI should run unattended"
           />
           <div className="lg:pt-3">
             <p className="max-w-[58ch] text-[17px] leading-relaxed text-body">
@@ -113,7 +113,7 @@ export default function ResponsibleAutomationView() {
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <ContentHeading
             eyebrow="Hard limits"
-            title="Lines we do not cross."
+            title="Lines we do not cross"
             lede="These apply regardless of configuration. They are not settings."
           />
           <div className="lg:pt-2">
@@ -127,7 +127,7 @@ export default function ResponsibleAutomationView() {
         <ContentHeading
           align="split"
           eyebrow="Engineering practices"
-          title="How access and permissions are handled."
+          title="How access and permissions are handled"
           lede="Ten practices applied across every build. None of them are optional extras."
         />
         <div className="mt-14 lg:mt-16">
@@ -141,7 +141,7 @@ export default function ResponsibleAutomationView() {
           invert
           align="split"
           eyebrow="Sensitive surfaces"
-          title="Where the risk actually sits."
+          title="Where the risk actually sits"
           lede="Five places an agent touches something consequential, the failure mode for each, and the control we apply."
         />
 
@@ -160,7 +160,7 @@ export default function ResponsibleAutomationView() {
                 </h3>
 
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-on-dark-muted">
+                  <p className="font-mono text-2xs text-on-dark-muted">
                     Risk
                   </p>
                   <p className="mt-2 text-[14.5px] leading-relaxed text-on-dark">
@@ -169,7 +169,7 @@ export default function ResponsibleAutomationView() {
                 </div>
 
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dark">
+                  <p className="font-mono text-2xs text-muted">
                     Control
                   </p>
                   <p className="mt-2 text-[14.5px] leading-relaxed text-on-dark">
@@ -187,7 +187,7 @@ export default function ResponsibleAutomationView() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <ContentHeading
             eyebrow="During discovery"
-            title="Questions worth asking us."
+            title="Questions worth asking us"
             lede="If we cannot answer these clearly for your specific workflow, that is a reason to be cautious - of us or of anyone else."
           />
           <div className="lg:pt-2">
@@ -208,11 +208,10 @@ export default function ResponsibleAutomationView() {
 
       <CTA
         eyebrow="Next step"
-        title="Bring us a workflow and we will map the risk with it."
+        title="Bring us a workflow and we will map the risk with it"
         lede="Scoping a build includes deciding what the automation may do on its own. That conversation happens in discovery, before anything is built."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "How we work", href: "/how-we-work" }}
-        image="/images/why/architecture.webp"
       />
     </div>
   );

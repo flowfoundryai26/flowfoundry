@@ -187,7 +187,7 @@ export function PageSkeleton({ children }: { children?: ReactNode }) {
     <div className="w-full overflow-x-clip">
       <LoadingStatus />
       <HeroSkeleton />
-      <section className="w-full bg-surface py-20 lg:py-28" aria-hidden="true">
+      <section className="w-full bg-surface py-20 lg:py-24" aria-hidden="true">
         <Container>
           {children ?? (
             <>
@@ -207,7 +207,7 @@ export function ArticleSkeleton() {
     <div className="w-full overflow-x-clip">
       <LoadingStatus label="Loading article" />
       <HeroSkeleton />
-      <section className="w-full bg-surface py-20 lg:py-28" aria-hidden="true">
+      <section className="w-full bg-surface py-20 lg:py-24" aria-hidden="true">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-16">
             <div className="max-w-[68ch] space-y-10">

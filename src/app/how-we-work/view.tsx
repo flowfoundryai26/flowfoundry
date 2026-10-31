@@ -123,7 +123,7 @@ export default function HowWeWorkView() {
         <ContentHeading
           align="split"
           eyebrow="The process"
-          title="From process to production."
+          title="From process to production"
           lede="Discovery and mapping come before any technology decision. That ordering is the whole approach."
         />
 
@@ -150,7 +150,7 @@ export default function HowWeWorkView() {
                   {extra ? (
                     <div className="space-y-4">
                       <div>
-                        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-strong">
+                        <p className="font-mono text-2xs text-muted">
                           You receive
                         </p>
                         <p className="mt-1.5 text-[14px] leading-relaxed text-body">
@@ -158,7 +158,7 @@ export default function HowWeWorkView() {
                         </p>
                       </div>
                       <div>
-                        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                        <p className="font-mono text-2xs text-muted">
                           Your involvement
                         </p>
                         <p className="mt-1.5 text-[14px] leading-relaxed text-muted">
@@ -180,7 +180,7 @@ export default function HowWeWorkView() {
           <div>
             <ContentHeading
               eyebrow="Step zero"
-              title="What actually happens in a consultation."
+              title="What actually happens in a consultation"
               lede="It is a working conversation about your process, not a pitch deck."
             />
             <div className="mt-8">
@@ -203,7 +203,7 @@ export default function HowWeWorkView() {
           invert
           align="split"
           eyebrow="How we decide"
-          title="Build, integrate, or leave it alone."
+          title="Build, integrate, or leave it alone"
           lede="Not every process should be automated. These are the tests we apply before recommending anything."
         />
         <div className="mt-14 lg:mt-18">
@@ -241,7 +241,7 @@ export default function HowWeWorkView() {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <ContentHeading
             eyebrow="How we build"
-            title="Five commitments."
+            title="Five commitments"
             lede="These shape every engagement and they are the reason we argue for narrower first phases than most."
           />
           <div className="lg:pt-2">
@@ -251,7 +251,7 @@ export default function HowWeWorkView() {
       </Section>
 
       <Section surface="paper">
-        <ContentHeading eyebrow="Explore" title="Where to go next." />
+        <ContentHeading eyebrow="Explore" title="Where to go next" />
         <div className="mt-12">
           <Related
             groups={[
@@ -286,11 +286,10 @@ export default function HowWeWorkView() {
 
       <CTA
         eyebrow="Next step"
-        title="Start with discovery. It costs you a conversation."
+        title="Start with discovery. It costs you a conversation"
         lede="Describe the process that is slowing you down. You will get a clear view of what is worth automating, and an honest answer if the answer is nothing."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "View case studies", href: "/case-studies" }}
-        image="/images/why/implementation.webp"
       />
     </div>
   );

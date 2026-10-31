@@ -144,7 +144,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <ContentHeading
             eyebrow="Requirements"
-            title="What it had to do."
+            title="What it had to do"
             lede="The brief, before any technology was chosen."
           />
           <div className="lg:pt-2">
@@ -159,7 +159,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
           invert
           align="split"
           eyebrow="Solution architecture"
-          title="How the system is put together."
+          title="How the system is put together"
           lede="Described in layers, because that is how the design decisions actually separate."
         />
         <div className="mt-14 lg:mt-20">
@@ -179,7 +179,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
           <ContentHeading
             align="split"
             eyebrow="Technologies"
-            title="What it is built with."
+            title="What it is built with"
           />
           <Reveal
             step={0.06}
@@ -187,7 +187,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
           >
             {c.technologies.map((g) => (
               <motion.div key={g.group} variants={fadeUp}>
-                <h3 className="font-mono text-2xs uppercase tracking-[0.18em] text-muted">
+                <h3 className="font-mono text-2xs text-muted">
                   {g.group}
                 </h3>
                 <ul className="mt-4 space-y-2">
@@ -208,7 +208,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
         <ContentHeading
           align="split"
           eyebrow="Core features"
-          title="What it does."
+          title="What it does"
         />
         <div className="mt-14 lg:mt-16">
           <DefRows items={c.coreFeatures} />
@@ -220,7 +220,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
         <ContentHeading
           align="split"
           eyebrow="Challenges"
-          title="What was actually hard."
+          title="What was actually hard"
           lede="The problems worth writing down, and how each one was handled."
         />
         <Reveal
@@ -268,7 +268,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
       {/* ---------------- INTEGRATIONS ---------------- */}
       <Section surface="white">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <ContentHeading eyebrow="Integrations" title="What it connects to." />
+          <ContentHeading eyebrow="Integrations" title="What it connects to" />
           <div className="lg:pt-2">
             <IntegrationChips items={c.integrations} />
           </div>
@@ -282,7 +282,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
             <ContentHeading
               invert
               eyebrow="Results"
-              title="Measured, or marked pending."
+              title="Measured, or marked pending"
             />
             <div className="mt-8">
               <Callout title="Why these are empty" dark>
@@ -305,7 +305,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <ContentHeading
             eyebrow="Lessons"
-            title="What we would tell ourselves at the start."
+            title="What we would tell ourselves at the start"
           />
           <div className="lg:pt-2">
             <Bullets items={c.lessons} />
@@ -318,7 +318,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
         <Section surface="paper">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div className="lg:sticky lg:top-28 lg:self-start">
-              <ContentHeading eyebrow="Questions" title="About this project." />
+              <ContentHeading eyebrow="Questions" title="About this project" />
             </div>
             <Faqs items={c.faqs} />
           </div>
@@ -327,7 +327,7 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
 
       {/* ---------------- RELATED ---------------- */}
       <Section surface="white">
-        <ContentHeading eyebrow="Keep reading" title="Related to this." />
+        <ContentHeading eyebrow="Keep reading" title="Related to this" />
         <div className="mt-12">
           <Related groups={related} />
         </div>
@@ -339,7 +339,6 @@ export default function CaseStudyView({ study: c }: { study: CaseStudy }) {
         lede="Describe the system you have in mind. We will tell you what it takes, what we would do differently, and whether we are the right team for it."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "All case studies", href: "/case-studies" }}
-        image={c.image}
       />
     </div>
   );

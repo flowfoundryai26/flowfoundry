@@ -28,7 +28,6 @@ export async function generateMetadata({ params }: Props) {
     title: c.metaTitle,
     description: c.metaDescription,
     path: `/case-studies/${c.slug}`,
-    image: c.image,
   });
 }
 

@@ -39,7 +39,6 @@ export type Article = {
   updated: string;
   readingMinutes: number;
   category: string;
-  image: string;
   body: Block[];
   faqs: Faq[];
   relatedSolutions: string[];
@@ -62,7 +61,6 @@ export const ARTICLES: Article[] = [
     updated: "2026-09-25",
     readingMinutes: 9,
     category: "AI Agents",
-    image: "/images/use-cases/services.webp",
     body: [
       { t: "p", text: "Every dental practice we have looked at has the same structural problem, and it has nothing to do with demand. The front desk is staffed by someone who is also assisting chairside, processing payments, and handling walk-ins. When the phone rings during a procedure, it rings out." },
       { t: "p", text: "That matters more in dentistry than in most sectors because dental demand is local and comparison-shopped. A patient with a chipped tooth is calling three practices, not one. The practice that answers gets the appointment. The other two never learn the call happened." },
@@ -180,7 +178,6 @@ export const ARTICLES: Article[] = [
     updated: "2026-09-25",
     readingMinutes: 10,
     category: "Automation",
-    image: "/images/use-cases/support.webp",
     body: [
       { t: "p", text: "Ask an Indian business owner where enquiries come from and WhatsApp is usually the first answer. Ask to see the pipeline report for that channel and there generally is not one. The conversations are on someone's personal phone." },
       { t: "p", text: "That gap is the whole problem. The highest-volume channel is the least instrumented, the least shareable, and the most dependent on one person being available. When they go on leave, the channel stops." },
@@ -290,7 +287,6 @@ export const ARTICLES: Article[] = [
     updated: "2026-09-25",
     readingMinutes: 8,
     category: "Automation",
-    image: "/images/mission.webp",
     body: [
       { t: "p", text: "The usual diagnosis for a stale CRM is that the team needs more discipline. We have not found that to be true. When updating a CRM is pure overhead for the person doing it, entry slips - and no amount of training changes an incentive." },
       { t: "p", text: "The useful question is not why the team is not updating the CRM. It is which updates should never have required a human in the first place." },

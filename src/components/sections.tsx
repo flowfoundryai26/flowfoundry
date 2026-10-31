@@ -67,28 +67,15 @@ export function PageHero({
               className="object-cover object-center opacity-40 saturate-[0.85]"
             />
           </div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,#0b1020_28%,rgba(11,16,32,0.7)_58%,rgba(11,16,32,0.55)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.6)_0%,rgba(11,16,32,0)_40%,#0b1020_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#131210_0%,#131210_28%,rgba(19,18,16,0.7)_58%,rgba(19,18,16,0.55)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(19,18,16,0.6)_0%,rgba(19,18,16,0)_40%,#131210_100%)]" />
         </div>
-      ) : (
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div
-            className="absolute inset-0 opacity-[0.035]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.7) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
-              maskImage: "radial-gradient(ellipse 75% 90% at 25% 45%, #000 0%, transparent 100%)",
-              WebkitMaskImage: "radial-gradient(ellipse 75% 90% at 25% 45%, #000 0%, transparent 100%)",
-            }}
-          />
-        </div>
-      )}
+      ) : null}
 
       <Container className="relative z-10">
         <div
           className={`grid items-end gap-12 ${
-            compact ? "py-16 lg:py-24" : "py-20 lg:py-28"
+            compact ? "py-16 lg:py-24" : "py-20 lg:py-24"
           } ${aside ? "lg:grid-cols-[1.15fr_0.85fr] lg:items-center" : "lg:grid-cols-[1fr_minmax(0,320px)]"}`}
         >
           <motion.div initial="hidden" animate="visible" variants={stagger(0.1, 0.05)}>
@@ -96,13 +83,13 @@ export function PageHero({
               <Eyebrow dark>{eyebrow}</Eyebrow>
             </motion.div>
 
-            <h1 className="mt-6 max-w-[26ch] text-[clamp(2.05rem,3.4vw,2.9rem)] font-medium leading-[1.04] tracking-[-0.03em] text-white text-balance">
+            <h1 className="mt-8 max-w-[20ch] text-[clamp(2.25rem,4.6vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.03em] text-fg text-balance">
               <Words text={title} delay={0.15} />
             </h1>
 
             <motion.p
               variants={fadeUp}
-              className="mt-7 max-w-[54ch] text-base leading-relaxed text-on-dark sm:text-lg"
+              className="mt-6 max-w-[48ch] text-[17px] leading-relaxed text-body sm:text-lg"
             >
               {lede}
             </motion.p>
@@ -184,18 +171,8 @@ export function StatStrip({
           key={s.label}
           className={`border-l pl-4 ${dark ? "border-white/10" : "border-line-strong"}`}
         >
-          <dt
-            className={`font-mono text-[10px] uppercase tracking-[0.16em] ${
-              dark ? "text-on-dark-muted" : "text-muted"
-            }`}
-          >
-            {s.label}
-          </dt>
-          <dd
-            className={`tnum mt-1.5 text-2xl font-medium tracking-[-0.02em] ${
-              dark ? "text-white" : "text-fg"
-            }`}
-          >
+          <dt className="text-[13px] text-muted">{s.label}</dt>
+          <dd className="tnum mt-2 text-[28px] font-medium leading-none tracking-[-0.02em] text-fg">
             {s.value}
           </dd>
         </div>
@@ -235,7 +212,7 @@ export function RowList({
       {items.map((it) => {
         const href = it.href ?? (hrefBase && it.id ? `${hrefBase}#${it.id}` : undefined);
         const inner = (
-          <div className="grid gap-4 py-7 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 sm:py-8 lg:grid-cols-[72px_1.1fr_1.6fr_40px] lg:items-baseline lg:gap-8">
+          <div className="grid gap-4 py-7 sm:py-8 lg:grid-cols-[72px_1.1fr_1.6fr_40px] lg:items-baseline lg:gap-8">
             <Index dark={dark}>{it.index}</Index>
             <h3
               className={`text-xl font-medium tracking-[-0.02em] sm:text-2xl ${
@@ -249,28 +226,21 @@ export function RowList({
                 {it.body}
               </p>
               {it.meta ? (
-                <p
-                  className={`mt-3 font-mono text-2xs uppercase tracking-[0.12em] ${
-                    dark ? "text-on-dark-muted" : "text-muted"
-                  }`}
-                >
+                <p className="mt-3 text-[13px] text-muted">
                   {it.meta.join("  ·  ")}
                 </p>
               ) : null}
             </div>
             {href ? (
               <ArrowUpRight
-                weight="bold"
-                className={`hidden h-4 w-4 justify-self-end opacity-0 transition-all duration-500 group-hover:opacity-100 lg:block ${
-                  dark ? "text-white" : "text-fg"
-                }`}
+                className="hidden h-4 w-4 justify-self-end text-muted opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:block"
                 aria-hidden="true"
               />
             ) : null}
           </div>
         );
         return (
-          <motion.li key={it.index + it.title} variants={fadeUp} id={it.id} className="group scroll-mt-28">
+          <motion.li key={it.index + it.title} variants={fadeUp} id={it.id} className="group scroll-mt-28 transition-colors duration-200 hover:bg-ink-2/60">
             {href ? (
               <Link href={href} className="block">
                 {inner}
@@ -320,9 +290,8 @@ export function Process({
         {steps.map((s) => (
           <motion.div key={s.number} variants={fadeUp} className="relative">
             <span
-              className={`relative z-10 mb-6 hidden h-[11px] w-[11px] rounded-full border-2 lg:block ${
-                dark ? "border-accent-dark bg-ink" : "border-accent bg-surface"
-              }`}
+              aria-hidden="true"
+              className="relative z-10 mb-6 hidden h-[11px] w-[11px] rounded-full border-2 border-accent bg-ink lg:block"
             />
             <Index dark={dark}>{s.number}</Index>
             <h3
@@ -344,51 +313,40 @@ export function Process({
 
 /* =========================================================
    STICKY STACK - cards stick and pile as you scroll
+
+   The image column is gone. It carried generated "AI architecture"
+   diagrams - a cartoon robot, a glossy hexagon and garbled text that
+   collided with the real copy - and nothing in them was true. These
+   are four statements, so they are set as four statements: the
+   struck serial, the claim, the reasoning, and the ember rule that
+   runs through the rest of the page.
 ========================================================= */
 
 export function StickyStack({
   items,
 }: {
-  items: { index: string; title: string; body: string; image: string; alt: string }[];
+  items: { index: string; title: string; body: string; image?: string; alt?: string }[];
 }) {
   return (
-    <div className="space-y-6 lg:space-y-8">
+    <div className="space-y-5 lg:space-y-6">
       {items.map((it, i) => (
         <div
           key={it.index}
           className="lg:sticky"
-          style={{ top: `calc(96px + ${i * 24}px)` }}
+          style={{ top: `calc(96px + ${i * 20}px)` }}
         >
-          <Spotlight
-            dark
-            className="overflow-hidden rounded-2xl border border-white/10 bg-ink-2"
-          >
-            <div className="grid lg:grid-cols-[1fr_1.1fr]">
-              <div className="flex flex-col justify-between p-7 sm:p-9">
-                <Index dark>{it.index}</Index>
-                <div className="mt-10">
-                  <h3 className="text-2xl font-medium tracking-[-0.02em] text-white sm:text-3xl">
-                    {it.title}
-                  </h3>
-                  <p className="mt-4 max-w-[42ch] text-[15px] leading-relaxed text-on-dark">
-                    {it.body}
-                  </p>
-                </div>
-              </div>
-              <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[320px]">
-                <Image
-                  src={it.image}
-                  alt={it.alt}
-                  fill
-                  sizes="(max-width: 1023px) 100vw, 55vw"
-                  className="object-cover saturate-[0.35] contrast-[1.05]"
-                />
-                <div className="absolute inset-0 bg-ink-2/30" />
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,#10141d_0%,rgba(16,20,29,0)_45%)] hidden lg:block" />
-                <div className="absolute inset-0 bg-[linear-gradient(0deg,#10141d_0%,rgba(16,20,29,0)_40%)] lg:hidden" />
-              </div>
+          <div className="overflow-hidden rounded-xl border border-line bg-ink-2 p-8 sm:p-10">
+            <div className="flex items-center gap-3">
+              <span aria-hidden="true" className="h-px w-6 shrink-0 bg-accent" />
+              <Index>{it.index}</Index>
             </div>
-          </Spotlight>
+            <h3 className="mt-6 max-w-[20ch] text-2xl font-medium tracking-[-0.02em] text-fg sm:text-[28px] sm:leading-[1.15]">
+              {it.title}
+            </h3>
+            <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-body">
+              {it.body}
+            </p>
+          </div>
         </div>
       ))}
     </div>
@@ -405,13 +363,15 @@ export function CTA({
   lede,
   primary = { label: "Book consultation", href: "/contact" },
   secondary,
-  image = "/images/cta-bg.webp",
+  image,
 }: {
   eyebrow?: string;
   title: string;
   lede: ReactNode;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
+  /* Optional, and unset on every page today. The default used to be a
+     generated photograph whose screens carried invented figures. */
   image?: string;
 }) {
   return (
@@ -419,8 +379,9 @@ export function CTA({
       <Reveal amount={0.3} className="mx-auto w-full max-w-[1400px]">
         <motion.div
           variants={scaleIn}
-          className="relative overflow-hidden rounded-[28px] bg-ink"
+          className="relative overflow-hidden rounded-2xl border border-line bg-ink"
         >
+          {image ? (
           <div className="pointer-events-none absolute inset-0" aria-hidden="true">
             <div className="absolute inset-y-0 right-0 w-full lg:w-1/2">
               <Image
@@ -431,17 +392,18 @@ export function CTA({
                 className="object-cover opacity-30 saturate-[0.7]"
               />
             </div>
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,#0b1020_0%,#0b1020_40%,rgba(11,16,32,0.55)_100%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(0deg,#0b1020_0%,rgba(11,16,32,0)_50%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,#131210_0%,#131210_40%,rgba(19,18,16,0.55)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,#131210_0%,rgba(19,18,16,0)_50%)]" />
           </div>
+          ) : null}
 
           <div className="relative z-10 grid gap-10 px-7 py-16 sm:px-12 sm:py-20 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:px-16 lg:py-24">
             <div>
               <Eyebrow dark>{eyebrow}</Eyebrow>
-              <h2 className="mt-6 max-w-[18ch] text-[clamp(2rem,4.6vw,3.6rem)] font-medium leading-[1.02] tracking-[-0.035em] text-white text-balance">
+              <h2 className="mt-6 max-w-[18ch] text-[clamp(2rem,4.6vw,3.4rem)] font-medium leading-[1.04] tracking-[-0.03em] text-fg text-balance">
                 {title}
               </h2>
-              <p className="mt-6 max-w-[50ch] text-base leading-relaxed text-on-dark sm:text-lg">
+              <p className="mt-6 max-w-[50ch] text-base leading-relaxed text-body sm:text-lg">
                 {lede}
               </p>
             </div>
@@ -500,11 +462,7 @@ export function Bento({
             }`}
           >
             <div className="flex items-center justify-between">
-              <span
-                className={`flex h-10 w-10 items-center justify-center rounded-md ${
-                  dark ? "bg-white/[0.06] text-accent-dark" : "bg-accent-soft text-accent-strong"
-                }`}
-              >
+              <span className="flex h-10 w-10 items-center justify-center rounded-md border border-line bg-ink-2 text-body">
                 {it.icon}
               </span>
               <Index dark={dark}>{it.index}</Index>
@@ -522,12 +480,7 @@ export function Bento({
             {it.tags ? (
               <ul className="mt-auto flex flex-wrap gap-x-3 gap-y-1.5 pt-7">
                 {it.tags.map((t) => (
-                  <li
-                    key={t}
-                    className={`font-mono text-[10.5px] uppercase tracking-[0.1em] ${
-                      dark ? "text-on-dark-muted" : "text-muted"
-                    }`}
-                  >
+                  <li key={t} className="text-[13px] text-muted">
                     {t}
                   </li>
                 ))}
@@ -541,7 +494,15 @@ export function Bento({
 }
 
 /* =========================================================
-   SPLIT - statement + image with offset stat card
+   SPLIT - a statement beside its supporting text
+
+   The image is optional now, and no caller passes one. Every
+   photograph this component used to carry came from one generated
+   batch whose screens and signage had invented figures painted into
+   them. Without an image the two columns carry the weight: the
+   headline on one side, the argument on the other, with the figure
+   in a panel under the headline where the floating card used to
+   overlap the picture's corner.
 ========================================================= */
 
 export function Split({
@@ -549,7 +510,7 @@ export function Split({
   title,
   children,
   image,
-  imageAlt,
+  imageAlt = "",
   reverse = false,
   stat,
   dark = false,
@@ -558,12 +519,40 @@ export function Split({
   eyebrow?: string;
   title: ReactNode;
   children: ReactNode;
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
   reverse?: boolean;
   stat?: { value: ReactNode; label: string };
   dark?: boolean;
 }) {
+  void dark;
+
+  const statPanel = stat ? (
+    <div className="inline-flex flex-col rounded-xl border border-line bg-ink-2 px-6 py-5">
+      <span className="tnum text-[28px] font-medium leading-none tracking-[-0.03em] text-fg">
+        {stat.value}
+      </span>
+      <span className="mt-2 text-[13px] text-muted">{stat.label}</span>
+    </div>
+  ) : null;
+
+  if (!image) {
+    return (
+      <Reveal amount={0.2} className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <motion.div variants={fadeUp} className={reverse ? "lg:order-2" : ""}>
+          <SectionHeading eyebrow={eyebrow} title={title} />
+          {statPanel ? <div className="mt-9">{statPanel}</div> : null}
+        </motion.div>
+        <motion.div
+          variants={fadeUp}
+          className={`space-y-5 text-body ${reverse ? "lg:order-1" : ""}`}
+        >
+          {children}
+        </motion.div>
+      </Reveal>
+    );
+  }
+
   return (
     <Reveal
       amount={0.2}
@@ -572,40 +561,27 @@ export function Split({
       }`}
     >
       <motion.div variants={fadeUp} className={reverse ? "lg:order-2" : ""}>
-        <SectionHeading eyebrow={eyebrow} title={title} invert={dark} />
-        <div className={`mt-7 space-y-4 ${dark ? "text-on-dark" : "text-body"}`}>{children}</div>
+        <SectionHeading eyebrow={eyebrow} title={title} />
+        <div className="mt-7 space-y-4 text-body">{children}</div>
       </motion.div>
 
       <motion.div variants={scaleIn} className={`relative ${reverse ? "lg:order-1" : ""}`}>
-        <div className="relative overflow-hidden rounded-2xl">
-          <motion.div
-            initial={{ scale: 1.12 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.4, ease: EASE }}
-            className="relative aspect-[4/3]"
-          >
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              sizes="(max-width: 1023px) 100vw, 50vw"
-              className="object-cover saturate-[0.9]"
-            />
-          </motion.div>
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+          <Image
+            src={image}
+            alt={imageAlt}
+            fill
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            className="object-cover"
+          />
         </div>
-        {stat ? (
+        {statPanel ? (
           <div
-            className={`absolute -bottom-6 rounded-xl border px-5 py-4 shadow-lift ${
+            className={`absolute -bottom-6 shadow-lift ${
               reverse ? "-right-2 sm:-right-6" : "-left-2 sm:-left-6"
-            } ${dark ? "border-white/10 bg-ink-2" : "border-line bg-surface"}`}
+            }`}
           >
-            <p className={`tnum text-3xl font-medium tracking-[-0.03em] ${dark ? "text-white" : "text-fg"}`}>
-              {stat.value}
-            </p>
-            <p className={`mt-1 font-mono text-[10px] uppercase tracking-[0.16em] ${dark ? "text-on-dark-muted" : "text-muted"}`}>
-              {stat.label}
-            </p>
+            {statPanel}
           </div>
         ) : null}
       </motion.div>
@@ -631,9 +607,7 @@ export function Checks({
       {items.map((p) => (
         <motion.li key={p} variants={fadeUp} className="flex items-start gap-3">
           <span
-            className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full ${
-              dark ? "bg-accent-dark" : "bg-accent"
-            }`}
+            className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-line-strong"
           />
           <span className={`text-[15px] leading-relaxed ${dark ? "text-on-dark" : "text-body"}`}>
             {p}
@@ -669,17 +643,15 @@ export function Legal({
         lede={lede}
         compact
         strip={
-          <p className="font-mono text-2xs uppercase tracking-[0.16em] text-on-dark-muted">
-            Last updated · {updated}
-          </p>
+          <p className="font-mono text-2xs text-muted">Last updated · {updated}</p>
         }
       />
 
-      <section className="w-full bg-surface py-20 lg:py-28">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <div className="grid gap-14 lg:grid-cols-[260px_1fr] lg:gap-20">
             <nav aria-label="Sections" className="lg:sticky lg:top-28 lg:self-start">
-              <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">Contents</p>
+              <p className="text-[13px] text-muted">Contents</p>
               <ol className="mt-4 space-y-2.5">
                 {sections.map((s) => (
                   <li key={s.index}>
@@ -690,7 +662,7 @@ export function Legal({
                       <span className="font-mono text-2xs text-muted">{s.index}</span>
                       <span className="relative">
                         {s.title}
-                        <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-fg transition-transform duration-500 group-hover:scale-x-100" />
+                        <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-fg transition-transform duration-200 group-hover:scale-x-100" />
                       </span>
                     </a>
                   </li>
@@ -708,7 +680,7 @@ export function Legal({
                       <ul className="mt-5 space-y-3">
                         {s.content.map((c) => (
                           <li key={c} className="flex items-start gap-3 text-[15px] leading-relaxed text-body">
-                            <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-accent" />
+                            <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-line-strong" />
                             {c}
                           </li>
                         ))}

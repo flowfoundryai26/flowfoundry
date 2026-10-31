@@ -65,7 +65,7 @@ export default function Footer() {
   const whatsappUrl = getWhatsAppUrl();
 
   return (
-    <footer className="relative w-full overflow-hidden bg-ink text-white">
+    <footer className="relative w-full overflow-hidden bg-ink text-body">
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
         {/* CTA strip — left headline, right actions */}
         <Reveal
@@ -73,7 +73,7 @@ export default function Footer() {
           className="grid gap-8 border-b border-white/[0.06] py-14 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:py-20"
         >
           <motion.div variants={fadeUp}>
-            <p className="font-mono text-2xs uppercase tracking-[0.18em] text-on-dark-muted">
+            <p className="text-[13px] text-muted">
               Ready when you are
             </p>
             <h2 className="mt-4 max-w-xl text-[clamp(1.9rem,4vw,3.2rem)] font-medium leading-[1.04] tracking-[-0.03em] text-balance">
@@ -95,7 +95,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className={`${buttonClass({ variant: "outlineOnDark", size: "lg" })} w-full sm:w-auto`}
             >
-              <WhatsappLogo weight="fill" className="h-4 w-4 text-[#5fd39e]" />
+              <WhatsappLogo className="h-4 w-4" />
               WhatsApp
             </a>
           </motion.div>
@@ -108,13 +108,13 @@ export default function Footer() {
         >
           <motion.div variants={fadeUp} className="col-span-2 lg:col-span-1">
             <Logo />
-            <p className="mt-5 max-w-[36ch] text-sm leading-relaxed text-on-dark">
+            <p className="mt-5 max-w-[36ch] text-sm leading-relaxed text-body">
               AI agents, automation, and custom software built around the way
               your business actually works.
             </p>
-            <div className="mt-5 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">
+            <div className="mt-5 inline-flex items-center gap-2.5 rounded-md border border-line bg-ink-2 px-2.5 py-1">
               <LiveDot />
-              <span className="font-mono text-2xs uppercase tracking-[0.12em] text-on-dark">
+              <span className="font-mono text-2xs text-body">
                 Taking new projects
               </span>
             </div>
@@ -122,7 +122,7 @@ export default function Footer() {
 
           {COLUMNS.map((col) => (
             <motion.nav key={col.title} variants={fadeUp} aria-label={col.title}>
-              <h3 className="font-mono text-2xs uppercase tracking-[0.18em] text-on-dark-muted">
+              <h3 className="text-[13px] text-muted">
                 {col.title}
               </h3>
               <ul className="mt-5 space-y-2.5">
@@ -130,9 +130,9 @@ export default function Footer() {
                   <li key={l.href + l.label}>
                     <Link
                       href={l.href}
-                      className="group/link inline-flex items-center gap-2 text-sm text-on-dark transition-colors duration-300 hover:text-white"
+                      className="inline-flex items-center text-sm text-body transition-colors duration-200 hover:text-fg"
                     >
-                      <span className="h-px w-0 bg-accent-dark transition-all duration-300 group-hover/link:w-3" />
+                      
                       {l.label}
                     </Link>
                   </li>
@@ -142,7 +142,7 @@ export default function Footer() {
           ))}
 
           <motion.div variants={fadeUp} className="min-w-0">
-            <h3 className="font-mono text-2xs uppercase tracking-[0.18em] text-on-dark-muted">
+            <h3 className="text-[13px] text-muted">
               Get in touch
             </h3>
             <ul className="mt-5 divide-y divide-white/[0.06]">
@@ -151,12 +151,12 @@ export default function Footer() {
                   href={`mailto:${SITE.email}`}
                   className="group flex items-center gap-3 py-3 transition-colors"
                 >
-                  <EnvelopeSimple className="h-4 w-4 shrink-0 text-on-dark-muted transition-colors group-hover:text-white" />
+                  <EnvelopeSimple className="h-4 w-4 shrink-0 text-muted transition-colors group-hover:text-fg" />
                   <span className="min-w-0">
-                    <span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark-muted">
+                    <span className="block text-[13px] text-muted">
                       Email
                     </span>
-                    <span className="mt-0.5 block break-all text-[13px] text-white sm:text-sm">
+                    <span className="mt-0.5 block break-all text-[13px] text-fg sm:text-sm">
                       {SITE.email}
                     </span>
                   </span>
@@ -169,24 +169,24 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 py-3"
                 >
-                  <WhatsappLogo className="h-4 w-4 shrink-0 text-on-dark-muted transition-colors group-hover:text-[#5fd39e]" />
+                  <WhatsappLogo className="h-4 w-4 shrink-0 text-muted transition-colors duration-200 group-hover:text-fg" />
                   <span className="min-w-0">
-                    <span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark-muted">
+                    <span className="block text-[13px] text-muted">
                       WhatsApp
                     </span>
-                    <span className="mt-0.5 block text-sm text-white">
+                    <span className="mt-0.5 block text-sm text-fg">
                       +91 73309 37354
                     </span>
                   </span>
                 </a>
               </li>
               <li className="flex items-center gap-3 py-3">
-                <Clock className="h-4 w-4 shrink-0 text-on-dark-muted" />
+                <Clock className="h-4 w-4 shrink-0 text-muted" />
                 <span className="min-w-0">
-                  <span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark-muted">
+                  <span className="block text-[13px] text-muted">
                     Response time
                   </span>
-                  <span className="mt-0.5 block text-sm text-white">
+                  <span className="mt-0.5 block text-sm text-fg">
                     Within one business day
                   </span>
                 </span>
@@ -201,7 +201,7 @@ export default function Footer() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-on-dark transition-colors hover:border-white/30 hover:text-white"
+                    className="rounded-md border border-line bg-ink-2 px-3 py-1.5 text-[13px] text-body transition-colors duration-200 hover:border-line-strong hover:text-fg"
                   >
                     {s.label}
                   </a>
@@ -218,7 +218,7 @@ export default function Footer() {
             whileInView={{ y: "0%", opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="whitespace-nowrap text-center text-[clamp(3.5rem,12.5vw,12rem)] font-semibold leading-[0.85] tracking-[-0.05em] text-white/[0.05]"
+            className="whitespace-nowrap text-center text-[clamp(3.5rem,12.5vw,12rem)] font-semibold leading-[0.85] tracking-[-0.05em] text-fg/[0.04]"
           >
             FlowFoundry
           </motion.p>
@@ -226,7 +226,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col items-start gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-2xs text-on-dark-muted">
+          <p className="font-mono text-2xs text-muted">
             &copy; {year} {SITE.name}. Built in India, working remotely.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
@@ -234,14 +234,14 @@ export default function Footer() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="font-mono text-2xs uppercase tracking-[0.12em] text-on-dark-muted transition-colors hover:text-white"
+                className="font-mono text-2xs text-body-muted transition-colors duration-200 hover:text-fg"
               >
                 {l.label}
               </Link>
             ))}
             <a
               href="#main"
-              className="group inline-flex items-center gap-1.5 font-mono text-2xs uppercase tracking-[0.12em] text-on-dark-muted transition-colors hover:text-white"
+              className="group inline-flex items-center gap-1.5 font-mono text-2xs text-body-muted transition-colors duration-200 hover:text-fg"
             >
               Top
               <ArrowUp className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5" />

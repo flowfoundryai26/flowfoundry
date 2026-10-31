@@ -74,7 +74,7 @@ export default function LeadPulzPage() {
     <div className="w-full overflow-x-clip">
       <PageHero
         eyebrow="LeadPulz · AI revenue agent"
-        title="Turn business calls into measurable action."
+        title="Turn business calls into measurable action"
         lede="An AI voice platform that answers calls, qualifies leads, books appointments, and follows up."
         primaryCta={{ label: "Book a demo", href: "/contact?interest=leadpulz" }}
         secondaryCta={{ label: "See the product", href: "#product" }}
@@ -82,14 +82,14 @@ export default function LeadPulzPage() {
       />
 
       {/* PRODUCT */}
-      <section id="product" className="w-full scroll-mt-20 bg-surface py-24 lg:py-32">
+      <section id="product" className="w-full scroll-mt-20 bg-surface py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="The product"
-                title="One workspace for every conversation."
+                title="One workspace for every conversation"
                 lede="Visibility into calls, qualification results, appointments, agent activity, and conversation outcomes from one interface."
               />
             </motion.div>
@@ -97,33 +97,29 @@ export default function LeadPulzPage() {
           <Reveal amount={0.2} className="mt-14">
             <motion.div variants={scaleIn} className="relative">
               <Device src="/images/dashboard.jpeg" alt="LeadPulz dashboard with calls, qualification results, and bookings" />
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-3 top-12 hidden items-center gap-3 rounded-xl border border-line bg-surface px-4 py-3 shadow-lift md:flex"
-              >
+              <div className="absolute -right-3 top-12 hidden items-center gap-3 rounded-xl border border-line bg-surface px-4 py-3 shadow-lift md:flex">
                 <span className="flex h-7 w-7 items-center justify-center rounded-md bg-live/10 text-live">
-                  <CalendarCheck weight="fill" className="h-4 w-4" />
+                  <CalendarCheck className="h-4 w-4" />
                 </span>
                 <span>
                   <span className="block text-xs font-semibold text-fg">Next action triggered</span>
-                  <span className="block font-mono text-[10px] uppercase tracking-[0.12em] text-muted">Booking · CRM synced</span>
+                  <span className="block font-mono text-2xs text-muted">Booking · CRM synced</span>
                 </span>
-              </motion.div>
+              </div>
             </motion.div>
           </Reveal>
         </Container>
       </section>
 
       {/* CAPABILITIES */}
-      <section id="capabilities" className="w-full scroll-mt-20 bg-surface-2 py-24 lg:py-32">
+      <section id="capabilities" className="w-full scroll-mt-20 bg-surface-2 py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="Capabilities"
-                title="More than an AI phone call."
+                title="More than an AI phone call"
                 lede="LeadPulz connects the conversation to the business process that needs to happen next."
               />
             </motion.div>
@@ -135,14 +131,14 @@ export default function LeadPulzPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how-it-works" className="w-full scroll-mt-20 bg-surface py-24 lg:py-32">
+      <section id="how-it-works" className="w-full scroll-mt-20 bg-surface py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
               <SectionHeading
                 align="split"
                 eyebrow="How it works"
-                title="Conversation to action."
+                title="Conversation to action"
                 lede="LeadPulz is designed around the complete workflow, not only the call itself."
               />
             </motion.div>
@@ -154,7 +150,7 @@ export default function LeadPulzPage() {
       </section>
 
       {/* PRODUCT FLOW — dark */}
-      <section className="w-full bg-ink py-24 lg:py-32">
+      <section className="w-full bg-ink py-20 lg:py-24">
         <Container>
           <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <Reveal amount={0.3}>
@@ -162,7 +158,7 @@ export default function LeadPulzPage() {
                 <SectionHeading
                   invert
                   eyebrow="Intelligent workflow"
-                  title="What happens after the call matters."
+                  title="What happens after the call matters"
                   lede="LeadPulz connects conversations to business logic, data, and actions so your team knows what happened and what should happen next."
                 />
               </motion.div>
@@ -172,12 +168,6 @@ export default function LeadPulzPage() {
               {FLOW.map((f, i) => (
                 <motion.li key={f.name} variants={fadeUp} className="relative flex items-start gap-6 py-4">
                   <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-ink font-mono text-2xs text-accent-dark">
-                    <motion.span
-                      aria-hidden="true"
-                      className="absolute inset-0 rounded-full border border-accent-dark/40"
-                      animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
-                      transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut", delay: i * 0.45 }}
-                    />
                     0{i + 1}
                   </span>
                   <div className="pt-2">
@@ -192,14 +182,14 @@ export default function LeadPulzPage() {
       </section>
 
       {/* USE CASES */}
-      <section className="w-full bg-surface py-24 lg:py-32">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <div className="grid items-start gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <Reveal amount={0.3} className="lg:sticky lg:top-28">
               <motion.div variants={fadeUp}>
                 <SectionHeading
                   eyebrow="Use cases"
-                  title="Built for conversations that drive revenue."
+                  title="Built for conversations that drive revenue"
                   lede="Configure LeadPulz around the conversations, qualification logic, and follow-up processes your business actually uses."
                 />
               </motion.div>
@@ -230,7 +220,7 @@ export default function LeadPulzPage() {
               <div>
                 <Eyebrow>Built around your business</Eyebrow>
                 <h2 className="mt-5 text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.06] tracking-[-0.03em] text-fg text-balance">
-                  Your agent should understand your process - not read a generic script.
+                  Your agent should understand your process - not read a generic script
                 </h2>
                 <p className="mt-5 max-w-[56ch] text-[15px] leading-relaxed text-body">
                   Configure conversation logic, qualification criteria, business
@@ -258,7 +248,6 @@ export default function LeadPulzPage() {
         lede="Tell us how your business handles calls and leads today. We'll show you how LeadPulz fits into the workflow."
         primary={{ label: "Book a demo", href: "/contact?interest=leadpulz" }}
         secondary={{ label: "Book a demo", href: "/contact?interest=leadpulz" }}
-        image="/images/contact.webp"
       />
     </div>
   );
@@ -271,16 +260,16 @@ export default function LeadPulzPage() {
 function CallCard() {
   return (
     <div className="relative">
-      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-ink-2/80 shadow-dark backdrop-blur-md">
+      <div className="relative overflow-hidden rounded-2xl border border-line-strong bg-ink-2 shadow-dark">
         <div className="pointer-events-none absolute inset-0 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
         <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
           <div className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-white">
-              <Phone weight="fill" className="h-4 w-4" />
+              <Phone className="h-4 w-4" />
             </span>
             <div>
               <p className="text-sm font-medium text-white">LeadPulz agent</p>
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-on-dark-muted">Outbound · qualification</p>
+              <p className="font-mono text-2xs text-on-dark-muted">Outbound · qualification</p>
             </div>
           </div>
           <Status dark>Live</Status>
@@ -300,17 +289,13 @@ function CallCard() {
         </div>
 
         <div className="border-t border-white/[0.06] px-5 py-4">
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-on-dark-muted">Captured</p>
+        <p className="font-mono text-2xs text-on-dark-muted">Captured</p>
           <div className="mt-3 flex flex-wrap items-center gap-2">
             {["Clinic · 12 staff", "Budget confirmed", "Decision maker", "Thu 10:30"].map((t, i) => (
               <span key={t} className="flex items-center gap-2">
-                <motion.span
-                  className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.1em] text-on-dark"
-                  animate={{ opacity: [0.6, 1, 0.6] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
-                >
+                <span className="rounded-md border border-line bg-ink-2 px-2.5 py-1 font-mono text-2xs text-body">
                   {t}
-                </motion.span>
+                </span>
                 {i < 3 ? <ArrowRight className="h-3 w-3 text-on-dark-muted" aria-hidden="true" /> : null}
               </span>
             ))}
@@ -320,7 +305,7 @@ function CallCard() {
 
       <div className="pointer-events-none absolute -bottom-10 -left-8 -z-10 hidden h-48 w-64 overflow-hidden rounded-2xl opacity-60 lg:block" aria-hidden="true">
         <Image src="/images/dashboard.jpeg" alt="" fill sizes="256px" className="object-cover object-top saturate-0" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,16,32,0.3),#0b1020)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(19,18,16,0.3),#131210)]" />
       </div>
     </div>
   );

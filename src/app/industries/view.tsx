@@ -75,7 +75,7 @@ export default function IndustriesView() {
         <ContentHeading
           align="split"
           eyebrow="Where we work"
-          title="Five industries, written properly."
+          title="Five industries, written properly"
           lede="Deliberately a short list. Each page explains a real workflow rather than swapping a keyword into a template."
         />
 
@@ -95,7 +95,7 @@ export default function IndustriesView() {
                   className="flex h-full flex-col p-7 sm:p-8"
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <span className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+                    <span className="font-mono text-2xs text-muted">
                       {ind.eyebrow}
                     </span>
                     <Index>{String(i + 1).padStart(2, "0")}</Index>
@@ -121,7 +121,6 @@ export default function IndustriesView() {
                   <span className="mt-auto flex items-center gap-1.5 pt-8 text-sm font-medium text-fg">
                     Read the workflow
                     <ArrowUpRight
-                      weight="bold"
                       aria-hidden="true"
                       className="h-4 w-4 transition-transform duration-300 group-hover/spot:-translate-y-0.5 group-hover/spot:translate-x-0.5"
                     />
@@ -136,7 +135,7 @@ export default function IndustriesView() {
       <Section surface="paper">
         <ContentHeading
           eyebrow="Not listed?"
-          title="The pattern transfers."
+          title="The pattern transfers"
           lede="These five are the industries we have written up. The underlying work - mapping a workflow, automating the coordination, integrating what you already run - is not industry-specific."
         />
         <div className="mt-10">
@@ -148,7 +147,7 @@ export default function IndustriesView() {
       </Section>
 
       <Section surface="white">
-        <ContentHeading eyebrow="Explore" title="By capability instead." />
+        <ContentHeading eyebrow="Explore" title="By capability instead" />
         <div className="mt-12">
           <Related
             groups={[
@@ -187,7 +186,6 @@ export default function IndustriesView() {
         lede="That is the one to automate first. Tell us how it runs today and we will map what it would take."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "See our solutions", href: "/solutions" }}
-        image="/images/cta-bg.webp"
       />
     </div>
   );

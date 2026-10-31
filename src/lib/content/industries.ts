@@ -16,7 +16,6 @@ export type Industry = {
   metaDescription: string;
   eyebrow: string;
   lede: string;
-  image: string;
   /** The operational problem, stated in the vertical's own terms. */
   problem: { title: string; body: string };
   /** The workflow as it runs manually today. */
@@ -48,7 +47,6 @@ export const INDUSTRIES: Industry[] = [
     eyebrow: "Healthcare",
     lede:
       "A dental practice loses enquiries for one structural reason: the person who answers the phone is also the person assisting in the chair.",
-    image: "/images/use-cases/services.webp",
     problem: {
       title: "The front desk cannot be in two places",
       body:
@@ -152,7 +150,6 @@ export const INDUSTRIES: Industry[] = [
     eyebrow: "Healthcare",
     lede:
       "Multi-speciality clinics have a routing problem before they have a volume problem. The caller does not know which department they need, and the front desk becomes a switchboard.",
-    image: "/images/use-cases/support.webp",
     problem: {
       title: "Routing consumes the front desk",
       body:
@@ -254,7 +251,6 @@ export const INDUSTRIES: Industry[] = [
     eyebrow: "Real Estate",
     lede:
       "Property enquiries are won on response time. A buyer who fills three portal forms in an evening speaks to whoever calls back first.",
-    image: "/images/use-cases/sales.webp",
     problem: {
       title: "High lead volume, thin qualification, slow first response",
       body:
@@ -361,7 +357,6 @@ export const INDUSTRIES: Industry[] = [
     eyebrow: "eCommerce",
     lede:
       "The storefront is the solved part. The cost of growth sits in order updates, delivery questions, returns and commission maths.",
-    image: "/images/use-cases/ecommerce.webp",
     problem: {
       title: "Post-order operations scale linearly with orders",
       body:
@@ -465,7 +460,6 @@ export const INDUSTRIES: Industry[] = [
     eyebrow: "Service Businesses",
     lede:
       "In most local service businesses one person is sales, scheduling, dispatch and accounts. Every one of those roles competes for the same attention.",
-    image: "/images/use-cases/services.webp",
     problem: {
       title: "The owner is the single point of coordination",
       body:

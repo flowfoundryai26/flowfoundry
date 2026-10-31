@@ -89,7 +89,7 @@ export default function TermsPage() {
   return (
     <Legal
       label="Terms of service"
-      title="The terms we work under."
+      title="The terms we work under"
       lede="The conditions that apply when you use this website or engage FlowFoundry for services."
       updated="September 2026"
       sections={SECTIONS}

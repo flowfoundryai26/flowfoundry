@@ -77,7 +77,7 @@ export default function CaseStudiesView() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <ContentHeading
             eyebrow="Read this first"
-            title="No results numbers yet, and we are not going to invent any."
+            title="No results numbers yet, and we are not going to invent any"
           />
           <div className="lg:pt-3">
             <p className="max-w-[58ch] text-[17px] leading-relaxed text-body">
@@ -111,7 +111,7 @@ export default function CaseStudiesView() {
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
                       <Index>{String(i + 1).padStart(2, "0")}</Index>
-                      <span className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+                      <span className="font-mono text-2xs text-muted">
                         {c.category}
                       </span>
                       <Status>{c.status}</Status>
@@ -125,7 +125,6 @@ export default function CaseStudiesView() {
                     <span className="mt-7 inline-flex items-center gap-1.5 text-sm font-medium text-fg">
                       Read the case study
                       <ArrowUpRight
-                        weight="bold"
                         aria-hidden="true"
                         className="h-4 w-4 transition-transform duration-300 group-hover/spot:-translate-y-0.5 group-hover/spot:translate-x-0.5"
                       />
@@ -133,7 +132,7 @@ export default function CaseStudiesView() {
                   </div>
 
                   <div className="border-t border-line pt-7 lg:border-l lg:border-t-0 lg:pl-14 lg:pt-0">
-                    <p className="font-mono text-2xs uppercase tracking-[0.16em] text-muted">
+                    <p className="font-mono text-2xs text-muted">
                       The problem
                     </p>
                     <h3 className="mt-3 text-lg font-medium tracking-[-0.015em] text-fg">
@@ -149,7 +148,7 @@ export default function CaseStudiesView() {
                         .map((t) => (
                           <li
                             key={t}
-                            className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-muted"
+                            className="font-mono text-2xs text-muted"
                           >
                             {t}
                           </li>
@@ -169,7 +168,6 @@ export default function CaseStudiesView() {
         lede="Tell us what it needs to do. We will map the architecture and be straight with you about what it takes to build."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
-        image="/images/use-cases/custom.webp"
       />
     </div>
   );

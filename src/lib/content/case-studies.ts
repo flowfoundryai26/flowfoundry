@@ -35,7 +35,6 @@ export type CaseStudy = {
   status: "In development" | "In Validation" | "Live";
   /** One-line positioning for cards. */
   summary: string;
-  image: string;
   overview: string;
   businessProblem: { title: string; body: string };
   requirements: string[];
@@ -67,7 +66,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     status: "In development",
     summary:
       "Our own AI voice platform: inbound and outbound calling, structured qualification, calendar-aware booking and CRM synchronisation.",
-    image: "/images/dashboard.jpeg",
     overview:
       "LeadPulz is a FlowFoundry product rather than a client engagement. It exists because the same requirement kept appearing in client conversations: answer the calls nobody is free to take, qualify the caller properly, and make sure the outcome reaches the CRM. Assembling that from disconnected tools each time was slower and more fragile than building the platform once. LeadPulz is currently in active development and is not generally available.",
     businessProblem: {
@@ -226,7 +224,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     status: "In development",
     summary:
       "A Shopify-integrated platform with multi-level affiliate commissions, referral attribution, partner dashboards and an auditable payout ledger.",
-    image: "/images/use-cases/ecommerce.webp",
     overview:
       "A client eCommerce platform built around Shopify, where the storefront is only part of the requirement. The commercial model depends on an affiliate network with multi-level commissions, which means attribution, commission calculation, partner visibility and payouts all need to be correct and auditable. That is the part Shopify does not do, and the part where a spreadsheet stops being viable. The platform is in active development.",
     businessProblem: {
@@ -378,7 +375,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     status: "In Validation",
     summary:
       "An AI-powered repository intelligence platform being developed to help software teams understand GitHub repositories, generate technical documentation, identify documentation drift, and explore codebases through repository-grounded AI conversations.",
-    image: "/images/use-cases/custom.webp",
     overview:
       "An AI-powered repository intelligence and documentation platform being developed to help engineering teams understand existing code, reduce documentation maintenance overhead, and improve knowledge accessibility. RepoAtlas is a FlowFoundry product initiative rather than a client engagement, and it is currently in concept validation and development planning - not generally available.",
     businessProblem: {
@@ -573,7 +569,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     status: "In development",
     summary:
       "Our internal platform: lead tracking, projects, team allocation, client records, tasks and reporting - replacing the spreadsheet stack we had outgrown.",
-    image: "/images/use-cases/operations.webp",
     overview:
       "FoundryPulse is the system FlowFoundry runs its own business on. We built it for the ordinary reason a business builds internal software: the spreadsheets worked until they did not. It is included here because it is the most honest example we can offer - we are the client, we absorb every design mistake ourselves, and it demonstrates the same architecture we propose for operational portals. In active development and used daily.",
     businessProblem: {

@@ -64,7 +64,7 @@ export default function NotFound() {
           <div>
             <Eyebrow dark>Error 404</Eyebrow>
             <h1 className="mt-6 max-w-[20ch] text-[clamp(2.2rem,5vw,3.8rem)] font-medium leading-[1.02] tracking-[-0.035em] text-white text-balance">
-              That page isn&apos;t here.
+              That page isn&apos;t here
             </h1>
             <p className="mt-6 max-w-[48ch] text-base leading-relaxed text-on-dark sm:text-lg">
               The link may be out of date, or the address may have a typo. The
@@ -82,7 +82,7 @@ export default function NotFound() {
           </div>
 
           <nav aria-label="Popular pages" className="lg:pt-4">
-            <p className="font-mono text-2xs uppercase tracking-[0.18em] text-on-dark-muted">
+            <p className="font-mono text-2xs text-on-dark-muted">
               Most visited
             </p>
             <ul className="mt-5 divide-y divide-white/[0.07] border-y border-white/[0.07]">
@@ -102,7 +102,6 @@ export default function NotFound() {
                       </span>
                     </span>
                     <ArrowUpRight
-                      weight="bold"
                       className="h-4 w-4 shrink-0 text-on-dark-muted opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                       aria-hidden="true"
                     />

@@ -25,7 +25,7 @@ export function GET() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0b1020",
+          background: "#131210",
           padding: "72px 80px",
           position: "relative",
         }}
@@ -36,7 +36,7 @@ export function GET() {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px)",
+              "linear-gradient(rgba(239,233,222,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(239,233,222,0.05) 1px, transparent 1px)",
             backgroundSize: "72px 72px",
           }}
         />
@@ -50,7 +50,7 @@ export function GET() {
             height: 620,
             borderRadius: 999,
             background:
-              "radial-gradient(circle, rgba(59,116,230,0.30) 0%, rgba(11,16,32,0) 68%)",
+              "radial-gradient(circle, rgba(232,135,60,0.16) 0%, rgba(19,18,16,0) 68%)",
           }}
         />
 
@@ -62,7 +62,7 @@ export function GET() {
             style={{
               width: 12,
               height: 44,
-              background: "#0771ea",
+              background: "#e8873c",
               borderRadius: 2,
             }}
           />
@@ -71,7 +71,7 @@ export function GET() {
               style={{
                 fontSize: 27,
                 fontWeight: 600,
-                color: "#ffffff",
+                color: "#efe9de",
                 letterSpacing: "-0.02em",
                 lineHeight: 1,
               }}
@@ -81,9 +81,8 @@ export function GET() {
             <div
               style={{
                 fontSize: 13,
-                color: "rgba(255,255,255,0.52)",
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
+                color: "#8a847a",
+                letterSpacing: "0.02em",
                 marginTop: 7,
               }}
             >
@@ -105,17 +104,17 @@ export function GET() {
             style={{
               fontSize: 68,
               fontWeight: 500,
-              color: "#ffffff",
+              color: "#efe9de",
               letterSpacing: "-0.035em",
               lineHeight: 1.04,
             }}
           >
-            Scale your business without scaling repetitive work.
+            Scale your business without scaling repetitive work
           </div>
           <div
             style={{
               fontSize: 27,
-              color: "rgba(255,255,255,0.74)",
+              color: "#aaa398",
               marginTop: 26,
               lineHeight: 1.45,
               maxWidth: 820,
@@ -134,9 +133,8 @@ export function GET() {
             gap: 16,
             zIndex: 1,
             fontSize: 17,
-            color: "rgba(255,255,255,0.52)",
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
+            color: "#8a847a",
+            letterSpacing: "0.02em",
           }}
         >
           {["AI Agents", "Automation", "Custom Software", "Integrations"].map(
@@ -151,7 +149,7 @@ export function GET() {
                       width: 4,
                       height: 4,
                       borderRadius: 999,
-                      background: "rgba(255,255,255,0.28)",
+                      background: "rgba(239,233,222,0.24)",
                     }}
                   />
                 ) : null}

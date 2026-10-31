@@ -145,7 +145,7 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
         <ContentHeading
           align="split"
           eyebrow="Today"
-          title="How this runs manually right now."
+          title="How this runs manually right now"
           lede="Written out step by step, because naming the process is what makes it possible to see where it breaks."
         />
         <div className="mt-14 lg:mt-18">
@@ -189,7 +189,7 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
           title={ind.exampleAutomation.title}
           lede={
             <>
-              <span className="font-mono text-2xs uppercase tracking-[0.14em] text-muted">
+            <span className="font-mono text-2xs text-muted">
                 Trigger
               </span>
               <br />
@@ -209,7 +209,7 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
             <ContentHeading
               invert
               eyebrow="Example agent conversation"
-              title="What the caller actually experiences."
+              title="What the caller actually experiences"
               lede="An illustrative exchange, written to show scope and tone. Names and details are examples, not transcripts from a real customer."
             />
           </div>
@@ -230,14 +230,14 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
           <div>
             <ContentHeading
               eyebrow="Integrations"
-              title="Connects to what you already run."
+              title="Connects to what you already run"
             />
             <div className="mt-8">
               <IntegrationChips items={ind.integrations} />
             </div>
           </div>
           <div>
-            <ContentHeading eyebrow="Outcomes" title="What changes." />
+            <ContentHeading eyebrow="Outcomes" title="What changes" />
             <div className="mt-8">
               <Bullets items={ind.benefits} tone="live" />
             </div>
@@ -250,7 +250,7 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <ContentHeading
             eyebrow="Constraints we design around"
-            title="The limits, stated up front."
+            title="The limits, stated up front"
             lede="Every industry has lines automation should not cross. These are the ones we build in deliberately rather than discover later."
           />
           <div className="lg:pt-2">
@@ -264,7 +264,7 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
         <ContentHeading
           align="split"
           eyebrow="Implementation"
-          title="How the build runs."
+          title="How the build runs"
           lede="The same eight steps on every engagement. Scope is decided in discovery, not assumed beforehand."
         />
         <div className="mt-14 lg:mt-20">
@@ -279,7 +279,7 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
       <Section surface="paper">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <ContentHeading eyebrow="Questions" title="Straight answers." />
+            <ContentHeading eyebrow="Questions" title="Straight answers" />
           </div>
           <Faqs items={ind.faqs} />
         </div>
@@ -287,7 +287,7 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
 
       {/* ---------------- RELATED ---------------- */}
       <Section surface="white">
-        <ContentHeading eyebrow="Keep reading" title="Related to this." />
+        <ContentHeading eyebrow="Keep reading" title="Related to this" />
         <div className="mt-12">
           <Related groups={related} />
         </div>
@@ -299,7 +299,6 @@ export default function IndustryView({ industry: ind }: { industry: Industry }) 
         lede="Describe how the process runs today. We will come back with what can be automated, what should stay with your team, and what it would take to build."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
-        image={ind.image}
       />
     </div>
   );

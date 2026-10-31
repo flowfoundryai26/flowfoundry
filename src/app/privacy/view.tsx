@@ -73,7 +73,7 @@ export default function PrivacyPage() {
   return (
     <Legal
       label="Privacy policy"
-      title="How we handle your data."
+      title="How we handle your data"
       lede="What we collect when you contact us or use this site, how we use it, and the rights you have over it."
       updated="September 2026"
       sections={SECTIONS}
