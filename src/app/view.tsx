@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, CaretRight } from "@phosphor-icons/react";
-import { EXISTING_STACK, INTEGRATION_LOGOS, PROJECTS } from "@/lib/site";
+import { EXISTING_STACK, INTEGRATION_LOGOS, PROJECTS, WEBSITE_DEMOS } from "@/lib/site";
+import WebsiteDemoCard from "@/components/WebsiteDemoCard";
 import {
   Arrow,
   Button,
@@ -56,6 +57,14 @@ const CAPABILITIES = [
     title: "Integrations",
     body: "CRMs, calendars, databases, messaging, payments, and APIs connected into one working system.",
     meta: ["CRM", "Calendar", "Payments", "APIs"],
+  },
+  {
+    id: "web-design",
+    index: "05",
+    title: "Website Design & Development",
+    body: "Modern business websites, landing pages and digital experiences built for clarity, performance and customer engagement.",
+    meta: ["Web Design", "Responsive Websites", "Landing Pages", "eCommerce"],
+    href: "/services/web-design",
   },
 ];
 
@@ -186,6 +195,7 @@ export default function HomePage() {
       <System />
       <LeadPulz />
       <UseCases />
+      <WebsiteShowcase />
       <Projects />
       <Why />
       <ProcessSection />
@@ -730,6 +740,35 @@ function UseCases() {
             </motion.article>
           ))}
         </Reveal>
+      </Container>
+    </section>
+  );
+}
+
+/* ---------------- WEBSITE DESIGN SHOWCASE ---------------- */
+
+function WebsiteShowcase() {
+  return (
+    <section className="w-full bg-surface-2 py-20 lg:py-24">
+      <Container>
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHeading
+            eyebrow="Website design"
+            title="Websites Designed for Real Businesses"
+            lede="From dental clinics and restaurants to beauty studios, real estate and education, explore how thoughtful website design can serve different industries. These are working concept demos."
+          />
+          <Button href="/portfolio#website-demos" variant="secondary">
+            View All Website Demos
+            <Arrow />
+          </Button>
+        </div>
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:mt-20 lg:grid-cols-3">
+          {WEBSITE_DEMOS.map((demo) => <WebsiteDemoCard key={demo.slug} demo={demo} compact />)}
+        </div>
+        <Link href="/services/web-design" className="mt-9 inline-flex items-center gap-2 text-sm font-medium text-fg transition-colors hover:text-accent">
+          Explore Website Design &amp; Development
+          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
       </Container>
     </section>
   );

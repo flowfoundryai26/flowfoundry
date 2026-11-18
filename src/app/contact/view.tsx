@@ -60,6 +60,7 @@ const INTEREST_LABELS: Record<string, string> = {
   operations: "Operations automation",
   crm: "CRM automation",
   appointments: "Appointment automation",
+  "website-design": "Website Design & Development",
 };
 
 /* =========================================================
@@ -255,6 +256,7 @@ const GOALS = [
   "CRM automation",
   "Business operations",
   "Custom software",
+  "Website Design & Development",
   "Shopify automation",
   "Other",
 ];

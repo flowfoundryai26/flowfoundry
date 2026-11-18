@@ -8,9 +8,9 @@ const PATH = "/portfolio";
 const TRAIL = [{ name: "Portfolio", path: "/portfolio" }];
 
 export const metadata = pageMeta({
-  title: "Portfolio | What We Are Building",
+  title: "Portfolio | Platforms & Website Demos",
   description:
-    "The platforms FlowFoundry is building now: LeadPulz, iLoveSurprises, RepoAtlas and FoundryPulse. AI voice, eCommerce, developer tools and internal operations.",
+    "Explore FlowFoundry's AI and software platforms plus five working website design concept demos for dental, beauty, restaurant, real estate and education businesses.",
   path: PATH,
 });
 
@@ -22,7 +22,7 @@ export default function Page() {
           webPageSchema({
             path: PATH,
             name: "Portfolio",
-            description: "Platforms currently in development at FlowFoundry AI Solutions.",
+            description: "Platforms in development and website design concept demos from FlowFoundry AI Solutions.",
             breadcrumb: TRAIL,
           }),
           breadcrumbSchema(PATH, TRAIL),

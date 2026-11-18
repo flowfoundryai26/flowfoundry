@@ -7,10 +7,10 @@ const PATH = "/";
 
 
 export const metadata = pageMeta({
-  title: "FlowFoundry | AI Agents, Automation & Custom Software",
+  title: "FlowFoundry | AI, Websites & Custom Software",
   absoluteTitle: true,
   description:
-    "FlowFoundry builds AI agents, automation, custom software and integrations around the way your business already works. Book an automation consultation.",
+    "FlowFoundry builds AI agents, automation, custom software and responsive business websites. Explore website design concept demos and book a consultation.",
   path: PATH,
 });
 
@@ -22,7 +22,7 @@ export default function Page() {
           webPageSchema({
             path: PATH,
             name: "FlowFoundry AI Solutions",
-            description: "AI agents, automation, custom software and integrations built around your existing business workflow.",
+            description: "AI agents, automation, custom software and responsive business websites built around your goals.",
           })
         )}
       />

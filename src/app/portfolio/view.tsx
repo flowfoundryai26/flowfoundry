@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "@phosphor-icons/react";
-import { PROJECTS } from "@/lib/site";
+import { PROJECTS, WEBSITE_DEMOS } from "@/lib/site";
+import WebsiteDemoCard from "@/components/WebsiteDemoCard";
 import { Container, Index, SectionHeading, Status } from "@/components/ui";
 import { Reveal, Spotlight, fadeUp } from "@/components/motion";
 import { CTA, PageHero, RowList, StatStrip } from "@/components/sections";
@@ -11,7 +12,7 @@ import { CTA, PageHero, RowList, StatStrip } from "@/components/sections";
 const APPROACH = [
   { index: "01", title: "Client products and our own", body: "Some of these platforms are built for clients; others are systems we run FlowFoundry on. Both get the same engineering standard." },
   { index: "02", title: "One connected system", body: "Each project combines conversations, business logic, data, and actions rather than bolting on isolated tools." },
-  { index: "03", title: "Built to keep evolving", body: "Everything here is in active development. Scope grows with the business, so the architecture is designed to absorb change." },
+  { index: "03", title: "Built to keep evolving", body: "The platforms above are in active development. Their architecture is designed to accommodate changing requirements." },
 ];
 
 export default function PortfolioPage() {
@@ -19,8 +20,8 @@ export default function PortfolioPage() {
     <div className="w-full overflow-x-clip">
       <PageHero
         eyebrow="Portfolio"
-        title="What we're building right now"
-        lede="The platforms in development at FlowFoundry: eCommerce, AI revenue automation, education, and our own internal systems."
+        title="Platforms in progress. Websites you can explore."
+        lede="Explore the software and AI platforms we're building, alongside working website concepts created for different industries."
         primaryCta={{ label: "Book consultation", href: "/contact" }}
         secondaryCta={{ label: "Our services", href: "/services" }}
         strip={
@@ -104,8 +105,23 @@ export default function PortfolioPage() {
         </Container>
       </section>
 
+      {/* WEBSITE CONCEPTS — separate from platforms in development. */}
+      <section id="website-demos" className="scroll-mt-20 w-full bg-surface-2 py-20 lg:py-24">
+        <Container>
+          <SectionHeading
+            align="split"
+            eyebrow="Concept demos"
+            title="Website Design Showcase"
+            lede="Explore website concepts we've designed to demonstrate modern digital experiences for businesses across different industries."
+          />
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:mt-20 lg:grid-cols-3">
+            {WEBSITE_DEMOS.map((demo) => <WebsiteDemoCard key={demo.slug} demo={demo} />)}
+          </div>
+        </Container>
+      </section>
+
       {/* APPROACH */}
-      <section className="w-full bg-surface-2 py-20 lg:py-24">
+      <section className="w-full bg-surface py-20 lg:py-24">
         <Container>
           <Reveal amount={0.3}>
             <motion.div variants={fadeUp}>
@@ -113,7 +129,7 @@ export default function PortfolioPage() {
                 align="split"
                 eyebrow="How we build"
                 title="The same standard for every project"
-                lede="Whether it's a client platform or a system for our own operations, the approach doesn't change."
+                lede="Our platform work starts with the business process, while each website concept starts with the people who will use it."
               />
             </motion.div>
           </Reveal>
@@ -125,8 +141,8 @@ export default function PortfolioPage() {
 
       <CTA
         eyebrow="Your project"
-        title="Want to see your platform on this page?"
-        lede="Tell us how your business works today. We'll help you scope the AI, automation, integrations, or custom software that would move it forward."
+        title="Have a project in mind?"
+        lede="Tell us about the website, AI workflow, integration or software you want to build. We'll help you define the right next step."
         primary={{ label: "Book consultation", href: "/contact" }}
         secondary={{ label: "Explore solutions", href: "/solutions" }}
       />

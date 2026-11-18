@@ -46,10 +46,12 @@ const SERVICES = [
   {
     id: "web-development",
     index: "04",
-    title: "Web Development",
-    body: "Websites and web applications designed for performance, clarity, conversion, and integration with your business systems.",
+    title: "Website Design & Development",
+    body: "Professional, responsive and conversion-focused websites designed to help businesses establish a credible online presence, showcase their services and make it easier for customers to get in touch.",
     icon: <Browser className="h-5 w-5" />,
-    tags: ["Corporate sites", "Landing pages", "Web apps", "Performance"],
+    tags: ["Business websites", "Industry websites", "Responsive design", "Technical SEO", "Booking & WhatsApp", "eCommerce", "Custom web apps"],
+    href: "/services/web-design",
+    linkLabel: "Explore website design",
     wide: true,
   },
   {

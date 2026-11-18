@@ -441,6 +441,8 @@ export function Bento({
     icon?: ReactNode;
     tags?: string[];
     wide?: boolean;
+    href?: string;
+    linkLabel?: string;
   }[];
   dark?: boolean;
 }) {
@@ -485,6 +487,12 @@ export function Bento({
                   </li>
                 ))}
               </ul>
+            ) : null}
+            {it.href ? (
+              <Link href={it.href} className="mt-7 inline-flex items-center gap-2 self-start text-sm font-medium text-fg hover:text-accent">
+                {it.linkLabel ?? "Learn more"}
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             ) : null}
           </Spotlight>
         </motion.div>

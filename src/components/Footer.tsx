@@ -36,8 +36,12 @@ const COLUMNS = [
     ],
   },
   {
-    title: "Company",
+    title: "Company & work",
     links: [
+      { label: "Website Design & Development", href: "/services/web-design" },
+      { label: "Portfolio", href: "/portfolio" },
+      { label: "All Services", href: "/services" },
+      { label: "Contact", href: "/contact" },
       { label: "About", href: "/about" },
       { label: "How We Work", href: "/how-we-work" },
       { label: "Case Studies", href: "/case-studies" },
@@ -109,8 +113,8 @@ export default function Footer() {
           <motion.div variants={fadeUp} className="col-span-2 lg:col-span-1">
             <Logo />
             <p className="mt-5 max-w-[36ch] text-sm leading-relaxed text-body">
-              AI agents, automation, and custom software built around the way
-              your business actually works.
+              AI agents, automation, custom software and websites built around
+              your business.
             </p>
             <div className="mt-5 inline-flex items-center gap-2.5 rounded-md border border-line bg-ink-2 px-2.5 py-1">
               <LiveDot />

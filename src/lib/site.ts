@@ -24,7 +24,7 @@ export const SITE = {
   locality: "Vijayawada, Andhra Pradesh",
   responseTime: "Within one business day",
   description:
-    "FlowFoundry builds AI agents, voice and WhatsApp automation, workflow automation, custom software and integrations around the way your business already works.",
+    "FlowFoundry designs business websites and builds AI agents, voice and WhatsApp automation, workflow automation, custom software and integrations around the way your business works.",
   tagline: "AI · Automation · Software",
 } as const;
 
@@ -96,8 +96,15 @@ export const NAV: NavItem[] = [
       },
     ],
   },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Insights", href: "/insights" },
+  {
+    label: "Services",
+    href: "/services",
+    children: [
+      { label: "Website Design & Development", href: "/services/web-design" },
+      { label: "All Services", href: "/services" },
+    ],
+  },
+  { label: "Portfolio", href: "/portfolio" },
   {
     label: "Company",
     href: "/about",
@@ -105,7 +112,8 @@ export const NAV: NavItem[] = [
       { label: "About FlowFoundry", href: "/about" },
       { label: "How We Work", href: "/how-we-work" },
       { label: "Responsible Automation", href: "/responsible-automation" },
-      { label: "All Services", href: "/services" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Insights", href: "/insights" },
       { label: "LeadPulz AI", href: "/leadpulz" },
     ],
   },
@@ -297,6 +305,71 @@ export const PROJECTS: Project[] = [
     ],
     services: ["Custom Software", "Workflow Automation"],
     href: "/case-studies/foundrypulse",
+  },
+];
+
+/** Working concept websites, separate from the platforms in development. */
+export type WebsiteDemo = {
+  slug: string;
+  name: string;
+  category: string;
+  description: string;
+  url: string;
+  preview: string;
+  previewAlt: string;
+  status: "Concept Demo";
+};
+
+export const WEBSITE_DEMOS: WebsiteDemo[] = [
+  {
+    slug: "sage-dental",
+    name: "Sage Dental Care",
+    category: "Dental Clinic Website",
+    description: "A modern dental clinic website concept with a calm visual design, clear treatment information and accessible enquiry pathways.",
+    url: "https://sagadental.flowfoundryai.in/",
+    preview: "/images/demos/sage-dental.webp",
+    previewAlt: "Sage Dental Care demo homepage with a calm clinic photograph and appointment links",
+    status: "Concept Demo",
+  },
+  {
+    slug: "luna-glow",
+    name: "Luna Glow Studio",
+    category: "Beauty & Wellness Website",
+    description: "An elegant beauty and wellness website concept with premium visual styling and a service-focused customer experience.",
+    url: "https://lunastudio.flowfoundryai.in/",
+    preview: "/images/demos/luna-glow.webp",
+    previewAlt: "Luna Glow Studio demo homepage with monochrome salon imagery and service links",
+    status: "Concept Demo",
+  },
+  {
+    slug: "spice-stone",
+    name: "Spice & Stone Kitchen",
+    category: "Restaurant Website",
+    description: "A restaurant website concept featuring inviting food presentation, menu discovery and reservation-oriented navigation.",
+    url: "https://spicestone.flowfoundryai.in/",
+    preview: "/images/demos/spice-stone.webp",
+    previewAlt: "Spice and Stone demo homepage with food photography and menu and reservation links",
+    status: "Concept Demo",
+  },
+  {
+    slug: "urban-nest",
+    name: "UrbanNest Realty",
+    category: "Real Estate Website",
+    description: "A sophisticated real estate website concept with architectural presentation and property-focused information.",
+    url: "https://urbanest.flowfoundryai.in/",
+    preview: "/images/demos/urban-nest.webp",
+    previewAlt: "UrbanNest Realty demo homepage with architectural photography and property navigation",
+    status: "Concept Demo",
+  },
+  {
+    slug: "bright-path",
+    name: "BrightPath Academy",
+    category: "Education Website",
+    description: "An educational institute website concept designed to communicate courses, learning opportunities and enquiry options.",
+    url: "https://brightpath.flowfoundryai.in/",
+    preview: "/images/demos/bright-path.webp",
+    previewAlt: "BrightPath Academy demo homepage with course links and a classroom photograph",
+    status: "Concept Demo",
   },
 ];
 
