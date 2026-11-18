@@ -40,6 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/case-studies", 0.8, "monthly"),
     entry("/industries", 0.8, "monthly"),
     entry("/about", 0.8, "monthly"),
+    entry("/careers", 0.8, "monthly"),
     entry("/services", 0.7, "monthly"),
     entry("/services/web-design", 0.8, "monthly"),
     entry("/how-we-work", 0.7, "yearly"),

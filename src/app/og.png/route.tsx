@@ -9,8 +9,8 @@ import { ImageResponse } from "next/og";
  * always matches the current brand.
  */
 export const runtime = "nodejs";
-export const contentType = "image/png";
-export const size = { width: 1200, height: 630 };
+const contentType = "image/png";
+const size = { width: 1200, height: 630 };
 
 // Cache hard at the edge — the output only changes when this file does.
 export const revalidate = 86400;

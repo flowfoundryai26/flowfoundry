@@ -111,6 +111,7 @@ export const NAV: NavItem[] = [
     children: [
       { label: "About FlowFoundry", href: "/about" },
       { label: "How We Work", href: "/how-we-work" },
+      { label: "Careers", href: "/careers" },
       { label: "Responsible Automation", href: "/responsible-automation" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Insights", href: "/insights" },

@@ -130,7 +130,9 @@ export default function Header() {
             onMouseLeave={() => setHover(null)}
           >
             {NAV.map((item) => {
-              const active = isActive(item.href);
+              const active =
+                isActive(item.href) ||
+                (item.children?.some((child) => isActive(child.href)) ?? false);
               const hovered = hover === item.href;
               return (
                 <div
@@ -166,21 +168,28 @@ export default function Header() {
                   {item.children ? (
                     <div className="invisible absolute left-0 top-full z-20 w-[280px] translate-y-1 pt-3 opacity-0 transition-[opacity,transform,visibility] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                       <div className="overflow-hidden rounded-xl border border-line-strong bg-ink-2 p-1.5 shadow-dark">
-                        {item.children.map((child, i) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className="group/item flex items-center justify-between gap-3 rounded-md px-3 py-2.5 text-[13px] text-body transition-colors duration-200 hover:bg-ink-3 hover:text-fg"
-                          >
-                            <span className="flex items-center gap-3">
-                              <span className="serial font-mono text-2xs text-muted">
-                                {String(i + 1).padStart(2, "0")}
+                        {item.children.map((child, i) => {
+                          const childActive = isActive(child.href);
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className={`group/item flex items-center justify-between gap-3 rounded-md px-3 py-2.5 text-[13px] transition-colors duration-200 hover:bg-ink-3 hover:text-fg ${
+                                childActive ? "bg-ink-3/70 text-fg font-medium" : "text-body"
+                              }`}
+                            >
+                              <span className="flex items-center gap-3">
+                                <span className="serial font-mono text-2xs text-muted">
+                                  {String(i + 1).padStart(2, "0")}
+                                </span>
+                                {child.label}
                               </span>
-                              {child.label}
-                            </span>
-                            <Arrow className="h-3.5 w-3.5 opacity-0 transition-opacity duration-200 group-hover/item:opacity-100" />
-                          </Link>
-                        ))}
+                              <Arrow className={`h-3.5 w-3.5 transition-opacity duration-200 ${
+                                childActive ? "opacity-100 text-accent" : "opacity-0 group-hover/item:opacity-100"
+                              }`} />
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   ) : null}
